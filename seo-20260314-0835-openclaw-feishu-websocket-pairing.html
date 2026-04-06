@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书长连接怎么接｜WebSocket 事件订阅与 Pairing 审批清单</title>
+  <meta name="description" content="基于 OpenClaw Feishu / Pairing / Getting Started 文档与 Clawdbot 中文文档整理，讲清 OpenClaw 飞书 WebSocket 长连接如何配置、im.message.receive_v1 事件订阅怎么加、pairing 审批与 allowlist 如何收口，适合一人公司与小团队做飞书消息接入。" />
+  <meta name="keywords" content="OpenClaw飞书,OpenClaw WebSocket,飞书事件订阅,im.message.receive_v1,OpenClaw pairing,飞书机器人接入" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0835-openclaw-feishu-websocket-pairing.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · WebSocket</div>
+        <h1 class="section-title">OpenClaw 飞书长连接怎么接：WebSocket 事件订阅与 Pairing 审批清单</h1>
+        <p class="section-desc">如果你在搜 OpenClaw 飞书接入、飞书 WebSocket 长连接、事件订阅 im.message.receive_v1 或 pairing 审批，基本说明你已经走到了“能不能稳定收消息”的阶段。这篇内容基于 OpenClaw 官方 Feishu/Pairing/Getting Started 文档与 Clawdbot 中文文档整理，目标不是堆概念，而是帮你把三件关键事做清楚：飞书事件订阅要选哪种模式、OpenClaw 网关必须先跑起来、以及 pairing 审批到底是用来保护谁的。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询飞书接入方案</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Feishu/Pairing/Getting Started 文档；Clawdbot 中文文档（飞书接入）。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>准备把 OpenClaw 接入飞书、想稳定收消息并控制谁能私聊机器人的团队和一人公司。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：飞书接不稳，80% 不是“机器人坏了”，而是“事件订阅或网关顺序没配对”</h2>
+          <p class="section-desc">OpenClaw 文档明确强调：飞书通道通过 WebSocket 事件订阅接收消息，前提是网关已经启动；pairing 是所有陌生私聊的安全闸门，不审批就不会处理消息。把这两条理解清楚，就能少走大半弯路。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先有网关，再配事件</h3>
+            <p>无论是向导还是 CLI，官方都建议先完成 OpenClaw 安装与网关启动，再去飞书后台配置事件订阅。网关没跑起来，长连接模式保存就容易失败。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>长连接模式是默认推荐</h3>
+            <p>Feishu 通道文档明确说明使用 WebSocket 长连接接收事件，这样可以不暴露公网回调 URL，更适合一人公司与内网场景。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>Pairing 是安全闸门</h3>
+            <p>Pairing 文档说明：未知用户会收到配对码，未审批前消息不会被处理。它不是“多一步麻烦”，而是避免陌生人直接接入你的机器人。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 飞书 WebSocket 接入的最小闭环（6 步）</h2>
+          <h3>1. 跑通 OpenClaw 基础环境</h3>
+          <p>OpenClaw Getting Started 文档建议先完成安装与网关启动，常用命令是 <code>openclaw onboard --install-daemon</code> 和 <code>openclaw gateway status</code>。这一步是后续所有飞书接入的底座。</p>
+          <h3>2. 创建飞书企业自建应用</h3>
+          <p>中文文档与官方说明一致：在飞书开放平台创建企业自建应用，获取 App ID 与 App Secret，并先把机器人能力打开。</p>
+          <h3>3. 配置权限与事件</h3>
+          <p>文档提供了批量导入权限的 JSON 示例；事件订阅需要选择“使用长连接接收事件（WebSocket）”，并添加 <code>im.message.receive_v1</code> 等消息事件。</p>
+          <h3>4. 在 OpenClaw 中添加 Feishu 渠道</h3>
+          <p>运行 <code>openclaw channels add</code>，选择 Feishu，填入 App ID 与 App Secret。完成后重启或检查网关日志，确认通道已加载。</p>
+          <h3>5. 测试消息 + Pairing 审批</h3>
+          <p>飞书里给机器人发消息后，若默认 dmPolicy 为 pairing，会收到配对码。使用 <code>openclaw pairing list feishu</code> 与 <code>openclaw pairing approve feishu &lt;CODE&gt;</code> 完成审批。</p>
+          <h3>6. 收口安全边界</h3>
+          <p>如果你只允许特定人私聊，可用 allowlist；若在群聊里要求必须 @ 提及，也可通过群组策略与 requireMention 控制。</p>
+        </article>
+        <article class="card case-card">
+          <h2>Pairing 机制到底在保护什么？</h2>
+          <p>Pairing 文档的核心意思是：OpenClaw 不会默认信任任何陌生私聊。首次发消息会生成 8 位配对码，且配对请求是有时效与上限的。这一步是为了确保你能明确批准“谁可以和机器人说话”。</p>
+          <p>对一人公司来说，这意味着你不用担心把机器人暴露给陌生人；对小团队来说，它相当于一个轻量的“人群门禁”。只要你没批准，消息不会进入真正的处理链路，避免了无权限人员触发成本与数据泄露。</p>
+          <p>如果业务需要更严格的管控，也可以启用 allowlist，让机器人只回应被允许的 Open ID。这样你可以把“谁能聊”收口到非常明确的名单里。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Common Pitfalls</div>
+          <h2 class="section-title">飞书接入最容易踩的 4 个坑</h2>
+          <p class="section-desc">这些问题不是“飞书坏了”，而是顺序与边界没对齐。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>事件订阅配置在网关之前</h3>
+            <p>文档明确提醒：如果网关未启动，长连接模式可能保存失败。先起网关再配事件，是最稳的顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>忘了加 im.message.receive_v1</h3>
+            <p>事件订阅里没添加消息接收事件，机器人就“像离线”。这一步经常被忽略，导致误判为配置失败。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>配对码没审批就期待回复</h3>
+            <p>pairing 的默认策略是先拦截再审批。没批准之前，消息不会进处理链路，这是安全策略，不是 bug。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>群聊策略没设置</h3>
+            <p>群聊里如果要求必须 @ 触发，记得把 requireMention 配好。否则你会看到“机器人不回话”的假象。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Action Checklist</div>
+          <h2 class="section-title">一张清单：飞书接入后最先要验证的 6 件事</h2>
+          <p class="section-desc">把“能接”变成“能稳定接”。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card"><h3>网关状态正常</h3><p><code>openclaw gateway status</code> 必须返回运行中状态。</p></article>
+          <article class="card feature-card home-card"><h3>事件订阅保存成功</h3><p>长连接模式 + im.message.receive_v1 已配置。</p></article>
+          <article class="card feature-card home-card"><h3>机器人能力开启</h3><p>飞书后台机器人能力已启用，并发布版本。</p></article>
+          <article class="card feature-card home-card"><h3>配对码能生成</h3><p>首次私聊能收到 pairing code。</p></article>
+          <article class="card feature-card home-card"><h3>审批后能回复</h3><p>approve 后再次私聊可收到回复。</p></article>
+          <article class="card feature-card home-card"><h3>群聊策略清楚</h3><p>是否要求 @ 触发、是否需要 allowlist 都已明确。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你要继续接其他入口或做自动化闭环，可以顺着看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合继续看 App、权限、事件订阅和接入顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0808-openclaw-cron-reminder-guide.html">OpenClaw 定时任务怎么配</a></h3>
+            <p>适合继续看 cron、提醒与 heartbeat 的实操边界。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-1052-qingdao-openclaw-deploy.html">青岛 OpenClaw 本地部署</a></h3>
+            <p>适合继续看网关、环境准备和部署顺序。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你要把飞书接入做成“可复用的流程”，现在卡在哪一步？</h2>
+          <p class="section-desc">告诉我你卡在创建应用、权限、事件订阅，还是 pairing 审批与群聊策略，我直接按你的情况给你最短路径。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw 飞书长连接怎么接</span>
+    </div>
+  </footer>
+</body>
+</html>

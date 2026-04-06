@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书 pairing 怎么批准｜配对码过期、approve 不生效时这样排查</title>
+  <meta name="description" content="基于 OpenClaw 官方 Pairing / Feishu 文档与 Clawdbot 中文文档整理，讲清 OpenClaw 飞书 pairing 怎么批准、配对码为什么会过期、openclaw pairing list feishu 和 approve 的使用顺序，以及 dmPolicy pairing、1 小时有效期、待审批上限与白名单边界。" />
+  <meta name="keywords" content="OpenClaw 飞书 pairing,OpenClaw pairing approve feishu,OpenClaw 配对码过期,OpenClaw 飞书配对批准,OpenClaw dmPolicy pairing" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1143-openclaw-feishu-pairing-approve-code-expire.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Pairing</div>
+        <h1 class="section-title">OpenClaw 飞书 pairing 怎么批准：配对码过期、approve 不生效时这样排查</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw 飞书 pairing、OpenClaw pairing approve feishu、OpenClaw 配对码过期，通常说明你已经把 OpenClaw 接到了飞书，机器人也能回出一串配对码，但真正卡在“怎么批准”“为什么刚拿到码又失效”“为什么私聊还是不处理消息”这一步。按 OpenClaw 官方 Pairing 文档，飞书默认常见的私聊策略就是 <code>dmPolicy: "pairing"</code>：未知发信人先拿到一串 8 位配对码，在你批准之前，消息不会进入正常处理链路。这个机制本质上不是报错，而是所有者审批。真正要排查的重点有 4 个：你是不是在看正确的渠道请求、这串码有没有超过 1 小时有效期、当前挂起请求有没有达到上限，以及你处理的是 pairing 问题还是白名单 / 群聊边界问题。把这几件事分开，很多“approve 了也不通”的问题会快很多。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询飞书接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Pairing / Feishu 文档、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在做 OpenClaw 飞书私聊接入、批准 pairing、收口 DM 访问权限和排查配对码失效的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：配对码不是登录验证码，而是“允许谁能私聊机器人”的审批票</h2>
+          <p class="section-desc">OpenClaw 官方文档把 pairing 定义得很明确：这是 owner approval，也就是所有者批准。它先解决“谁能跟机器人说话”，而不是先解决“机器人怎么回”。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先确认这是 DM pairing</h3>
+            <p>飞书私聊默认常见是 <code>dmPolicy: "pairing"</code>。未知发信人先拿配对码，消息在批准前不会被处理。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>配对码只有 1 小时</h3>
+            <p>官方 Pairing 文档明确写了：码是 8 位大写字符，1 小时后过期。隔太久再 approve，往往就是无效。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>approve 前先 list</h3>
+            <p>最稳的顺序是先列待处理请求，再批准正确那一条。很多人不是不会 approve，而是批错渠道或用旧码。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 飞书 pairing 到底在拦什么？</h2>
+          <p>这一步拦的不是模型调用，也不是消息发送权限，而是“未知发信人能不能先进入私聊处理链路”。OpenClaw 官方 Pairing 文档把 DM pairing 写得很直接：当某个渠道配置成 <code>pairing</code> 策略时，陌生发信人先收到一串短码，这条原始消息不会被处理，直到所有者批准为止。对飞书来说，这意味着机器人已经在运行、长连接也可能正常，但系统依然会故意把未批准私聊挡在门外。</p>
+          <p>这就是为什么很多人会误判：看到机器人回出了 pairing code，就以为“接入没问题了”；实际上只能说明入口拦截机制已经生效，离真正放行还差最后一步批准。你如果直接拿这段表现去查 <code>message.send</code>、去查群聊策略、甚至去改模型，方向往往是偏的。因为 Pairing 处理的是访问控制，不是群聊提及规则，也不是发送接口报错。</p>
+          <p>从白帽 SEO 搜索意图看，搜“OpenClaw 飞书 pairing 怎么批准”的人，基本都不缺概念，缺的是一条能直接执行的判断线：先看是不是 DM pairing，再看码是否过期，再看当前渠道有没有挂起请求，最后才是 approve 命令和后续验证。</p>
+        </article>
+        <article class="card case-card">
+          <h2>官方文档里最关键的 4 个 pairing 事实</h2>
+          <p><strong>第一，</strong>配对码是 8 位大写字符，且去掉了容易混淆的字符，比如 <code>0 / O / 1 / I</code>。这不是一次性密码风格的随手码，而是为了避免你抄错。</p>
+          <p><strong>第二，</strong>有效期只有 1 小时。官方写得很明确：pending DM pairing request roughly once per hour per sender，配对码 1 小时后过期。如果你今天上午拿到码，下午再去 approve，大概率就不是同一条有效请求了。</p>
+          <p><strong>第三，</strong>每个渠道默认只保留 3 个待处理请求。官方 Pairing 页提到 pending 请求默认 cap 为 3，新的请求在旧请求未过期或未批准前可能被忽略。所以如果多人轮流试，看到“怎么没有新码”，未必是机器人没工作，而是挂起请求已满。</p>
+          <p><strong>第四，</strong>批准后写入的是 allowlist。官方说明待处理请求和批准后的 allowlist 会分别落到本地凭证文件里，这也是为什么 pairing 处理完后，后续再私聊通常不会重复要求批准，除非你换账号、换渠道或清理了相关存储。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Steps</div>
+          <h2 class="section-title">最稳的执行顺序：先列请求，再批准，再回飞书验证</h2>
+          <p class="section-desc">比起直接照着聊天窗口里的码盲批，按顺序核一次，命中率会更高。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>1. 确认当前问题发生在飞书私聊</h3>
+            <p>如果你是在群里不回、必须 @ 才回，那更可能是 <code>requireMention</code> 或群白名单问题，不一定是 pairing。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>2. 先看飞书渠道的待审批列表</h3>
+            <p>官方顺序是先列出该渠道的 pending pairing 请求，再决定要批准哪一条，避免拿旧码、错码或别的渠道的码去 approve。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>3. 再批准当前有效配对码</h3>
+            <p>只对最新且未过期的飞书 pairing code 做 approve。过期码或已失效请求，即使命令跑了，也不会带来你期待的放行效果。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>4. 回飞书私聊重新发一条新消息</h3>
+            <p>批准之后不要只盯历史消息，回到飞书重新发一条新内容，确认消息是否已经进入正常处理链路。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>5. 如果还不通，再分流到权限或日志</h3>
+            <p>批准后仍不回，这时才开始看 Bot 权限、Gateway 状态、日志和发送链路，不要把问题层级混在一起。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>6. 最后再考虑换成 allowFrom</h3>
+            <p>如果你不想每个私聊用户都走 pairing，也可以转向固定白名单思路；但那是访问策略选择，不是 pairing 本身报错。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么 approve 了还是感觉“不生效”？</h2>
+          <p>最常见的第一种情况，就是你批准的是过期码。OpenClaw 官方写的是 1 小时有效，而不是永久有效。如果用户拿到码后隔了很久才处理，或者中间又触发过新的 pairing 请求，旧码就很容易失效。第二种情况，是你看错了问题层级：当前其实是群聊不回、必须 @ 才回、群或成员白名单没放开，但你一直在私聊 pairing 这条线上排查，自然会觉得“approve 没效果”。</p>
+          <p>第三种情况，是挂起请求过多。因为每个渠道默认只保留 3 个 pending 请求，新的尝试可能不会持续生成新码，导致你手上拿到的是旧状态。第四种情况，是批准之后消息已经放进来了，但发送链路还有别的问题，这时表面上也会像“没通过 pairing”。所以最关键的不是反复 approve，而是把问题拆成访问控制、群聊边界、发送权限三层分别看。</p>
+        </article>
+        <article class="card case-card">
+          <h2>什么时候该继续用 pairing，什么时候该改白名单？</h2>
+          <p>如果你希望陌生人首次私聊时先经过你确认，pairing 很合适，尤其适合内部工具、半公开测试和不想被陌生人直接打穿 DM 的场景。官方文档也把它当作默认安全入口之一。它的好处是安全、明确、可审批；代价是每个陌生发信人第一次都要走一轮批准。</p>
+          <p>如果你的飞书机器人只面向固定几个人，或者你已经很清楚允许谁私聊，那直接维护 <code>allowFrom</code> 往往更省事。因为 pairing 解决的是首次批准，而 allowlist 解决的是稳定放行。两者不是谁高级谁低级，而是不同阶段的策略。测试阶段、陌生来源较多时，先 pairing 更稳；正式投入固定团队使用时，白名单更省心。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话总结</h2>
+          <p>OpenClaw 飞书 pairing approve 的关键，不是死记命令，而是先分清这是不是私聊访问控制问题；只要把“渠道对不对、码过没过期、pending 有没有堆满、批准后是否重新验证”这 4 步走顺，绝大多数配对卡点都能很快收口。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇最适合什么时候看？</h2>
+          <p>适合你已经看到飞书机器人吐出配对码，但不知道怎么批准、批准后还是不通、配对码总过期，或者你想决定是继续用 <code>dmPolicy: "pairing"</code>，还是转成固定白名单的时候。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你还要继续排查飞书接入、群聊边界和白名单策略，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">OpenClaw 飞书长连接怎么接</a></h3>
+            <p>适合回看 WebSocket 事件订阅、pairing 与群聊策略是怎么串起来的。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1108-openclaw-feishu-allowfrom-groupallowfrom.html">OpenClaw Feishu allowFrom 怎么配</a></h3>
+            <p>适合把 pairing 和固定白名单策略拆开看，避免混用。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1128-openclaw-feishu-message-send-failure-400.html">OpenClaw 飞书发不出去消息怎么办</a></h3>
+            <p>适合在 pairing 批准后，继续排查发送权限、Bot 能力和日志问题。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 飞书私聊审批链路收稳？</h2>
+          <p class="section-desc">如果你正在卡 pairing、白名单、群聊边界或发消息前后链路，我可以继续帮你把问题拆成可执行的排查顺序。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / 飞书 / Pairing 审批</span></div></footer>
+</body>
+</html>

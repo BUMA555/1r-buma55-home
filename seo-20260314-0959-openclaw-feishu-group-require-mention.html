@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书群里为什么不回复｜为什么经常要 @ 机器人它才回</title>
+  <meta name="description" content="基于 OpenClaw 官方 README、官方群聊与 Feishu 文档思路、Clawdbot 中文文档整理，讲清 OpenClaw 飞书群里为什么不回复、为什么要 @ 才回、requireMention、groupPolicy、allowFrom、pairing 分别控制什么，适合做飞书接入、群协同和一人公司消息闭环的人。" />
+  <meta name="keywords" content="OpenClaw飞书群里不回复,OpenClaw为什么要@才回,OpenClaw requireMention,OpenClaw groupPolicy,OpenClaw Feishu群聊,OpenClaw allowFrom,OpenClaw pairing" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0959-openclaw-feishu-group-require-mention.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Group Messages</div>
+        <h1 class="section-title">OpenClaw 飞书群里为什么不回复：为什么经常要 @ 机器人它才回</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw 飞书群里不回复、OpenClaw 为什么要 @ 才回、OpenClaw requireMention、OpenClaw groupPolicy，大概率你已经把机器人接进飞书了，但一到真实群聊场景就开始疑惑：私聊能说，群里却像“装死”；明明机器人在线，只有被点名才回；有的群回，有的群完全不动。这个现象多数不是系统坏了，而是 OpenClaw 默认就把群聊做成“有边界地响应”。官方文档和 README 反复强调，OpenClaw 面向真实聊天入口，默认要避免机器人在群里无差别乱回，所以群消息是否触发，通常会同时受 requireMention、groupPolicy、allowFrom、群白名单和私聊 pairing 策略影响。你只有把这些边界拆开看，才能判断到底是配置问题、验收顺序问题，还是它正在按设计工作。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询飞书接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 README、OpenClaw 群聊/Feishu 文档思路、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在做 OpenClaw 飞书接入、群协同、消息分发、咨询承接和一人公司流程自动化的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：群里不回，通常不是故障，而是 OpenClaw 默认先把群聊收紧了</h2>
+          <p class="section-desc">OpenClaw 的官方安全模型很明确：接入 WhatsApp、Telegram、Discord、Feishu 这类真实消息面时，默认不鼓励“谁来都能聊、群里什么都回”。所以你看到的“不回复”，大多先看边界，再看报错。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>群里默认常见是“被提及时再回”</h3>
+            <p>官方群聊配置里长期强调 mention gating。落到飞书场景，最常见的表现就是 <code>requireMention: true</code>：不 @ 机器人，它就不触发。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>有些群能回，有些群不回，通常是群范围没放开</h3>
+            <p>如果你配了群白名单、群级策略或成员白名单，机器人只会在允许的群、允许的人、允许的触发方式下工作，不会全域放开。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>私聊 pairing 和群聊策略是两套边界</h3>
+            <p>私聊默认常见是 <code>dmPolicy: "pairing"</code>，群聊则看 <code>groupPolicy</code>、<code>requireMention</code>、<code>allowFrom</code>。别把“私聊没配对”误判成“群功能失效”。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么 OpenClaw 飞书群里经常要 @ 才回？</h2>
+          <p>因为这本来就是 OpenClaw 很重要的一层白帽边界。官方 README 在群与 DM 的安全默认里讲得很清楚：OpenClaw 连接的不是测试聊天室，而是你真实的工作和私域消息入口，所以默认要降低误触发、刷屏和越界回复风险。群场景下，如果机器人对所有消息都自动响应，短期看似“灵”，长期通常会带来两个问题：第一，群里任何一句闲聊都可能把它拉起来，消耗上下文和调用成本；第二，机器人容易打断群讨论，反而让团队更快失去使用耐心。</p>
+          <p>于是，<code>requireMention</code> 就成了最实用的第一道闸门。它的含义很直白：只有当机器人被明确提及时，当前这条群消息才算真正要交给 OpenClaw 处理。对飞书来说，这种策略尤其适合咨询群、内部协同群、内容审核群和项目群，因为大家可以保留正常聊天节奏，只有在需要机器人介入时再通过 @ 明确召唤。你搜“OpenClaw 为什么要 @ 才回”，本质上不是在问一个 bug，而是在问 OpenClaw 的群聊设计哲学：默认先控干扰，再谈放量。</p>
+          <p>很多人第一次接入时会觉得这层限制“有点笨”，但真正跑起来以后反而会发现，它比“全自动插话”更可控。尤其是一人公司、小团队、销售协同和内容分发场景里，群里往往混着讨论、任务、资料和临时沟通，如果机器人什么都接，就会迅速把高价值信号淹没。requireMention 的存在，本质上是在替你做触发筛选，让机器人只在真正被需要时出现。</p>
+        </article>
+        <article class="card case-card">
+          <h2>除了 requireMention，群里不回复还会被哪几层配置挡住？</h2>
+          <h3>1. groupPolicy 决定群消息默认开还是收</h3>
+          <p><code>groupPolicy</code> 可以理解为群消息的总开关逻辑。不同配置下，它决定当前渠道的群聊到底是默认允许、默认按白名单，还是根本不处理。很多人只盯着 @ 不 @，却没先确认群策略是不是已经把这类群排除在外。结果看起来像“机器人没听见”，实际是群级边界根本没有放开。</p>
+          <h3>2. groups 白名单决定机器人认不认这个群</h3>
+          <p>如果你配置了群列表，那么机器人只在指定群内响应。飞书里常见是某些测试群、某个业务群能用，换到另一个群就完全沉默，这种情况优先看群 ID 是否在允许范围内，而不是先怀疑权限缺失。</p>
+          <h3>3. allowFrom 可以继续把触发人缩到更小</h3>
+          <p>即便群本身被允许，也不代表群里所有人都能叫得动机器人。官方安全默认在多个渠道都强调 allowlist 思路。落实到飞书群，就是你可以只允许指定成员触发；如果当前说话的人不在 <code>allowFrom</code> 范围内，机器人照样不会回。</p>
+          <h3>4. pairing 主要挡私聊，不直接替代群聊策略</h3>
+          <p>OpenClaw README 里对 DM 默认策略写得很明确：常见默认是 <code>dmPolicy: "pairing"</code>，未知发信人第一次来会收到配对码，批准后才进入稳定会话。很多人遇到飞书整体“反应冷淡”，会把私聊 pairing 和群聊不回复混在一起。实际上它们是两条线：一个是私聊身份验证，一个是群聊触发边界。</p>
+          <p>把这几层拆开以后，你会发现 OpenClaw 群里不回复并不神秘：不是没收到消息，就是收到后被群策略挡住；不是群策略挡住，就是没有 @；不是没有 @，就是当前发言人没在允许范围；再往后才轮到权限、事件订阅和日志报错。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Scenarios</div>
+          <h2 class="section-title">哪些场景应该保留“@ 才回”，哪些场景可以逐步放开？</h2>
+          <p class="section-desc">关键不在技术上能不能放，而在业务上值不值得放。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>项目协同群</h3>
+            <p>最适合默认 <code>requireMention: true</code>。项目群里噪音高、任务杂，机器人只有被明确点名才介入，体验通常最好。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>咨询承接群</h3>
+            <p>如果群里要做客户答疑，前期也建议先保守，让销售或负责人 @ 机器人调用标准回复、FAQ 或资料，不要一上来全自动抢答。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>内部测试群</h3>
+            <p>只有当你在小范围测试里已经确认提示词、输出风格、风控边界都稳定了，才适合逐步放宽，让机器人承接更多自然输入。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Troubleshooting</div>
+          <h2 class="section-title">如果你现在就在排查“飞书群里不回”，建议按这个顺序查</h2>
+          <p class="section-desc">按顺序排，比一上来改配置快得多。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>先看有没有 @ 机器人</h3>
+            <p>如果当前群默认要求提及，这一步没做，后面所有排查都容易偏掉。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>再看 groupPolicy 和群白名单</h3>
+            <p>确认当前群是不是被允许；很多时候不是机器人坏了，而是这个群根本不在允许范围。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>再看 allowFrom</h3>
+            <p>确认当前发言人有没有权限触发；尤其是企业内部多角色测试时，这个问题很高频。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>确认 Feishu 事件订阅是否正常</h3>
+            <p>如果连 <code>im.message.receive_v1</code> 都没稳定接进来，群里当然不会回。先保证收得到，再谈怎么回。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>确认应用已发布、Gateway 正在运行</h3>
+            <p>官方 Feishu 接入路径里，Bot 能力、发布应用、Gateway 在线，缺任何一项都会让你误判成“群策略出问题”。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>最后再看日志</h3>
+            <p>如果前面边界都没问题，才去查日志里的具体错误，是鉴权、订阅、发送失败，还是消息根本没进入处理链路。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>给一人公司和小团队的实际建议</h2>
+          <p>如果你是第一次把 OpenClaw 接进飞书，我更建议你把“群里为什么不回复”当成一个正常的上线阶段，而不是必须立刻消灭的症状。先跑私聊 pairing，确认能收、能回、能批准；再放一个内部测试群，默认保留 <code>requireMention: true</code>；等 FAQ、回复风格、边界和日志都稳了，再决定要不要扩大群范围、是否允许更多成员触发、是否放开某些固定流程。</p>
+          <p>这个节奏看上去慢一点，实际更符合白帽 SEO 和真实业务落地的逻辑：先把可控闭环跑通，再逐步放量。否则你会很容易在第一轮就遇到“群里乱回、成本上升、风格失控、团队嫌烦”这四连击。OpenClaw 真正适合长期跑起来的方式，不是上来就追求全自动，而是先让它在清晰边界内稳定产出价值。</p>
+        </article>
+        <article class="card case-card">
+          <h2>一句话总结</h2>
+          <p>OpenClaw 飞书群里不回复，最常见的答案不是“坏了”，而是“你还没有满足它的触发条件”。先看有没有 @，再看 <code>groupPolicy</code>、群白名单、<code>allowFrom</code> 和 Feishu 事件订阅；把这些层级理顺以后，你会发现系统的行为其实很稳定，也很符合真实团队协作需要。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你要继续排 OpenClaw 飞书接入、权限和配对，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合先看创建应用、填凭证、启 Bot、起 Gateway 的顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">OpenClaw 飞书长连接怎么配</a></h3>
+            <p>适合继续看事件订阅、pairing 审批和群聊触发边界。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">OpenClaw 飞书机器人权限清单</a></h3>
+            <p>适合一起核对权限、发布状态、消息发送和群聊策略。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 飞书接入做成可用闭环？</h2>
+          <p class="section-desc">如果你现在卡在飞书接入、权限、群聊策略、内容协同或一人公司消息闭环，我可以继续帮你拆接入清单和上线顺序。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / 飞书 / 群聊策略</span></div></footer>
+</body>
+</html>

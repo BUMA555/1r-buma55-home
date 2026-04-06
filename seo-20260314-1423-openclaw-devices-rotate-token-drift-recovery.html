@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw devices rotate 怎么用｜AUTH_DEVICE_TOKEN_MISMATCH 与 token drift 恢复</title>
+  <meta name="description" content="基于 OpenClaw 官方 devices、Dashboard、Gateway troubleshooting 与中文文档整理，讲清 openclaw devices list、approve、rotate、remove 分别在什么场景下用，以及 AUTH_DEVICE_TOKEN_MISMATCH、token drift、PAIRING_REQUIRED 该按什么顺序恢复。" />
+  <meta name="keywords" content="OpenClaw devices rotate,OpenClaw devices list,OpenClaw devices approve,OpenClaw AUTH_DEVICE_TOKEN_MISMATCH,OpenClaw token drift,OpenClaw PAIRING_REQUIRED,OpenClaw device token" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1423-openclaw-devices-rotate-token-drift-recovery.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · devices · token drift</div>
+        <h1 class="section-title">OpenClaw devices rotate 怎么用：AUTH_DEVICE_TOKEN_MISMATCH 与 token drift 恢复顺序</h1>
+        <p class="section-desc">如果你最近在搜 <code>openclaw devices rotate</code>、<code>openclaw devices list</code>、<code>openclaw devices approve</code>、<code>OpenClaw AUTH_DEVICE_TOKEN_MISMATCH</code>、<code>OpenClaw token drift recovery</code>、<code>PAIRING_REQUIRED</code>，大概率不是想看一页命令手册，而是已经碰到这些真实问题：Dashboard 一直 unauthorized、换了一台浏览器或机器之后突然连不上、明明共享 token 没改却还在报 mismatch、设备批准过了但还是握手失败，或者管理员轮换过 token 之后旧设备集体失效。按 OpenClaw 官方 <code>devices</code>、<code>Dashboard</code>、<code>Gateway troubleshooting</code> 与中文公开文档的共同口径，这类问题不能只盯着共享 token。更稳的做法是把“共享 token、设备 token、pairing 审批、连接目标”四层拆开，再决定你到底该用 <code>list</code>、<code>approve</code>、<code>rotate</code> 还是 <code>remove</code>。这篇就把这四个命令放回真实恢复路径里讲清楚。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询当前故障</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 devices / Dashboard / Gateway troubleshooting，以及 Clawdbot 中文公开文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在排查 device token 漂移、PAIRING_REQUIRED、Dashboard unauthorized、换设备后无法连接的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：<code>devices rotate</code> 不是万能修复，它只负责设备级 token 这一层</h2>
+          <p class="section-desc">很多人一看到 <code>AUTH_DEVICE_TOKEN_MISMATCH</code> 就直接搜 <code>openclaw devices rotate</code>。方向不算错，但如果你连问题层级都没分清，可能转了一轮 token 还是回到原点。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3><code>devices list</code></h3>
+            <p>先看当前有哪些已配对设备、哪些请求还在 pending。这一步用来确认“对象是谁”，而不是直接修。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3><code>devices approve</code></h3>
+            <p>适合处理 <code>PAIRING_REQUIRED</code>。这代表设备身份已被识别，但当前角色还没被批准。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3><code>devices rotate</code></h3>
+            <p>适合处理 <code>AUTH_DEVICE_TOKEN_MISMATCH</code> 或设备 token 漂移。它修的是设备级凭证，不是共享 token。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">04</div>
+            <h3><code>devices remove</code></h3>
+            <p>当旧设备记录太脏、轮换后仍失败时，用它清掉旧 pairing，再重新走 approve，通常比盲目重试更稳。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">05</div>
+            <h3>共享 token 仍要单独确认</h3>
+            <p>官方 Dashboard 文档明确说明：握手鉴权先看共享 token，再看设备 token。两层都可能出问题。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">06</div>
+            <h3><code>--url</code> 场景别掉坑</h3>
+            <p>官方 devices 文档特别提醒：显式传 <code>--url</code> 时，CLI 不会回退使用配置或环境里的凭据，必须同时带 <code>--token</code> 或 <code>--password</code>。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么很多 Dashboard unauthorized，最后都绕回 <code>openclaw devices</code>？</h2>
+          <p>因为 Dashboard 页能不能打开，跟 WebSocket 握手能不能通过，不是同一件事。OpenClaw 官方 Dashboard 文档写得很明确：Control UI 的认证是在握手阶段通过 <code>connect.params.auth</code> 执行的。如果你看到的是 <code>AUTH_TOKEN_MISMATCH</code>，先看共享 token；如果看到的是 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>，那就已经进入设备级 token 漂移层了；如果看到的是 <code>PAIRING_REQUIRED</code>，说明设备身份已知，但当前角色还没获批。也就是说，前端现象看着都像“unauthorized”，底层动作却完全不同。</p>
+          <p>这也是为什么官方 Gateway troubleshooting 把 <code>openclaw devices</code> 放进 Dashboard 的排障链里。它不是附属命令，而是设备鉴权层的核心工具。尤其在换浏览器、换电脑、换远程 URL、管理员做过 token 轮换，或者多个人同时接入同一台 Gateway 时，设备 token 漂移会比你想象中更常见。</p>
+          <p>对中文用户最实用的判断是：如果共享 token 一再确认没错，但仍然是设备相关的 mismatch、pairing required、approve 后还失败，就不要一直刷新页面了，直接回到 <code>devices list</code> 和 <code>devices rotate</code> 这一层。</p>
+        </article>
+        <article class="card case-card">
+          <h2>官方 token drift recovery checklist，真正想让你怎么排？</h2>
+          <p>OpenClaw 官方 <code>devices</code> 文档已经把 token drift recovery checklist 写得很清楚，核心顺序不是“上来先 rotate”，而是：先确认当前网关共享 token 来源；再列出 paired devices 找到受影响设备；然后对受影响设备做 <code>rotate</code>；如果还不行，再把旧 pairing 移除并重新 approve；最后再让客户端用当前共享 token 重连。这个顺序背后的逻辑很重要：你需要先确认自己修的是哪台设备、哪一层凭证，而不是在未知状态下盲改。</p>
+          <p>如果你直接跳到 <code>rotate</code>，但实际上问题出在共享 token、URL 指错、或者 pending pairing 根本没批，你会得到一种错觉：命令执行了，但故障没变。于是很多人误判成“OpenClaw devices rotate 没用”。其实不是命令没用，而是排查层级错了。</p>
+          <p>所以真正高效的恢复路径应该是：<strong>先确定连接目标，再确定共享 token，再确定设备身份和角色审批，最后才处理设备 token 漂移</strong>。这也是官方文档与中文公开文档的共同口径。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Command Roles</div>
+          <h2 class="section-title">4 个最常用的 <code>openclaw devices</code> 命令，分别在什么场景下用</h2>
+          <p class="section-desc">先认场景，再选命令。不要把 approve、rotate、remove 混着用。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h2><code>openclaw devices list</code>：先看清设备与请求状态</h2>
+            <p>这一步最像“设备总览”。官方文档说明它能列出 pending pairing requests 和已配对设备，所以它既适合看“有没有等待批准的请求”，也适合确认“现在系统里已经记录了哪些设备”。如果你碰到的是 <code>PAIRING_REQUIRED</code>，先跑 <code>list</code> 才能知道自己到底要 approve 哪个请求；如果你碰到的是设备 token 漂移，也要先靠 <code>list</code> 确认受影响的 <code>deviceId</code>。</p>
+            <p>很多团队环境里出问题，不是因为不会修，而是因为不知道当前哪一台设备还在系统里、哪一条请求是刚进来的。<code>devices list</code> 就是把对象先找出来。没有这一步，后面 approve、rotate、remove 全都容易打偏。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>openclaw devices approve</code>：处理 <code>PAIRING_REQUIRED</code></h2>
+            <p>如果日志或 Dashboard detail code 指向 <code>PAIRING_REQUIRED</code>，那它的含义不是“密码错了”，而是“这台设备当前角色还没获批”。这时更合理的动作不是换 token，而是用 <code>openclaw devices approve &lt;requestId&gt;</code>，或者在最近请求很明确时用 <code>--latest</code>。官方文档也提到，如果省略 <code>requestId</code>，OpenClaw 会自动批准最近一条 pending 请求。</p>
+            <p>这一步常见在新浏览器首次连入、远程管理页第一次接入、多设备协作新增角色时。它本质是安全审批，而不是故障修复。先把这一层批掉，后面再谈 token 是否漂移才有意义。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>openclaw devices rotate</code>：处理设备级 token 失配</h2>
+            <p>这是很多人真正要找的命令。官方定义很清楚：它会为某台设备某个角色轮换 device token，并可选更新 scopes。它适合的典型场景就是 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>、缓存的 per-device token 已经过期、被撤销，或客户端与服务端对这台设备的设备凭证版本不同步。对 Dashboard 场景来说，最常见的用法就是对目标设备的 <code>operator</code> 角色做一次 rotate。</p>
+            <p>但要注意两点。第一，轮换出来的是新 token，官方明确提醒它是敏感信息，要按 secret 对待。第二，它修的是设备级 token，不负责共享 token。如果共享 token 本身已经变了，单独 rotate 也不会让 Dashboard 起死回生。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>openclaw devices remove</code>：轮换还不够时，清理旧 pairing</h2>
+            <p>官方 token drift checklist 给出的第四步非常关键：如果 rotate 之后还不够，就把旧设备记录 remove 掉，再重新查看请求、重新 approve。这一步的意义是把已经失真的旧设备身份彻底移除，让客户端重新走一遍更干净的 pairing 流程。</p>
+            <p>这在设备多次迁移、浏览器本地状态很脏、历史 pairing 记录重复、或者管理员曾经反复 rotate/revoke 的环境里特别有用。很多人只愿意 rotate，不愿意 remove，是怕“动大了”；但实际上在设备记录已经混乱的时候，remove + approve 往往比无限重连更省时间。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一套更稳的恢复顺序：先判码，再修设备</h2>
+          <p>如果你碰到的是 Dashboard unauthorized、1008、换设备后连不上，建议按这个顺序来理解：先用 <code>openclaw gateway status</code>、<code>openclaw status</code>、<code>openclaw logs --follow</code> 看细节码和目标 URL；如果是 <code>AUTH_TOKEN_MISSING</code> 或 <code>AUTH_TOKEN_MISMATCH</code>，先修共享 token；如果是 <code>PAIRING_REQUIRED</code>，先走 <code>devices list</code> + <code>approve</code>；如果是 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>，再转到 <code>devices rotate</code>；如果 rotate 后仍不恢复，再 <code>remove</code> 旧设备并重新 approve。</p>
+          <p>这个顺序对应的是 OpenClaw 官方 quick map，而不是经验猜测。它最大的价值就是避免你把“授权没批”误修成“token 轮换”，或者把“共享 token 已漂移”误修成“浏览器缓存问题”。</p>
+          <p>当你把层级拆开后，<code>openclaw devices</code> 这组命令就不再像孤立的 CLI 手册，而是一条清晰的恢复跑道。</p>
+        </article>
+        <article class="card case-card">
+          <h2>远程 Gateway 场景，为什么更容易误判成 token 坏了？</h2>
+          <p>因为官方 devices 文档单独提醒了一个很容易忽视的边界：当你显式设置 <code>--url</code> 时，CLI 不会回退使用配置或环境里的凭据，必须显式同时提供 <code>--token</code> 或 <code>--password</code>。这意味着远程场景里，很多“我明明已经配过 token”的问题，其实只是你在新 URL 上没有把凭据一并带过去。</p>
+          <p>再加上远程场景通常伴随 SSH 隧道、不同浏览器标签页、不同管理员轮流维护，token drift、pairing pending、连错网关目标这三类问题会叠在一起。最终你看到的只是一个表面的 unauthorized 或 mismatch，但背后可能是 URL 错了、共享 token 错了、设备 token 漂了，或者角色还没批准。</p>
+          <p>所以远程 Gateway 下更应该先确认“我连的是哪台网关”，再确认“我带的是哪套凭据”，最后才是设备恢复动作。这样能少走很多弯路。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话判断框架</h2>
+          <p>如果 OpenClaw 报的是 <code>PAIRING_REQUIRED</code>，先 <code>approve</code>；如果报的是 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>，先 <code>list</code> 再 <code>rotate</code>；如果轮换仍失败，再 <code>remove</code> 旧设备重走 pairing；如果共享 token 本身不一致，就先修共享 token，不要指望 <code>devices rotate</code> 一把梭。</p>
+        </article>
+        <article class="card case-card">
+          <h2>最适合什么时候看这篇？</h2>
+          <p>适合你已经知道问题不只是“页面打不开”，而是已经进入设备鉴权、token drift、角色审批或多设备协作这层的人。尤其适合换浏览器、换机器、远程 Dashboard、多管理员维护同一台 Gateway 的场景。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你现在卡的是 Dashboard 鉴权、pairing 或服务层排障，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1348-openclaw-dashboard-auth-token-mismatch.html">OpenClaw unauthorized / AUTH_TOKEN_MISMATCH 怎么办</a></h3>
+            <p>适合继续拆共享 token、device token、1008 和 auth detail code 的区别。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1143-openclaw-feishu-pairing-approve-code-expire.html">OpenClaw 飞书 pairing 怎么批准</a></h3>
+            <p>适合继续看 pairing request、配对码过期、pending 上限和 approve 顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1236-openclaw-logs-follow-troubleshooting.html">OpenClaw logs 怎么看</a></h3>
+            <p>适合继续把日志信号放回完整排障顺序里，而不是只盯单条错误。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 设备鉴权和 token drift 一次拆清？</h2>
+          <p class="section-desc">如果你正在排查 Dashboard unauthorized、换设备后连不上、device token 漂移或 pairing 卡住，我可以继续帮你把共享 token、设备 token、审批流和连接目标四层拆开。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / devices / token drift</span></div></footer>
+</body>
+</html>

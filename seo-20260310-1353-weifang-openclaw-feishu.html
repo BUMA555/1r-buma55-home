@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>潍坊 OpenClaw 飞书｜把消息接入、协同提醒和 Agent 工作流串起来</title>
+  <meta name="description" content="面向潍坊企业与一人公司，基于 OpenClaw 官方文档与 Feishu 公开资料重写，梳理 self-hosted Gateway、飞书 WebSocket 接入、Agent 分工和可执行工作流的落地顺序。" />
+  <meta name="keywords" content="潍坊OpenClaw飞书,潍坊OpenClaw Agent,潍坊OpenClaw工作流,潍坊OpenClaw本地部署,潍坊飞书Agent" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260310-1353-weifang-openclaw-feishu.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Weifang · OpenClaw · Feishu</div>
+        <h1 class="section-title">潍坊 OpenClaw 飞书：把消息接入、协同提醒和 Agent 工作流串起来。</h1>
+        <p class="section-desc">如果你在潍坊做本地服务、个人创业或轻团队协同，真正卡住的通常不是“知不知道 AI”，而是咨询消息散、内部提醒慢、资料整理重复。根据 OpenClaw 官方文档，它定位为 self-hosted gateway，可连接多种聊天渠道、承接会话和路由 Agent；根据 Feishu 公开文档，它支持通过企业应用与 WebSocket 事件订阅接入消息。对想做稳协同的人来说，重点不是堆概念，而是先把一条能长期跑的飞书工作流接起来。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询潍坊业务场景</a>
+          <a class="btn-secondary" href="openclaw-linyi-feishu.html">先看飞书接入页</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Public Facts</div>
+          <h2 class="section-title">这篇页只基于公开资料重写，不写虚假落地故事</h2>
+          <p class="section-desc">内容参考 OpenClaw 官网首页、Getting Started、Feishu 渠道文档和 GitHub 仓库公开说明后重写，目的是帮助潍坊本地用户判断是否适合接入，而不是把未验证结果包装成案例。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>OpenClaw 是自托管 Gateway</h3>
+            <p>官网公开说明把 OpenClaw定义为 self-hosted gateway，可在自己的机器或服务器上运行，用来连接消息渠道、管理会话、路由 Agent，并通过控制界面做配置与查看状态。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>基础起步需要 Node 22+</h3>
+            <p>Getting Started 页面明确写到 Node 22 或更新版本，并给出 <code>openclaw onboard --install-daemon</code>、<code>openclaw gateway status</code>、<code>openclaw dashboard</code> 这条基础起步路径。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>Feishu 接入走企业应用与 WebSocket 订阅</h3>
+            <p>Feishu 渠道页公开说明可通过企业应用、权限配置、Bot 能力和 WebSocket 事件订阅接消息，不必暴露公网 webhook，这对内部协同类场景更友好。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么潍坊团队会直接搜 OpenClaw 飞书</h2>
+          <h3>这类搜索更接近真实接入与试用阶段</h3>
+          <p>当用户把城市词、产品词和飞书放在一起搜，通常已经不只是了解概念，而是在判断能不能接进现有团队协同、客户承接或内部提醒流程。</p>
+          <h3>飞书是很多轻团队的日常协作入口</h3>
+          <p>比起单独堆一个 AI 工具，飞书接入的价值在于让消息、待办、通知和文档流转回到熟悉入口里，降低切换成本。</p>
+          <h3>潍坊本地业务更适合先做小闭环</h3>
+          <p>与其一开始铺很多自动化，不如先把咨询分发、FAQ 回复、资料同步或内容审批其中一条高频动作跑稳，价值更容易看到。</p>
+        </article>
+        <article class="card case-card">
+          <h2>哪些潍坊场景更适合先接飞书工作流</h2>
+          <h3>本地服务团队的咨询分发</h3>
+          <p>当咨询来自官网、社群或多个人员对接时，最先要做的是把线索统一进一个入口，再做提醒与跟进。</p>
+          <h3>一人公司的内容协同</h3>
+          <p>如果你既要写内容、又要回客户、还要管资料，飞书接入更适合先承接通知、草稿流转与素材整理。</p>
+          <h3>轻团队的任务提醒与资料同步</h3>
+          <p>Agent 不一定先替你做复杂决策，但很适合先做消息转发、状态提醒、资料归档和 FAQ 初步回复。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Workflow</div>
+          <h2 class="section-title">潍坊企业接 OpenClaw 飞书，建议按这 4 步推进</h2>
+          <p class="section-desc">顺序比功能清单更重要。先确认基础能跑，再接最值钱的一条业务流程，才更符合 BUMA 的落地思路。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card seo-card">
+            <h3>第一步：先把 Gateway 跑通</h3>
+            <p>先按公开文档完成安装、onboard 和 gateway 状态检查，确认控制界面可用。底座没跑稳，后面所有飞书接入都会变成反复返工。</p>
+          </article>
+          <article class="card seo-card">
+            <h3>第二步：只接一个飞书场景</h3>
+            <p>不要一开始把私聊、群聊、审批、文档、全员提醒都上齐。先选一个最频繁、最痛的场景，比如咨询分发或内部提醒。</p>
+          </article>
+          <article class="card seo-card">
+            <h3>第三步：给 Agent 明确岗位边界</h3>
+            <p>内容 Agent 负责草稿和整理，协同 Agent 负责提醒和转发，人工负责确认与关键回复。边界清楚，口径才稳，风险也更低。</p>
+          </article>
+          <article class="card seo-card">
+            <h3>第四步：围绕真实复盘迭代</h3>
+            <p>当第一条飞书流程稳定后，再增加 FAQ、知识库、更多渠道或更多岗位 Agent，而不是一开始追求“大而全”。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">What To Avoid</div>
+          <h2 class="section-title">潍坊团队做飞书接入时，最容易踩的 3 个坑</h2>
+          <p class="section-desc">这些不是耸人听闻，而是从公开文档能反推出来的常见误区。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>一上来就接太多入口</h3>
+            <p>入口一多，权限、口径和排查难度都会迅速上升，最容易把试点做成负担。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>没定义人工确认边界</h3>
+            <p>涉及报价、承诺、客户关系的内容仍要留人工把关，Agent 更适合先做补位，而不是完全替代。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>只看功能，不看维护节奏</h3>
+            <p>真正长期有效的，不是功能越多越好，而是流程有人维护、规则能沉淀、团队愿意持续用。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Internal Links</div>
+          <h2 class="section-title">如果你在评估飞书接入，建议把这几页一起看</h2>
+          <p class="section-desc">这样更容易从“知道能接”走到“知道该先接哪一步”。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="openclaw-linyi-feishu.html">OpenClaw 飞书接入页</a></h3>
+            <p>先看飞书接入的基础理解，再判断潍坊场景要不要做定制化流程。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-0952-jinan-openclaw-feishu.html">济南 OpenClaw 飞书工作流</a></h3>
+            <p>可作为山东范围内的另一种城市词对照页，一起看更容易梳理差异。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="openclaw-faq.html">OpenClaw 常见问题 FAQ</a></h3>
+            <p>适合快速确认安装、接入、权限和工作流边界问题。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你在潍坊想接 OpenClaw 飞书，先把最常用的一条协作链路发过来。</h2>
+          <p class="section-desc">比如咨询分发、FAQ 回复、内容审批、资料同步或提醒流转。BUMA 可以先帮你判断：值不值得做、第一阶段接哪个入口、Agent 岗位怎么分更稳。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>潍坊 OpenClaw 飞书</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)</title>
+  <meta name="description" content="一人公司官网内容复盘看板实战文。结合 SproutSocial 的 metrics 与 KPI 框架、Semrush 的内容营销指标体系，把内容曝光、回站、关键词、咨询与归因收口成可执行的 reporting dashboard，帮助你每周判断该继续发什么、停什么、补什么。" />
+  <meta name="keywords" content="内容复盘看板,content reporting dashboard,内容数据看板,内容周报模板,content marketing dashboard,内容营销看板,SEO内容复盘,内容表现看板" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)" />
+  <meta property="og:description" content="把内容曝光、回站、关键词、咨询与归因收口成一人公司能直接执行的内容复盘看板。" />
+  <meta property="og:url" content="https://buma55.com/seo-20260405-1751-one-person-company-content-reporting-dashboard-seo.html" />
+  <meta property="article:published_time" content="2026-04-05T09:51:00Z" />
+  <meta property="article:modified_time" content="2026-04-05T09:51:00Z" />
+  <link rel="canonical" href="https://buma55.com/seo-20260405-1751-one-person-company-content-reporting-dashboard-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b0f1a;color:#e8eaf0;margin:0;line-height:1.7;}
+    .page-wrap {max-width:760px;margin:0 auto;padding:0 24px 80px;}
+    .article-header {padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .article-header h1 {font-size:28px;line-height:1.3;color:#fff;margin:0 0 16px;font-weight:600;}
+    .article-meta {display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:rgba(255,255,255,.5);}
+    .article-meta span {padding:4px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);}
+    .article-body {font-size:17px;}
+    .article-body h2 {font-size:22px;color:#fff;margin:48px 0 16px;font-weight:600;padding-top:16px;}
+    .article-body h3 {font-size:18px;color:#dbeafe;margin:32px 0 12px;font-weight:600;}
+    .article-body p {margin:0 0 20px;color:rgba(255,255,255,.82);}
+    .article-body ul,.article-body ol {margin:0 0 20px;padding-left:24px;}
+    .article-body li {margin-bottom:10px;color:rgba(255,255,255,.82);}
+    .article-body strong {color:#fbbf24;font-weight:600;}
+    .article-body em {color:rgba(255,255,255,.65);font-style:italic;}
+    .info-box,.checklist,.score-box,.risk-box {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px;margin:32px 0;}
+    .info-box h3,.checklist h3,.score-box h3,.risk-box h3 {margin-top:0;color:#fbbf24;font-size:16px;}
+    .info-box ul,.checklist ul,.score-box ul,.risk-box ul {margin:0;padding-left:20px;}
+    .info-box li,.checklist li,.score-box li,.risk-box li {margin-bottom:8px;font-size:15px;}
+    .pillar-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0;}
+    .pillar-card {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:20px;}
+    .pillar-card h4 {margin:0 0 8px;color:#60a5fa;font-size:15px;}
+    .pillar-card p {margin:0;font-size:14px;color:rgba(255,255,255,.65);}
+    .route-table {width:100%;border-collapse:collapse;margin:24px 0;font-size:15px;}
+    .route-table th {text-align:left;padding:10px 14px;background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.1);color:#fbbf24;font-weight:600;}
+    .route-table td {padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.78);vertical-align:top;}
+    .route-table tr:last-child td {border-bottom:none;}
+    .kpi-box {background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:20px;margin:24px 0;}
+    .kpi-box h4 {margin:0 0 12px;color:#60a5fa;font-size:15px;}
+    .cta-box {background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:28px;text-align:center;margin:40px 0 0;}
+    .cta-box h3 {color:#fbbf24;margin:0 0 10px;font-size:18px;}
+    .cta-box p {color:rgba(255,255,255,.72);margin:0 0 20px;font-size:15px;}
+    .cta-btn {display:inline-block;padding:12px 28px;background:#fbbf24;color:#0b0f1a;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;}
+    .cta-btn:hover {background:#f59e0b;}
+    .article-body .note {font-size:14px;color:rgba(255,255,255,.45);border-left:3px solid rgba(255,255,255,.15);padding-left:16px;margin:20px 0;}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)",
+    "description": "结合 SproutSocial 的 metrics 与 KPI 框架、Semrush 的内容营销指标体系，把内容曝光、回站、关键词、咨询与归因收口成可执行的 reporting dashboard。",
+    "datePublished": "2026-04-05T09:51:00Z",
+    "dateModified": "2026-04-05T09:51:00Z",
+    "mainEntityOfPage": "https://buma55.com/seo-20260405-1751-one-person-company-content-reporting-dashboard-seo.html",
+    "author": {"@type": "Organization", "name": "BUMA"},
+    "publisher": {"@type": "Organization", "name": "BUMA"},
+    "keywords": ["内容复盘看板", "content reporting dashboard", "内容数据看板", "内容周报模板", "content marketing dashboard", "SEO内容复盘"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://buma55.com/"},
+      {"@type": "ListItem", "position": 2, "name": "文章中心", "item": "https://buma55.com/seo.html"},
+      {"@type": "ListItem", "position": 3, "name": "内容复盘看板", "item": "https://buma55.com/seo-20260405-1751-one-person-company-content-reporting-dashboard-seo.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<div class="page-wrap">
+
+<header class="article-header">
+  <h1>一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)</h1>
+  <div class="article-meta">
+    <span>📌 目标关键词：内容复盘看板 / content reporting dashboard / 内容数据看板 / 内容周报模板</span>
+    <span>🕐 预估阅读：14 分钟</span>
+    <span>🎯 搜索意图：Informational + Commercial Investigation</span>
+  </div>
+</header>
+
+<div class="article-body">
+
+<h2>为什么很多一人公司的内容复盘,最后都变成“看了很多图,还是不知道下周该发什么”</h2>
+
+<p>一人公司做内容，经常会在周末或月底打开一堆后台：Google Search Console 看点击和曝光，GA4 看回站，社媒平台看点赞和播放，表单或私信再看有没有咨询。图很多、数字也不少，但复盘完还是只得到一句模糊判断：<strong>这周感觉还行，继续发吧</strong>。问题就在这里——你以为自己在做内容复盘，其实只是在看零散截图。</p>
+
+<p>真正有用的内容复盘看板，不是把所有指标堆在一起，而是要帮你回答几个很现实的问题：<strong>哪类内容带来了回站？哪类内容推动了咨询？哪类文章排名在涨但承接不够？哪条分发渠道只热闹不转化？下周到底该继续放大什么、停掉什么、补什么？</strong></p>
+
+<p>这轮写作前，我先搜索并提炼了 3 类可稳定抓取的高质量参考页：<strong>SproutSocial《The social media metrics to track in 2026 (and why)》</strong>、<strong>SproutSocial《20 social media KPIs to drive business growth》</strong>、<strong>Semrush《14 Content Marketing Metrics to Track for Success》</strong>。它们给我的启发不是去抄一个海外 SaaS 仪表盘，而是把几个高质量写法吸收到一人公司语境里：</p>
+
+<ul>
+  <li><strong>标题角度</strong>：从泛讲“dashboard 模板”改成“每周到底靠什么决定下周还发不发、发哪类”。</li>
+  <li><strong>开头写法</strong>：先写真实困境——后台很多，但做不出取舍。</li>
+  <li><strong>模块结构</strong>：业务问题 → 指标分层 → 最小复盘看板结构 → 周报 SOP → KPI 阈值 → 风险。</li>
+  <li><strong>转化 CTA</strong>：仍然只保留 1 个升级动作，统一回 <a href="contact.html">contact.html</a>。</li>
+  <li><strong>关键词覆盖</strong>：自然覆盖 content reporting dashboard、content marketing dashboard、内容周报模板、SEO内容复盘、内容数据看板，而不是堆同义词。</li>
+</ul>
+
+<div class="info-box">
+  <h3>SEO 快速信息</h3>
+  <ul>
+    <li><strong>标题：</strong>一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)</li>
+    <li><strong>目标关键词：</strong>内容复盘看板 / content reporting dashboard / 内容数据看板 / 内容周报模板 / content marketing dashboard / SEO内容复盘</li>
+    <li><strong>搜索意图：</strong>Informational + Commercial Investigation</li>
+    <li><strong>Meta title：</strong>一人公司官网内容复盘看板SEO:把每周靠感觉总结改成能直接决定下周发什么的Reporting Dashboard(2026版)</li>
+    <li><strong>Meta description：</strong>把内容曝光、回站、关键词、咨询与归因收口成一人公司能直接执行的 content reporting dashboard，帮助你每周判断该继续发什么、停什么、补什么。</li>
+    <li><strong>建议 slug：</strong><code>seo-20260405-1751-one-person-company-content-reporting-dashboard-seo.html</code></li>
+    <li><strong>内链建议：</strong><a href="seo.html">seo.html</a>、<a href="seo-20260405-1457-one-person-company-content-attribution-model-seo.html">内容归因模型</a>、<a href="seo-20260405-1233-one-person-company-content-distribution-roi-seo.html">内容分发ROI</a>、<a href="seo-20260404-1804-one-person-company-content-analytics-seo.html">内容分析体系</a>、<a href="seo-20260404-2211-one-person-company-content-conversion-metrics-seo.html">内容与转化量化关系</a>、<a href="contact.html">contact.html</a></li>
+  </ul>
+</div>
+
+<h2>高质量内容复盘看板,不是指标越多越好,而是先回答 5 个业务问题</h2>
+
+<p>SproutSocial 在 metrics 与 KPI 两篇里都反复强调：<strong>不存在一个 magic metric 能代表全部成绩</strong>。指标一定要跟目标挂钩，并且要按业务问题去分层。Semrush 也强调，内容营销指标要根据渠道、格式和目标来选，而不是所有数字都等权重。</p>
+
+<p>所以，一人公司的 content reporting dashboard 最好先回答这 5 个问题：</p>
+
+<div class="pillar-grid">
+  <div class="pillar-card">
+    <h4>问题 1：这周谁被看见了？</h4>
+    <p>先看曝光、展示量、关键词覆盖与排名变化，判断内容有没有被发现。</p>
+  </div>
+  <div class="pillar-card">
+    <h4>问题 2：谁把人带回官网？</h4>
+    <p>看 CTR、回站链接点击、UTM 来源，判断哪类标题和渠道更会带流量。</p>
+  </div>
+  <div class="pillar-card">
+    <h4>问题 3：谁让人继续读？</h4>
+    <p>看阅读深度、二跳路径、内链点击，判断哪篇内容真的承担了解释任务。</p>
+  </div>
+  <div class="pillar-card">
+    <h4>问题 4：谁推动了咨询？</h4>
+    <p>看联系页点击、表单、私信与 assisted conversions，判断哪些内容在促成动作。</p>
+  </div>
+  <div class="pillar-card">
+    <h4>问题 5：下周该继续什么？</h4>
+    <p>把内容分成放大、补强、重写、暂停四类，不再用“感觉”决策。</p>
+  </div>
+</div>
+
+<p>如果你的 dashboard 不能回答这 5 个问题，那它就更像是“数据收藏夹”，而不是内容复盘看板。</p>
+
+<h2>一人公司内容复盘看板,最少也该分成 4 层</h2>
+
+<p>很多人会把 dashboard 直接做成一张总表，但真正便于每周复盘的结构，其实应该分层。结合 SproutSocial 的 funnel thinking 和 Semrush 的 visibility metrics，我更建议你按下面 4 层搭：</p>
+
+<table class="route-table">
+  <thead>
+    <tr>
+      <th>层级</th>
+      <th>要看什么</th>
+      <th>代表问题</th>
+      <th>动作建议</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>曝光层</strong></td>
+      <td>展示量、覆盖关键词、排名变化、社媒触达</td>
+      <td>有没有被看见</td>
+      <td>补标题、补主题词、补分发入口</td>
+    </tr>
+    <tr>
+      <td><strong>回站层</strong></td>
+      <td>CTR、UTM 点击、外部回站、首页/文章页访问</td>
+      <td>有没有把人带回来</td>
+      <td>改标题钩子、改入口文案、改分发渠道</td>
+    </tr>
+    <tr>
+      <td><strong>承接层</strong></td>
+      <td>二跳、内链点击、FAQ/solutions 路径、停留与滚动</td>
+      <td>回站后有没有继续读</td>
+      <td>补内链、补案例、补解释段</td>
+    </tr>
+    <tr>
+      <td><strong>转化层</strong></td>
+      <td>联系页点击、表单、私信、assisted conversions</td>
+      <td>有没有推动咨询</td>
+      <td>补信任、补 CTA、补联系前证据链</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这 4 层有一个很重要的好处：当数据不理想时，你知道问题出在哪一层，而不是一股脑得出“这篇文章不行”。比如：</p>
+<ul>
+  <li>曝光高、CTR 低：说明标题钩子或分发入口弱；</li>
+  <li>CTR 高、承接低：说明回站页结构、内链或开头不够对路；</li>
+  <li>承接好、转化低：说明联系页、证据链或 CTA 收口弱；</li>
+  <li>转化高、量级低：说明这类内容值得扩分发，不是值得停掉。</li>
+</ul>
+
+<p class="note">内容复盘看板最大的价值，不是给老板看起来专业，而是让你在 10 分钟内判断：这周该补流量、补承接，还是补转化。</p>
+
+<h2>一张最小 content reporting dashboard,应该放哪些指标</h2>
+
+<p>SproutSocial 强调“只挑少数真正能证明业务结果的 KPI”，Semrush 则给了 visibility 与 performance 的底层指标。我把它们收口成一人公司每周最够用的一张最小看板：</p>
+
+<table class="route-table">
+  <thead>
+    <tr>
+      <th>模块</th>
+      <th>建议指标</th>
+      <th>看完后要做什么决定</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>SEO 可见度</strong></td>
+      <td>展示量、点击、平均排名、Top queries</td>
+      <td>决定下周补哪组关键词与标题</td>
+    </tr>
+    <tr>
+      <td><strong>内容流量</strong></td>
+      <td>文章页访问、来源渠道、回站链接点击、UTM</td>
+      <td>决定哪条渠道继续发、哪条暂停</td>
+    </tr>
+    <tr>
+      <td><strong>内容承接</strong></td>
+      <td>二跳文章、FAQ 点击、solutions 点击、内链点击</td>
+      <td>决定哪篇文章该补解释层与内链</td>
+    </tr>
+    <tr>
+      <td><strong>咨询转化</strong></td>
+      <td>contact 点击、表单、私信、assisted conversions</td>
+      <td>决定哪条内容链路最接近商业结果</td>
+    </tr>
+    <tr>
+      <td><strong>内容资产判断</strong></td>
+      <td>是否适合放大 / 补强 / 重写 / 暂停</td>
+      <td>决定下周内容动作清单</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="kpi-box">
+  <h4>📊 最小看板里最值得优先保留的 8 个数字</h4>
+  <p><strong>1.</strong> GSC 展示量　<strong>2.</strong> GSC 点击　<strong>3.</strong> CTR　<strong>4.</strong> 平均排名</p>
+  <p><strong>5.</strong> 文章页回站访问　<strong>6.</strong> FAQ / Solutions / Contact 二跳　<strong>7.</strong> 联系页点击或表单　<strong>8.</strong> assisted conversions 或咨询前关键路径</p>
+</div>
+
+<p>如果你现在还没法把所有工具打通，也没关系。先把这 8 个数字补齐，已经足够跑一版真正能决策的 content marketing dashboard。</p>
+
+<h2>为什么“内容周报模板”不能只写本周发了几篇</h2>
+
+<p>很多团队写周报会写成：本周发了 3 篇文章，做了 6 次分发，总曝光 1.2 万。看上去很充实，实际上没有复盘价值。因为“发了多少”只是动作，不是结果。对一人公司来说，周报最怕的就是把勤奋当成成果。</p>
+
+<p>一个真正有用的内容周报模板，至少要按这 4 段写：</p>
+<ol>
+  <li><strong>本周最值得放大的内容：</strong>哪篇内容在曝光、回站、咨询里最明显；</li>
+  <li><strong>本周最值得补强的链路：</strong>哪篇文章被看见了，但承接不够；</li>
+  <li><strong>本周该暂停的动作：</strong>哪条渠道或哪类选题热闹但没有商业结果；</li>
+  <li><strong>下周行动：</strong>继续发什么、改什么、补什么。</li>
+</ol>
+
+<p>也就是说，dashboard 的终点不是“看见数字”，而是把数字变成下周动作。否则你就只是把数据换了一种格式收藏起来。</p>
+
+<h2>7步SOP: 每周把零散数据收口成可执行的内容复盘看板</h2>
+
+<h3>第 1 步：先定本周只看 1 个主目标</h3>
+<p>本周是要判断拉新，还是要判断咨询推进？目标不同，dashboard 里的主 KPI 也不同。不要一张表同时承担全部目标。</p>
+
+<h3>第 2 步：按“内容主题”而不是“平台”整理数据</h3>
+<p>不是只看公众号、知乎、官网分别怎样，而是看同一个主题在多平台上的整体表现。这样更符合一人公司“同一主题多次分发”的实际工作流。</p>
+
+<h3>第 3 步：把 SEO 与分发数据放进同一张表</h3>
+<p>SproutSocial 的 KPI 框架强调业务目标一致；Semrush 的指标强调搜索表现。把两者放进一张 dashboard，才能判断“这篇内容是没被看见，还是被看见但没带回站”。</p>
+
+<h3>第 4 步：补一列“关键路径角色”</h3>
+<p>给每篇内容标记更偏“拉新 / 解释 / 收口”。这样复盘时不会错杀那些不负责最后转化、但对咨询前种草很关键的文章。</p>
+
+<h3>第 5 步：每周只选 3 条最重要的发现</h3>
+<p>不要在周报里写 18 条观察。真正能推动动作的高质量周报，往往只有 3 条最重要的发现和 3 条对应动作。</p>
+
+<h3>第 6 步：直接在 dashboard 里写动作状态</h3>
+<p>每条内容最后都要落到 4 个动作之一：<strong>放大、补强、重写、暂停</strong>。没有动作状态的 dashboard，复盘完就断了。</p>
+
+<h3>第 7 步：让 contact 路径成为最终验收</h3>
+<p>只要你的网站主线还是“内容生产 → 官网承接 → 客户咨询”，那 dashboard 的最终验收一定要回到联系动作，而不是停在浏览量。</p>
+
+<h2>三段式量化指标: 把 dashboard 真正变成决策工具</h2>
+
+<p>根据当前站点主线，以及 SproutSocial 强调的 KPI 要跟业务目标挂钩，我建议一人公司的内容复盘看板固定使用三段式量化指标：</p>
+
+<div class="score-box">
+  <h3>三段式量化指标（Dashboard 版）</h3>
+  <ul>
+    <li><strong>曝光量级：</strong>单篇内容首周先观察 500-3000 次曝光；专题组内容每周整体观察 3000-10000 次曝光。</li>
+    <li><strong>预期点击率：</strong>搜索或分发入口 CTR 先以 1.5%-5% 为基础观察区间；若低于 1%，优先改标题与入口文案。</li>
+    <li><strong>转化率：</strong>回站后到 contact 或高意向动作，先以 1%-5% 为基础判断；若承接型内容明显高于均值，优先放大与补链路。</li>
+  </ul>
+</div>
+
+<p>这样你每周至少能分清三件事：</p>
+<ul>
+  <li>没人看见，是曝光问题；</li>
+  <li>看见了不点，是 CTR 问题；</li>
+  <li>点进来不咨询，是承接或转化问题。</li>
+</ul>
+
+<p>这也正好能和 <a href="seo-20260405-1233-one-person-company-content-distribution-roi-seo.html">内容分发ROI</a>、<a href="seo-20260405-1457-one-person-company-content-attribution-model-seo.html">内容归因模型</a> 形成闭环：ROI 让你知道渠道值不值，attribution 让你知道谁该记功劳，dashboard 则让你每周真的做动作。</p>
+
+<h2>最常见的 6 个 dashboard 误区</h2>
+
+<ul>
+  <li><strong>误区 1：把所有平台指标堆在一起。</strong> 看起来很全，实际上没有业务答案。</li>
+  <li><strong>误区 2：只看曝光，不看回站。</strong> 容易把“热闹内容”误判成“有效内容”。</li>
+  <li><strong>误区 3：只看最后咨询，不看中间路径。</strong> 会低估 FAQ、长文、案例这种承接型内容。</li>
+  <li><strong>误区 4：每周换一套指标。</strong> 这样趋势根本没法比较。</li>
+  <li><strong>误区 5：只做图表，不写动作。</strong> dashboard 做得越漂亮，执行越空。</li>
+  <li><strong>误区 6：把“发了几篇”当核心 KPI。</strong> 这只能证明忙，不能证明有效。</li>
+</ul>
+
+<div class="risk-box">
+  <h3>本方案风险</h3>
+  <ul>
+    <li><strong>本方案风险：</strong>如果你现在的数据源没有统一命名，尤其 UTM 和主题命名混乱，dashboard 会很难横向比较；<strong>若出现这种情况，则先统一主题名、渠道名和 UTM 命名</strong>。</li>
+    <li><strong>本方案风险：</strong>如果联系页和证据链承接过弱，dashboard 会把问题错误归到内容本身；<strong>若发现高质量内容回站后普遍不进 contact，则优先补 contact 路径而不是急着停题</strong>。</li>
+    <li><strong>本方案风险：</strong>如果你试图一开始就接太多工具，维护成本会高于复盘价值；<strong>若执行 2 周后仍无法稳定更新，则退回 8 个核心数字的最小看板版本</strong>。</li>
+  </ul>
+</div>
+
+<h2>结论：一张好 dashboard 的标准,不是数据很多,而是你看完就知道下周该干什么</h2>
+
+<p>一人公司做内容最缺的往往不是数据，而是<strong>能把数据翻译成动作的结构</strong>。内容复盘看板的真正价值，不在于你做出了一个漂亮的 content reporting dashboard，而在于你看完之后能立刻回答：</p>
+<ul>
+  <li>哪类内容值得继续放大；</li>
+  <li>哪类内容只是有曝光、没承接；</li>
+  <li>哪条渠道应该停；</li>
+  <li>哪篇文章该补内链、FAQ、Solutions 或联系入口；</li>
+  <li>下周具体发什么主题，才更接近咨询结果。</li>
+</ul>
+
+<p>如果你已经有了 <a href="seo-20260405-1233-one-person-company-content-distribution-roi-seo.html">分发 ROI</a>、<a href="seo-20260405-1457-one-person-company-content-attribution-model-seo.html">归因模型</a> 的意识，那么下一步最值得补的就是 dashboard。因为只有 dashboard，能把“看数据”真正变成“做取舍”。</p>
+
+<div class="cta-box">
+  <h3>想先把你现有内容数据收口成一张能做决定的 dashboard？</h3>
+  <p>先发你最近 7 天的 GSC 截图、文章页访问数据、1 条真实咨询路径。我会先帮你拆成 4 层：曝光、回站、承接、转化，再告诉你下周最该放大的内容动作。</p>
+  <a class="cta-btn" href="contact.html">带着 dashboard 线索来问</a>
+</div>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">BUMA 首页主视觉：一个人的公司，也能拥有一支 AI 团队</title>
+  <desc id="desc">深色科技风的业务闭环插画，展示一人公司如何通过内容、FAQ、线索承接与执行流程，搭起一支 AI 团队。</desc>
+  <defs>
+    <linearGradient id="bg" x1="220" y1="120" x2="1380" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#09111F"/>
+      <stop offset="0.52" stop-color="#0C1527"/>
+      <stop offset="1" stop-color="#0A1020"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 980) rotate(90) scale(360)">
+      <stop stop-color="#5BE3B4" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#5BE3B4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1320 190) rotate(90) scale(340)">
+      <stop stop-color="#7C5CFF" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCenter" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(835 540) rotate(90) scale(460)">
+      <stop stop-color="#182A47" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="#182A47" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="530" y1="420" x2="1170" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73B8FF"/>
+      <stop offset="1" stop-color="#7C5CFF"/>
+    </linearGradient>
+    <linearGradient id="cta" x1="1110" y1="768" x2="1460" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6E9FFF"/>
+      <stop offset="1" stop-color="#7C5CFF"/>
+    </linearGradient>
+    <filter id="softShadow" x="0" y="0" width="1600" height="1200" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="26"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.015 0 0 0 0 0.031 0 0 0 0 0.065 0 0 0 0.46 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1200" rx="48" fill="url(#bg)"/>
+  <circle cx="240" cy="980" r="360" fill="url(#glowLeft)"/>
+  <circle cx="1320" cy="190" r="340" fill="url(#glowRight)"/>
+  <circle cx="835" cy="540" r="460" fill="url(#glowCenter)"/>
+
+  <g opacity="0.32">
+    <path d="M116 290H1484" stroke="#1D2A42" stroke-width="2"/>
+    <path d="M116 420H1484" stroke="#1D2A42" stroke-width="2"/>
+    <path d="M116 550H1484" stroke="#1D2A42" stroke-width="2"/>
+    <path d="M116 680H1484" stroke="#1D2A42" stroke-width="2"/>
+    <path d="M116 810H1484" stroke="#1D2A42" stroke-width="2"/>
+    <path d="M314 96V1104" stroke="#1A263D" stroke-width="2"/>
+    <path d="M644 96V1104" stroke="#1A263D" stroke-width="2"/>
+    <path d="M974 96V1104" stroke="#1A263D" stroke-width="2"/>
+    <path d="M1304 96V1104" stroke="#1A263D" stroke-width="2"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="86" y="112" width="1428" height="898" rx="42" fill="#0D1526" fill-opacity="0.86" stroke="#23324D"/>
+
+    <text x="138" y="180" fill="#7C5CFF" font-size="22" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="1.2">BUMA · AI Team for One-Person Company</text>
+    <text x="138" y="250" fill="#F8FAFC" font-size="58" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">一个人的公司，也能拥有一支真正能干活的 AI 团队</text>
+    <text x="138" y="304" fill="#A5B1C8" font-size="24" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">把首页、FAQ、文章、联系页接成一条清晰的业务路径，而不是各说各话。</text>
+
+    <rect x="138" y="346" width="210" height="52" rx="26" fill="#121B30" stroke="#2B3854"/>
+    <circle cx="172" cy="372" r="8" fill="#5BE3B4"/>
+    <text x="194" y="379" fill="#E6ECFA" font-size="20" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">首页承接</text>
+
+    <rect x="366" y="346" width="200" height="52" rx="26" fill="#121B30" stroke="#2B3854"/>
+    <circle cx="400" cy="372" r="8" fill="#73B8FF"/>
+    <text x="422" y="379" fill="#E6ECFA" font-size="20" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">内容增长</text>
+
+    <rect x="584" y="346" width="236" height="52" rx="26" fill="#121B30" stroke="#2B3854"/>
+    <circle cx="618" cy="372" r="8" fill="#7C5CFF"/>
+    <text x="640" y="379" fill="#E6ECFA" font-size="20" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">FAQ / 联系转化</text>
+
+    <g>
+      <rect x="138" y="454" width="334" height="412" rx="30" fill="#10192B" stroke="#24344F"/>
+      <text x="176" y="518" fill="#73B8FF" font-size="19" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="0.9">01 · One-person Company</text>
+      <text x="176" y="566" fill="#F8FAFC" font-size="36" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">先判断你现在卡在哪一步</text>
+      <text x="176" y="618" fill="#A7B3CA" font-size="22" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">是首页承接不清、OpenClaw / 飞书没接顺，</text>
+      <text x="176" y="650" fill="#A7B3CA" font-size="22" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">还是文章写了很多，却没有带来下一步动作。</text>
+
+      <circle cx="216" cy="736" r="22" fill="#182945" stroke="#35507B"/>
+      <path d="M216 718C225.941 718 234 726.059 234 736C234 745.941 225.941 754 216 754C206.059 754 198 745.941 198 736C198 726.059 206.059 718 216 718ZM216 710C201.641 710 190 721.641 190 736C190 750.359 201.641 762 216 762C230.359 762 242 750.359 242 736C242 721.641 230.359 710 216 710Z" fill="#73B8FF"/>
+      <rect x="258" y="718" width="146" height="18" rx="9" fill="#F5F7FF" fill-opacity="0.92"/>
+      <rect x="258" y="750" width="104" height="12" rx="6" fill="#8EA0C6" fill-opacity="0.52"/>
+
+      <rect x="176" y="796" width="258" height="44" rx="22" fill="#152036" stroke="#25334D"/>
+      <text x="205" y="824" fill="#E6ECFA" font-size="19" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">内容、FAQ、联系先排优先级</text>
+    </g>
+
+    <g>
+      <rect x="528" y="454" width="448" height="412" rx="30" fill="#10192B" stroke="#24344F"/>
+      <text x="566" y="518" fill="#5BE3B4" font-size="19" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="0.9">02 · AI Team Workflow</text>
+      <text x="566" y="566" fill="#F8FAFC" font-size="36" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">再把 AI 团队接进业务闭环里</text>
+
+      <rect x="566" y="620" width="156" height="92" rx="24" fill="#141F34" stroke="#2B3A58"/>
+      <text x="596" y="660" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">内容生产</text>
+      <text x="596" y="691" fill="#9EABC3" font-size="17" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">文章 / 脚本 / 改写</text>
+
+      <rect x="798" y="620" width="140" height="92" rx="24" fill="#141F34" stroke="#2B3A58"/>
+      <text x="828" y="660" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">FAQ</text>
+      <text x="826" y="691" fill="#9EABC3" font-size="17" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">高频问题入口</text>
+
+      <rect x="566" y="742" width="156" height="92" rx="24" fill="#141F34" stroke="#2B3A58"/>
+      <text x="596" y="782" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">线索承接</text>
+      <text x="596" y="813" fill="#9EABC3" font-size="17" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">表单 / 联系 / 分流</text>
+
+      <rect x="798" y="742" width="140" height="92" rx="24" fill="#141F34" stroke="#2B3A58"/>
+      <text x="828" y="782" fill="#F8FAFC" font-size="25" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">执行</text>
+      <text x="821" y="813" fill="#9EABC3" font-size="17" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">OpenClaw / 飞书</text>
+
+      <path d="M722 666H798" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M868 712V742" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M722 788H798" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M644 712V742" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="760" cy="728" r="28" fill="#0F1729" stroke="#304666"/>
+      <text x="741" y="735" fill="#E8EEFB" font-size="26" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">AI</text>
+    </g>
+
+    <g>
+      <rect x="1032" y="300" width="430" height="566" rx="30" fill="#10192B" stroke="#24344F"/>
+      <text x="1070" y="364" fill="#7C5CFF" font-size="19" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="0.9">03 · Conversion Path</text>
+      <text x="1070" y="412" fill="#F8FAFC" font-size="36" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">首页不是展示墙，而是下一步动作的起点</text>
+
+      <rect x="1070" y="470" width="354" height="76" rx="24" fill="#121D31" stroke="#2B3A58"/>
+      <text x="1106" y="503" fill="#A9B4CB" font-size="17" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">最快阅读路径</text>
+      <text x="1106" y="531" fill="#F8FAFC" font-size="24" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">首页 → 方案 / FAQ / 文章 → 联系页</text>
+
+      <rect x="1070" y="568" width="354" height="76" rx="24" fill="#121D31" stroke="#2B3A58"/>
+      <text x="1106" y="601" fill="#A9B4CB" font-size="17" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">页面目标</text>
+      <text x="1106" y="629" fill="#F8FAFC" font-size="24" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">先看懂，再信任，最后联系</text>
+
+      <rect x="1070" y="666" width="354" height="116" rx="28" fill="url(#cta)"/>
+      <text x="1106" y="714" fill="#F8FAFC" font-size="17" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" letter-spacing="0.9">RECOMMENDED CTA</text>
+      <text x="1106" y="753" fill="#FFFFFF" font-size="30" font-weight="700" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">预约一次首页诊断</text>
+      <text x="1106" y="787" fill="#EBF1FF" font-size="18" font-weight="500" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">先说清你当前最卡的 1 步，再决定先改页面还是先补内容。</text>
+    </g>
+
+    <g>
+      <rect x="138" y="914" width="190" height="44" rx="22" fill="#121B30" stroke="#2B3854"/>
+      <text x="186" y="941" fill="#E7ECFA" font-size="18" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Homepage</text>
+
+      <rect x="346" y="914" width="190" height="44" rx="22" fill="#121B30" stroke="#2B3854"/>
+      <text x="404" y="941" fill="#E7ECFA" font-size="18" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Solutions</text>
+
+      <rect x="554" y="914" width="140" height="44" rx="22" fill="#121B30" stroke="#2B3854"/>
+      <text x="606" y="941" fill="#E7ECFA" font-size="18" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">FAQ</text>
+
+      <rect x="712" y="914" width="154" height="44" rx="22" fill="#121B30" stroke="#2B3854"/>
+      <text x="760" y="941" fill="#E7ECFA" font-size="18" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Articles</text>
+
+      <rect x="884" y="914" width="142" height="44" rx="22" fill="#121B30" stroke="#2B3854"/>
+      <text x="932" y="941" fill="#E7ECFA" font-size="18" font-weight="600" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif">Contact</text>
+    </g>
+  </g>
+</svg>

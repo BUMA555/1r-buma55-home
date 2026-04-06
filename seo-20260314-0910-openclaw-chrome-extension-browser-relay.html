@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Chrome 扩展怎么接｜浏览器中继、ON 徽章与 ! 报错排查</title>
+  <meta name="description" content="基于 OpenClaw 官方 Chrome 扩展文档、浏览器文档与中文社区资料整理，讲清 OpenClaw Chrome 扩展怎么接、browser relay 是什么、为什么要 attach tab、ON 徽章和 ! 报错分别代表什么，以及远程 Gateway + 节点主机该怎么配。" />
+  <meta name="keywords" content="OpenClaw Chrome扩展,OpenClaw 浏览器中继,OpenClaw browser relay,OpenClaw attach tab,OpenClaw Chrome extension,OpenClaw relay not reachable" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0910-openclaw-chrome-extension-browser-relay.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Chrome Extension · Browser Relay</div>
+        <h1 class="section-title">OpenClaw Chrome 扩展怎么接：浏览器中继、ON 徽章与 ! 报错一次讲清</h1>
+        <p class="section-desc">如果你正在搜 OpenClaw Chrome 扩展、OpenClaw 浏览器中继、OpenClaw browser relay、OpenClaw attach tab、OpenClaw relay not reachable，通常说明你已经不满足于让 AI 在隔离浏览器里跑，而是想直接控制自己正在用的 Chrome 标签页。这个能力确实很强，但也最容易在“扩展装好了却连不上”“图标显示 ! 不知道什么意思”“为什么非得手动 attach tab”“远程 Gateway 到底要不要再起节点主机”这些问题上卡住。本文基于 OpenClaw 官方 Chrome 扩展文档、浏览器文档，以及中文社区资料交叉整理，目标不是把命令硬贴一遍，而是帮你先判断：什么时候该用 `chrome` 配置，什么时候继续用 `openclaw` 托管浏览器，扩展图标几种状态分别代表什么，以及遇到连不上时应该按什么顺序排查。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询浏览器接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Chrome 扩展文档、官方浏览器文档、OpenClaw 中文社区资料。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>想让 OpenClaw 直接操作现有 Chrome 标签页，而不是只用隔离浏览器的人。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：Chrome 扩展不是“更高级的默认模式”，而是让 OpenClaw 接管你现有标签页的定向入口</h2>
+          <p class="section-desc">官方浏览器文档已经把边界写得很明确：`openclaw` 是隔离的托管浏览器，`chrome` 是扩展中继模式。前者更稳、更隔离；后者更贴近日常工作流，但安全边界和排障复杂度都更高。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>不是自动接管所有标签页</h3>
+            <p>扩展不会自动控制你当前正在看的任意页面。只有你在某个标签页点击工具栏按钮完成附加后，OpenClaw 才能控制那个标签页。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>`chrome` 和 `openclaw` 是两种模式</h3>
+            <p>`chrome` 适合复用你已有登录态和真实工作页；`openclaw` 适合隔离测试、稳定自动化和低风险排障。不要把两者混成一个概念。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>`!` 多半不是扩展坏了</h3>
+            <p>官方文档把 `!` 定义为“中继不可达”。最常见原因不是 Chrome 没开，而是本机没有可用的中继服务，或者远程 Gateway 场景下你少跑了节点主机。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 浏览器中继到底是什么</h2>
+          <p>按照官方 Chrome 扩展文档，这条链路至少有三部分：第一是浏览器控制服务，它是 Gateway 或节点侧真正接收浏览器工具调用的入口；第二是本地中继服务器，默认监听在 <code>http://127.0.0.1:18792</code>，负责把控制请求在控制服务与扩展之间转发；第三是 Chrome MV3 扩展本身，它通过 <code>chrome.debugger</code> 附加到活动标签页，并把 CDP 消息传给本地中继。也就是说，OpenClaw 真正控制的不是“扩展本体”，而是扩展已经附加到的那个标签页。</p>
+          <p>这也是为什么很多人第一次理解会偏掉：他们以为装好扩展后，OpenClaw 就能像接管浏览器一样随便操作。实际上它的设计更像“显式授权某一个 tab 给 AI 使用”。这个设计虽然多了一步手动点击，但好处是边界很清楚——你没 attach 的标签页，OpenClaw 不会碰；你切到另一个标签页，也必须重新点击扩展图标才会切换控制对象。</p>
+          <p>官方浏览器文档还强调了一个容易被忽略的点：默认配置里 `chrome` 本身就是内置 profile，走的是扩展中继；而 `openclaw` 则是 OpenClaw 自己托管的独立浏览器配置文件。前者依赖你自己的 Chrome 与扩展按钮，后者则走完全隔离的自动化路径。你如果只是做演示、抓页面、跑 FAQ 或验证流程，通常先用 `openclaw` 更稳；你如果必须复用已有登录态、操作日常后台、处理真实工作标签页，才更适合上 Chrome 扩展。</p>
+        </article>
+        <article class="card case-card">
+          <h2>标准接入顺序：先装扩展，再附加标签页，最后才是工具调用</h2>
+          <h3>第一步：把扩展装到稳定路径</h3>
+          <p>官方文档建议先运行扩展安装命令，让 OpenClaw 把扩展文件复制到状态目录的稳定位置，再通过扩展目录命令找到真实路径，去 <code>chrome://extensions</code> 里以“加载已解压的扩展程序”方式装进去。这一步的意义，不只是“让扩展出现”，更是避免你直接指向某个临时 <code>node_modules</code> 目录，后面一升级或移动文件就损坏。</p>
+          <h3>第二步：固定扩展并在目标标签页点击</h3>
+          <p>扩展装好后，要把它固定到工具栏。接着打开你真正想让 OpenClaw 控制的页面，点击扩展图标。官方文档写得很清楚：附加成功后徽章会显示 <code>ON</code>；再次点击则分离。这里最重要的认知是，attach 行为是“按标签页发生”的，不是“按窗口发生”的。你换标签页，就需要在新 tab 再点一次。</p>
+          <h3>第三步：用 `chrome` profile 进行浏览器操作</h3>
+          <p>只有完成附加之后，CLI 或 Agent 里的浏览器工具才应该用 <code>profile="chrome"</code> 或对应的 `chrome` 浏览器配置去读 tabs、抓 snapshot、执行 click / type / navigate。很多人一上来就跑工具调用，却忘了先 attach，于是看到的现象往往像“没 tab”“控制失败”或“no tab is connected”。根因其实不是命令错了，而是前一步还没做完。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Badge Meaning</div>
+          <h2 class="section-title">工具栏图标 3 种状态分别是什么意思</h2>
+          <p class="section-desc">这部分最值得记，因为它直接决定你下一步该查哪一层。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>`ON`：已经附加成功</h3>
+            <p>这是最理想状态，表示扩展已经把当前标签页挂到本地中继上，OpenClaw 可以通过正常的 `browser` 工具接口驱动它。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>`…`：正在连接本地中继</h3>
+            <p>这个状态通常说明扩展还在尝试连接本机中继服务。如果长时间停在这里，优先怀疑 Gateway、浏览器控制服务或本机网络环节还没完全就绪。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>`!`：中继不可达</h3>
+            <p>这是高频问题。官方文档和中文社区资料都指向同一结论：本地没有可访问的 relay，或者 relay 不在当前 Chrome 所在机器上。不要一上来重装扩展，先回头看中继服务在不在。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Troubleshooting</div>
+          <h2 class="section-title">看到 `!` 或“relay not reachable”时，按这 5 步排查最省时间</h2>
+          <p class="section-desc">这条顺序来自官方文档的机制说明，不是拍脑袋猜的。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>1. 先看 Gateway 是否在当前机器可用</h3>
+            <p>如果 Gateway 就跑在 Chrome 同一台机器，官方说明通常无需额外步骤，中继会自动由本地浏览器控制服务配合启动。这个前提不成立，扩展就没地方连。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>2. 远程 Gateway 场景补看节点主机</h3>
+            <p>如果 Gateway 在另一台机器，官方明确要求在运行 Chrome 的机器上再起节点主机。原因很简单：扩展和 relay 必须留在浏览器所在机器本地，Gateway 再通过节点做代理。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>3. 确认点的是正确标签页</h3>
+            <p>扩展不是全局自动附加。你可能只是把扩展装上了，却没有在真正目标 tab 点击；或者你切换标签页后忘了重新 attach。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>4. 确认工具调用用的是 `chrome`</h3>
+            <p>如果你 attach 的是扩展 relay 模式，却在工具里继续走 `openclaw` 托管浏览器，自然看不到同一批 tab。这不是系统失灵，而是 profile 选错了。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>5. 升级后重新安装并重载扩展</h3>
+            <p>官方文档提到，升级 OpenClaw 后应重新执行扩展安装，再去 `chrome://extensions` 里点“重新加载”。否则旧文件与当前 CLI 版本脱节，也可能引发异常。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>补充：别忽略沙箱与主机控制</h3>
+            <p>官方浏览器文档还提醒，如果会话在沙箱里，浏览器工具可能默认指向 sandbox，而不是主机 Chrome。需要接管扩展 relay 时，要么用非沙箱会话，要么显式允许 host browser control。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>什么时候该用 Chrome 扩展，什么时候继续用托管浏览器</h2>
+          <p>如果你的目标是复用现有账号登录态，比如你已经在 Chrome 里登录了 CRM、飞书后台、社媒账号或业务系统，不想重新在 OpenClaw 隔离浏览器里再登一遍，那么 Chrome 扩展模式就很有价值。它的核心优势不是“能力更强”，而是“少一次登录迁移”，尤其适合真实业务处理、后台检查、内容发布前核对、客服界面读写、需要保留 cookies 的场景。</p>
+          <p>但如果你要的是稳定批处理、重复动作、低风险验证，或者这一步涉及敏感账号、支付后台、个人邮箱、私人聊天记录，那么继续用 `openclaw` 托管浏览器通常更合适。因为官方文档已经明确提醒：扩展附加后，模型可以访问该标签页已经登录会话能看到的一切内容。也就是说，你 attach 到日常浏览配置文件时，实际上是在给 AI 打开更高权限的现场环境。这个能力很方便，但必须带着边界意识来用。</p>
+        </article>
+        <article class="card case-card">
+          <h2>安全上最值得记住的 3 个动作</h2>
+          <p>第一，优先准备一个专门给 OpenClaw 扩展用的 Chrome 配置文件，不要直接附加在你私人日常使用的主 profile 上。这样即便要复用登录态，也尽量把工作账号和个人账号隔开。</p>
+          <p>第二，不要把 relay 端口随手暴露到局域网或公网。官方建议保持 Gateway 与节点主机在私有网络或 tailnet 内，把控制链路收在可信范围里。对一人公司和小团队来说，这点比“会不会多打一条命令”更重要。</p>
+          <p>第三，把 attach 当作显式授权动作，而不是默认常驻开关。什么时候要让 AI 看这个 tab，就点一下；做完就分离。这样你对边界、上下文和风险的控制感会强很多，也更符合白名单式使用习惯。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你还要继续看接入、权限和配对链路，可以顺着这几篇继续读。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合继续看创建应用、权限、事件订阅和消息测试顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">OpenClaw 飞书机器人权限清单</a></h3>
+            <p>适合继续看最小权限、发送能力和群聊边界怎么收。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">OpenClaw 飞书长连接怎么接</a></h3>
+            <p>适合继续看 WebSocket 事件订阅、pairing 审批和群聊策略。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你现在卡在 `!`、attach tab 或 profile 选择上，可以直接把现象发我。</h2>
+          <p class="section-desc">比如“图标一直是 !”“扩展显示 ON 但 Agent 看不到 tab”“远程 Gateway 场景不知道要不要起节点主机”。先定位是哪一层没通，再决定改配置还是改使用方式，会比来回重装更省时间。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw Chrome 扩展怎么接</span>
+    </div>
+  </footer>
+</body>
+</html>

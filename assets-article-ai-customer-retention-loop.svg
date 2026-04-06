@@ -1,0 +1,75 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1080" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" />
+      <stop offset="1" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="panel" x1="180" y1="140" x2="1020" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827" stop-opacity="0.92" />
+      <stop offset="1" stop-color="#0B1220" stop-opacity="0.92" />
+    </linearGradient>
+    <linearGradient id="step1" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#38BDF8" />
+      <stop offset="1" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="step2" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#34D399" />
+      <stop offset="1" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="step3" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A78BFA" />
+      <stop offset="1" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="step4" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FBBF24" />
+      <stop offset="1" stop-color="#F97316" />
+    </linearGradient>
+    <filter id="shadow" x="120" y="80" width="960" height="560" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="20"/>
+      <feGaussianBlur stdDeviation="20"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.02 0 0 0 0 0.05 0 0 0 0 0.12 0 0 0 0.35 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1" result="shape"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="720" rx="36" fill="url(#bg)"/>
+  <circle cx="180" cy="120" r="120" fill="#38BDF8" fill-opacity="0.12"/>
+  <circle cx="1040" cy="600" r="180" fill="#A78BFA" fill-opacity="0.14"/>
+  <g filter="url(#shadow)">
+    <rect x="140" y="96" width="920" height="528" rx="32" fill="url(#panel)"/>
+  </g>
+
+  <text x="180" y="168" fill="#E2E8F0" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="42" font-weight="700">AI 客户留存闭环</text>
+  <text x="180" y="208" fill="#93C5FD" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22">交付确认 → 价值复盘 → 复购激活 → 推荐扩散</text>
+
+  <rect x="200" y="250" width="360" height="120" rx="24" fill="url(#step1)"/>
+  <text x="230" y="292" fill="white" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700">1. 交付确认</text>
+  <text x="230" y="326" fill="#E0F2FE" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">交付后 24h 内确认结果</text>
+  <text x="230" y="352" fill="#E0F2FE" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">收集 1 个关键反馈点</text>
+
+  <rect x="640" y="250" width="360" height="120" rx="24" fill="url(#step2)"/>
+  <text x="670" y="292" fill="white" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700">2. 价值复盘</text>
+  <text x="670" y="326" fill="#DCFCE7" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">7 天内复盘关键动作</text>
+  <text x="670" y="352" fill="#DCFCE7" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">提供下一步优化建议</text>
+
+  <rect x="640" y="420" width="360" height="120" rx="24" fill="url(#step3)"/>
+  <text x="670" y="462" fill="white" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700">3. 复购激活</text>
+  <text x="670" y="496" fill="#F5F3FF" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">30 天内补一个复购入口</text>
+  <text x="670" y="522" fill="#F5F3FF" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">给清晰的升级路径</text>
+
+  <rect x="200" y="420" width="360" height="120" rx="24" fill="url(#step4)"/>
+  <text x="230" y="462" fill="white" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700">4. 推荐扩散</text>
+  <text x="230" y="496" fill="#FEF3C7" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">90 天内触发转介绍</text>
+  <text x="230" y="522" fill="#FEF3C7" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18">沉淀可复用案例</text>
+
+  <path d="M560 310H620" stroke="#BAE6FD" stroke-width="4" stroke-linecap="round"/>
+  <path d="M820 370V410" stroke="#BBF7D0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M640 480H580" stroke="#E9D5FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M380 420V370" stroke="#FDE68A" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="620" cy="310" r="8" fill="#E0F2FE"/>
+  <circle cx="820" cy="410" r="8" fill="#DCFCE7"/>
+  <circle cx="580" cy="480" r="8" fill="#E9D5FF"/>
+  <circle cx="380" cy="370" r="8" fill="#FEF3C7"/>
+</svg>

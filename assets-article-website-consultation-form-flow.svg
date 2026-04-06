@@ -1,0 +1,73 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1100" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="180" y1="120" x2="1030" y2="580" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#5CC8FF"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#5CC8FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="720" rx="32" fill="url(#bg)"/>
+  <circle cx="1030" cy="120" r="180" fill="#7C5CFF" fill-opacity="0.10"/>
+  <circle cx="170" cy="620" r="220" fill="#5CC8FF" fill-opacity="0.10"/>
+  <text x="80" y="98" fill="#E6E9F0" font-size="38" font-family="Segoe UI, Arial, sans-serif" font-weight="700">官网咨询表单：先把客户需求问清楚的 6 个问题</text>
+  <text x="80" y="138" fill="#A0A6B8" font-size="20" font-family="Segoe UI, Arial, sans-serif">更适合一人公司的最小收集结构：轻量、可判断、能导向下一步</text>
+
+  <g transform="translate(80 190)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 1</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">你现在做什么业务？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">先判断适配度，而不是先问一堆背景。</text>
+  </g>
+
+  <g transform="translate(440 190)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 2</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">你现在最卡哪一步？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">这通常是整张表里最值钱的一问。</text>
+  </g>
+
+  <g transform="translate(800 190)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 3</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">流量或咨询从哪来？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">找到流失点在入口、中段还是后端。</text>
+  </g>
+
+  <g transform="translate(80 356)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 4</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">有没有先发的资料？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">文章、FAQ、案例，决定后续解释成本。</text>
+  </g>
+
+  <g transform="translate(440 356)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 5</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">想多快推进？谁拍板？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">避免节奏错配：不该急的别逼，该收口的别拖。</text>
+  </g>
+
+  <g transform="translate(800 356)">
+    <rect x="0" y="0" width="320" height="122" rx="24" fill="#121826" stroke="url(#stroke)"/>
+    <rect x="24" y="20" width="78" height="28" rx="14" fill="url(#chip)" fill-opacity="0.18"/>
+    <text x="40" y="40" fill="#B9B3FF" font-size="16" font-family="Segoe UI, Arial, sans-serif" font-weight="700">问题 6</text>
+    <text x="24" y="74" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">更愿意走哪种下一步？</text>
+    <text x="24" y="102" fill="#A0A6B8" font-size="16" font-family="Segoe UI, Arial, sans-serif">继续阅读、补信息、加微信或直接电话沟通。</text>
+  </g>
+
+  <rect x="210" y="560" width="780" height="92" rx="24" fill="#111827" stroke="url(#stroke)"/>
+  <text x="246" y="603" fill="#F8FAFC" font-size="24" font-family="Segoe UI, Arial, sans-serif" font-weight="700">提交后别只显示“我们会尽快联系你”</text>
+  <text x="246" y="633" fill="#A0A6B8" font-size="18" font-family="Segoe UI, Arial, sans-serif">更稳的承接：按填写结果直接分流到文章、FAQ、案例判断或预约沟通。</text>
+</svg>

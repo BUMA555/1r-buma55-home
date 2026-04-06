@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Feishu webhook 怎么配｜verificationToken、encryptKey、webhookHost 一次讲清</title>
+  <meta name="description" content="基于 OpenClaw 官方 Feishu 文档与 Clawdbot 中文文档整理，讲清 OpenClaw Feishu webhook 怎么配，重点覆盖 connectionMode webhook、verificationToken、encryptKey、webhookHost、webhookPort、127.0.0.1 默认绑定，以及 WebSocket 和 webhook 该怎么选。" />
+  <meta name="keywords" content="OpenClaw Feishu webhook,OpenClaw verificationToken,OpenClaw encryptKey,OpenClaw webhookHost,OpenClaw 飞书 webhook 怎么配,OpenClaw 飞书回调配置" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1223-openclaw-feishu-webhook-verification-token-encrypt-key.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Webhook</div>
+        <h1 class="section-title">OpenClaw Feishu webhook 怎么配：verificationToken、encryptKey、webhookHost 一次讲清</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw Feishu webhook、OpenClaw verificationToken、OpenClaw encryptKey、OpenClaw webhookHost，大概率你已经知道 OpenClaw 接飞书默认更推荐走 WebSocket 长连接，但你的实际场景可能是内网转发、已有统一回调网关、必须走回调地址，或者你接手的是别人留下来的 webhook 配置。这个时候最容易卡住的，不是 App ID 和 App Secret，而是 webhook 模式到底还要补哪些字段、为什么保存了还是收不到事件、为什么明明能打开网关却过不了飞书回调验证。按 OpenClaw 官方 Feishu 文档，真正要抓的重点是：把 <code>connectionMode</code> 切到 <code>webhook</code> 时，要同时配置 <code>verificationToken</code> 和 <code>encryptKey</code>；飞书 webhook 服务默认只绑定 <code>127.0.0.1</code>；只有你明确需要换绑定地址时，才去设置 <code>webhookHost</code>。这几个点如果一开始没分清，后面无论是事件回调、消息接收还是线上发布，都会绕很多弯路。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询飞书接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Feishu 文档、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在做 OpenClaw 飞书回调、Webhook 模式部署、反向代理或内外网联调的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：OpenClaw 接飞书默认更推荐 WebSocket，只有明确需要回调地址时才切 webhook</h2>
+          <p class="section-desc">官方 Feishu 文档开宗明义就写了：OpenClaw 通过平台的 WebSocket 事件订阅即可接收消息，不需要暴露公开 webhook URL。也正因为如此，很多人平时根本不会碰 webhook。只有当你的部署环境、公司安全策略或网关架构明确要求回调模式时，才值得切换到 webhook，并把相关字段一次配对。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>默认方案还是 WebSocket</h3>
+            <p>官方快速入门把“长连接接收事件”放在前面，核心价值就是不用暴露公网地址，降低回调配置复杂度。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>切到 webhook 就不是只填一个 token</h3>
+            <p>OpenClaw 官方英文文档明确要求：使用 <code>connectionMode: "webhook"</code> 时，要同时设置 <code>verificationToken</code> 和 <code>encryptKey</code>。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3><code>webhookHost</code> 不该乱改</h3>
+            <p>文档写得很清楚：Feishu webhook server 默认绑定 <code>127.0.0.1</code>，只有你明确需要不同绑定地址时，才去改 <code>webhookHost</code>。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么很多人会把 OpenClaw Feishu webhook 配乱？</h2>
+          <p>因为在 OpenClaw 这条链路里，飞书接入本来就有两套思路：一套是官方默认推荐的 WebSocket 长连接，一套是你自己显式切到 <code>connectionMode: "webhook"</code> 后再走回调。前者更像“照着向导走就能起起来”，后者更像“你已经有公网入口、反向代理、回调治理或安全审计要求，所以要自己把回调层接稳”。如果你没有先分清自己到底处在哪种场景，就很容易把 WebSocket 的问题、Webhook 的问题、飞书平台侧回调验证问题混在一起看。</p>
+          <p>这类混乱在中文搜索里特别常见：有人搜的是 OpenClaw 飞书收不到消息，有人搜的是 OpenClaw verificationToken 填哪，有人搜的是 OpenClaw encryptKey 需不需要配，还有人直接搜 OpenClaw webhookHost 为什么默认不是 0.0.0.0。表面看像四个问题，底层其实是同一件事：你是不是已经明确选择 webhook 模式，以及你有没有把 webhook 模式要求的字段配齐。</p>
+          <p>从官方资料交叉来看，这里还有一个很容易忽略的细节：中文社区文档对 webhook 模式的提法，更容易让人先看到 <code>verificationToken</code>；而官方英文页已经把要求写得更完整——除了 <code>verificationToken</code>，还要有 <code>encryptKey</code>。所以如果你现在是在做正式上线、对接公司飞书租户、或者准备交给开发同事接管，建议以官方英文页的完整要求为准，别只停留在“有 token 就够了”这个层级。</p>
+        </article>
+        <article class="card case-card">
+          <h2>OpenClaw Feishu webhook 里，最关键的 5 个字段是什么？</h2>
+          <p><strong>第一项：</strong><code>connectionMode</code>。只有当你显式把它切成 <code>"webhook"</code>，下面这些回调字段才真正生效；如果你还是默认的 WebSocket 长连接，盯着 webhook 参数改半天没有意义。</p>
+          <p><strong>第二项：</strong><code>verificationToken</code>。这是飞书在“事件与回调 / 加密策略”里给你的验证令牌，常用于回调握手校验。很多人只配这一个，所以才会出现“回调地址看起来通了，但事件还是不稳”的情况。</p>
+          <p><strong>第三项：</strong><code>encryptKey</code>。官方英文文档明确要求 webhook 模式下要同时设置这项；如果你只配 <code>verificationToken</code>，没有把加密键补上，回调验证和消息处理都可能留下隐患。</p>
+          <p><strong>第四项：</strong><code>webhookHost</code>。官方说明默认绑定 <code>127.0.0.1</code>。这意味着如果你的反向代理、Nginx、隧道服务或公司网关就在本机转发，这个默认值通常没有问题；但如果你期待 OpenClaw 直接监听一个外部可访问地址，就必须先想清楚绑定策略，而不是习惯性改成公网。</p>
+          <p><strong>第五项：</strong><code>webhookPort</code> 与 <code>webhookPath</code>。中文社区文档列了默认端口 <code>3000</code> 和默认路径 <code>/feishu/events</code>。实操里，这两项更多是为了让你的反向代理、网关规则和飞书后台回调 URL 能对齐；它们本身不复杂，但一旦对不齐，表现就会像“飞书没打到 OpenClaw”。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Checklist</div>
+          <h2 class="section-title">如果你确定要用 webhook，建议按这个顺序配置</h2>
+          <p class="section-desc">不要一边试一边乱改。先判断模式，再补字段，再核验网关与飞书后台。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>1. 先确认为什么不用 WebSocket</h3>
+            <p>如果你只是普通接飞书机器人，官方默认推荐的其实是长连接。只有明确需要公开回调地址时，才值得改成 webhook。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>2. 把 <code>connectionMode</code> 切到 webhook</h3>
+            <p>没有这一步，后续配置 <code>verificationToken</code>、<code>encryptKey</code>、<code>webhookHost</code> 都只是看起来很忙，实际没进目标模式。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>3. 同时补 <code>verificationToken</code> 和 <code>encryptKey</code></h3>
+            <p>这是这类主题最容易漏掉的点。以官方英文页的完整要求为准，会比只看旧资料更稳。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>4. 默认先保留 <code>127.0.0.1</code></h3>
+            <p>文档已经说明默认只绑定本机。只有你确实知道为什么要改地址时，再去动 <code>webhookHost</code>。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>5. 对齐回调 URL 的路径与端口</h3>
+            <p>飞书后台填的回调地址、反向代理转发规则、OpenClaw 的 <code>webhookPort</code> / <code>webhookPath</code> 必须同一套口径。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>6. 配完后立刻看 Gateway 与日志</h3>
+            <p>官方排查始终强调 <code>openclaw gateway status</code> 和 <code>openclaw logs --follow</code>。Webhook 场景更不能只看后台保存成功。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>哪些现象经常被误判成 webhook 没配对？</h2>
+          <p>第一种是应用其实还没发布。你在飞书后台把回调地址、权限、事件都填好了，但版本还停留在开发态，最终表现就会像“OpenClaw Feishu webhook 不生效”。第二种是事件订阅项没对齐。哪怕你用了 webhook，接收消息这件事还是得有对应事件，否则回调地址再对，也没有真正要处理的消息。第三种是 Gateway 没在线，或者改完配置没重启，结果飞书侧回调过来时，本地服务根本没准备好。</p>
+          <p>还有一种很典型的误判是：群里机器人不回，就以为 webhook 挂了。其实群聊不回也可能是 <code>requireMention</code>、<code>groupPolicy</code>、<code>groupAllowFrom</code> 或 pairing 的问题。它们属于访问边界，不属于回调模式本身。如果不把这两层拆开，你会在 webhook、群设置和权限之间来回折返。</p>
+        </article>
+        <article class="card case-card">
+          <h2>什么场景更适合继续用 WebSocket，什么场景才考虑 webhook？</h2>
+          <p>如果你是个人测试、普通企业内部机器人、先把 OpenClaw 接起来再慢慢收边界，优先继续用 WebSocket 往往更省心。因为官方默认就为这个路径写了完整的快速开始：创建应用、填 App ID / Secret、开启 Bot 能力、选择长连接、订阅 <code>im.message.receive_v1</code>、启动 Gateway、做 pairing，整套路径更短。</p>
+          <p>而 webhook 更适合这些场景：你已经有统一回调入口，想把多个服务挂在同一层代理下；你所在公司安全策略不允许某类长连接形式；或者你做的是更受控的企业部署，需要明示回调地址、绑定地址、端口和回调路径。换句话说，OpenClaw webhook 不是“更高级”，而是“更适合特定架构”。如果你的业务还没走到这一步，先把 WebSocket 跑稳通常更划算。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话总结</h2>
+          <p>OpenClaw Feishu webhook 能配，但前提是你真的需要它；一旦切到 webhook，就按官方要求把 <code>verificationToken</code>、<code>encryptKey</code>、<code>webhookHost</code>、<code>webhookPort</code>、<code>webhookPath</code> 一次配清，不要把 WebSocket 路径和回调路径混着排查。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇最适合什么时候看？</h2>
+          <p>适合你已经接手了 OpenClaw + 飞书项目，明确要走回调模式，或者正卡在 verificationToken、encryptKey、webhookHost、回调地址验证和上线联调这几个点时。先把模式判断与字段边界捋顺，再去做细节排查，效率会高很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你还要继续补飞书接入、权限和群聊边界，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合先回看创建应用、启动 Gateway、事件订阅与 pairing 顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">OpenClaw 飞书长连接怎么接</a></h3>
+            <p>适合把 WebSocket 长连接与 webhook 模式的边界拆开看。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">OpenClaw 飞书机器人权限清单</a></h3>
+            <p>适合继续核对事件订阅、发送权限和 Bot 能力是否齐全。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 飞书接入模式选对、回调链路接稳？</h2>
+          <p class="section-desc">如果你正在卡飞书 WebSocket / webhook 选择、回调地址、发布上线或群聊边界，我可以继续帮你把检查顺序和配置边界拆清楚。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / 飞书 / webhook 配置</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw logs 怎么看｜openclaw logs --follow 与排障顺序一次讲清</title>
+  <meta name="description" content="基于 OpenClaw 官方 Troubleshooting、Gateway troubleshooting 与 Clawdbot 中文文档整理，讲清 OpenClaw logs 怎么看，重点覆盖 openclaw logs --follow、openclaw status、gateway probe、gateway status、doctor、channels status --probe，以及常见日志信号该怎么判断。" />
+  <meta name="keywords" content="OpenClaw logs,openclaw logs --follow,OpenClaw 日志怎么看,OpenClaw 排障,OpenClaw gateway status,OpenClaw doctor" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1236-openclaw-logs-follow-troubleshooting.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Logs · Troubleshooting</div>
+        <h1 class="section-title">OpenClaw logs 怎么看：openclaw logs --follow 与排障顺序一次讲清</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw logs、openclaw logs --follow、OpenClaw 日志怎么看、OpenClaw 排障顺序，大概率不是想学一个单独命令，而是已经遇到了“网关明明起了却没回复”“Dashboard 打不开”“飞书接上了却不回消息”“cron 没按预期跑”这类更具体的问题。按 OpenClaw 官方 Troubleshooting 与 Gateway troubleshooting 文档，<code>openclaw logs --follow</code> 很重要，但它从来不是单独使用的。更稳的做法是把它放进一条固定检查链：先看 <code>openclaw status</code> 和 <code>openclaw status --all</code>，再看 <code>openclaw gateway probe</code>、<code>openclaw gateway status</code>、<code>openclaw doctor</code>、<code>openclaw channels status --probe</code>，最后用 <code>openclaw logs --follow</code> 对照具体报错。这样你看到日志时，才知道自己看到的是连通性问题、权限问题、路由问题，还是只是单纯需要批准 pairing 或补一个 mention。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询排障思路</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Troubleshooting / Gateway troubleshooting、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在排查 OpenClaw 无回复、Dashboard 连接异常、飞书消息不流动、cron 没投递的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：不要把 <code>openclaw logs --follow</code> 当万能入口，要把它放进一条固定排障梯子里</h2>
+          <p class="section-desc">官方英文文档把“前 60 秒检查”写得很明确：日志只是最后一步的放大镜，不是第一步的猜谜游戏。你先确认网关是否可达、运行态是否正常、医生检查有没有阻塞、渠道是否 ready，再去看日志，判断才会稳定。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先看状态，再看日志</h3>
+            <p>官方 Troubleshooting 推荐先跑 <code>status</code>、<code>gateway probe</code>、<code>gateway status</code>、<code>doctor</code> 和 <code>channels status --probe</code>，最后再跟日志。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>日志是为了定位哪一层出问题</h3>
+            <p>同样一句“没有回复”，可能是 pairing 待批准、群里没 @、allowlist 拦截、权限缺失，也可能是网关本身没起来。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>先认日志信号，再决定动作</h3>
+            <p>像 <code>mention required</code>、<code>pairing request</code>、<code>blocked</code>、<code>AUTH_TOKEN_MISMATCH</code>、<code>EADDRINUSE</code> 这类关键词，代表的不是同一种故障层级。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 官方建议的排障顺序，为什么比直接盯日志更稳？</h2>
+          <p>因为日志本身只会告诉你“刚刚发生了什么”，却不一定自动告诉你“这是哪一层的问题”。OpenClaw 官方 Troubleshooting 页面把前 60 秒的顺序写得很明确：先看 <code>openclaw status</code>，确认基本配置和明显认证错误；再看 <code>openclaw status --all</code>，拿完整报告；接着用 <code>openclaw gateway probe</code> 验证目标网关是否可达；然后用 <code>openclaw gateway status</code> 看运行态是否是 <code>Runtime: running</code>、RPC 是否正常；再跑 <code>openclaw doctor</code> 排掉配置或服务级阻塞；再用 <code>openclaw channels status --probe</code> 看渠道是否 connected 或 ready；最后再开 <code>openclaw logs --follow</code> 对照实时行为。</p>
+          <p>这套顺序的好处在于，你不会因为看到一条局部日志就误判全局。例如有些人看到群里机器人不回，第一反应是“Gateway 挂了”；但如果前面的 <code>gateway status</code> 和 <code>channels status --probe</code> 都是健康的，那么更可能是 mention 策略、pairing 审批、群白名单或发送者白名单问题。也就是说，日志必须结合前面的状态命令一起看，才不会把路由问题、权限问题和服务问题混成一团。</p>
+          <p>中文文档的表达也基本一致：无论是飞书接入页还是故障排除页，都把 <code>openclaw gateway status</code> 与 <code>openclaw logs --follow</code> 放在同一条检查链上，而不是把日志单拎出来。这一点很重要，因为很多用户实际搜“OpenClaw logs 怎么看”，背后真正想解决的是“我下一步该先查哪层”。</p>
+        </article>
+        <article class="card case-card">
+          <h2>真正实用的“前 60 秒检查链”应该怎么记？</h2>
+          <p><strong>第一步：</strong><code>openclaw status</code>。它更像总览页，用来先看当前渠道、模型、认证有没有明显不对。</p>
+          <p><strong>第二步：</strong><code>openclaw status --all</code>。官方把它定义成更完整、可分享的报告，适合在协作排障时快速对齐事实。</p>
+          <p><strong>第三步：</strong><code>openclaw gateway probe</code>。这一步是为了确认你当前指向的网关目标是否可达，避免你后面所有排查都建立在“连的其实不是这个网关”之上。</p>
+          <p><strong>第四步：</strong><code>openclaw gateway status</code>。重点看 <code>Runtime: running</code>、<code>RPC probe: ok</code>，以及 Dashboard URL、服务状态、监听信息。</p>
+          <p><strong>第五步：</strong><code>openclaw doctor</code>。它不是可有可无的小检查，而是帮你先把配置层和服务层的阻塞找出来，省得你对着业务日志瞎猜。</p>
+          <p><strong>第六步：</strong><code>openclaw channels status --probe</code>。如果你走的是飞书、Telegram、Discord 这类消息渠道，这一步能快速判断 transport 是不是真的连上了。</p>
+          <p><strong>第七步：</strong><code>openclaw logs --follow</code>。放到最后，才真正有意义。此时你看到的每条日志，都能放回正确语境里解释，而不是越看越乱。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Log Signals</div>
+          <h2 class="section-title">OpenClaw logs 里最值得先认出来的几类信号</h2>
+          <p class="section-desc">不用一上来就试图读完整日志流。先认关键字，再决定下一步去哪个模块查。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><code>mention required</code></h3>
+            <p>更像群聊触发策略问题，代表群消息因为需要 @ 才会处理，并不直接说明 Gateway 坏了。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>pairing request</code> / pending</h3>
+            <p>更像私聊审批问题，代表未知发送者还在等待批准，不属于“机器人完全失灵”。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>blocked</code> / <code>allowlist</code></h3>
+            <p>更像访问控制问题，要回头检查 <code>allowFrom</code>、<code>groupAllowFrom</code>、群内成员白名单，而不是只盯连接。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>AUTH_TOKEN_MISMATCH</code></h3>
+            <p>更像 Dashboard / Control UI 鉴权链路问题，优先检查 token、设备授权和连接目标是否一致。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>EADDRINUSE</code></h3>
+            <p>更像端口冲突，说明另一个进程已经占用了要绑定的地址，继续重启往往没意义。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>missing_scope</code> / <code>401</code> / <code>403</code></h3>
+            <p>更像渠道权限问题，尤其常见于飞书或其他消息平台权限没开全、应用没发布或频道权限不足。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>不同场景下，日志应该和哪些命令一起看？</h2>
+          <p>如果你遇到的是 <strong>没回复</strong>，官方建议把 <code>pairing list</code>、<code>channels status --probe</code> 和 <code>config get channels</code> 一起看，因为这里大概率是路由或策略问题。要是你遇到的是 <strong>Dashboard / Control UI 连不上</strong>，重点则会转到 <code>gateway status</code>、<code>doctor</code> 和认证细节码，比如 <code>AUTH_TOKEN_MISSING</code>、<code>AUTH_TOKEN_MISMATCH</code>、<code>PAIRING_REQUIRED</code>。如果你遇到的是 <strong>网关服务起不来</strong>，日志又要配合 <code>gateway status --deep</code>、端口监听和服务配置去看，常见是 <code>gateway.mode</code> 没配对、非 loopback 绑定没带认证，或者端口冲突。</p>
+          <p>如果你遇到的是 <strong>cron 没跑</strong> 或 <strong>heartbeat 没投递</strong>，官方 runbook 也不是让你只盯日志，而是先看 <code>openclaw cron status</code>、<code>openclaw cron list</code>、<code>openclaw cron runs</code>，确认调度器是否开启、最近运行结果是 <code>ok</code>、<code>skipped</code> 还是 <code>error</code>，然后再回日志里找 <code>scheduler disabled</code>、<code>timer tick failed</code>、<code>quiet-hours</code>、<code>requests-in-flight</code> 这类关键词。这样才能分清是调度器没动、投递目标不对，还是主通道太忙导致被延后。</p>
+        </article>
+        <article class="card case-card">
+          <h2>为什么很多人会把“OpenClaw logs 看不懂”误判成产品不稳定？</h2>
+          <p>一个很常见的原因是：用户把所有问题都压到日志层去理解，而没有先做层级拆分。日志里既会出现网关运行态，也会出现渠道状态，还会出现权限拒绝、配对审批、群聊 mention、Cron 投递等不同来源的信号。如果你没有先分清“我现在排查的是服务层、连接层、渠道层，还是策略层”，日志自然会显得杂乱。</p>
+          <p>另一个原因是，很多人期待日志能直接给一个“唯一答案”。但 OpenClaw 官方文档的写法已经说明了：日志更适合用来验证判断，而不是代替判断。比如你看到 <code>drop guild message (mention required)</code> 或 <code>mention required</code>，正确动作是回去看群配置；看到 <code>pairing request</code>，正确动作是看审批列表；看到 <code>AUTH_TOKEN_MISMATCH</code>，正确动作是看认证与设备 token；看到 <code>EADDRINUSE</code>，正确动作是处理端口冲突。也就是说，日志的价值在于“帮你选下一步动作”，而不是“自己就把问题修完”。</p>
+          <p>对中文用户来说，这篇最重要的价值，不是把每条日志逐行翻译，而是帮你建立一个更稳定的排障顺序：先状态、再健康、再渠道、最后日志。顺序一旦对了，日志就不再像噪音，而会变成非常高效的线索。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话总结</h2>
+          <p>OpenClaw logs 当然要看，但别孤立地看；把 <code>openclaw logs --follow</code> 放进 <code>status → gateway probe → gateway status → doctor → channels status --probe → logs</code> 这条顺序里，日志才真正有判断价值。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇最适合什么时候看？</h2>
+          <p>适合你已经卡在“没有回复”“Dashboard 连接不上”“飞书消息不流动”“cron 没投递”，想先建立一套不乱猜的 OpenClaw 排障路径时。先把日志看法校正，再排具体问题，效率会明显高很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你现在卡的是飞书、Dashboard 或定时任务，可以顺着这几篇继续查。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">OpenClaw Dashboard 打不开怎么办</a></h3>
+            <p>适合继续查 gateway status、unauthorized、1008 和设备授权。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1128-openclaw-feishu-message-send-failure-400.html">OpenClaw 飞书发不出去消息怎么办</a></h3>
+            <p>适合继续排查发送权限、应用发布状态和 Gateway 日志。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0808-openclaw-cron-reminder-guide.html">OpenClaw 定时任务怎么配</a></h3>
+            <p>适合继续看 cron、heartbeat、runs 记录和投递顺序。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 排障顺序固定下来，不再一出问题就乱翻日志？</h2>
+          <p class="section-desc">如果你正在排查无回复、鉴权异常、飞书不流动或 cron 没触发，我可以继续帮你把检查顺序拆成更适合你当前环境的一套。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / logs / troubleshooting</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://buma55.com/sitemap.xml

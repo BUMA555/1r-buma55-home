@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw devices remove 怎么用｜旧设备清理、重新批准与 stale pairing 排查</title>
+  <meta name="description" content="基于 OpenClaw 官方 devices、Dashboard、Gateway troubleshooting 与中文公开文档整理，讲清 openclaw devices remove、stale pairing、重新批准、AUTH_DEVICE_TOKEN_MISMATCH、PAIRING_REQUIRED 在什么场景下该怎么用，以及它和 rotate、revoke、clear 的区别。" />
+  <meta name="keywords" content="OpenClaw devices remove,OpenClaw stale pairing,OpenClaw reapprove device,OpenClaw AUTH_DEVICE_TOKEN_MISMATCH,OpenClaw PAIRING_REQUIRED,OpenClaw devices list" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1450-openclaw-devices-remove-stale-pairing.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · devices remove · stale pairing</div>
+        <h1 class="section-title">OpenClaw devices remove 怎么用：旧设备清理、重新批准与 stale pairing 该怎么拆</h1>
+        <p class="section-desc">如果你最近在搜 <code>openclaw devices remove</code>、<code>OpenClaw stale pairing</code>、<code>AUTH_DEVICE_TOKEN_MISMATCH</code>、<code>PAIRING_REQUIRED</code>、<code>重新批准设备</code>，通常不是想看一句“删除设备条目”这么简单，而是已经卡在这些真实场景：浏览器或 Control UI 之前能连，后来突然一直 unauthorized；你已经试过 <code>devices approve</code>，但旧设备记录还在干扰；同一台机器换浏览器、换配置、换共享 token 之后，怀疑系统里残留了过期 pairing；或者你想把某个旧设备从 Gateway 里彻底清掉，再重新走一遍批准链路。按 OpenClaw 官方 <code>devices</code>、<code>Dashboard</code>、<code>Gateway troubleshooting</code> 与中文公开资料的共同口径，<code>devices remove</code> 处理的是“把一个已配对设备条目从当前网关记录里移除”，它常出现在 token drift recovery 的后半段：先看 <code>devices list</code>，必要时先 <code>rotate</code>，如果轮换仍不够，再 <code>remove</code> 旧 pairing 并重新批准。也就是说，<code>remove</code> 不是第一反应，但在旧设备记录已经脏掉、角色关系已经乱了、你需要强制回到‘重新配对’状态时，它非常关键。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询当前故障</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 devices / Dashboard / Gateway troubleshooting，与公开中文资料交叉整理</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在排查旧设备残留、重复 pairing、AUTH_DEVICE_TOKEN_MISMATCH、重新批准设备与远程 Gateway 接入问题的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：<code>devices remove</code> 适合清掉脏的旧 pairing，不适合一上来就乱删</h2>
+          <p class="section-desc">它的价值是让设备回到“需要重新批准 / 重新建立设备关系”的状态，但前提是你已经判断旧记录确实失效或干扰当前连接。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3><code>remove</code> 删除的是已配对设备条目</h3>
+            <p>官方 devices 文档写得很清楚：<code>openclaw devices remove &lt;deviceId&gt;</code> 用来移除单个 paired device entry，不是批 pending request。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>先看 <code>devices list</code>，再决定删不删</h3>
+            <p>先确认哪台设备已经配对、哪条请求还在 pending，避免把仍在用的设备误删。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>旧 token 漂移，先试 <code>rotate</code></h3>
+            <p>官方 token drift recovery checklist 先给的是 <code>devices rotate</code>；只有轮换还不够，才建议删旧 pairing 再批准。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">04</div>
+            <h3>删完通常要重新 <code>approve</code></h3>
+            <p>如果这台设备还要继续接入 Gateway，删掉旧条目后，下一步通常不是结束，而是重新走批准链路。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">05</div>
+            <h3><code>remove</code> 不等于 <code>clear --yes</code></h3>
+            <p><code>clear</code> 是批量清理，更激进；日常排障优先单点移除，而不是一把把所有设备都清掉。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">06</div>
+            <h3>显式传 <code>--url</code> 时，凭据要一起带</h3>
+            <p>官方 devices 文档强调：指定 <code>--url</code> 后不会回退读取配置或环境凭据，必须显式传 <code>--token</code> 或 <code>--password</code>。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>什么情况下，<code>devices remove</code> 比继续 approve 更合理？</h2>
+          <p>最典型的一类场景，是设备关系已经“脏”了。比如 Control UI 之前连得上，后来浏览器换环境、换机器、切过共享 token、做过一次失败的远程接入，日志与报错开始在 <code>PAIRING_REQUIRED</code>、<code>AUTH_DEVICE_TOKEN_MISMATCH</code>、unauthorized 之间来回跳。这时如果你只是一遍遍 <code>approve</code>，系统里旧设备条目还在，新的批准又不断叠上去，表面像“已经批过了”，实际设备身份关系已经不干净。</p>
+          <p>OpenClaw 官方 devices 页面给的 token drift recovery checklist 就很有代表性：先确认共享 token 来源，再用 <code>devices list</code> 找到受影响的设备；优先尝试 <code>devices rotate --device &lt;deviceId&gt; --role operator</code>；如果 rotation 还不够，就 <code>devices remove &lt;deviceId&gt;</code>，然后重新 <code>devices list</code>、重新 <code>devices approve &lt;requestId&gt;</code>。这说明官方默认思路不是“先删再说”，而是“当旧 pairing 已经成为问题源时，用 remove 把它从系统里拿掉”。</p>
+          <p>换成搜索语境更容易理解：如果你搜的是“OpenClaw 删除旧设备”“OpenClaw 重新批准设备”“stale pairing 怎么清”，那多半已经不只是审批没做，而是想把一段失效关系彻底断开后再重建。</p>
+        </article>
+        <article class="card case-card">
+          <h2><code>remove</code>、<code>rotate</code>、<code>revoke</code>、<code>clear</code> 到底怎么分？</h2>
+          <p>这几个词很容易混，但官方 devices 文档其实分得很清楚。<code>rotate</code> 是为某个设备某个角色轮换 token，适合 token 漂移但设备关系本身还想保留的情况；<code>revoke</code> 是撤销某个角色的设备 token，更偏权限层；<code>remove</code> 是直接移除一个 paired device entry，相当于把这台设备从当前已配对清单里删掉；<code>clear --yes</code> 则是批量清除，是更激进的整理动作。</p>
+          <p>所以如果你只是想修复一个过期的 operator token，不一定非要删设备；如果你怀疑这台设备整个 pairing 已经失真、重复、错位，或者准备强制它重新走批准链路，那么 <code>remove</code> 更合适。如果你只是想拒绝还没批准的请求，那也不是 <code>remove</code> 的场景，而是 pending request 那条线。</p>
+          <p>把这几层分清，排障会省很多时间。很多人卡很久，不是不会敲命令，而是把不同层的命令拿来互相代替。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Recommended Flow</div>
+          <h2 class="section-title">更稳的顺序：先确认问题层，再决定是不是要删旧设备</h2>
+          <p class="section-desc">真正省时间的做法，不是“先删一个试试”，而是把共享 token、设备 token、审批状态、URL 目标这几层先分开。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h2>第 1 步：先看是不是共享 token 层</h2>
+            <p>OpenClaw 官方 Dashboard 与 Gateway troubleshooting 都把鉴权 detail code 拆得很明确：如果你看到的是 <code>AUTH_TOKEN_MISMATCH</code>，那优先修的是共享 token，不是设备 pairing。这个时候直接删设备，往往只是多走一步，却没碰到根因。先确认 <code>gateway.auth.token</code>、当前连接目标、浏览器里保存的控制台 token 是否一致，依旧是更高优先级。</p>
+          </article>
+          <article class="card case-card">
+            <h2>第 2 步：再看是不是设备 token 漂移</h2>
+            <p>如果 detail code 指向 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>，或者你已经确认共享 token 没问题，但某台设备就是反复 unauthorized，那么更符合官方 runbook 的动作是先尝试 <code>rotate</code>。因为这说明设备关系可能还在，只是设备级 token 失效、被撤销或与当前状态漂移了。只有 rotation 之后仍不稳定，才更有理由怀疑旧 pairing 整体已经脏掉。</p>
+          </article>
+          <article class="card case-card">
+            <h2>第 3 步：<code>devices list</code> 找准对象，再 <code>remove</code></h2>
+            <p><code>openclaw devices list</code> 的意义非常大，它会同时列出 pending pairing requests 与 paired devices。你需要先确认：准备删的是哪台设备、它是不是旧浏览器或旧机器、当前是否还有别人正在使用它、删掉之后是否会影响团队里其他连接。尤其在远程 Gateway、多人调试、同一个人多浏览器并存的环境里，直接盲删风险很高。</p>
+          </article>
+          <article class="card case-card">
+            <h2>第 4 步：删掉旧条目后，按新请求重新批准</h2>
+            <p>官方 token drift recovery checklist 已经给了标准后续动作：<code>remove</code> 完旧设备后，再次跑 <code>devices list</code>，看到新的 pending request，再用 <code>devices approve &lt;requestId&gt;</code> 批准。也就是说，<code>remove</code> 的价值在于“重置这段设备关系”，而不是单独完成修复。删完不重新建，设备当然还是连不上。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>远程 Gateway 场景，为什么特别容易误判成“应该先 remove”？</h2>
+          <p>因为远程环境里变量更多：你可能同时在处理 Gateway URL、共享 token、SSH 隧道、浏览器 session、设备审批、角色 scope。官方 devices 文档特意提醒：只要你显式传了 <code>--url</code>，CLI 就不会回退使用配置或环境凭据，所以 <code>--token</code> 或 <code>--password</code> 也得一起显式传。很多“删了重来还是不通”的现场，真正问题不是旧设备条目，而是你连的根本不是同一个目标，或者认证信息没一起带过去。</p>
+          <p>另外，这组命令需要 <code>operator.pairing</code> 或 <code>operator.admin</code> scope。如果当前操作者根本没有这层权限，你即便知道要删哪台设备，也执行不动。所以远程场景下，一定要把目标 URL、凭据和操作者 scope 一起看，不要只盯着设备条目本身。</p>
+        </article>
+        <article class="card case-card">
+          <h2>什么时候不建议用 <code>devices remove</code>？</h2>
+          <p>第一，不建议在没有先跑 <code>devices list</code> 的情况下直接删。第二，不建议把它当成所有 unauthorized 的默认答案。第三，不建议在你还没确认共享 token 是否正确时就删。第四，不建议为了图省事直接上 <code>clear --yes</code>，因为那会把问题从“修一台设备”放大成“所有设备都得重连”。</p>
+          <p>更现实一点说：<code>remove</code> 很适合“我已经确认这条旧 pairing 是问题源”，但不适合“我现在没头绪，先删一个看看”。白帽式的排障思路还是先看证据，再做最小动作，这样既不容易误伤，也更利于后续复盘。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话记忆版</h2>
+          <p><code>openclaw devices remove</code> 适合在旧设备 pairing 已经失效、重复、脏掉，且 <code>rotate</code> 仍不足以修复时，把旧条目删掉，再按新的 pending request 重新批准；它不是所有 unauthorized 的第一反应，更不是 <code>clear --yes</code> 的安全替代。</p>
+        </article>
+        <article class="card case-card">
+          <h2>最适合什么时候看这篇？</h2>
+          <p>适合你已经排到设备授权这一层，尤其是“这台旧设备是不是该删了”“重新批准前要不要先 remove”“AUTH_DEVICE_TOKEN_MISMATCH 和 stale pairing 到底怎么分”的时候。也适合多人共用一台 Gateway、远程环境反复重连、设备记录越来越乱的场景。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你已经确定是设备授权链路问题，可以顺着这几篇继续往下拆。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1423-openclaw-devices-rotate-token-drift-recovery.html">OpenClaw devices rotate 怎么用</a></h3>
+            <p>适合继续看 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>、token drift recovery 和何时先轮换再重建。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1438-openclaw-devices-approve-pairing-required.html">OpenClaw devices approve 怎么用</a></h3>
+            <p>适合继续看 <code>PAIRING_REQUIRED</code>、pending request、<code>--latest</code> 与重新批准顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1348-openclaw-dashboard-auth-token-mismatch.html">OpenClaw unauthorized / AUTH_TOKEN_MISMATCH 怎么办</a></h3>
+            <p>适合继续拆共享 token、设备 token、Dashboard 1008 和 unauthorized 细节码。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把旧设备残留、重新批准和远程 Gateway 接入顺序一次拆清？</h2>
+          <p class="section-desc">如果你正在排查这台设备到底该不该删、删完怎么重新批准、为什么换浏览器后又 unauthorized，我可以继续帮你把共享 token、设备 token、pending request 和连接目标四层拆开。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / devices remove / stale pairing</span></div></footer>
+</body>
+</html>

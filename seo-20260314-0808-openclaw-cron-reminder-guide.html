@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 定时任务怎么配｜Cron 提醒、后台任务与 Heartbeat 的实操清单</title>
+  <meta name="description" content="基于 OpenClaw Cron Jobs、Getting Started 与 FAQ 官方公开资料整理，讲清 OpenClaw 定时任务怎么配、cron reminder 怎么设、main session 与 isolated 有什么区别、wake now 与 next-heartbeat 怎么选，适合一人公司和小团队做提醒、日报与后台任务。" />
+  <meta name="keywords" content="OpenClaw定时任务,OpenClaw cron,OpenClaw reminder,OpenClaw提醒,OpenClaw heartbeat,OpenClaw后台任务" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0808-openclaw-cron-reminder-guide.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Cron · Reminder Guide</div>
+        <h1 class="section-title">OpenClaw 定时任务怎么配：Cron 提醒、后台任务与 Heartbeat 的实操清单</h1>
+        <p class="section-desc">如果你正在搜 OpenClaw 定时任务、OpenClaw cron、OpenClaw reminder、OpenClaw 提醒、OpenClaw heartbeat，通常说明你已经不满足于“能聊天”，而是开始想把提醒、日报、回访、巡检和后台任务真正跑起来。这篇内容基于 OpenClaw 官方 Cron Jobs、Getting Started 与 FAQ 公共资料整理，重点不是堆一堆参数，而是讲清三个最容易做错的点：定时任务到底跑在什么地方、main session 和 isolated 应该怎么选、提醒为什么有时没有在你以为的那个时刻触发。只要这三个问题弄清楚，OpenClaw cron 就能从“看起来很强”变成“每天真能帮你省事”的能力。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询定时任务方案</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw Cron Jobs、Getting Started、FAQ 公共文档。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>想让 OpenClaw 固定提醒、定时巡检、跑日报、发摘要，或给一人公司做后台任务的人。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：OpenClaw cron 的关键不是“会不会设时间”，而是“任务该跑在哪条链路里”</h2>
+          <p class="section-desc">官方文档已经把核心边界写得很清楚：cron 跑在 Gateway 里，不跑在模型里；提醒能不能稳，不取决于模型记不记得，而取决于 Gateway、schedule、sessionTarget 和 delivery 有没有配对。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>Cron 是 Gateway 调度，不是聊天记忆</h3>
+            <p>官方文档明确说明，OpenClaw cron 是 Gateway 内建调度器，任务会持久化存到 <code>~/.openclaw/cron/</code>。所以它适合做真正按时间触发的提醒，而不是让模型“顺便记住”。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>Main 与 isolated 是两种思路</h3>
+            <p>如果你想让任务走主会话上下文，就用 main session 的 system event；如果你想让任务独立执行、少打扰主聊天，就用 isolated，让它在 <code>cron:&lt;jobId&gt;</code> 里单独跑。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>提醒不准时，多半不是“坏了”</h3>
+            <p>官方页特别提到：没有时区的 ISO 时间按 UTC 处理，某些整点型循环任务还会有最多 5 分钟的确定性错峰。如果你没理解这两条，就很容易误判 cron 失效。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 定时任务到底是什么，为什么很多人第一次会配偏</h2>
+          <p>很多人第一次接触 OpenClaw cron，会把它理解成“给模型塞一句提醒”。但按照 OpenClaw 官方 Cron Jobs 文档，这套机制其实是 Gateway 自己带的调度器：它负责记住任务、在正确时间点唤醒、决定把任务丢给主会话还是独立会话，并在需要时把结果投递回聊天渠道。这个设计非常关键，因为它把“按时触发”从模型能力里剥离了出来，稳定性高很多。</p>
+          <p>也正因为这样，OpenClaw 定时任务特别适合做真实业务动作，比如早上 7 点的日报、每 2 小时的线索巡检、30 分钟后的提醒、FAQ 文章审核通知，或者每天下班前的待办收口。对一人公司来说，cron 的价值不是炫技，而是把那些“我知道要做但总容易忘”的动作，从脑子里转移到 Gateway 里，让系统替你盯时间。</p>
+          <p>官方文档还给了一个很重要的事实：任务是持久化保存的，默认在 <code>~/.openclaw/cron/jobs.json</code>。这意味着即使 Gateway 重启，已经创建的 cron 任务也不会因为一次重启就消失。对想做长期提醒、循环任务、后台自动化的人来说，这个设计比“临时会话里口头记一下”可靠得多。</p>
+        </article>
+        <article class="card case-card">
+          <h2>OpenClaw cron 怎么选：main session 和 isolated 到底差在哪</h2>
+          <h3>1. Main session：适合主线提醒与主会话上下文</h3>
+          <p>如果你的目标是“到点提醒我继续主任务”“把系统事件塞回主会话，让 heartbeat 带着当前上下文继续跑”，那就更适合 main session。官方文档规定，main session 任务必须使用 <code>payload.kind = "systemEvent"</code>，并可选 <code>wakeMode: "now"</code> 或 <code>"next-heartbeat"</code>。前者会立刻唤醒，后者则等下一次 heartbeat 再处理。</p>
+          <h3>2. Isolated：适合后台活、脏活、重活</h3>
+          <p>如果你的任务更像“每天早上生成一份摘要”“每隔两小时查一次内容收录状态”“独立跑一个固定动作再把结果回投到聊天里”，更适合 isolated。官方说明 isolated 任务会在 <code>cron:&lt;jobId&gt;</code> 里开独立回合，每次都是新的 session id，不继承之前对话。这个机制特别适合那些不想污染主会话、又需要稳定重复执行的后台任务。</p>
+          <h3>3. Delivery 决定结果怎么回来</h3>
+          <p>OpenClaw 官方把 delivery 分成 <code>announce</code>、<code>webhook</code>、<code>none</code>。其中 isolated 如果不写 delivery，默认会 announce，也就是把摘要发回聊天。这个默认值对日报、巡检、结果通知很友好；但如果你只是想静默跑任务，就要明确设成 <code>none</code>，否则容易觉得“系统怎么老在群里说话”。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Action Checklist</div>
+          <h2 class="section-title">OpenClaw 定时提醒怎么配，建议按这 5 步做</h2>
+          <p class="section-desc">不是先写 cron 表达式，而是先确认 Gateway 底座、执行目标和结果回路。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>第一步：先确认 Gateway 是活的</h3>
+            <p>Getting Started 建议先完成 <code>openclaw onboard --install-daemon</code>，再用 <code>openclaw gateway status</code> 看状态。Gateway 没起稳，后面所有 OpenClaw reminder 都只是纸面配置。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>第二步：先判断这是提醒，还是后台执行</h3>
+            <p>只是想把一句提醒塞回主线，就选 main；想单独跑一个任务并投递摘要，就选 isolated。这个判断先做，后面参数会清晰很多。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>第三步：一开始只做 one-shot 测试</h3>
+            <p>官方 quick start 先演示 one-shot reminder，再看 <code>openclaw cron list</code>、<code>openclaw cron run</code> 和 <code>openclaw cron runs</code>。第一次不要直接上复杂循环任务，先证明整条链路能触发、能执行、能验收。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>第四步：弄清 wakeMode</h3>
+            <p><code>now</code> 适合你希望马上触发主会话；<code>next-heartbeat</code> 适合不着急、想等下一轮 heartbeat。很多人以为“没立刻弹出来”就是坏了，其实只是 wakeMode 选得不同。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>第五步：把 delivery 边界想清楚</h3>
+            <p>日报、巡检、结果通知一般适合 announce；系统对接适合 webhook；静默后台任务适合 none。不要等任务跑起来之后，才发现自己把结果发错地方。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>第六步：再上循环任务</h3>
+            <p>测试没问题后，再去做 <code>every</code> 或 <code>cron</code> 计划。对整点型重复任务，官方还提醒可能有错峰窗口；如果业务要求绝对准点，就要显式设定精确策略。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Common Scenarios</div>
+          <h2 class="section-title">3 个最适合一人公司先上的 OpenClaw cron 场景</h2>
+          <p class="section-desc">先做高频、好验收、能直接省脑力的场景，比一开始就追复杂自动化更稳。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>晨间摘要</h3>
+            <p>每天固定时间让 OpenClaw 跑一轮 overnight updates、待办、线索整理，属于典型的 isolated + announce 场景。你不需要盯着面板，结果会自己回来。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>跟进提醒</h3>
+            <p>今天收到的咨询、报价、试用、回访，最怕“知道要回但忙忘了”。这类任务更适合 main session 提醒，因为它需要衔接你正在做的主线动作。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>内容巡检</h3>
+            <p>比如每两小时检查一次新文章、FAQ、SEO 页、消息回复状态，这类动作适合 isolated 静默跑，必要时再通过 announce 或 webhook 给出结果汇总。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 定时任务最容易踩的 4 个坑</h2>
+          <h3>1. ISO 时间没写时区，结果按 UTC 跑了</h3>
+          <p>官方文档明确写了：如果 ISO 时间戳没有显式时区，就按 UTC 处理。很多人以为自己写的是本地时间，结果提醒整体偏了 8 小时，根本不是 cron 逻辑错了，而是时间语义没写清。</p>
+          <h3>2. 整点循环任务出现几分钟偏移</h3>
+          <p>OpenClaw 官方为了减少大量网关在整点同时爆发，会对某些 recurring top-of-hour 表达式做最多 5 分钟的确定性错峰。也就是说，<code>0 * * * *</code> 这类表达式不一定所有机器都在同一秒响起。如果你的业务强调绝对准点，就要按官方说明显式设置精确策略。</p>
+          <h3>3. One-shot 跑完后以为“任务丢了”</h3>
+          <p>文档里提到，一次性任务默认成功后会自动删除；如果你想保留记录、但跑完后只是 disable，就要显式处理 <code>deleteAfterRun</code>。第一次做 reminder 的人经常会被这个默认行为吓一跳。</p>
+          <h3>4. 把 delivery 和 message tool 混着理解</h3>
+          <p>官方说明 announce 是 cron 自己的投递流程，不是让 run 里面再额外手写消息转发。边界不清楚，就容易产生重复投递，或者明明 delivery 已经能做的事，仍然在任务里重复发一遍。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇内容怎么用，最省时间</h2>
+          <p>如果你是第一次研究 OpenClaw cron，最好的方法不是上来就设计一大套“自动运营系统”，而是先跑通一个最小提醒：比如 20 分钟后提醒你回一条重要消息，或者明早 7 点给你发一份简单摘要。只要这条链路跑通，你就已经掌握了 OpenClaw 定时任务最核心的骨架：schedule、sessionTarget、payload、wakeMode、delivery。</p>
+          <p>然后你再把相同思路复制到更多业务场景里：咨询跟进、内容生产提醒、日报、巡检、FAQ 更新、站点发布复查。OpenClaw reminder 真正的价值，不是“又多一个自动化功能”，而是帮你把重复性时间管理从人脑里拿走，让系统替你记、替你叫、替你按时推进。对一人公司和轻团队来说，这种稳定的小推进，比花里胡哨的大自动化更值钱。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你接下来还要决定飞书入口、部署顺序和一人公司工作流，可以继续看这几篇。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合继续看 App、权限、事件订阅和 pairing 怎么接稳。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-1052-qingdao-openclaw-deploy.html">青岛 OpenClaw 本地部署</a></h3>
+            <p>适合继续看 Gateway、安装与基础验证顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0135-linyi-openclaw-one-person-company.html">临沂 OpenClaw 一人公司</a></h3>
+            <p>适合继续看一人公司如何把消息、内容和执行链路接起来。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你准备让 OpenClaw 开始做提醒，先告诉我：你最怕漏掉的是哪一类动作？</h2>
+          <p class="section-desc">比如咨询回访、日报、内容审核、群消息跟进，还是站点巡检。先选一个最小场景接稳，比一口气上十个任务更容易真正跑起来。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw 定时任务怎么配</span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书机器人权限清单｜哪些必须开，哪些别一上来全放开</title>
+  <meta name="description" content="基于 OpenClaw Feishu 官方文档、FAQ 与 Clawdbot 中文文档整理，讲清 OpenClaw 飞书机器人权限清单、必开权限、事件订阅、Bot 能力、pairing 配对、groupPolicy、requireMention 与消息发送失败排查思路，适合一人公司和小团队先跑最小闭环。" />
+  <meta name="keywords" content="OpenClaw飞书机器人权限清单,OpenClaw飞书权限,OpenClaw Feishu权限,飞书机器人权限,im.message.receive_v1,im:message:send_as_bot,OpenClaw pairing" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0900-openclaw-feishu-bot-permissions.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Permissions</div>
+        <h1 class="section-title">OpenClaw 飞书机器人权限清单：哪些必须开，哪些别一上来全放开</h1>
+        <p class="section-desc">如果你正在搜 OpenClaw 飞书机器人权限清单、OpenClaw Feishu 权限、飞书机器人权限、im.message.receive_v1 或 im:message:send_as_bot，说明你大概率已经走到真正接入这一步了。这个阶段最容易出的问题不是“不会填 App ID”，而是权限、事件订阅、Bot 能力、pairing 配对和群聊策略混在一起，结果表面看像接好了，实际上要么收不到消息，要么发不出去，要么一进群就控制不住。本文基于 OpenClaw 官方 Feishu 文档、FAQ 以及 Clawdbot 中文文档交叉整理，目标不是把权限表生硬贴一遍，而是帮你先分清：哪些权限是最小闭环必须开的，哪些是为了后续能力预留，哪些配置应该保守开启，避免第一轮就把系统放得过宽。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询接入清单</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw Feishu 文档、OpenClaw FAQ、Clawdbot 中文文档。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>准备把 OpenClaw 接入飞书做咨询分发、提醒、内容审核、群协同或一人公司消息入口的人。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：OpenClaw 飞书接入要先追求“最小可用权限”，不是“权限越全越专业”</h2>
+          <p class="section-desc">官方文档已经把路径写得很清楚：先把 Gateway 跑起来，再创建飞书应用，补权限、启用 Bot、添加长连接事件，最后做消息与 pairing 测试。真正影响成功率的，是这个顺序有没有走对。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先保证能收、能回、能配对</h3>
+            <p>第一阶段最重要的不是把所有扩展能力都开完，而是先让机器人能收到 <code>im.message.receive_v1</code>，能以机器人身份回消息，并能完成 pairing 配对批准。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>Bot 能力和事件订阅缺一不可</h3>
+            <p>只有权限不够，只有凭证也不够。官方 Feishu 文档明确要求启用 Bot 能力，并在 Event Subscription 中选择长连接接收事件，再添加 <code>im.message.receive_v1</code>。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>群聊权限要保守开</h3>
+            <p>OpenClaw 官方给了 <code>groupPolicy</code>、<code>requireMention</code> 和 <code>allowFrom</code>，就是为了避免机器人一进群就乱回。刚接入时默认保守，反而更稳。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 飞书机器人权限清单，第一轮至少看懂这 5 组</h2>
+          <h3>1. 应用身份：App ID 和 App Secret</h3>
+          <p>这是最基础的一层。你需要在飞书开放平台创建企业应用，拿到 App ID 与 App Secret，再在 OpenClaw 渠道配置里填进去。它们不是“权限”，但属于一切权限生效之前的前提。App Secret 泄露后要及时重置，不能把它当普通备注随便发到群里。</p>
+          <h3>2. 消息读取相关权限</h3>
+          <p>OpenClaw 官方文档给出的批量导入示例里，和消息接收直接相关的权限包括 <code>im:message</code>、<code>im:message:readonly</code>、<code>im:message.p2p_msg:readonly</code>、<code>im:message.group_at_msg:readonly</code> 等。这一组的核心作用，是让机器人能看见飞书里真正投递过来的消息内容，尤其是私聊与群里 @ 机器人的消息。</p>
+          <h3>3. 消息发送相关权限</h3>
+          <p>如果你经常遇到“消息收到了，但回不去”，最先核对的就是 <code>im:message:send_as_bot</code>。中文文档的故障排查里也明确提到：消息发送失败时，先看这个权限有没有开，再看应用是不是已经发布，再看日志里有没有更具体的错误。</p>
+          <h3>4. 资源与成员信息相关权限</h3>
+          <p>像 <code>im:resource</code>、<code>im:chat.members:bot_access</code> 这类权限，主要用于更完整的消息与群成员处理能力。不是说第一天必须全部深度用到，但如果你要做群聊消息、附件、图片或成员相关判断，它们就很重要。第一轮至少要知道：少了这些，某些媒体类或群成员相关行为可能不完整。</p>
+          <h3>5. 事件订阅不是“权限名”，但和权限一样关键</h3>
+          <p>很多人会把权限和事件订阅混为一谈。实际上，<code>im.message.receive_v1</code> 是你在飞书后台事件订阅里要添加的事件，不是权限字段。官方 Feishu 文档特别提醒：在设置长连接事件订阅前，要先跑好 OpenClaw 渠道并确保 Gateway 正在运行，否则长连接配置可能保存失败。也就是说，哪怕你的权限清单没问题，只要事件没订上，机器人照样收不到消息。</p>
+        </article>
+        <article class="card case-card">
+          <h2>最小闭环怎么配：建议按“能收消息、能回消息、能控范围”三层来做</h2>
+          <h3>第一层：先把消息接进来</h3>
+          <p>先确保 OpenClaw 已经完成安装与基础启动，再看 <code>openclaw gateway status</code>。OpenClaw 官方文档和中文文档都强调，在飞书这条链路里，Gateway 是底座；底座没起来，后面的权限、长连接和 pairing 都谈不上。接着启用 Bot 能力、选择长连接接收事件、添加 <code>im.message.receive_v1</code>，这一步完成后，机器人才具备“收到消息”的条件。</p>
+          <h3>第二层：再确认它能回去</h3>
+          <p>能收不等于能回。除了 <code>im:message:send_as_bot</code> 之外，还要确认应用已经发布。很多人测试时只做到“后台都填了”，但应用并没有实际发布，或者管理员审批还没通过，于是前面看起来都正常，真实发消息时却没有回执。官方页已经把“发布应用”单独列成了一个步骤，这不是走形式，而是消息能力真正生效的前提之一。</p>
+          <h3>第三层：最后再控谁能触发</h3>
+          <p>OpenClaw 在飞书上的默认思路并不是“一开就全员畅聊”，而是先通过 <code>dmPolicy: "pairing"</code> 让未知私聊用户拿到配对码，等批准后再建立稳定会话。这套默认逻辑很适合第一阶段先控风险。如果你要上群聊，建议继续用保守策略：<code>groupPolicy</code> 先维持 <code>open</code> 但默认 <code>requireMention: true</code>，或者直接用 <code>allowlist</code> 只放指定群；如果群里只有少数成员需要触发，再用 <code>groups.&lt;chat_id&gt;.allowFrom</code> 限成员范围。</p>
+          <p>这三层配法的核心好处，是你不会一开始就把机器人放到所有群、所有人、所有消息里裸跑。对一人公司、小团队、内容协同和咨询分发场景来说，这种保守起步通常更省排障时间，也更符合白名单式管理习惯。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Common Scenarios</div>
+          <h2 class="section-title">OpenClaw 飞书权限配好后，最适合先落地的 3 个场景</h2>
+          <p class="section-desc">先从高频、好验收、风险低的入口开始，更容易把接入做成真正有价值的动作。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>私聊咨询承接</h3>
+            <p>先允许已配对用户在飞书私聊里发起咨询，机器人只处理经过 pairing 的会话。这是最稳的第一阶段路径，因为边界清晰、日志清晰、问题也容易定位。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>群里 @ 机器人答疑</h3>
+            <p>如果业务确实需要群协同，建议保持 <code>requireMention: true</code>。这样机器人只在被明确 @ 时响应，既能保证存在感，也能避免打断正常群讨论。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>内容审核与提醒</h3>
+            <p>当 OpenClaw 负责生成内容草稿、FAQ、标题或日报时，把结果回投到飞书给人工审核，通常是权限最容易发挥价值的场景：机器人不必替代人，但能把流程串起来。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Pitfalls</div>
+          <h2 class="section-title">为什么很多人觉得“OpenClaw 飞书权限都开了”，系统还是不好用</h2>
+          <p class="section-desc">高频问题通常不在“少一个冷门权限”，而在顺序和验收没有做好。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>只看权限，不看 Gateway 状态</h3>
+            <p>Feishu 文档明确提示：长连接事件订阅前，Gateway 要先运行。很多人前面都填了，但 <code>openclaw gateway status</code> 一看就是没起来，自然谈不上真实收消息。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>只看后台配置，不做 pairing 验收</h3>
+            <p>默认私聊策略是 pairing。也就是说，未知用户第一次发来消息，拿到配对码只是中间态；你还需要批准，之后才算会话真正打通。跳过这一步，容易误判成机器人无响应。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>群范围开太大</h3>
+            <p>一开始就把群聊全开放，最常见的结果不是“自动化更强”，而是机器人被大量无关消息淹没，甚至影响体验。群聊策略最好从少量群、默认 @ 触发开始。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>把 Lark 和飞书域名混用</h3>
+            <p>官方文档提醒：国际版 Lark 需要设置 <code>domain: "lark"</code>。如果租户环境搞错，后面很多现象都会很像“权限有问题”，实际上是域配置不对。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>应用没发布就急着测试</h3>
+            <p>权限、Bot、事件都配置完，不代表能力已经对外生效。飞书应用仍然需要发布，部分企业环境还要审批。没有这一步，消息回发很容易失败。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>不知道用户 ID 和群 ID 从哪找</h3>
+            <p>当你需要做 <code>allowFrom</code> 或 <code>groupAllowFrom</code> 时，文档建议通过日志、私聊消息、群内 @ 机器人或 pairing 列表去确认 <code>ou_xxx</code> 和 <code>oc_xxx</code>。ID 没拿准，白名单配置就会失效。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>如果你现在就要排查“为什么飞书机器人发不出消息”</h2>
+          <p>建议你按这个顺序看：第一，应用是不是已经发布；第二，<code>im:message:send_as_bot</code> 有没有开；第三，Gateway 当前是不是运行中；第四，事件订阅是不是已经保存为长连接并包含 <code>im.message.receive_v1</code>；第五，日志里有没有更具体的报错。这个顺序不是拍脑袋定的，而是官方文档和中文文档中最反复出现的排查主线。</p>
+          <p>如果是群里不回，还要加看两项：一是有没有 @ 机器人，因为默认要求提及；二是 <code>groupPolicy</code> 和群级别配置有没有把这个群挡掉。很多时候系统不是坏了，而是它正在按你自己配置的边界工作。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇清单怎么用，最省时间</h2>
+          <p>最好的用法不是把每个权限词都背下来，而是拿它对照你当前的接入进度：底座是否已跑通、应用是否已建好、Bot 是否已启用、事件是否已订阅、消息能不能发回、配对是否已批准、群边界是否已收紧。只要这 7 个点有一项没过，系统都可能表现得像“权限没开对”。</p>
+          <p>一句话总结：OpenClaw 飞书机器人权限清单的真正价值，不是把权限堆得更满，而是先把一条最小可验证链路接稳——能收、能回、能控范围。只有这条链路稳定了，后面再扩展到群协同、附件处理、更多岗位、多账号和多 Agent 路由，才会越做越顺。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你接下来还要继续看接入、长连接和部署顺序，可以顺着这几篇继续读。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合继续看创建应用、事件订阅、pairing 与测试顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">OpenClaw 飞书长连接怎么接</a></h3>
+            <p>适合继续看 WebSocket 事件订阅、群聊策略与 pairing 审批。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-1052-qingdao-openclaw-deploy.html">青岛 OpenClaw 本地部署</a></h3>
+            <p>适合继续看 Gateway、安装顺序和基础验证怎么做。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你已经卡在权限、事件订阅或 pairing 上，先把当前卡点告诉我。</h2>
+          <p class="section-desc">比如“能收不能回”“群里不触发”“应用已发布但消息没回来”。先定位是哪一层出问题，再补权限和配置，会比盲目重装更省时间。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw 飞书机器人权限清单</span>
+    </div>
+  </footer>
+</body>
+</html>

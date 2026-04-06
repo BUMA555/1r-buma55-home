@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw Dashboard 打不开怎么办｜gateway status、unauthorized 与 1008 排查</title>
+  <meta name="description" content="基于 OpenClaw 官方 Dashboard、Getting Started、Troubleshooting 与中文社区资料整理，讲清 OpenClaw dashboard 怎么打开、openclaw gateway status 应该看什么、unauthorized / 1008 / PAIRING_REQUIRED 分别代表什么，以及本地与远程访问该怎么排查。" />
+  <meta name="keywords" content="OpenClaw dashboard,OpenClaw gateway status,OpenClaw unauthorized,OpenClaw 1008,OpenClaw Control UI,OpenClaw dashboard 打不开" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0920-openclaw-dashboard-gateway-status.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Dashboard · Gateway Status</div>
+        <h1 class="section-title">OpenClaw Dashboard 打不开怎么办：gateway status、unauthorized 与 1008 排查一次讲清</h1>
+        <p class="section-desc">如果你正在搜 OpenClaw dashboard、OpenClaw gateway status、OpenClaw unauthorized、OpenClaw 1008，通常说明你已经完成安装或 onboarding，准备开始真正使用时，却卡在了“浏览器打不开控制台”“页面能开但连不上”“一直提示 unauthorized”“明明本地能跑却还是 1008 断开”这些问题上。本文基于 OpenClaw 官方 Getting Started、Dashboard、Gateway Troubleshooting、FAQ，以及中文社区文档交叉整理，目标不是把命令散着贴给你，而是帮你快速判断：到底是 Gateway 没起来、地址没打对、token 不一致、设备授权没过，还是你把本地访问和远程访问混在一起了。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询控制台接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Getting Started、Dashboard、Gateway Troubleshooting、FAQ 与 Clawdbot 中文文档。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>已经装好 OpenClaw，但在打开 Dashboard、连接 Control UI 或验证 Gateway 状态时卡住的人。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：Dashboard 问题大多不是“页面坏了”，而是 4 层里有一层没通</h2>
+          <p class="section-desc">按照官方文档的排查顺序，控制台打不开或连不上，通常落在 Gateway 运行状态、访问地址、认证 token、设备授权这四层。先把这四层拆开看，比重装更省时间；如果你还没确认入口是否正确，优先执行 <code>openclaw dashboard</code> 或直接访问 <code>http://127.0.0.1:18789/</code>，再决定要不要继续查认证链路。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先确认 Gateway 真在跑</h3>
+            <p>官方健康信号写得很明确：<code>openclaw gateway status</code> 至少应该看到 <code>Runtime: running</code> 和 <code>RPC probe: ok</code>。如果这一步不成立，Dashboard 自然连不上。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>本地地址默认就是 <code>127.0.0.1:18789</code></h3>
+            <p>Getting Started 与 Dashboard 文档都把本地快速入口写成 <code>http://127.0.0.1:18789/</code>。很多人把别的端口、远程地址或历史书签混进来，问题就从这里开始。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3><code>unauthorized</code> 不等于服务挂了</h3>
+            <p>它更常见的含义是 token 没带上、token 不匹配，或者设备授权链路还没完成。页面能打开但连接失败，往往说明 Web 界面在，认证没过。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw Dashboard 到底是什么</h2>
+          <p>官方 Dashboard 文档把它定义得很直接：Gateway Dashboard，也就是浏览器里的 Control UI，默认由 Gateway 的根路径 <code>/</code> 提供。它不是一个和 Gateway 平行的单独程序，而是 Gateway 暴露出来的管理界面。所以你看到 Dashboard 无法使用时，第一反应不应该是“网页前端坏了”，而应该先回头看 Gateway 本身是否真的运行、能否被当前浏览器访问、认证方式是否一致。</p>
+          <p>这个界面之所以重要，是因为它不只是聊天窗口。官方文档明确把它归类为 admin surface，也就是管理面，里面涉及聊天、配置、执行审批等能力。也正因为如此，官方特别提醒不要把 Dashboard 直接暴露到公网。对一人公司和小团队来说，最稳的路径还是本地 localhost、Tailscale Serve，或者临时 SSH 隧道，而不是图省事把端口直接敞开。</p>
+          <p>换句话说，如果你只是想快速判断 OpenClaw 是否已经可用，最短路径不是折腾一堆复杂配置，而是回到 Getting Started：先让服务跑起来，再用 <code>openclaw dashboard</code> 打开控制台，或者直接访问 <code>http://127.0.0.1:18789/</code>。官方中文社区文档也给出了同样顺序，这说明这一步不是“社区经验”，而是产品默认设计。</p>
+        </article>
+        <article class="card case-card">
+          <h2>最省时间的排查顺序：先跑命令，再看浏览器</h2>
+          <h3>第一步：看总状态</h3>
+          <p>官方 Troubleshooting 给出的 command ladder 第一条就是 <code>openclaw status</code>，目的是先确认当前 OpenClaw 总体有没有起来、CLI 与 Gateway 是否对得上。</p>
+          <h3>第二步：看 Gateway 健康度</h3>
+          <p>紧接着是 <code>openclaw gateway status</code>。如果这里看不到 <code>Runtime: running</code> 和 <code>RPC probe: ok</code>，不要急着开浏览器，因为浏览器层只是表象，根因还在服务层。</p>
+          <h3>第三步：看日志与 doctor</h3>
+          <p>官方 runbook 把 <code>openclaw logs --follow</code> 和 <code>openclaw doctor</code> 都放进了默认排查链路，原因很简单：端口冲突、服务配置错位、token 配置问题、设备授权异常，这些都更容易在日志和 doctor 里直接暴露。</p>
+          <h3>第四步：最后再回浏览器</h3>
+          <p>等服务与认证前提确认无误后，再用 <code>openclaw dashboard</code> 或手动打开默认地址去验证。这个顺序能避免很多“其实是后端没起来，却一直在前端反复刷新”的无效动作。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Error Meaning</div>
+          <h2 class="section-title">看到 unauthorized、1008、PAIRING_REQUIRED，分别该怎么理解</h2>
+          <p class="section-desc">这些报错表面都像“连不上”，但下一步动作完全不同。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><code>AUTH_TOKEN_MISSING</code></h3>
+            <p>官方 quick map 的意思很明确：客户端没有带上共享 token。处理方式不是重装，而是去取 <code>gateway.auth.token</code>，或者在当前 shell 提供 <code>OPENCLAW_GATEWAY_TOKEN</code>，再回 Dashboard 里粘进去。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>AUTH_TOKEN_MISMATCH</code></h3>
+            <p>这表示客户端带了 token，但和 Gateway 当前实际 token 不一致。常见场景是换机、改过配置、旧浏览器里还缓存着旧值，或者 SecretRef 管理下 shell 并没有拿到最新 token。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>PAIRING_REQUIRED</code></h3>
+            <p>这不是 DM 配对那套聊天授权，而是 Dashboard / 设备身份这一层还没有被批准。官方建议看 <code>openclaw devices list</code>，再按需做 approve，而不是在浏览器里盲目重试。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>device identity required</code></h3>
+            <p>官方文档把它归到“安全上下文或设备认证前提不成立”。常见于你把本地和远程访问方式混了，或者当前客户端没有走正确的 challenge / nonce 认证链路。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>1008</code> / repeated unauthorized</h3>
+            <p>Dashboard 文档把这类现象归到 WebSocket 握手认证失败。页面本身能加载，不代表连接已成功；真正卡住的是 connect 阶段的 auth，不是 HTML 页面打不开。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>gateway connect failed</code></h3>
+            <p>这类更像地址、端口或目标 URL 打错。优先回头核对当前 Gateway 在哪台机器、当前浏览器访问的是不是那台机器的 18789，而不是直接改一堆认证配置。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>本地访问和远程访问，别混成一个问题</h2>
+          <p>官方 Dashboard 文档把本地与远程的路径分得很清楚。对于本地 Gateway，默认就是在本机打开 <code>http://127.0.0.1:18789/</code>，这是最简单、变量最少的路径。只要 <code>openclaw gateway status</code> 正常，这个地址通常就该能打开。</p>
+          <p>远程场景则完全不同。官方建议优先使用 Tailscale Serve，或者 SSH 隧道，例如把远端 <code>127.0.0.1:18789</code> 映射回本机再访问。原因不是“官方更保守”，而是 Dashboard 本质上是管理面，直接暴露在公网风险很高。你如果在远程环境看到 unauthorized、device identity required、连接不上，先问自己一个问题：现在这次访问，到底算本地直连、Tailscale、还是 SSH 隧道？这三种路径的认证与安全前提不一样，混在一起排查只会越查越乱。</p>
+          <p>中文社区文档也强调了同样一点：如果 token 由 SecretRef 管理，<code>openclaw dashboard</code> 可能故意只给你一个不带 token 的干净链接，这不是少给了信息，而是避免把敏感 token 暴露在 shell 日志、剪贴板历史或浏览器启动参数里。遇到这种情况，正确动作是去 Dashboard 设置里手动粘 token，而不是怀疑命令失效。</p>
+        </article>
+        <article class="card case-card">
+          <h2>一套够用的实战判断：先看这 5 个点</h2>
+          <p><strong>第一，看 Gateway 是否真的运行。</strong> 没有 <code>Runtime: running</code>，其他都不用往下谈。</p>
+          <p><strong>第二，看 RPC probe 是否正常。</strong> 官方把 <code>RPC probe: ok</code> 作为健康信号之一，说明 CLI 与 Gateway 的本地探测链路是通的。</p>
+          <p><strong>第三，看你访问的是本地还是远程。</strong> 如果是本地，就先别跳去公网地址；如果是远程，就别继续把 localhost 心智套进去。</p>
+          <p><strong>第四，看 token 来自哪里。</strong> 是明文配置、环境变量、还是 SecretRef 管理？来源不清，最容易出现 token mismatch。</p>
+          <p><strong>第五，看是否存在设备授权。</strong> 如果错误详情已经明确指向 <code>PAIRING_REQUIRED</code> 或设备 token 漂移，继续刷新网页意义不大，应该转去设备批准链路处理。</p>
+          <p>只要把这 5 个点按顺序过一遍，大多数 OpenClaw dashboard 打不开、OpenClaw gateway status 看不明白、OpenClaw unauthorized / 1008 反复出现的问题，都能在较短时间内被定位到具体层级，而不是停留在“好像哪都不对”的模糊状态。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你下一步还要继续接飞书、排定时任务或处理浏览器控制，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合继续看创建应用、权限、事件订阅和消息测试顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0808-openclaw-cron-reminder-guide.html">OpenClaw 定时任务怎么配</a></h3>
+            <p>适合继续看 cron、heartbeat、main 与 isolated 的边界。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0910-openclaw-chrome-extension-browser-relay.html">OpenClaw Chrome 扩展怎么接</a></h3>
+            <p>适合继续看 browser relay、attach tab 与 profile 选择。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你现在卡在 dashboard 打不开、unauthorized 或 1008，可以直接把现象发我。</h2>
+          <p class="section-desc">比如“本地 127.0.0.1 能开但一直 unauthorized”“remote Gateway 打开后提示 1008”“gateway status 正常但 Control UI 进不去”。先判断是哪一层没通，再决定改 token、改访问路径还是补设备授权，会比反复重装更快。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw Dashboard 打不开怎么办</span>
+    </div>
+  </footer>
+</body>
+</html>

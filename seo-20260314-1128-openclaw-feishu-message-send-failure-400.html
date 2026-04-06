@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书发不出去消息怎么办｜message.send 返回 400 时先查这 5 项</title>
+  <meta name="description" content="基于 OpenClaw 官方 Feishu / Pairing 文档与 Clawdbot 中文文档整理，讲清 OpenClaw 飞书发不出去消息、message.send 返回 400 时该先查什么，重点覆盖 im:message:send_as_bot、应用发布、Bot 能力、网关状态、日志排查与群聊边界。" />
+  <meta name="keywords" content="OpenClaw 飞书发不出去消息,OpenClaw message.send 400,OpenClaw Feishu send_as_bot,OpenClaw 飞书消息发送失败,OpenClaw 飞书机器人不回" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1128-openclaw-feishu-message-send-failure-400.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Troubleshooting</div>
+        <h1 class="section-title">OpenClaw 飞书发不出去消息怎么办：message.send 返回 400 时先查这 5 项</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw 飞书发不出去消息、OpenClaw message.send 400、OpenClaw Feishu send_as_bot，大概率你已经把机器人接进飞书了，甚至能看到它收消息、配对、进群，但一到真正发送回复、主动同步或群里播报这一步，就开始报错或者没有结果。按 OpenClaw 官方 Feishu 文档的排查顺序，这类问题不要先猜模型、也不要先怀疑会话路由，优先看 5 个地方：应用有没有开启机器人能力、权限里有没有 <code>im:message:send_as_bot</code>、当前版本有没有正式发布、Gateway 是否处于正常运行状态，以及日志里到底返回了什么错误。很多“机器人明明在线却发不出去”的情况，不是 OpenClaw 不会发，而是飞书应用还没满足出站消息的前提条件。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询飞书接入</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Feishu / Pairing 文档、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在做 OpenClaw 飞书接入、消息发送、群聊播报、权限收口与线上排查的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：message.send 返回 400，优先查权限、发布状态和日志，不要先怀疑模型</h2>
+          <p class="section-desc">OpenClaw 官方文档给出的“消息发送失败”排查顺序非常直接：先确认飞书应用具备发送权限，再确认应用已发布，然后去看网关日志。这个顺序基本能把大部分 400 问题快速收口。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先看 <code>im:message:send_as_bot</code></h3>
+            <p>OpenClaw 官方 Feishu 权限清单明确包含这项权限。没有它，机器人常见表现就是能接、能看、但发不出去。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>再看应用是否已发布</h3>
+            <p>官方故障排除里明确提到：消息发送失败时，要确认应用已经发布。只在开发态改完权限，不等于线上就能正常发消息。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>最后用日志定位真实原因</h3>
+            <p>OpenClaw 文档建议直接看 <code>openclaw logs --follow</code>。400 只是结果，真正能区分权限、发布还是目标侧问题，还是要靠日志。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么飞书里“能收不能发”特别常见？</h2>
+          <p>这是 OpenClaw 飞书接入里很容易让人误判的一类问题。因为接入链路本来就分两段：一段是“机器人有没有把消息收进来”，另一段是“机器人有没有权限把消息发回去”。官方 Feishu 文档对这两段的要求拆得很清楚：收消息这一侧，重点看长连接（WebSocket）事件订阅、<code>im.message.receive_v1</code> 和 Gateway 是否在线；发消息这一侧，重点看 Bot 能力、应用发布状态以及 <code>im:message:send_as_bot</code> 这样的出站权限。</p>
+          <p>所以现实里最容易出现的情况是：你已经能看到 pairing 码、已经能在群里 @ 到机器人，甚至日志也显示消息进来了，于是你自然会以为“飞书接入已经通了”。但从官方排查口径来看，这最多只能说明接收链路基本通了，不能说明发送链路也满足条件。如果应用还是未发布、发送权限没补齐，最终就很容易表现成 message.send 返回 400，或者看起来像“机器人完全不回”。</p>
+          <p>对一人公司、内部协作群、客户咨询群尤其如此。因为这类场景往往是先把机器人拉进来试，再逐步补权限和收边界。如果你没有把“收消息”和“发消息”分开排查，就会在错误方向上浪费很多时间。</p>
+        </article>
+        <article class="card case-card">
+          <h2>OpenClaw 官方文档给出的 5 项优先检查项</h2>
+          <p><strong>第一项：</strong>确认应用权限里已经包含 <code>im:message:send_as_bot</code>。OpenClaw 官方 Feishu 文档给出的批量导入权限清单里，明确把它列为租户权限的一部分；中文文档的“消息发送失败”排查也首先强调这点。</p>
+          <p><strong>第二项：</strong>确认飞书应用已经完成版本创建、审核和发布。官方快速入门专门单列了“发布应用”这一步，并在故障排除中再次强调“消息发送失败时，要确认应用已发布”。这说明很多问题不是配置没写，而是发布状态没到位。</p>
+          <p><strong>第三项：</strong>确认机器人能力已经开启。官方步骤里要求到“应用能力 &gt; 机器人”里打开 Bot 能力并设置机器人名称；如果连机器人能力都没启用，出站消息链路本身就不完整。</p>
+          <p><strong>第四项：</strong>确认 Gateway 正常运行，并且必要时重启。官方建议在配置完成后立刻检查 <code>openclaw gateway status</code>，排查时持续看 <code>openclaw logs --follow</code>。如果 Gateway 没起来，或者改完配置没重启，日志和实际行为都可能和你以为的不一样。</p>
+          <p><strong>第五项：</strong>先看日志再改配置。文档没有鼓励“靠猜”排查，而是把日志放在关键步骤里反复强调。对 message.send 这类 400 来说，日志是你区分“权限缺失”“应用未发布”“目标不可达”“配置未生效”的最快入口。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Checklist</div>
+          <h2 class="section-title">落地排查时，建议按这个顺序走</h2>
+          <p class="section-desc">不要一上来改一堆配置。按顺序一项一项核，定位会更快。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>1. 先看权限导入是否完整</h3>
+            <p>核对飞书开放平台权限页，确认已经导入 OpenClaw 文档建议的权限集合，尤其是 <code>im:message:send_as_bot</code>。如果你只补了接收事件权限，发送照样会出问题。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>2. 确认 Bot 能力已开启</h3>
+            <p>去“应用能力 &gt; 机器人”确认机器人能力已开启，并且机器人配置已经保存。没有这一步，很多测试都只是半成品。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>3. 确认版本已发布</h3>
+            <p>权限刚补完时，最容易漏掉“版本管理与发布”。如果还是开发态，线上消息发送经常表现异常，尤其在团队正式租户里更明显。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>4. 看 Gateway 是否在线</h3>
+            <p>先跑 <code>openclaw gateway status</code>，必要时再 <code>openclaw gateway restart</code>。官方文档把它放在配置后的第一批检查项里，不是装饰动作。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>5. 持续盯日志</h3>
+            <p>排查期间一直开着 <code>openclaw logs --follow</code>。这样你才能把“界面看起来不回”与“底层真的发送失败”区分开。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>6. 最后再看群聊边界</h3>
+            <p>如果你是在群里觉得“不回”，还要补查 <code>groupPolicy</code>、<code>requireMention</code>、<code>groupAllowFrom</code> 与群成员白名单。它们更像入口边界，容易被误当成发送失败。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>哪几种情况最容易被误判成 message.send 400？</h2>
+          <p>第一种是“机器人其实没收到该回的消息”。如果群里默认要求 <code>@</code> 机器人，而你只是普通发言，表现出来就会像“它不回”；但这不是发送失败，而是入口没有命中。第二种是群或成员白名单没有放开，消息根本没被处理。第三种是 pairing 还没批准，私聊消息被挡在审批前。第四种才是真正的发送链路问题：消息已经进来，但应用出站条件不满足。</p>
+          <p>这也是为什么 OpenClaw 文档会把访问控制、pairing 和消息发送分开写。因为它们都能在用户侧表现成“机器人没回”，但修法完全不同。你如果把群边界问题当成出站权限问题来修，就会一直在飞书后台加权限；反过来，把真实的发送失败当成群设置问题，也会一直在群里试 @、试白名单，最后越改越乱。</p>
+        </article>
+        <article class="card case-card">
+          <h2>适合团队怎么把这套排查流程固定下来？</h2>
+          <p>如果你是企业内部协作、客户咨询群、一人公司消息闭环，最稳的办法不是谁报错就临时猜，而是把排查顺序写成固定清单：先看 Gateway 状态，再看日志，再看应用权限和发布状态，最后才去查群聊边界。这样以后无论是 OpenClaw 主号、飞书测试号，还是备用账号，都可以按同一套顺序排。</p>
+          <p>实际使用里，这套清单还有一个好处：能区分“内容岗位能先做什么”和“开发/运维要接手什么”。内容侧可以先确认触发场景、重现步骤、群里还是私聊、是否已 @、是否已 pairing；技术侧再去处理权限补齐、版本发布、Gateway 重启和日志复盘。职责一分开，效率会高很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话总结</h2>
+          <p>OpenClaw 飞书里 message.send 返回 400，优先不要改模型和提示词，先按官方文档检查 <code>im:message:send_as_bot</code>、Bot 能力、应用发布、Gateway 状态和日志。这几项比盲猜更接近根因。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇最适合什么时候看？</h2>
+          <p>适合你已经把 OpenClaw 接进飞书，机器人能看到、能被拉群、甚至能生成 pairing，但就是发不出去消息、群里不见回复、主动播报失败的时候。先把出站链路查清，再继续做群聊策略和业务路由，会更稳。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你还要继续排查 OpenClaw 飞书接入、权限和群聊边界，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合先回看应用创建、事件订阅、Gateway 启动和 pairing 顺序。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">OpenClaw 飞书机器人权限清单</a></h3>
+            <p>适合继续核对必开权限，尤其是消息收发相关能力。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1108-openclaw-feishu-allowfrom-groupallowfrom.html">OpenClaw Feishu allowFrom 怎么配</a></h3>
+            <p>适合把发送失败和群聊白名单、成员白名单问题拆开看。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw 飞书收发链路排稳？</h2>
+          <p class="section-desc">如果你正在卡飞书消息发送失败、群聊不回、权限边界或上线前验收，我可以继续帮你把检查顺序和配置边界拆清楚。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / 飞书 / 消息发送排查</span></div></footer>
+</body>
+</html>

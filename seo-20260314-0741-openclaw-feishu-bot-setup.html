@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书机器人接入清单｜从创建应用到消息测试，先把能跑通的闭环接起来</title>
+  <meta name="description" content="基于 OpenClaw Getting Started、Feishu 渠道文档与 FAQ 公开资料整理，讲清 OpenClaw 飞书机器人接入清单、权限配置、WebSocket 事件订阅、pairing 配对、群聊策略与常见坑，适合一人公司和小团队先跑最小闭环。" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="OpenClaw 飞书机器人接入清单｜从创建应用到消息测试，先把能跑通的闭环接起来" />
+  <meta property="og:description" content="讲清 OpenClaw 飞书机器人接入清单、权限配置、WebSocket 事件订阅、pairing 配对与群聊策略。" />
+  <meta property="og:url" content="https://buma55.com/seo-20260314-0741-openclaw-feishu-bot-setup.html" />
+  <meta property="og:image" content="https://buma55.com/assets-og-openclaw-feishu-guide.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OpenClaw 飞书机器人接入清单｜从创建应用到消息测试，先把能跑通的闭环接起来" />
+  <meta name="twitter:description" content="讲清 OpenClaw 飞书机器人接入清单、权限配置、WebSocket 事件订阅、pairing 配对与群聊策略。" />
+  <meta name="twitter:image" content="https://buma55.com/assets-og-openclaw-feishu-guide.svg" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0741-openclaw-feishu-bot-setup.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "OpenClaw 飞书机器人接入清单｜从创建应用到消息测试，先把能跑通的闭环接起来",
+      "description": "讲清 OpenClaw 飞书机器人接入清单、权限配置、WebSocket 事件订阅、pairing 配对、群聊策略与常见坑。",
+      "datePublished": "2026-03-14",
+      "dateModified": "2026-03-16",
+      "author": {"@type": "Organization", "name": "BUMA 内容组"},
+      "publisher": {"@type": "Organization", "name": "BUMA", "url": "https://buma55.com/"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://buma55.com/seo-20260314-0741-openclaw-feishu-bot-setup.html"},
+      "image": "https://buma55.com/assets-og-openclaw-feishu-guide.svg"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://buma55.com/"},
+        {"@type": "ListItem", "position": 2, "name": "文章中心", "item": "https://buma55.com/seo.html"},
+        {"@type": "ListItem", "position": 3, "name": "OpenClaw 飞书机器人接入清单", "item": "https://buma55.com/seo-20260314-0741-openclaw-feishu-bot-setup.html"}
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Setup Checklist</div>
+        <h1 class="section-title">OpenClaw 飞书机器人接入清单：从创建应用到消息测试，先把能跑通的闭环接起来。</h1>
+        <p class="section-desc">如果你正在搜 OpenClaw 飞书、OpenClaw Feishu、飞书机器人接入、OpenClaw pairing 或 WebSocket 事件订阅，通常不是在看热闹，而是已经进入“我想把消息接到工作流里”的阶段。这篇内容基于 OpenClaw 官方 Getting Started、Feishu 渠道文档和 FAQ 公开资料整理，目的是把最关键的顺序讲清楚：先确认运行底座，再创建飞书应用，再补权限和事件订阅，最后做消息测试与配对批准。这样做的好处是少走弯路，也更适合一人公司、小团队和内容协同场景先跑最小闭环。</p>
+        <div class="article-meta">
+          <span>发布时间：2026-03-14</span>
+          <span>作者：BUMA 内容组</span>
+          <span>适合人群：一人公司 / 小团队</span>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询接入顺序</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容组</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw Getting Started、OpenClaw Feishu 文档、OpenClaw FAQ 公共页面。</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>想把 OpenClaw 接进飞书做提醒、咨询分发、内容审核、多人协同或一人公司日常承接的人。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：OpenClaw 飞书接入不难，难的是顺序不能乱</h2>
+          <p class="section-desc">真正影响成功率的，不是会不会复制 App ID，而是你有没有先把 Gateway 跑通、有没有按官方要求补权限、有没有先拿一个最小场景做测试。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先跑通 OpenClaw 底座</h3>
+            <p>Getting Started 页面明确给了安装、<code>openclaw onboard --install-daemon</code>、<code>openclaw gateway status</code> 和 <code>openclaw dashboard</code> 的起步顺序。先确认底座可用，再接渠道，排查会轻很多。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>飞书推荐走 WebSocket 长连接</h3>
+            <p>Feishu 文档说明这个插件支持通过平台的 WebSocket 事件订阅接收消息，不需要先暴露公网 Webhook 地址，更适合本地先验证。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>第一阶段只接一个高频场景</h3>
+            <p>比如飞书私聊咨询、内容审核提醒、FAQ 分发三选一。入口太多、群太多、角色太多，反而最容易把第一次测试做乱。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw 飞书接入前，要先确认哪 4 件事</h2>
+          <h3>1. 运行环境先过线</h3>
+          <p>OpenClaw Getting Started 目前写得很清楚：Node 24 推荐，Node 22 LTS 仍兼容支持，文档里标注的是 22.16+。如果你现在环境都没到位，后面飞书配置再细也会被底层环境拖住。所以第一件事不是急着进飞书后台，而是先确认本机或服务器已经完成 OpenClaw 安装与基础启动。</p>
+          <h3>2. Dashboard 先能打开</h3>
+          <p>官方文档把 <code>openclaw dashboard</code> 放在前面的原因很实际：Control UI 能打开，至少说明 Gateway 和基础认证这条链路大概率已经正常。很多人一开始就扑到渠道接入，结果消息没回来，最后才发现连底座都没起稳，排障成本会翻倍。</p>
+          <h3>3. 飞书应用要用企业应用思路来建</h3>
+          <p>Feishu 文档建议在 Open Platform 创建企业应用，拿到 App ID 和 App Secret，再把权限、Bot 能力、事件订阅补齐。也就是说，飞书这边不是“随便建个机器人”就结束，而是一个带权限和消息入口管理的正式应用流程。</p>
+          <h3>4. 先决定谁能发、哪里能发</h3>
+          <p>OpenClaw Feishu 文档同时给了私聊配对、群聊策略、是否必须 @、allowlist 等配置思路。你在接入前就要想好：是只允许私聊配对，还是允许某些群；群里是否必须 @；是否只让指定成员能触发。边界不清楚，后面很容易出现“能收消息但不知道该不该回”的混乱局面。</p>
+        </article>
+        <article class="card case-card">
+          <h2>OpenClaw 飞书机器人接入清单，建议按这个顺序做</h2>
+          <h3>第一步：完成 OpenClaw 安装与 onboarding</h3>
+          <p>官方 Getting Started 推荐先安装，再运行 <code>openclaw onboard --install-daemon</code>。这个过程会把认证、Gateway 设置和可选渠道的基础项整理出来。对第一次接入的人来说，这一步能显著减少漏项。</p>
+          <h3>第二步：确认 Gateway 正在运行</h3>
+          <p>文档明确建议在接飞书前先看 <code>openclaw gateway status</code>，必要时结合 <code>openclaw logs --follow</code> 观察日志。尤其是 Feishu 文档特别提醒：如果 Gateway 没跑起来，长连接事件订阅在飞书后台可能无法正常保存。</p>
+          <h3>第三步：在飞书开放平台创建应用并复制凭证</h3>
+          <p>进入 Feishu Open Platform 后，创建企业应用，复制 App ID 和 App Secret。这里最关键的是保管好 App Secret，不要在群里乱发，也不要记到公开文档里。对接 OpenClaw 时，只需要把正确的凭证填进去，不需要额外做复杂中间层。</p>
+          <h3>第四步：按官方权限清单补权限、启用 Bot、添加 <code>im.message.receive_v1</code></h3>
+          <p>Feishu 渠道文档已经给了批量导入权限示例，同时要求启用 Bot 能力，并在 Event Subscription 中使用长连接接收事件，再添加 <code>im.message.receive_v1</code>。这一段是很多人最容易掉项的位置，建议严格对着官方页核对。</p>
+          <h3>第五步：用 OpenClaw 添加 Feishu 渠道并做测试消息</h3>
+          <p>如果你刚安装完，最省事的方式是重走官方推荐的 onboarding；如果前面已经装好，也可以用 <code>openclaw channels add</code>，选择 Feishu，填入 App ID 和 App Secret。随后发一条测试消息，看是否出现 pairing code，再执行批准。只有真的完成一次“发消息—收到 pairing—批准—正常聊天”，这条飞书接入链路才算真正跑通。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Common Scenarios</div>
+          <h2 class="section-title">OpenClaw 接飞书后，最值得先跑的 3 个场景</h2>
+          <p class="section-desc">不是所有自动化都该第一天就上。先从高频、低风险、容易验收的场景开始，更容易形成真实价值。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>咨询消息分发</h3>
+            <p>官网留资、表单消息、私域咨询进来后，先同步到飞书，再由人工确认和跟进。这个场景最适合做第一阶段，因为流程短、验证快、风险可控。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>内容审核提醒</h3>
+            <p>让 OpenClaw 先产出文章初稿、短视频提纲、FAQ 草稿，再把待审核内容抛到飞书里处理。这样既保留人工把关，又能把内容生产的节奏提起来。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>一人公司待办收口</h3>
+            <p>当你一个人同时管销售、内容、交付和复盘时，飞书更像提醒与协同入口，OpenClaw 则负责把零散事项串成有顺序的动作链，减少消息漏接和动作中断。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Pitfalls</div>
+          <h2 class="section-title">3 个高频坑：为什么很多人说“OpenClaw 飞书接上了”，实际却不好用</h2>
+          <p class="section-desc">接上不等于能稳定使用。下面这三个坑，往往比技术细节更伤体验。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>把“能发消息”误当成“能协同”</h3>
+            <p>飞书机器人能回消息，只是说明入口有了。真正的协同还包括：谁负责、什么时候提醒、哪些消息能自动处理、哪些必须人工确认。没有这些边界，越用越乱。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>群聊放得太开</h3>
+            <p>Feishu 文档给了 groupPolicy、allowlist 和 requireMention，就是为了避免一进群就乱回。第一阶段建议默认保守：只开少量群、默认需要 @、必要时限制指定成员。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>跳过日志检查与配对批准</h3>
+            <p>很多人看到机器人没回，就直接怀疑模型或飞书权限，其实更常见的是 Gateway 没起、事件订阅没保存、pairing 还没批准。官方把 <code>openclaw logs --follow</code> 和 pairing 流程写出来，就是为了让排查更直接。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>如果你是国内飞书团队，还要额外注意什么</h2>
+          <p>第一，国内飞书和国际版 Lark 在域名入口上不同，官方文档已经提醒：如果是 Lark 国际租户，需要设置 <code>domain: "lark"</code>。第二，如果你后面打算从长连接转成 webhook 模式，还要准备 verification token 和 encrypt key，这两个值在飞书事件与回调的加密配置里能找到。第三，OpenClaw 文档默认的私聊策略是 pairing，也就是未知用户先拿到配对码，再由管理员批准，这个默认逻辑很适合一开始先控风险，不建议上来就全开放。</p>
+          <p>对于一人公司和小团队来说，OpenClaw 飞书接入最重要的不是“配置项越多越专业”，而是能不能让真实消息顺畅进入你的业务动作里。你真正该追求的第一个结果，是今天发一条测试消息，系统能稳定接住、能看到日志、能完成配对、能按预期回到飞书，而不是一口气把所有群、所有岗位、所有自动化全开起来。</p>
+        </article>
+        <article class="card case-card">
+          <h2>这篇内容的导语与使用建议</h2>
+          <p>如果你现在在研究 OpenClaw 飞书机器人、飞书事件订阅、OpenClaw Feishu pairing 或一人公司协同入口，这篇文章最适合当“第一轮清单”。先按顺序核对环境、应用、权限、事件、配对和测试，再决定是继续做 FAQ 自动答疑、内容审核流，还是咨询分发。这样比一开始就扑向复杂工作流，更容易做出可用版本。</p>
+          <p>一句话总结：OpenClaw 飞书接入的关键，不是有没有很多功能，而是先把一条最小可验证链路接稳。只要这条链路能跑通，后面再往群聊规则、岗位协同、更多频道和更多自动化扩展，才会越做越稳。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你接下来还要决定部署、FAQ 或一人公司工作流，可以继续看这几篇。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-0952-jinan-openclaw-feishu.html">济南 OpenClaw 飞书接入怎么做</a></h3>
+            <p>适合继续看飞书接入路径、权限和常见坑位。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260310-1052-qingdao-openclaw-deploy.html">青岛 OpenClaw 本地部署</a></h3>
+            <p>适合继续看 Gateway、部署顺序和本地验证逻辑。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0135-linyi-openclaw-one-person-company.html">临沂 OpenClaw 一人公司</a></h3>
+            <p>适合继续看一人公司如何把消息、内容和承接链路接起来。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你已经准备接 OpenClaw 飞书，先把你最想跑通的那一类消息告诉我。</h2>
+          <p class="section-desc">比如官网咨询、飞书私聊、内容审核、客户跟进或内部提醒。BUMA 可以先帮你判断：第一阶段到底接哪一个入口最划算，避免接了很多配置却没有实际闭环。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      <span>buma</span>
+      <span>OpenClaw 飞书机器人接入清单</span>
+    </div>
+  </footer>
+</body>
+</html>

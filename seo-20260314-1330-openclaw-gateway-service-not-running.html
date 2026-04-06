@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw gateway 起不来怎么办｜gateway.mode=local、EADDRINUSE 与鉴权一次讲清</title>
+  <meta name="description" content="基于 OpenClaw 官方 Gateway troubleshooting、Configuration 与 Clawdbot 中文文档整理，讲清 OpenClaw gateway 起不来怎么办，重点覆盖 gateway.mode=local、refusing to bind gateway without auth、EADDRINUSE、openclaw doctor、openclaw gateway status --deep 与配置严格校验。" />
+  <meta name="keywords" content="OpenClaw gateway 起不来,OpenClaw gateway service not running,OpenClaw gateway.mode=local,OpenClaw EADDRINUSE,OpenClaw refusing to bind gateway without auth,OpenClaw doctor" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1330-openclaw-gateway-service-not-running.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Gateway · Troubleshooting</div>
+        <h1 class="section-title">OpenClaw gateway 起不来怎么办：gateway.mode=local、EADDRINUSE 与鉴权一次讲清</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw gateway 起不来、OpenClaw gateway service not running、gateway.mode=local、OpenClaw EADDRINUSE、OpenClaw doctor，大概率不是单纯想看命令说明，而是已经卡在“服务装了但就是跑不起来”“Dashboard 连不上其实是 Gateway 没起来”“改了配置后突然完全没响应”这类更底层的问题。按 OpenClaw 官方 <code>Gateway troubleshooting</code>、<code>Configuration</code> 与中文文档的共同口径，排这类问题不能只靠反复重启。更稳的顺序是先看 <code>openclaw gateway status</code>、<code>openclaw status</code>、<code>openclaw logs --follow</code>、<code>openclaw doctor</code>，必要时再看 <code>openclaw gateway status --deep</code>。很多人最后会落到 3 类根因：<code>gateway.mode</code> 没开到 <code>local</code>、非本机绑定却没配认证、端口已被其他进程占用；再往前一层，还有配置字段写错导致 Gateway 因严格校验直接拒绝启动。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询排障思路</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Gateway troubleshooting / Configuration、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在排查 Gateway 服务不运行、Dashboard 失联、配置改完后无法启动的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：OpenClaw gateway 起不来，优先排 4 层，不要先猜模型或渠道</h2>
+          <p class="section-desc">官方 runbook 里，Gateway 起不来优先查的是运行模式、配置校验、监听地址与认证、端口冲突，而不是先去怀疑飞书、Discord 或模型供应商。因为只要 Gateway 没站起来，后面的 Dashboard、消息收发、cron、浏览器工具都会一起表现异常。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3>先看 Gateway 是没启动还是启动后马上退出</h3>
+            <p>先用 <code>openclaw gateway status</code> 和 <code>openclaw gateway status --deep</code> 分清运行态，再决定是查配置、查服务，还是查端口。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3>严格校验会让错误配置直接拒绝启动</h3>
+            <p>官方 Configuration 明确写了：未知键、类型错误、无效值都会让 Gateway 拒绝启动，不是“带着警告继续跑”。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3>最常见是模式、鉴权、端口三类问题</h3>
+            <p><code>gateway.mode=local</code> 没开、非 loopback 绑定没带 token / password、<code>EADDRINUSE</code> 端口冲突，是官方文档直接点名的高频根因。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么 OpenClaw gateway 起不来，第一步应该先看 <code>openclaw doctor</code>？</h2>
+          <p>因为 OpenClaw 的配置校验是严格的，不是“错一点也能跑”。官方 Configuration 页面写得很清楚：只要配置里出现未知键、字段类型不匹配、值不在允许范围，Gateway 就会直接拒绝启动。也就是说，你改完 <code>~/.openclaw/openclaw.json</code> 后发现服务没起来，不一定是系统服务坏了，可能只是某个字段名字写错、层级写偏、数组和对象用反了。</p>
+          <p>这时候最有效的不是盯着渠道日志乱猜，而是先跑 <code>openclaw doctor</code>。官方说明里甚至把它列为“只有诊断命令还能工作”的场景之一。也就是说，当 Gateway 因校验失败根本没起来时，你还去排飞书事件、Dashboard 认证或 cron 调度，方向大概率已经偏了。中文文档同样强调：校验失败后，应该先看诊断输出，必要时再用 <code>openclaw doctor --fix</code> 做修复，而不是继续往配置里盲加字段。</p>
+          <p>对很多中文用户来说，这一层很容易忽略，因为表面症状通常只是“机器人没回”“Dashboard 打不开”。但这些都只是下游表现。真正的根因可能只是 Gateway 因配置校验没通过而根本没有进入运行态。</p>
+        </article>
+        <article class="card case-card">
+          <h2>官方文档里最值得先记住的 3 个报错信号是什么？</h2>
+          <p><strong>第一类：</strong><code>Gateway start blocked: set gateway.mode=local</code>。这说明你当前本地 Gateway 模式没有正确开启。用户常见场景是照着别人的配置片段抄了渠道、模型、cron，却没把 Gateway 的运行模式配到本地，结果服务层根本起不来。</p>
+          <p><strong>第二类：</strong><code>refusing to bind gateway ... without auth</code>。官方明确限制：如果你要把 Gateway 绑定到非 loopback 地址，而不是只监听本机回环地址，就必须配共享 token 或密码。很多人以为把监听地址改成局域网可访问就行，结果却被这一层安全限制拦下。</p>
+          <p><strong>第三类：</strong><code>another gateway instance is already listening</code> 或 <code>EADDRINUSE</code>。这说明不是 Gateway 逻辑坏了，而是端口已经被另一个进程占住。继续重复执行启动命令只会得到同样结果，正确动作是找出谁占了端口，或者把 Gateway 改到新的可用端口。</p>
+          <p>这 3 类信号有个共同点：它们都属于“服务启动层”问题，而不是消息平台、群聊策略或 pairing 审批问题。先把层级分清，排障效率会快很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Command Ladder</div>
+          <h2 class="section-title">OpenClaw gateway 起不来时，推荐按这条顺序看</h2>
+          <p class="section-desc">这条顺序来自官方 Gateway troubleshooting 的命令梯子，目的是先把“运行态 / 诊断 / 日志 / 渠道连通”拆开。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><code>openclaw gateway status</code></h3>
+            <p>先看 Runtime 是 <code>running</code> 还是 <code>stopped</code>，以及是否已经给出明显的退出提示。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>openclaw status</code></h3>
+            <p>补看整体状态，确认不是你连错实例，也顺手看配置的主线有没有明显异常。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>openclaw logs --follow</code></h3>
+            <p>实时抓关键报错，确认是模式、鉴权、端口、配置校验，还是启动后立刻退出。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>openclaw doctor</code></h3>
+            <p>优先排配置与服务层阻塞，尤其适合改完 JSON5 之后服务直接起不来的情况。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>openclaw channels status --probe</code></h3>
+            <p>这一步放在后面看，目的是确认 Gateway 真站起来后，渠道 transport 是否 ready，而不是拿它当第一判断。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><code>openclaw gateway status --deep</code></h3>
+            <p>适合服务装了但总是掉、或 CLI 与服务配置不一致时，继续往深处看提示与监听信息。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2><code>gateway.mode=local</code> 到底是什么意思，为什么会卡住启动？</h2>
+          <p>官方 Gateway troubleshooting 直接给出一个高频信号：<code>Gateway start blocked: set gateway.mode=local</code>。这句话的重点不是“命令写错了”，而是 Gateway 当前并不处于可本地启动的模式。很多用户是先配渠道、模型、Feishu、cron，后面才发现所有命令都像是“有配置但没服务”，这时就应该回头检查 Gateway 模式，而不是继续在业务层兜圈。</p>
+          <p>从 Configuration 文档的角度看，Gateway 是整个控制平面的底座；模式没对，后面 Dashboard、channels、hooks、cron 都无从谈起。所以如果你改了很多上层配置，却忽略了 Gateway 基本模式，这些上层努力就不会真正生效。中文文档也把 Gateway 配置、严格验证和热重载单独拿出来讲，本质上是在提醒：先让底座按正确方式起来，再谈工具、渠道和自动化。</p>
+          <p>实操上，可以把它理解成一个顺序问题：先让 Gateway 处于正确模式并能稳定运行，再逐步补 token、渠道和自动化。如果连模式层都没过，就不要先去怀疑飞书权限或前端界面。</p>
+        </article>
+        <article class="card case-card">
+          <h2>为什么“把 Gateway 暴露到局域网”经常会触发鉴权拦截？</h2>
+          <p>因为官方明确限制了一个安全边界：如果 Gateway 不是只绑定在本机 loopback 地址，而是要监听非 loopback 地址，就必须配置认证。也正因为如此，你在日志里看到 <code>refusing to bind gateway ... without auth</code>，不能把它理解成“服务坏了”，而应理解成“安全前提没满足”。</p>
+          <p>这也是很多人从本地自用切到“局域网里其他设备也要连”时最容易踩的坑。前一阶段只在本机访问 Dashboard，一切都正常；一旦改监听地址或远程接入方式，Gateway 就会要求 token 或 password。这种场景下，继续反复重启不会解决问题，因为真正缺的不是进程重启，而是认证配置。</p>
+          <p>如果你的目标只是本机调试，其实不必急着改监听范围；先在默认本地地址把链路跑通，再进入远程可达或多设备协作阶段，排障成本会低很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2><code>EADDRINUSE</code> 为什么是“端口问题”，不是“Gateway 整体坏了”？</h2>
+          <p>官方 runbook 把 <code>another gateway instance is already listening</code> 和 <code>EADDRINUSE</code> 明确归到端口冲突。换句话说，这类错误的含义不是“Gateway 程序本身坏掉”，而是你要绑定的地址已经被占用了。它可能是另一个 OpenClaw 进程，也可能是别的服务占用了同一端口。</p>
+          <p>这类问题最容易被误判成“为什么我重启后还是不行”。其实正因为端口仍被占着，重启命令本身不会改变任何事实。更稳的动作是确认当前监听者是谁，或者把 Gateway 切到新的可用端口，再重新看 <code>gateway status</code>。只要你把它当成端口资源问题，而不是应用逻辑问题，思路就会清晰很多。</p>
+        </article>
+        <article class="card case-card">
+          <h2>一句话排障框架</h2>
+          <p>OpenClaw gateway 起不来时，先把问题拆成 4 层：<strong>模式有没有开对</strong>、<strong>配置是否通过严格校验</strong>、<strong>监听地址是否满足认证前提</strong>、<strong>端口是否被占用</strong>。只要这 4 层没排干净，就不要急着往飞书、pairing、Dashboard 页面或 cron 细节里钻。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你已经能判断是控制台、日志或飞书链路问题，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">OpenClaw Dashboard 打不开怎么办</a></h3>
+            <p>适合继续查 gateway status、1008、unauthorized 与设备授权。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1236-openclaw-logs-follow-troubleshooting.html">OpenClaw logs 怎么看</a></h3>
+            <p>适合继续把 <code>logs --follow</code> 放回正确排障顺序里，不再盯着日志乱猜。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">OpenClaw 飞书机器人接入清单</a></h3>
+            <p>适合 Gateway 已恢复后，再回到飞书接入、权限和消息测试顺序。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw gateway 启动问题一次排清？</h2>
+          <p class="section-desc">如果你现在卡在服务不起、Dashboard 失联、配置改完后全站无响应，我可以继续帮你把问题拆成“模式 / 配置 / 鉴权 / 端口”四层来排。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / gateway / troubleshooting</span></div></footer>
+</body>
+</html>

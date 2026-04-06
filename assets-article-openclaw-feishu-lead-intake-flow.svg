@@ -1,0 +1,60 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="32" fill="#0B0F1A"/>
+  <circle cx="176" cy="130" r="148" fill="url(#paint0_radial)" fill-opacity="0.9"/>
+  <circle cx="1006" cy="122" r="118" fill="url(#paint1_radial)" fill-opacity="0.9"/>
+  <circle cx="1018" cy="624" r="170" fill="url(#paint2_radial)" fill-opacity="0.75"/>
+  <rect x="80" y="86" width="1040" height="548" rx="28" fill="#111827" stroke="#2A3447" stroke-width="2"/>
+
+  <text x="120" y="150" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700">OpenClaw 飞书咨询承接 6 步</text>
+  <text x="120" y="190" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="22">入口明确、配置可通、分流清楚、下一步可执行</text>
+
+  <rect x="120" y="230" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+  <rect x="440" y="230" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+  <rect x="760" y="230" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+
+  <rect x="120" y="410" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+  <rect x="440" y="410" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+  <rect x="760" y="410" width="260" height="150" rx="22" fill="#121826" stroke="#3E4B67"/>
+
+  <text x="150" y="272" fill="#7C5CFF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">01</text>
+  <text x="150" y="305" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">定义入口</text>
+  <text x="150" y="337" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">先确定咨询问题类型</text>
+
+  <text x="470" y="272" fill="#5CC8FF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">02</text>
+  <text x="470" y="305" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">跑通安装</text>
+  <text x="470" y="337" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">openclaw onboard</text>
+
+  <text x="790" y="272" fill="#5BE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">03</text>
+  <text x="790" y="305" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">飞书应用</text>
+  <text x="790" y="337" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">准备 App ID/Secret</text>
+
+  <text x="150" y="452" fill="#F0B9FF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">04</text>
+  <text x="150" y="485" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">事件订阅</text>
+  <text x="150" y="517" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">im.message.receive_v1</text>
+
+  <text x="470" y="452" fill="#7C5CFF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">05</text>
+  <text x="470" y="485" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">网关检查</text>
+  <text x="470" y="517" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">gateway status + logs</text>
+
+  <text x="790" y="452" fill="#5CC8FF" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">06</text>
+  <text x="790" y="485" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">分流转人工</text>
+  <text x="790" y="517" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">给出清楚下一步</text>
+
+  <rect x="120" y="588" width="900" height="46" rx="16" fill="#0F1624" stroke="#273349"/>
+  <text x="146" y="618" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">目标不是“机器人能答”，而是“咨询能被推进”。</text>
+
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(176 130) rotate(90) scale(148)">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1006 122) rotate(90) scale(118)">
+      <stop stop-color="#5CC8FF"/>
+      <stop offset="1" stop-color="#5CC8FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1018 624) rotate(90) scale(170)">
+      <stop stop-color="#5BE3B4"/>
+      <stop offset="1" stop-color="#5BE3B4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

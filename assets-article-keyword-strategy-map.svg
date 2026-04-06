@@ -1,0 +1,54 @@
+<svg width="960" height="560" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1f2937" />
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="560" rx="28" fill="url(#bg)" />
+  <text x="60" y="70" font-size="26" fill="#f8fafc" font-family="Segoe UI, Arial">关键词策略 6 步闭环</text>
+  <text x="60" y="105" font-size="14" fill="#94a3b8" font-family="Segoe UI, Arial">从种子词 → 搜索意图 → 关键词簇 → 页面承接 → 内容清单 → 复盘迭代</text>
+
+  <g font-family="Segoe UI, Arial" font-size="15" fill="#e2e8f0">
+    <rect x="60" y="140" width="260" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="84" y="185">1. 种子词池</text>
+    <text x="84" y="210" fill="#94a3b8" font-size="13">业务主线 + 用户自述</text>
+
+    <rect x="340" y="140" width="260" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="364" y="185">2. 搜索意图分层</text>
+    <text x="364" y="210" fill="#94a3b8" font-size="13">了解 / 对比 / 解决</text>
+
+    <rect x="620" y="140" width="280" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="644" y="185">3. 关键词簇与主题</text>
+    <text x="644" y="210" fill="#94a3b8" font-size="13">合并相近问题</text>
+
+    <rect x="60" y="280" width="260" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="84" y="325">4. 页面承接</text>
+    <text x="84" y="350" fill="#94a3b8" font-size="13">一词一页 / 一簇一页</text>
+
+    <rect x="340" y="280" width="260" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="364" y="325">5. 内容清单</text>
+    <text x="364" y="350" fill="#94a3b8" font-size="13">标题、结构、CTA</text>
+
+    <rect x="620" y="280" width="280" height="90" rx="16" fill="url(#card)" stroke="#334155" />
+    <text x="644" y="325">6. 复盘迭代</text>
+    <text x="644" y="350" fill="#94a3b8" font-size="13">看点击与转化</text>
+  </g>
+
+  <path d="M320 185 L340 185" stroke="#64748b" stroke-width="2" />
+  <path d="M600 185 L620 185" stroke="#64748b" stroke-width="2" />
+  <path d="M320 325 L340 325" stroke="#64748b" stroke-width="2" />
+  <path d="M600 325 L620 325" stroke="#64748b" stroke-width="2" />
+
+  <path d="M190 230 L190 280" stroke="#64748b" stroke-width="2" />
+  <path d="M470 230 L470 280" stroke="#64748b" stroke-width="2" />
+  <path d="M760 230 L760 280" stroke="#64748b" stroke-width="2" />
+
+  <rect x="60" y="420" width="840" height="90" rx="18" fill="#0b1220" stroke="#334155" />
+  <text x="90" y="462" font-size="18" fill="#e2e8f0" font-family="Segoe UI, Arial">一人公司最小执行原则：先把“下一步动作”写清楚，再扩关键词数量。</text>
+  <text x="90" y="492" font-size="14" fill="#94a3b8" font-family="Segoe UI, Arial">每个关键词都对应一个承接页面，页面里都要有下一步路径。</text>
+</svg>

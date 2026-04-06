@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网文章中心搜索与筛选UX SEO:把资源中心的搜索框从摆设写成发现引擎(2026版)</title>
+  <meta name="description" content="一人公司官网文章中心的搜索与筛选UX设计指南。覆盖搜索框位置与触发逻辑、筛选维度选择、Topic Clustering与筛选协同、空结果处理、搜索框SEO结构化数据、与Guide Strip的内链承接。适合想让文章中心从被动陈列变成主动发现的站长。" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网文章中心搜索与筛选UX SEO:把资源中心的搜索框从摆设写成发现引擎(2026版)" />
+  <meta property="og:description" content="覆盖搜索框位置与触发逻辑、筛选维度选择、Topic Clustering与筛选协同、空结果处理、与Guide Strip的内链承接。" />
+  <meta property="og:url" content="https://buma55.com/seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html" />
+  <link rel="canonical" href="https://buma55.com/seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b0f1a;color:#e8eaf0;margin:0;line-height:1.8;}
+    .page-wrap {max-width:760px;margin:0 auto;padding:0 20px 80px;}
+    .article-header {padding:40px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:36px;}
+    .article-kicker {font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#7eb6ff;margin-bottom:12px;}
+    h1 {font-size:32px;line-height:1.3;color:#fff;margin:0 0 16px;font-weight:600;}
+    .article-meta {font-size:13px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+    .meta-pill {display:inline-block;padding:4px 10px;border:1px solid rgba(255,255,255,.1);border-radius:999px;margin-right:8px;font-size:12px;}
+    .article-summary {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px 24px;font-size:15px;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:32px;}
+    .article-summary strong {color:#dbeafe;}
+    h2 {font-size:22px;color:#fff;margin:36px 0 14px;padding-top:8px;}
+    h3 {font-size:17px;color:#dbeafe;margin:24px 0 10px;}
+    p {margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol {margin:0 0 18px;padding-left:24px;}
+    li {margin-bottom:8px;color:rgba(255,255,255,.8);}
+    a {color:#7eb6ff;text-decoration:none;}
+    a:hover {text-decoration:underline;}
+    .warn-box {background:rgba(251,191,36,.08);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0;font-size:14px;color:rgba(255,255,255,.8);}
+    .ok-box {background:rgba(34,197,94,.08);border-left:3px solid #22c55e;border-radius:0 8px 8px 0;padding:14px 18px;margin:20px 0;font-size:14px;color:rgba(255,255,255,.8);}
+    .cta-box {background:#111827;border:1px solid #1f2a44;border-radius:16px;padding:24px 28px;margin:32px 0;text-align:center;}
+    .cta-box h3 {color:#fff;font-size:18px;margin:0 0 10px;}
+    .cta-box p {color:rgba(255,255,255,.7);margin:0 0 16px;font-size:14px;}
+    .cta-btn {display:inline-block;padding:12px 28px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#fff;font-size:14px;transition:.2s;}
+    .cta-btn:hover {background:rgba(255,255,255,.12);text-decoration:none;}
+    .checklist {background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px 24px;margin:24px 0;}
+    .checklist h4 {margin:0 0 12px;color:#fff;font-size:15px;}
+    .checklist li {font-size:14px;}
+    code {background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:13px;color:#dbeafe;}
+    .seo-summary {background:#111827;border:1px solid #1f2a44;border-radius:12px;padding:20px 24px;margin:28px 0;}
+    .seo-summary table {width:100%;border-collapse:collapse;font-size:13px;}
+    .seo-summary td {padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top;}
+    .seo-summary td:first-child {color:rgba(255,255,255,.5);width:120px;}
+    .seo-summary td:last-child {color:#dbeafe;}
+    hr {border:none;border-top:1px solid rgba(255,255,255,.06);margin:32px 0;}
+    .article-end {text-align:center;padding:32px 0 0;color:rgba(255,255,255,.3);font-size:13px;}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "一人公司官网文章中心搜索与筛选UX SEO:把资源中心的搜索框从摆设写成发现引擎(2026版)",
+    "description": "一人公司官网文章中心的搜索与筛选UX设计指南。覆盖搜索框位置与触发逻辑、筛选维度选择、Topic Clustering与筛选协同、空结果处理、搜索框SEO结构化数据、与Guide Strip的内链承接。",
+    "author": {"@type": "Person", "name": "BUMA"},
+    "datePublished": "2026-04-04",
+    "dateModified": "2026-04-04",
+    "url": "https://buma55.com/seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://buma55.com/seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://buma55.com/"},
+      {"@type": "ListItem", "position": 2, "name": "文章中心", "item": "https://buma55.com/seo.html"},
+      {"@type": "ListItem", "position": 3, "name": "文章中心搜索与筛选UX SEO", "item": "https://buma55.com/seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="topbar topbar-clean">
+  <div class="container nav nav-clean">
+    <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+    <nav class="nav-links nav-links-clean">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="seo.html" class="active">文章</a>
+      <a href="about.html">关于</a>
+      <a href="contact.html">联系</a>
+    </nav>
+    <div class="nav-endcaps">
+      <span class="nav-signal">山东临沂 · 远程可协作</span>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </div>
+</header>
+
+<main class="page-wrap">
+  <article>
+    <header class="article-header">
+      <div class="article-kicker">一人公司官网 · 文章中心 · 搜索与筛选UX · 2026版</div>
+      <h1>一人公司官网文章中心搜索与筛选UX SEO:把资源中心的搜索框从摆设写成发现引擎</h1>
+      <div class="article-meta">
+        <span class="meta-pill">📅 2026-04-04</span>
+        <span class="meta-pill">✍️ BUMA Content Team</span>
+        <span class="meta-pill">⏱️ 阅读约 9 分钟</span>
+      </div>
+    </header>
+
+    <div class="article-summary">
+      <strong>这篇文章解决什么问题：</strong>当一人公司官网的文章数量从 5 篇增加到 20 篇以上，访客在文章中心面临的问题从「找不到内容」变成「找不到对的那篇」。这篇文章覆盖：搜索框作为发现引擎而不是摆设的设计原则、筛选维度与 Topic Clustering 的协同关系、空结果的降级路径，以及搜索体验的 SEO 结构化数据标记方法。
+    </div>
+
+    <h2>一、为什么「有搜索框」不等于「有搜索体验」</h2>
+
+    <p>大多数一人公司官网的文章中心最初只有 3~5 篇文章，手动浏览一遍也不费劲，所以搜索框的价值不明显。随着内容增加到 15~20 篇，手动浏览的成本开始超过搜索的摩擦，访客开始期待搜索框真的能帮上忙。但很多站点的搜索框实际上是「装饰型搜索」——点击后弹出一个空框，无论输入什么都返回「未找到相关内容」，或者干脆不返回任何结果。这类搜索框比没有搜索框更伤体验，因为它给了访客一个虚假的期待，然后又亲手打破它。</p>
+
+    <p>真正有价值的搜索体验必须回答三个问题：<strong>搜什么</strong>（搜索范围是否覆盖全站文章标题和正文摘要）、<strong>怎么搜</strong>（筛选维度是否与文章主题标签匹配）、<strong>搜不到怎么办</strong>（空结果页是否还能给出有效分流）。这三个问题不解决，搜索框就只是一个摆设。</p>
+
+    <h2>二、搜索框的设计原则：从装饰到引擎</h2>
+
+    <h3>2.1 搜索框位置与触发逻辑</h3>
+
+    <p>搜索框的位置决定它是被动工具还是主动发现引擎。在文章中心顶部固定位置放置搜索框，是最基础的要求；但更优的做法是让搜索框在用户滚动到某个位置时自动「贴壁固定」，而不是消失在视口之外。更重要的一条原则是：<strong>搜索框不应该只在点击后才出现，而应该在用户开始滚动之后变成一个始终可见的贴壁元素</strong>。</p>
+
+    <p>搜索触发逻辑上，建议默认显示一个 placeholder 文案，比如「搜索文章中心，例如：首页SEO、联系页承接、FAQ升级……」——这个 placeholder 本身就暗示了搜索范围和可搜索的话题类型，比一个空的「请输入关键词」更有引导价值。</p>
+
+    <h3>2.2 搜索字段范围：标题优先，正文摘要其次</h3>
+
+    <p>对于一人公司官网体量的文章中心（20~100篇），不需要 Elasticsearch 级别的全文搜索。最有效的方案是：搜索字段优先匹配文章标题（H1），其次匹配 Meta description，最后才匹配正文前 200 字。这样做的好处是：访客输入「首页SEO」能找到所有标题含「首页SEO」的文章，而不是被正文里偶然出现这个词的无关文章淹没。</p>
+
+    <p>如果技术实现上只能做简单匹配，建议把 Meta description 写得足够具体，让它充当「第二标题」的角色来承接模糊搜索。同时，搜索结果页面（search.html 或带查询参数的 seo.html）本身应该是一个有标题、有描述、有内链结构的完整页面，而不是一个空荡荡的结果列表。</p>
+
+    <div class="warn-box">
+      <strong>⚠️ 常见错误：</strong>搜索框接入 Google Search 或百度站内搜索，但返回的结果页没有 SEO 信息（没有 title、没有 meta、没有结构化数据）。搜索结果页本身也是一个可被收录的页面，必须有对应的 meta title 和结构化数据。
+    </div>
+
+    <h3>2.3 搜索结果页的最小 SEO 结构</h3>
+
+    <p>搜索结果页（search.html）必须包含以下元素，才算一个合格的可收录页：</p>
+
+    <ul>
+      <li><strong>Meta title</strong>：格式建议为「[搜索词] - [站点名]文章中心」，例如「首页SEO - BUMA文章中心」</li>
+      <li><strong>Meta description</strong>：写入「找到 N 篇与 [搜索词] 相关的文章，涵盖 [主题A]、[主题B] 等内容」</li>
+      <li><strong>H1</strong>：直接显示「与『[搜索词]』相关的 N 篇文章」</li>
+      <li><strong>搜索结果列表</strong>：每条结果包含文章标题（可点击）、发布时间、对应分类标签、2~3行摘要</li>
+      <li><strong>空结果降级</strong>：没有结果时，不要只写「未找到相关内容」，要给出 Topic Pill 推荐或 Guide Strip 入口</li>
+      <li><strong>内链</strong>：搜索结果页的底部要链接回文章中心首页（seo.html）和联系页（contact.html）</li>
+    </ul>
+
+    <h2>三、筛选维度的选择：不是越多越好</h2>
+
+    <h3>3.1 筛选维度必须与 Topic Clustering 对齐</h3>
+
+    <p>筛选维度不是随意设置的，它必须与文章已划分的 Topic 主题对应。如果你的文章中心有三组 Topic Clustering（比如「官网转化结构」「OpenClaw 部署与服务」「内容生产与 SEO 打法」），那么筛选维度就应该对应这三个主题，而不是按发布时间、按作者、按字母顺序这类与内容相关性弱的维度。</p>
+
+    <p>对应关系示例：</p>
+
+    <ul>
+      <li>筛选维度「官网转化结构」→ Topic Clustering 主题 A（覆盖 About/Contact/Solutions/首页相关文章）</li>
+      <li>筛选维度「OpenClaw 部署与服务」→ Topic Clustering 主题 B（覆盖 OpenClaw FAQ/部署页/工作流相关文章）</li>
+      <li>筛选维度「内容生产与 SEO 打法」→ Topic Clustering 主题 C（覆盖所有内容中心设计、Entry Card、Guide Strip 文章）</li>
+    </ul>
+
+    <p>这样设计的筛选功能，本质上是 Topic Clustering 在 UX 层的落地呈现——访客点一个筛选标签，页面只展示该主题下的文章，而不是机械地按某个元数据字段过滤。</p>
+
+    <h3>3.2 Topic Pill 与筛选的协同</h3>
+
+    <p>在《<a href="seo-20260404-0609-one-person-company-content-hub-guide-strip-seo.html">一人公司官网文章中心 Guide Strip 设计原则 SEO</a>》里，Topic Pill 是 Guide Strip 的分类导航组件。当你在筛选功能里使用相同的 Topic 标签时，两者形成协同：访客在 Guide Strip 点击「官网转化结构」会激活对应筛选，同时 URL 会更新为 <code>?topic=官网转化结构</code>，这样筛选状态可以被分享和收藏。</p>
+
+    <p>URL 参数化筛选的好处是：Google 可以抓取带筛选参数的页面，将「seo.html?topic=官网转化结构」作为一个独立可收录的页面处理，而不只是作为 Ajax 动态过滤。这比把所有筛选都做成纯 JS 客户端过滤更有 SEO 价值。</p>
+
+    <h3>3.3 筛选 UI 的三种布局方案</h3>
+
+    <p><strong>方案 A：横向 Topic Pill 条</strong>（适合 3~5 个筛选维度）<br />在文章中心 Hero 下方、搜索框上方或下方，放一行横向滚动的 Topic Pill。选中的状态用实色背景+白字标识，未选中用边框+灰字。访客点击后直接过滤当前列表，不需要跳页。</p>
+
+    <p><strong>方案 B：侧边栏筛选面板</strong>（适合 5~10 个筛选维度）<br />左侧放固定宽度筛选面板（主题/时间/阅读时长），右侧放文章网格。筛选面板不随滚动消失，访客可以随时调整筛选条件而不丢位置。</p>
+
+    <p><strong>方案 C：搜索框内联筛选</strong>（适合搜索为主、筛选为辅）<br />搜索框右侧放一个「筛选」按钮，点击后在搜索框下方展开筛选浮层。选择筛选条件后，搜索框的 placeholder 更新为「在 [筛选主题] 中搜索」。这种方案对移动端友好，但筛选的可见性较低。</p>
+
+    <p>一人公司官网文章中心建议优先使用方案 A（横向 Topic Pill），因为它与 Guide Strip 共用同一个 UI 组件，维护成本最低，且对访客来说最直观。</p>
+
+    <h2>四、空结果处理：搜不到时的降级路径</h2>
+
+    <p>空结果是最容易被忽略的设计盲区。当访客输入一个没有任何文章覆盖的搜索词时，很多站点只返回一个「未找到相关内容」，然后就结束了。这个结果对访客来说是一个死胡同，对搜索引擎来说是一个没有任何价值的页面。</p>
+
+    <p>正确的降级路径应该分三层：</p>
+
+    <ol>
+      <li><strong>第一层：语义相近推荐</strong>。即使精确匹配失败，也要在全站文章里找标题或描述最接近的 2~3 篇展示出来。比如访客搜「小红书SEO」，即使没有这个主题的文章，也推荐「内容中心导航」「文章中心内链策略」等可能相关的内容。</li>
+      <li><strong>第二层：Topic Pill 推荐</strong>。在空结果区展示所有 Topic Pill，让访客知道自己可以按主题浏览，而不是被迫离开。</li>
+      <li><strong>第三层：直接联系分流</strong>。最后给出「没找到你想要的？直接发来你现在的卡点」这样的轻量 CTA，链接到 contact.html。这不是在文章中心强插咨询入口，而是给那些搜不到内容但确实有需求的访客一条退路。</li>
+    </ol>
+
+    <div class="ok-box">
+      <strong>✅ 降级路径示例文案：</strong><br />
+      「没找到与『[搜索词]』直接相关的文章。你可能在找的是：<br />
+      · <a href="seo-20260404-0808-one-person-company-content-hub-internal-linking-seo.html">文章中心内链策略</a><br />
+      · <a href="seo-20260404-0609-one-person-company-content-hub-guide-strip-seo.html">Guide Strip 设计原则</a><br />
+      或直接 <a href="contact.html">发来你现在卡在哪一步</a>，我帮你判断下一步该先读哪篇。」
+    </div>
+
+    <h2>五、搜索体验与 Guide Strip 的内链承接</h2>
+
+    <p>搜索和 Guide Strip 不是两个独立的功能，而是同一套「文章发现系统」的两层实现。Guide Strip 负责「我不知道搜什么，让我先被引导」的访客；搜索框负责「我知道我要找什么，让我直接定位」的访客。</p>
+
+    <p>两者之间的内链协同关系是：</p>
+
+    <ul>
+      <li>搜索结果页底部必须有一个「或者，先从阅读路径开始」的 Guide Strip 推荐区</li>
+      <li>Guide Strip 的 Entry Card 描述里，要自然埋入筛选主题关键词（比如在「内链策略」那张卡片的描述里写「包含 Anchor Text 优化与 sitemap 优先级调参」），让搜索时更容易命中</li>
+      <li>筛选激活时，页面 URL 变化的同时，Guide Strip 的那张入口卡片应该有视觉激活态（边框颜色变化或文字变化），让访客知道「我现在在浏览的是哪个主题」</li>
+    </ul>
+
+    <h2>六、搜索框的 SEO 结构化数据</h2>
+
+    <p>Google 在 2024 年推出了 SearchGF（Search Generative Experience）的 FAQ 增强卡片，对内容中心页面，支持使用 <a href="https://developers.google.com/search/docs/appearance/structured-data/faqpage">FAQPage 结构化数据</a>来标注常见问题。但对于「搜索」这个功能本身，不需要额外的结构化数据——真正对 SEO 有价值的是：</p>
+
+    <ul>
+      <li>搜索结果页本身的 Article 结构化数据</li>
+      <li>筛选结果页（带 URL 参数的版本）的 BreadcrumbList 结构化数据</li>
+      <li>每篇文章内的内链锚文本与指向搜索结果页的内部链接</li>
+    </ul>
+
+    <p>如果你的搜索结果页是纯前端 JS 渲染（没有对应的服务端渲染 HTML），建议在 <code>&lt;head&gt;</code> 里用 <code>&lt;noscript&gt;</code> 包裹一个静态版本的搜索结果摘要，确保 Google 可以读取到搜索结果页的 meta 信息。</p>
+
+    <div class="warn-box">
+      <strong>⚠️ 技术风险提示：</strong>如果搜索功能依赖 JavaScript 动态加载内容，而服务端不返回任何 HTML，Google 会将搜索结果页视为一个空页面。解决方案有两个：① 搜索结果页使用服务端渲染（SSR）；② 给每个搜索词生成一个预渲染的 HTML 结果页（适合核心搜索词，数量有限的情况）。一人公司官网体量，建议优先选择方案②，在文章足够多时，只对核心 Topic 词做预渲染。
+    </div>
+
+    <h2>七、常见错误与风险提示</h2>
+
+    <div class="checklist">
+      <h4>❌ 五种常见错误</h4>
+      <ol>
+        <li>搜索框只返回「未找到相关内容」，没有降级分流——这是最伤体验的错误</li>
+        <li>筛选维度与文章 Topic 标签不对应——访客按主题筛选后，看到的文章主题不一致</li>
+        <li>搜索结果页没有 meta title 和 meta description——搜索结果页被 Google 收录时显示为空白标题</li>
+        <li>筛选参数变化时 URL 不更新——用户无法分享或收藏筛选后的页面状态</li>
+        <li>搜索框与 Guide Strip 完全独立，没有内链协同——两套体系各自为战，没有形成「引导→搜索→发现」的闭环</li>
+      </ol>
+    </div>
+
+    <div class="checklist">
+      <h4>✅ 落地检查清单</h4>
+      <ol>
+        <li>文章中心 Hero 下方是否有始终可见的搜索框或搜索入口？</li>
+        <li>搜索框 placeholder 是否明确暗示了可搜索的话题范围？</li>
+        <li>搜索结果页是否有独立且完整的 meta title、meta description、H1？</li>
+        <li>空结果降级路径是否包含「语义相近推荐 + Topic Pill + 联系分流」三层？</li>
+        <li>筛选激活后 URL 参数是否更新，是否可以被 Google 收录？</li>
+        <li>搜索结果页底部是否链接回文章中心首页和联系页？</li>
+        <li>Topic Pill 与筛选维度是否与文章的 Topic Clustering 标签体系一一对应？</li>
+        <li>搜索结果页是否包含 BreadcrumbList 结构化数据？</li>
+      </ol>
+    </div>
+
+    <hr />
+
+    <div class="cta-box">
+      <h3>你的文章中心搜索体验现在是哪种状态？</h3>
+      <p>如果搜索框只是摆设，或空结果页没有任何降级路径，先把这两件事修了。<br />有具体卡点的话，直接发来当前文章中心的 URL 和最卡的那一步。</p>
+      <a class="cta-btn" href="contact.html">先发这 3 样，开始 15 分钟适配判断</a>
+    </div>
+
+    <div class="seo-summary">
+      <strong>📋 本文 SEO 信息摘要</strong>
+      <table>
+        <tr><td>Meta title</td><td>一人公司官网文章中心搜索与筛选UX SEO:把资源中心的搜索框从摆设写成发现引擎(2026版)</td></tr>
+        <tr><td>Meta description</td><td>一人公司官网文章中心的搜索与筛选UX设计指南。覆盖搜索框位置与触发逻辑、筛选维度选择、Topic Clustering与筛选协同、空结果处理、搜索框SEO结构化数据、与Guide Strip的内链承接。</td></tr>
+        <tr><td>Slug</td><td>seo-20260404-0903-one-person-company-content-hub-search-filter-ux-seo.html</td></tr>
+        <tr><td>搜索意图</td><td>Informational + Commercial Investigation（学搜索/筛选UX设计原则 + 判断是否需要找人帮忙落地）</td></tr>
+        <tr><td>目标关键词</td><td>文章中心搜索UX / 资源中心筛选设计 / Topic Clustering 筛选协同 / 空结果降级路径 / 搜索结果页SEO / 筛选URL参数化</td></tr>
+        <tr><td>内链</td><td>seo.html / seo-20260404-0808-one-person-company-content-hub-internal-linking-seo.html / seo-20260404-0705-one-person-company-content-hub-entry-card-writing-seo.html / seo-20260404-0609-one-person-company-content-hub-guide-strip-seo.html / seo-20260404-0538-one-person-company-content-hub-reading-path-seo.html / seo-20260404-0403-one-person-company-content-hub-navigation-seo.html / contact.html</td></tr>
+        <tr><td>Article schema</td><td>✅ 含 Article + BreadcrumbList</td></tr>
+        <tr><td>预估字数</td><td>正文约 2700 字</td></tr>
+        <tr><td>发布状态</td><td>2026-04-04 09:03</td></tr>
+      </table>
+    </div>
+  </article>
+</main>
+
+<footer class="article-footer" style="border-top:1px solid rgba(255,255,255,.06);padding:32px 0;text-align:center;color:rgba(255,255,255,.3);font-size:13px;">
+  <p>© 2026 BUMA 一人公司官网 · <a href="seo.html" style="color:rgba(255,255,255,.4);">返回文章中心</a> · <a href="contact.html" style="color:rgba(255,255,255,.4);">预约咨询</a></p>
+</footer>
+</body>
+</html>

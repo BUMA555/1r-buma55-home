@@ -1,0 +1,68 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="32" fill="#0B0F1A"/>
+  <circle cx="184" cy="132" r="146" fill="url(#paint0_radial)" fill-opacity="0.9"/>
+  <circle cx="1010" cy="122" r="122" fill="url(#paint1_radial)" fill-opacity="0.9"/>
+  <circle cx="1020" cy="622" r="170" fill="url(#paint2_radial)" fill-opacity="0.75"/>
+  <rect x="80" y="86" width="1040" height="548" rx="28" fill="#111827" stroke="#2A3447" stroke-width="2"/>
+  <text x="120" y="152" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700">AI 客服承接链路</text>
+  <text x="120" y="192" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="22">一人公司把官网咨询、FAQ、筛选与跟进接成一条线</text>
+
+  <rect x="120" y="250" width="210" height="248" rx="24" fill="#121826" stroke="#3E4B67"/>
+  <rect x="360" y="250" width="210" height="248" rx="24" fill="#121826" stroke="#3E4B67"/>
+  <rect x="600" y="250" width="210" height="248" rx="24" fill="#121826" stroke="#3E4B67"/>
+  <rect x="840" y="250" width="210" height="248" rx="24" fill="#121826" stroke="#3E4B67"/>
+
+  <rect x="146" y="278" width="54" height="54" rx="16" fill="#1B2740"/>
+  <path d="M163 304H183" stroke="#5CC8FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M173 294V314" stroke="#5CC8FF" stroke-width="4" stroke-linecap="round"/>
+  <text x="146" y="366" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">1 入口</text>
+  <text x="146" y="404" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">文章 / FAQ / 搜索词</text>
+  <text x="146" y="436" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">先接住用户第一问</text>
+
+  <rect x="386" y="278" width="54" height="54" rx="16" fill="#201A3A"/>
+  <path d="M402 307C410 296 426 296 434 307" stroke="#7C5CFF" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="418" cy="298" r="8" stroke="#7C5CFF" stroke-width="4"/>
+  <text x="386" y="366" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">2 分流</text>
+  <text x="386" y="404" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">常见问题先解释</text>
+  <text x="386" y="436" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">高意向问题再推进</text>
+
+  <rect x="626" y="278" width="54" height="54" rx="16" fill="#17332C"/>
+  <path d="M642 309L652 319L667 294" stroke="#5BE3B4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="626" y="366" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">3 收集</text>
+  <text x="626" y="404" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">记录需求、预算、场景</text>
+  <text x="626" y="436" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">避免无效来回沟通</text>
+
+  <rect x="866" y="278" width="54" height="54" rx="16" fill="#2E1D39"/>
+  <path d="M882 316H905" stroke="#F0B9FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M900 307L910 316L900 325" stroke="#F0B9FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="866" y="366" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">4 跟进</text>
+  <text x="866" y="404" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">给出下一步动作</text>
+  <text x="866" y="436" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">咨询 / 预约 / 继续阅读</text>
+
+  <path d="M330 374H360" stroke="url(#paint3_linear)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M570 374H600" stroke="url(#paint3_linear)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M810 374H840" stroke="url(#paint3_linear)" stroke-width="6" stroke-linecap="round"/>
+
+  <rect x="120" y="542" width="930" height="54" rx="18" fill="#0F1624" stroke="#273349"/>
+  <text x="148" y="576" fill="#A0A6B8" font-family="Segoe UI, Arial, sans-serif" font-size="18">不是先上很复杂的机器人，而是先把“有人来看 → 有人提问 → 有人留下需求 → 有人被推进下一步”跑顺。</text>
+
+  <defs>
+    <radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(184 132) rotate(90) scale(146)">
+      <stop stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1010 122) rotate(90) scale(122)">
+      <stop stop-color="#5CC8FF"/>
+      <stop offset="1" stop-color="#5CC8FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint2_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 622) rotate(90) scale(170)">
+      <stop stop-color="#5BE3B4"/>
+      <stop offset="1" stop-color="#5BE3B4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint3_linear" x1="330" y1="374" x2="840" y2="374" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5CC8FF"/>
+      <stop offset="0.5" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#5BE3B4"/>
+    </linearGradient>
+  </defs>
+</svg>

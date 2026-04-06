@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 飞书机器人怎么接｜一人公司把官网咨询接成 AI 助理的 6 步</title>
+  <meta name="description" content="基于 OpenClaw 官方 README 与 Clawdbot 飞书文档，整理一人公司把官网咨询接入飞书的最小可执行链路：安装、飞书应用、事件订阅、网关检查、分流与人工接手。" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="OpenClaw 飞书机器人怎么接｜一人公司把官网咨询接成 AI 助理的 6 步" />
+  <meta property="og:description" content="把官网咨询接入飞书的最小可执行链路：安装、飞书应用、事件订阅、网关检查、分流与人工接手。" />
+  <meta property="og:url" content="https://buma55.com/seo-20260315-0122-openclaw-feishu-lead-intake.html" />
+  <meta property="og:image" content="https://buma55.com/assets-article-openclaw-feishu-lead-intake-flow.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OpenClaw 飞书机器人怎么接｜一人公司把官网咨询接成 AI 助理的 6 步" />
+  <meta name="twitter:description" content="把官网咨询接入飞书的最小可执行链路：安装、飞书应用、事件订阅、网关检查、分流与人工接手。" />
+  <meta name="twitter:image" content="https://buma55.com/assets-article-openclaw-feishu-lead-intake-flow.svg" />
+  <link rel="canonical" href="https://buma55.com/seo-20260315-0122-openclaw-feishu-lead-intake.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "OpenClaw 飞书机器人怎么接｜一人公司把官网咨询接成 AI 助理的 6 步",
+      "description": "基于 OpenClaw 官方 README 与 Clawdbot 飞书文档，整理一人公司把官网咨询接入飞书的最小可执行链路。",
+      "datePublished": "2026-03-15",
+      "dateModified": "2026-03-16",
+      "author": {
+        "@type": "Person",
+        "name": "小马Content Agent（内容生产）"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "BUMA",
+        "url": "https://buma55.com/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://buma55.com/seo-20260315-0122-openclaw-feishu-lead-intake.html"
+      },
+      "image": "https://buma55.com/assets-article-openclaw-feishu-lead-intake-flow.svg"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://buma55.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "文章中心",
+          "item": "https://buma55.com/seo.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "OpenClaw 飞书机器人怎么接",
+          "item": "https://buma55.com/seo-20260315-0122-openclaw-feishu-lead-intake.html"
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "需要暴露公网 webhook 吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不需要。Clawdbot 文档明确说明飞书通道走 WebSocket 事件订阅，不必暴露公共 webhook URL，这对一人公司更友好。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "消息收不到时先查哪一步？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "先查飞书事件订阅是否包含 im.message.receive_v1，再看 openclaw gateway status 是否正常，最后用 openclaw logs --follow 观察事件是否进入。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI 助理会不会抢走人工沟通？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。你可以明确分流规则：基础问题由 AI 先答，高意向问题转人工或直接给联系方式。关键是下一步动作要清楚。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "一人公司最容易忽略什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "最容易忽略的是下一步动作。只答问题不引导继续阅读、预约或沟通，咨询就会停在原地，转化也会停住。"
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Feishu · Lead Intake</div>
+        <h1 class="section-title">OpenClaw + 飞书不是为了炫技，而是把官网咨询接成“有下一步”的可执行链路。</h1>
+        <p class="section-desc">很多一人公司已经有官网和内容，但咨询一来就卡住：到底该进哪个群、谁来接第一句、怎么让咨询变成下一步动作。这篇把 OpenClaw + 飞书的最小落地路径拆成 6 步，目标只有一个：让官网咨询有人接住、有人分流、有人推进。</p>
+        <div class="article-meta">
+          <span>发布时间：2026-03-15</span>
+          <span>作者：小马Content Agent</span>
+          <span>适合人群：一人公司 / 小团队</span>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">先梳理你的飞书承接链路</a>
+          <a class="btn-secondary" href="openclaw-faq.html">先查 OpenClaw FAQ</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card home-card">
+          <img class="hero-visual" src="assets-article-openclaw-feishu-lead-intake-flow.svg" alt="OpenClaw 飞书咨询承接 6 步示意图" />
+          <h3>这篇先解决什么</h3>
+          <p>先解决“咨询进来没人接、飞书配置不通、信息收不上来、下一步动作不清楚”这四类最现实的问题，而不是先堆复杂机器人。</p>
+        </article>
+        <article class="card case-card">
+          <h3>文章信息</h3>
+          <ul class="list">
+            <li><strong>时间：</strong>2026-03-15</li>
+            <li><strong>作者：</strong>小马Content Agent（内容生产）</li>
+            <li><strong>来源：</strong>公开资料整理（OpenClaw README / Clawdbot 飞书文档）</li>
+            <li><strong>导语：</strong>适合一人公司和小团队，目标是把官网咨询接进飞书，再接到能推进的下一步。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h3>核心关键词</h3>
+          <ul class="list">
+            <li>核心关键词：OpenClaw 飞书机器人怎么接、OpenClaw 飞书接入</li>
+            <li>相关关键词：OpenClaw WebSocket、飞书机器人事件订阅、官网咨询承接</li>
+            <li>场景关键词：一人公司官网咨询、FAQ 分流、转人工、下一步动作</li>
+          </ul>
+        </article>
+        <article class="card case-card">
+          <h3>先说结论</h3>
+          <ul class="list">
+            <li>先把“咨询入口 → 飞书 → 下一步动作”跑顺，再谈高级自动化。</li>
+            <li>OpenClaw 官方推荐用 <code>openclaw onboard</code> 走起步流程，网关状态必须先通。</li>
+            <li>飞书侧要用 WebSocket 事件订阅并添加 <code>im.message.receive_v1</code>，否则消息进不来。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Why This Stack</div>
+          <h2 class="section-title">为什么一人公司用 OpenClaw + 飞书，反而更容易把咨询接稳？</h2>
+          <p class="section-desc">OpenClaw 的定位是“个人 AI 助理”，强调运行在自己的设备上，通过你已经在用的消息渠道来回答。Clawdbot 文档也明确说明：飞书通道走 WebSocket 事件订阅，不需要暴露公网 webhook。对一人公司来说，这意味着：不用额外部署一堆服务，就能把官网咨询接进你习惯的协作入口，并且还能保留人工接手的边界。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card seo-card"><h3>入口集中</h3><p>官网咨询先汇总到飞书，再决定要不要转人工、进群、或继续读文章。</p></article>
+          <article class="card seo-card"><h3>配置可控</h3><p>OpenClaw 自己跑在本地或可控机器上，配置和日志都在手里。</p></article>
+          <article class="card seo-card"><h3>更适合小团队</h3><p>不用先上复杂的客服平台，先把“接住 + 分流 + 推进”跑通即可。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">6 Steps</div>
+          <h2 class="section-title">OpenClaw + 飞书的最小可执行 6 步</h2>
+          <p class="section-desc">每一步都围绕“能不能把咨询接成下一步动作”来设计，不追求花哨，只追求能跑。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h3>第 1 步：先定义你想接住哪类咨询</h3>
+            <p>不要一上来就把所有问题都交给机器人。先确定 1-2 类高频问题，例如“适合谁、怎么开始、多少钱、周期多长”。这一步会决定你的 FAQ、文章入口和下一步动作。</p>
+          </article>
+          <article class="card case-card">
+            <h3>第 2 步：用 <code>openclaw onboard</code> 跑通起步路径</h3>
+            <p>OpenClaw 官方 README 推荐使用向导 <code>openclaw onboard</code> 初始化网关、工作区和渠道。对一人公司来说，先把这条最短路径跑通，比一开始就手动拼配置更稳。</p>
+          </article>
+          <article class="card case-card">
+            <h3>第 3 步：创建飞书应用并准备凭证</h3>
+            <p>按照 Clawdbot 飞书文档，先在飞书开放平台创建企业自建应用，拿到应用 ID 和应用密钥，并开启机器人能力。凭证准备不齐，后面所有步骤都会卡。</p>
+          </article>
+          <article class="card case-card">
+            <h3>第 4 步：配置事件订阅（WebSocket）</h3>
+            <p>飞书通道使用 WebSocket 长连接事件订阅，关键事件是 <code>im.message.receive_v1</code>。文档强调这样无需暴露公网 webhook，所以更适合一人公司和小团队的最小部署。</p>
+          </article>
+          <article class="card case-card">
+            <h3>第 5 步：检查网关状态与日志</h3>
+            <p>配置完成后先跑 <code>openclaw gateway status</code>，必要时跟随 <code>openclaw logs --follow</code> 看是否收到了飞书事件。网关没起来，消息必然收不到。</p>
+          </article>
+          <article class="card case-card">
+            <h3>第 6 步：设计分流与转人工</h3>
+            <p>把咨询分成“继续读文章 / 进入 FAQ / 直接联系”三类，并明确下一步动作（加微信、预约、电话）。这样 AI 才不是只答问题，而是推动咨询往下走。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Minimum Setup</div>
+          <h2 class="section-title">一人公司的最小执行版清单</h2>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h3>一天内能做完的事</h3>
+            <ul class="list">
+              <li>准备 1 篇主文 + 1 个 FAQ，先让咨询有内容可答。</li>
+              <li>用 <code>openclaw onboard</code> 跑完最小安装路径。</li>
+              <li>在飞书创建应用并完成事件订阅。</li>
+            </ul>
+          </article>
+          <article class="card case-card">
+            <h3>一周内要复盘的 3 件事</h3>
+            <ul class="list">
+              <li>最多被问的 3 个问题是什么。</li>
+              <li>哪类问题会真正进入微信或电话沟通。</li>
+              <li>哪个环节最容易断掉（入口、回答、下一步动作）。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq-core">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">FAQ</div>
+          <h2 class="section-title">常见问题</h2>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h3>需要暴露公网 webhook 吗？</h3>
+            <p>不需要。Clawdbot 文档明确说明飞书通道走 WebSocket 事件订阅，不必暴露公共 webhook URL，这对一人公司更友好。</p>
+          </article>
+          <article class="card case-card">
+            <h3>消息收不到时先查哪一步？</h3>
+            <p>先查飞书事件订阅是否包含 <code>im.message.receive_v1</code>，再看 <code>openclaw gateway status</code> 是否正常，最后用 <code>openclaw logs --follow</code> 观察事件是否进入。</p>
+          </article>
+          <article class="card case-card">
+            <h3>AI 助理会不会抢走人工沟通？</h3>
+            <p>不会。你可以明确分流规则：基础问题由 AI 先答，高意向问题转人工或直接给联系方式。关键是下一步动作要清楚。</p>
+          </article>
+          <article class="card case-card">
+            <h3>一人公司最容易忽略什么？</h3>
+            <p>忽略“下一步动作”。只答问题不引导继续阅读、预约或沟通，咨询就停在原地，转化也会停住。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Sources</div>
+          <h2 class="section-title">资料来源</h2>
+        </div>
+        <ul class="list">
+          <li><a href="https://raw.githubusercontent.com/openclaw/openclaw/main/README.md">OpenClaw README</a></li>
+          <li><a href="https://docs.clawdbot.org.cn/channels/feishu">Clawdbot 飞书文档</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related</div>
+          <h2 class="section-title">相关推荐</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card"><h3><a href="seo-20260314-1958-ai-customer-service-lead-conversion.html">AI 客服怎么开始</a></h3><p>如果你还没建立咨询承接链路，先从这篇起步文开始。</p></article>
+          <article class="card feature-card home-card"><h3><a href="seo-20260314-2208-website-consultation-form-requirements-collection.html">官网咨询表单怎么设计</a></h3><p>把咨询信息收集清楚，才能让 AI 助理帮你提高效率。</p></article>
+          <article class="card feature-card home-card"><h3><a href="contact.html">联系 buma</a></h3><p>如果你想直接把官网咨询接进飞书，我们可以一起梳理现状。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">最值钱的不是“机器人能答”，而是“咨询能被推进”。</h2>
+          <p class="section-desc">如果你已经有官网与内容，但咨询接不住，可以把你当前入口、FAQ 和飞书配置发来，我们先帮你整理成最小可执行清单。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw 飞书咨询承接</span></div></footer>
+</body>
+</html>

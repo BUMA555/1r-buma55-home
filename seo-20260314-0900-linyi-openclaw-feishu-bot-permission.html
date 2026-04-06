@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>临沂 OpenClaw 飞书机器人权限清单｜接入前必须准备的 3 件事</title>
+  <meta name="description" content="基于飞书开放平台官方文档，整理临沂团队使用 OpenClaw 接入飞书机器人时需要准备的 App ID、机器人能力、可用范围与消息发送前提条件，并给出落地步骤与常见卡点。" />
+  <meta name="keywords" content="临沂OpenClaw飞书机器人,飞书App ID,飞书机器人能力,飞书可用范围,飞书消息发送权限,OpenClaw接入清单" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-0900-linyi-openclaw-feishu-bot-permission.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="community.html">社区</a>
+          <a href="openclaw-faq.html">FAQ</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Linyi · OpenClaw · Feishu Bot</div>
+        <h1 class="section-title">临沂 OpenClaw 飞书机器人权限清单：接入前先把 3 件事准备好。</h1>
+        <p class="section-desc">很多临沂团队卡在“机器人能上线、但消息发不出去”。问题往往不是代码，而是权限、可用范围、发布流程没走完。本文按飞书开放平台文档把前置条件整理成清单，让 OpenClaw 接入更稳。</p>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h3>文章信息</h3>
+          <ul class="list">
+            <li><strong>时间：</strong>2026-03-14</li>
+            <li><strong>作者：</strong>小马Content Agent（内容生产）</li>
+            <li><strong>来源：</strong>飞书开放平台官方文档</li>
+            <li><strong>导语：</strong>本文聚焦 OpenClaw + 飞书接入的“权限与发布前置条件”，避免上线后才发现机器人无法发消息。</li>
+          </ul>
+        </article>
+        <article class="card case-card">
+          <h3>核心关键词</h3>
+          <ul class="list">
+            <li>核心关键词：临沂 OpenClaw 飞书机器人</li>
+            <li>相关关键词：飞书 App ID、机器人能力、可用范围</li>
+            <li>场景关键词：消息发送失败、权限未生效、发布未完成</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Why Checklist</div>
+          <h2 class="section-title">为什么临沂团队要先做“权限清单”</h2>
+          <p class="section-desc">OpenClaw 能跑起来只是第一步，飞书侧的权限、可用范围、发布动作没有齐全，机器人就算在线也发不出消息。飞书官方文档明确了消息发送的前提条件：需要开启机器人能力、发布应用、确保目标用户在可用范围内、机器人在群里并有发言权限。缺其中任何一项都会导致上线后反复返工。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card seo-card"><h3>减少试错</h3><p>把前置条件一次性准备齐，避免反复“能连上却发不了”。</p></article>
+          <article class="card seo-card"><h3>便于交接</h3><p>权限清单写清楚，开发、运营、对接人都知道该谁补哪一步。</p></article>
+          <article class="card seo-card"><h3>保证可验证</h3><p>按官方前提条件逐项核对，能快速定位“到底卡在哪”。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Preparation</div>
+          <h2 class="section-title">接入前必须准备的 3 件事</h2>
+          <p class="section-desc">下面三项来自官方文档的明确步骤，先补齐再往下走。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3>1. 确认 App ID</h3>
+            <p>App ID 是飞书开放平台应用的唯一标识，创建应用时自动生成，不可自行修改。需要在开发者后台打开应用详情页，在“凭证与基础信息”中查看和复制。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>2. 开启机器人能力</h3>
+            <p>登录开发者后台进入应用管理页面，点击“添加应用能力”并添加机器人能力。开启后必须发布应用，配置才会生效。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3>3. 发布应用</h3>
+            <p>飞书明确说明：修改应用配置后需要发布应用才能生效。未发布就测试，会出现“能力已开但不可用”的误判。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Message Preconditions</div>
+          <h2 class="section-title">消息发送的官方前提条件，必须逐项满足</h2>
+          <p class="section-desc">飞书在“发送消息”接口文档中列出明确前提条件，适用于 OpenClaw 接入后所有主动消息能力。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h3>对用户发送消息的前提</h3>
+            <ul class="list">
+              <li>应用已开启机器人能力，并完成发布。</li>
+              <li>目标用户在机器人的可用范围内。</li>
+            </ul>
+          </article>
+          <article class="card case-card">
+            <h3>对群组发送消息的前提</h3>
+            <ul class="list">
+              <li>机器人必须在对应群组中。</li>
+              <li>机器人在群内拥有发言权限。</li>
+            </ul>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top: 20px;">
+          <article class="card case-card">
+            <h3>接口与能力限制提示</h3>
+            <ul class="list">
+              <li>接口有频率限制：对同一用户、同一群组的消息发送限频为 5 QPS。</li>
+              <li>发送消息接口仅支持开发者后台创建的应用机器人，群自定义机器人无法调用。</li>
+            </ul>
+          </article>
+          <article class="card case-card">
+            <h3>为什么临沂团队容易忽略这一步</h3>
+            <ul class="list">
+              <li>现场测试时只加了群机器人，却忘了“可用范围”配置。</li>
+              <li>机器人能力刚开，但没有发布应用。</li>
+              <li>群管理员禁言或限制发言，导致误以为“API 不工作”。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Steps</div>
+          <h2 class="section-title">临沂 OpenClaw 接入飞书的 6 步顺序</h2>
+          <p class="section-desc">这套顺序是为了先把“权限与发布”固定下来，再进入 OpenClaw 侧的消息路由配置。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card seo-card"><h3>第一步：在开发者后台找到 App ID</h3><p>打开飞书开放平台开发者后台，进入应用详情页，在“凭证与基础信息”中复制 App ID。</p></article>
+          <article class="card seo-card"><h3>第二步：添加机器人能力并发布</h3><p>在应用管理页添加机器人能力，完成后发布应用，确保配置生效。</p></article>
+          <article class="card seo-card"><h3>第三步：设置可用范围</h3><p>把实际要接收消息的人员加入可用范围，避免出现“用户不在可用范围”错误。</p></article>
+          <article class="card seo-card"><h3>第四步：把机器人加入目标群</h3><p>群聊场景必须把机器人加进群，并确认机器人在群内可发言。</p></article>
+          <article class="card seo-card"><h3>第五步：再接 OpenClaw 消息路由</h3><p>OpenClaw 的配置可以更改，但要先保证飞书侧前置条件齐全。</p></article>
+          <article class="card seo-card"><h3>第六步：按限频做压测</h3><p>消息发送对单用户、单群限制 5 QPS，压测不要超过上限。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Common Issues</div>
+          <h2 class="section-title">常见卡点与排查方向（本地团队可直接用）</h2>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h3>卡点 1：明明连上了，但消息发不出</h3>
+            <p>优先检查：机器人能力是否已开启并发布；可用范围是否包含目标用户；机器人是否在群里且有发言权限。</p>
+          </article>
+          <article class="card case-card">
+            <h3>卡点 2：使用了群自定义机器人</h3>
+            <p>官方文档提示：发送消息接口只支持开发者后台创建的应用机器人。群自定义机器人无法调用该接口。</p>
+          </article>
+          <article class="card case-card">
+            <h3>卡点 3：频率一高就失败</h3>
+            <p>对单用户、单群的发送限频是 5 QPS。短时间压测要控制节奏，否则容易触发限流。</p>
+          </article>
+          <article class="card case-card">
+            <h3>卡点 4：发布没做完就开始测</h3>
+            <p>飞书明确要求修改配置后必须发布应用。没发布的能力不会生效，容易误判“权限没用”。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related</div>
+          <h2 class="section-title">相关推荐</h2>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card"><h3><a href="openclaw-linyi-feishu.html">临沂 OpenClaw 飞书接入</a></h3><p>从消息入口到工作流，让机器人真正接进协作。</p></article>
+          <article class="card feature-card home-card"><h3><a href="seo-20260310-0952-jinan-openclaw-feishu.html">济南 OpenClaw 飞书接入</a></h3><p>补一遍权限、事件订阅与上线顺序。</p></article>
+          <article class="card feature-card home-card"><h3><a href="openclaw-faq.html">OpenClaw 常见问题</a></h3><p>快速排除安装、接入与排错高频点。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Sources</div>
+          <h2 class="section-title">参考资料（官方来源）</h2>
+        </div>
+        <ul class="list">
+          <li>飞书开放平台｜发送消息（前提条件、限频与权限要求）：https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/create</li>
+          <li>飞书开放平台｜如何启用机器人能力：https://open.feishu.cn/document/faq/trouble-shooting/how-to-enable-bot-ability</li>
+          <li>飞书开放平台｜如何获取应用的 App ID：https://open.feishu.cn/document/faq/trouble-shooting/how-to-obtain-app-id</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">CTA</div>
+          <h2 class="section-title">如果你在临沂做 OpenClaw + 飞书接入，先把权限清单补齐再谈自动化。</h2>
+          <p class="section-desc">把你当前卡住的步骤发给 buma，我们先帮你对照官方前提条件，判断到底是权限、可用范围还是群设置问题。</p>
+        </div>
+        <div class="button-row">
+          <a class="btn-primary" href="contact.html">加微信 bm8150</a>
+          <a class="btn-secondary" href="tel:15550927555">电话 15550927555</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>临沂 OpenClaw 飞书权限清单</span></div></footer>
+</body>
+</html>

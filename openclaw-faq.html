@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw 常见问题 FAQ｜飞书接入、Dashboard、Gateway 与排障入口</title>
+  <meta name="description" content="OpenClaw 常见问题 FAQ，集中整理飞书接入、权限配置、群聊 @ 触发、Dashboard、Gateway、日志排查、Chrome 扩展与 cron 定时任务等高频问题，方便快速定位入口。" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="OpenClaw 常见问题 FAQ｜飞书接入、Dashboard、Gateway 与排障入口" />
+  <meta property="og:description" content="集中整理 OpenClaw 飞书接入、权限配置、群聊触发、Dashboard、Gateway、日志排查、Chrome 扩展与 cron 定时任务等高频问题，方便快速定位入口。" />
+  <meta property="og:url" content="https://buma55.com/openclaw-faq.html" />
+  <meta property="og:image" content="https://buma55.com/assets-page-faq-console.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OpenClaw 常见问题 FAQ｜飞书接入、Dashboard、Gateway 与排障入口" />
+  <meta name="twitter:description" content="集中整理 OpenClaw 飞书接入、权限配置、群聊触发、Dashboard、Gateway、日志排查、Chrome 扩展与 cron 定时任务等高频问题，方便快速定位入口。" />
+  <meta name="twitter:image" content="https://buma55.com/assets-page-faq-console.svg" />
+  <link rel="canonical" href="https://buma55.com/openclaw-faq.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "飞书接入从哪开始？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建议先完成飞书应用、凭证、Gateway 和测试顺序的最小链路，再继续看权限、事件订阅和群聊触发边界。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么群里要 @ 才回复？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "通常需要优先检查 requireMention、groupPolicy、群聊触发范围和白名单边界，避免把群策略问题误判成接入问题。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dashboard 打不开或 Gateway 起不来怎么办？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "应先检查 dashboard 地址、gateway status、鉴权、pairing、日志与端口占用，再区分是控制台问题还是消息接入问题。"
+          }
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "OpenClaw 常见问题 FAQ",
+      "url": "https://buma55.com/openclaw-faq.html",
+      "description": "集中整理 OpenClaw 飞书接入、权限配置、群聊 @ 触发、Dashboard、Gateway、日志排查、Chrome 扩展与 cron 定时任务等高频问题。",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "BUMA",
+        "url": "https://buma55.com/"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "OpenClaw"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://buma55.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "OpenClaw FAQ",
+          "item": "https://buma55.com/openclaw-faq.html"
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+<header class="topbar topbar-clean">
+  <div class="container nav nav-clean">
+    <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+    <nav class="nav-links nav-links-clean">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="seo.html">文章</a>
+      <a href="openclaw-faq.html" class="active">OpenClaw FAQ</a>
+      <a href="about.html">关于</a>
+      <a href="contact.html">联系</a>
+    </nav>
+    <div class="nav-endcaps">
+      <span class="nav-signal">山东临沂 · 远程可协作</span>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero hero-home">
+    <div class="container hero-home-grid">
+      <div>
+        <div class="eyebrow">OpenClaw FAQ</div>
+        <h1 class="section-title">OpenClaw 常见问题 FAQ：先按你卡住的那一步找入口。</h1>
+        <p class="section-desc">这页不再堆旧链接，而是把现在最常见的 OpenClaw 问题重新归类：飞书怎么接、权限为什么不生效、群里为什么要 <code>@</code> 才回、Dashboard 为什么打不开、Gateway 为什么起不来、日志应该先看哪条、Chrome 扩展为什么挂着感叹号、定时任务怎么跑。你可以先快速定位问题，再进入对应正文继续看。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="#quick-paths">先按问题直达</a>
+        </div>
+        <div class="hero-intake-proof" aria-label="FAQ 升级沟通前置说明">
+          <span class="hero-intake-pill">先按问题入口分流，再决定自己排还是直接沟通</span>
+          <span class="hero-intake-pill">若 10 分钟还没收口，再发页面 / 截图 / 最卡的 1 步</span>
+          <span class="hero-intake-pill">工作日 24h 内先回复你下一步该先动哪里</span>
+        </div>
+        <p class="hero-subroutes">如果你还没准备好自己排，继续看 <a href="seo.html">文章中心</a> / <a href="contact.html">直接沟通当前问题</a>。FAQ 第一屏只主推 1 个动作：先把问题分到对的入口，再决定自己排还是直接找人。</p>
+        <div class="hero-trustline">
+          <span>优先覆盖接入 / 权限 / 控制台 / 日志</span>
+          <span>先分入口，再进正文</span>
+          <span>减少“翻半天还没找到那一篇”</span>
+        </div>
+      </div>
+      <aside class="hero-panel card">
+        <img class="hero-visual" src="assets-page-faq-console.svg" alt="OpenClaw FAQ 控制台与排障主视觉图" loading="eager" decoding="async" />
+        <h3>FAQ 先帮你拆清 3 类问题</h3>
+        <div class="mini-metrics">
+          <div><strong>接入问题</strong><span>飞书应用、权限、群聊触发顺序</span></div>
+          <div><strong>控制台问题</strong><span>Dashboard、Gateway、pairing、鉴权</span></div>
+          <div><strong>日志问题</strong><span>先看哪条输出，别乱猜根因</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container grid-3">
+      <article class="card case-card">
+        <h3>最近更新</h3>
+        <p>2026-03-14</p>
+        <h3>适合谁看</h3>
+        <p>正在排 OpenClaw 飞书接入、Dashboard、Gateway、日志、Chrome 扩展或定时任务问题的人。</p>
+      </article>
+      <article class="card case-card">
+        <h3>这页覆盖什么</h3>
+        <p>飞书接入、权限配置、群聊 <code>@</code> 触发、pairing、Dashboard、Gateway、logs、Chrome 扩展和 cron 定时任务入口。</p>
+      </article>
+      <article class="card case-card">
+        <h3>资料来源</h3>
+        <p>OpenClaw Getting Started、Feishu、Pairing、Dashboard、Gateway Troubleshooting 官方文档，以及 Clawdbot 中文公开文档。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">First 10 Minutes</div>
+        <h2 class="section-title">先做 3 个快速检查，排查会快很多</h2>
+        <p class="section-desc">参考 Stripe / OpenAI Help Center 的“先分入口、再细化问题”写法，把最容易漏掉的三步前置，先判断是不是入口问题。</p>
+      </div>
+      <div class="trust-strip">
+        <article class="trust-item">
+          <strong>1. 先确认 Gateway 是否在线</strong>
+          <span>Dashboard 打不开、unauthorized 多数与 gateway / 鉴权有关。</span>
+        </article>
+        <article class="trust-item">
+          <strong>2. 先确认群聊触发边界</strong>
+          <span><code>requireMention</code> / <code>groupPolicy</code> 配置不对，会表现为“群里不回”。</span>
+        </article>
+        <article class="trust-item">
+          <strong>3. 先确认配对与事件订阅</strong>
+          <span>pairing 未审批或事件未订阅，消息就收不到。</span>
+        </article>
+      </div>
+      <div class="button-row hero-actions" style="margin-top: 20px;">
+        <a class="btn-primary" href="#quick-paths">做完检查，按问题直达</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="quick-paths">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Quick Paths</div>
+        <h2 class="section-title">按问题直达</h2>
+        <p class="section-desc">如果你现在已经卡住了，就别从头翻了，直接进对应问题页。先把入口找对，排查速度会快很多。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card seo-card"><h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">飞书接入从哪开始</a></h3><p>适合第一次接 OpenClaw + 飞书，先看应用、凭证、Gateway、测试顺序。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">权限都开了，为什么还是不工作</a></h3><p>适合排查 <code>im.message.receive_v1</code>、发送权限、发布状态和 Bot 能力边界。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0959-openclaw-feishu-group-require-mention.html">飞书群里为什么不回复</a></h3><p>适合排查为什么要 <code>@</code> 才回、<code>groupPolicy</code>、<code>requireMention</code> 和触发范围。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0835-openclaw-feishu-websocket-pairing.html">长连接、配对码、群聊触发不通</a></h3><p>适合排查 WebSocket、pairing 审批、群聊白名单和事件订阅。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0910-openclaw-chrome-extension-browser-relay.html">Chrome 扩展显示 ! 或 attach tab 没反应</a></h3><p>适合排查 browser relay、<code>chrome</code> profile、ON 徽章和 relay 地址。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">Dashboard 打不开、1008、unauthorized</a></h3><p>适合先拆清控制台地址、<code>gateway status</code>、鉴权和配对问题。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="stuck-after-10">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Still Stuck?</div>
+        <h2 class="section-title">如果你按 FAQ 查了 10 分钟还没收口，先别继续乱翻，先发这 3 样，再开始 15 分钟适配判断</h2>
+        <p class="section-desc">这一步借了 Stripe 联系页“只要少量信息 + 明确回应时效”的结构：FAQ 不该让用户无限下滑，而要在合适位置明确告诉他，什么时候该停止自查、改为带材料进入沟通。<a href="seo-20260403-0302-one-person-company-faq-escalation-seo.html">想先看这条升级边界为什么重要，可直接读这篇 FAQ→Contact 结构文</a>；如果你更想先对照“联系页第一次到底该发什么”，也可以继续看 <a href="seo-20260403-0812-one-person-company-contact-intake-checklist-seo.html">联系页首条消息清单 SEO</a>。</p>
+      </div>
+      <div class="trust-strip">
+        <article class="trust-item">
+          <strong>页面或相关链接</strong>
+          <span>先给当前页面、后台地址或你正在看的入口，让问题发生在哪一层一眼可定位。</span>
+        </article>
+        <article class="trust-item">
+          <strong>1 张截图或 1 段日志</strong>
+          <span>优先带报错截图、日志关键行、配置片段或 Gateway 状态输出，不要只说“就是不行”。</span>
+        </article>
+        <article class="trust-item">
+          <strong>你现在最卡的 1 步</strong>
+          <span>别一次抛 10 个问题，先说清这次最想先解决的是收发、Dashboard、权限，还是接入承接。</span>
+        </article>
+      </div>
+      <div class="button-row hero-actions" style="margin-top: 24px;">
+        <a class="btn-primary" href="contact.html">先发这 3 样，开始 15 分钟适配判断</a>
+      </div>
+      <p class="hero-subroutes" style="margin-top: 14px;">工作日 24 小时内会先告诉你下一步该先动哪里；现在只要先发：页面或链接 / 相关截图 / 最卡的 1 步。若你还在判断“要不要继续自己排”，先看 <a href="seo-20260403-0302-one-person-company-faq-escalation-seo.html">FAQ 升级沟通 SEO 结构文</a>，再决定继续排查还是直接联系。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Dashboard / Gateway</div>
+        <h2 class="section-title">控制台、服务状态和日志排障入口</h2>
+        <p class="section-desc">如果你卡的不是“飞书接不进来”，而是 Dashboard 打不开、Gateway 启不来、日志看不懂、页面反复报 <code>unauthorized</code>，优先从这组入口开始。它们属于同一类问题，但排查顺序并不一样。</p>
+      </div>
+      <div class="grid-2">
+        <article class="card case-card">
+          <h3><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">Dashboard 打不开、1008、PAIRING_REQUIRED</a></h3>
+          <p>先拆清控制台地址、<code>openclaw dashboard</code>、<code>openclaw gateway status</code>、鉴权和 pairing 的先后顺序，避免把控制台打不开误判成飞书问题。</p>
+        </article>
+        <article class="card case-card">
+          <h3><a href="seo-20260314-1236-openclaw-logs-follow-troubleshooting.html">OpenClaw logs 怎么看</a></h3>
+          <p>适合先学会看 <code>openclaw logs --follow</code>、状态面板和常见日志信号，把“到底是哪一层坏了”快速拆出来。</p>
+        </article>
+        <article class="card case-card">
+          <h3><a href="seo-20260314-1330-openclaw-gateway-service-not-running.html">Gateway 起不来怎么办</a></h3>
+          <p>适合排查 <code>gateway.mode=local</code>、严格配置校验、非 loopback 鉴权限制、<code>EADDRINUSE</code> 和端口占用。</p>
+        </article>
+        <article class="card case-card">
+          <h3><a href="seo-20260314-1348-openclaw-dashboard-auth-token-mismatch.html">unauthorized / AUTH_TOKEN_MISMATCH 怎么办</a></h3>
+          <p>适合拆清 <code>AUTH_TOKEN_MISMATCH</code>、<code>AUTH_DEVICE_TOKEN_MISMATCH</code>、设备 token 漂移和 Dashboard 鉴权层的区别。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Top Questions</div>
+        <h2 class="section-title">最常见的 4 类 FAQ</h2>
+        <p class="section-desc">最近高频问题基本都集中在这 4 类。先看自己属于哪一类，再继续深挖。</p>
+      </div>
+      <div class="grid-2">
+        <article class="card case-card">
+          <h3>1. 接入类：到底应该先做什么</h3>
+          <ul class="list">
+            <li>先确认 Node、Gateway 和 Dashboard 正常。</li>
+            <li>再创建飞书应用、填 App ID / Secret。</li>
+            <li>然后核对事件订阅、Bot 权限和 pairing。</li>
+            <li>最后再去看群聊规则、定时任务和协作链路。</li>
+          </ul>
+          <p><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">先看：OpenClaw 飞书机器人接入清单</a></p>
+        </article>
+        <article class="card case-card">
+          <h3>2. 权限类：看起来都开了，为什么还是发不出去</h3>
+          <ul class="list">
+            <li>常见不是“没开权限”，而是开错位置或版本没发布。</li>
+            <li>飞书事件订阅、Bot 能力和消息发送权限要一起看。</li>
+            <li>群聊里能不能回，还会受 <code>groupPolicy</code> 和 <code>allowFrom</code> 影响。</li>
+            <li>排查时别只盯一个报错，要把权限、发布状态和触发链路一起看。</li>
+          </ul>
+          <p><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">先看：OpenClaw 飞书机器人权限清单</a></p>
+        </article>
+        <article class="card case-card">
+          <h3>3. 群聊类：为什么私聊能回，群里却经常没反应</h3>
+          <ul class="list">
+            <li>默认安全策略通常比想象中更严格。</li>
+            <li>很多场景下群聊就是要求明确 <code>@</code>，避免误触发。</li>
+            <li>pairing 没通过、群未放行、触发人不在白名单，也会像“没回复”。</li>
+            <li>这类问题要同时看 <code>requireMention</code>、<code>groupPolicy</code> 和 <code>allowFrom</code>。</li>
+          </ul>
+          <p><a href="seo-20260314-0959-openclaw-feishu-group-require-mention.html">先看：OpenClaw 飞书群里为什么不回复</a></p>
+        </article>
+        <article class="card case-card">
+          <h3>4. 控制台与自动化类：页面打不开、定时任务不触发</h3>
+          <ul class="list">
+            <li>Dashboard 问题先拆成服务状态、鉴权、配对三层。</li>
+            <li>Gateway 问题再继续拆成配置模式、端口占用、认证前提三层。</li>
+            <li>日志问题先看 <code>openclaw logs --follow</code>，再回到对应模块处理。</li>
+            <li>别把所有报错混成一个问题看，分层后更容易处理。</li>
+          </ul>
+          <p><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">先看：OpenClaw Dashboard 打不开怎么办</a></p>
+          <p><a href="seo-20260314-1330-openclaw-gateway-service-not-running.html">继续：OpenClaw gateway 起不来怎么办</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Related Reading</div>
+        <h2 class="section-title">继续往下看什么</h2>
+        <p class="section-desc">如果你不是只想排 1 个点，而是想把 OpenClaw 的接入、协同和使用链路整体看清，可以沿着这条顺序看。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card seo-card"><h3><a href="seo-20260314-0741-openclaw-feishu-bot-setup.html">第 1 步：飞书机器人接入清单</a></h3><p>先把接入顺序、基础配置和第一轮测试跑通。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0900-openclaw-feishu-bot-permissions.html">第 2 步：权限与事件订阅</a></h3><p>把“有配置但不生效”的高频误区一次理顺。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-0959-openclaw-feishu-group-require-mention.html">第 3 步：群聊触发规则</a></h3><p>把为什么经常要 <code>@</code> 才回、哪些人能触发讲清楚。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-1236-openclaw-logs-follow-troubleshooting.html">第 4 步：先学会看日志</a></h3><p>把日志信号和状态检查顺序先理顺，再去处理具体模块。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-1330-openclaw-gateway-service-not-running.html">第 5 步：服务起不来先查 Gateway</a></h3><p>把模式、鉴权、端口与配置问题拆开，不要和渠道问题混看。</p></article>
+        <article class="card seo-card"><h3><a href="seo-20260314-1348-openclaw-dashboard-auth-token-mismatch.html">第 6 步：unauthorized 再看 token</a></h3><p>把 Dashboard 鉴权、设备 token 漂移和 pairing 边界讲清楚。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="next-step">
+    <div class="container">
+      <div class="section-header left">
+        <div class="eyebrow">Next Step</div>
+        <h2 class="section-title">排完当前问题后，下一步通常去哪</h2>
+        <p class="section-desc">这页负责帮你先定位问题；如果你已经知道自己下一步要补“方案、文章还是沟通”，可以直接走最短路径，不必继续在 FAQ 里打转。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card case-card">
+          <h3>想先看整体路径</h3>
+          <p>如果你还没判断清楚自己是起步、承接还是转化问题，先去解决方案页，看不同阶段应该先补什么。</p>
+          <p><a href="solutions.html">去解决方案页</a></p>
+        </article>
+        <article class="card case-card">
+          <h3>想继续系统阅读</h3>
+          <p>如果你不是只排一个故障，而是想把 OpenClaw、飞书接入和一人公司内容承接整体理顺，直接进入文章中心更快。</p>
+          <p><a href="seo.html">去文章中心</a></p>
+        </article>
+        <article class="card case-card">
+          <h3>已经有明确卡点</h3>
+          <p>如果你已经知道自己卡在哪一步，且希望更快判断该怎么处理，可以直接带着当前问题去联系页继续沟通。</p>
+          <p><a href="contact.html">去联系页</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-outcomes-strip">
+    <div class="container">
+      <div class="outcomes-strip-header">
+        <div class="eyebrow">What You Leave With</div>
+        <h2 class="section-title">在 FAQ 里逛完，你会带走这 3 样东西</h2>
+        <p class="section-desc">这页不是让你继续留在 FAQ 里打转，而是帮你判断：现在该继续看文章、去联系，还是先回到首页走最短路径。</p>
+      </div>
+      <div class="outcomes-flow">
+        <article class="outcome-item">
+          <span class="outcome-icon">①</span>
+          <div>
+            <strong>你卡的这步属于接入、权限还是触发</strong>
+            <span>FAQ 的目的不是给你所有答案，而是帮你先分清楚问题在哪一层，避免在错误的地方花时间。</span>
+          </div>
+        </article>
+        <article class="outcome-item">
+          <span class="outcome-icon">②</span>
+          <div>
+            <strong>当前最值得先读哪一篇</strong>
+            <span>如果你看完 FAQ 还没解决，会明确告诉你先去读哪篇，而不是继续在 FAQ 里来回翻。</span>
+          </div>
+        </article>
+        <article class="outcome-item">
+          <span class="outcome-icon">③</span>
+          <div>
+            <strong>是否值得现在就带着问题来聊</strong>
+            <span>如果你已经确认是接入或配置类问题，会直接告诉你去联系页，而不是继续在 FAQ 里找答案。</span>
+          </div>
+        </article>
+      </div>
+      <div class="outcomes-cta">
+        <a class="btn-primary" href="contact.html">带着明确问题来聊一次</a>
+        <span class="outcomes-note">还没准备好？可先 <a href="seo.html">看文章中心</a> / <a href="solutions.html">去解决方案页</a></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw FAQ</span></div></footer>
+</body>
+</html>

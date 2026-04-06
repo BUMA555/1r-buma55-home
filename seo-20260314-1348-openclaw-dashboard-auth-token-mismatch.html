@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenClaw unauthorized / AUTH_TOKEN_MISMATCH 怎么办｜Dashboard 鉴权与 token drift 排查</title>
+  <meta name="description" content="基于 OpenClaw 官方 Dashboard、Gateway troubleshooting、devices 与中文文档整理，讲清 OpenClaw unauthorized、AUTH_TOKEN_MISMATCH、AUTH_DEVICE_TOKEN_MISMATCH、PAIRING_REQUIRED 分别代表什么，以及 Dashboard 连不上时该按什么顺序排查。" />
+  <meta name="keywords" content="OpenClaw unauthorized,OpenClaw AUTH_TOKEN_MISMATCH,OpenClaw dashboard unauthorized,OpenClaw 1008,OpenClaw AUTH_DEVICE_TOKEN_MISMATCH,OpenClaw PAIRING_REQUIRED,OpenClaw token drift" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://buma55.com/seo-20260314-1348-openclaw-dashboard-auth-token-mismatch.html" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index.html"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <div class="nav-right">
+        <nav class="nav-links">
+          <a href="index.html">首页</a>
+          <a href="solutions.html">解决方案</a>
+          <a href="seo.html">文章</a>
+          <a href="community.html">社区</a>
+          <a href="about.html">关于 buma</a>
+          <a href="contact.html">联系 buma</a>
+        </nav>
+        <div class="contact-inline"><strong>电话：</strong>15550927555 <strong>微信：</strong>bm8150 <strong>坐标：</strong>山东临沂</div>
+      </div>
+      <a class="nav-cta" href="contact.html">预约咨询</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">OpenClaw · Dashboard · Authentication</div>
+        <h1 class="section-title">OpenClaw unauthorized / AUTH_TOKEN_MISMATCH 怎么办：Dashboard 鉴权与 token drift 排查</h1>
+        <p class="section-desc">如果你最近在搜 OpenClaw unauthorized、OpenClaw AUTH_TOKEN_MISMATCH、OpenClaw dashboard unauthorized、OpenClaw 1008、AUTH_DEVICE_TOKEN_MISMATCH、PAIRING_REQUIRED，大概率不是想看一句“把 token 填对就行”，而是已经卡在 Dashboard 能打开但连不上、Control UI 一直 unauthorized、换了机器后突然 1008、同一个网关有人能进有人进不去，或者明明 token 没改过却还是报 mismatch。按 OpenClaw 官方 <code>Dashboard</code>、<code>Gateway troubleshooting</code>、<code>openclaw devices</code> 与中文文档的共同口径，这类问题不能只靠刷新页面。更稳的顺序是先确认网关目标和 URL，再看共享 token，再区分设备 token 是否漂移，最后判断是不是设备审批或角色授权没过。很多人表面看到的是同一个 unauthorized，底层其实是四类不同问题。</p>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">咨询排障思路</a>
+          <a class="btn-secondary" href="seo.html">返回文章中心</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-3">
+        <article class="card case-card">
+          <h3>发布时间</h3>
+          <p>2026-03-14</p>
+          <h3>作者</h3>
+          <p>BUMA 内容团队</p>
+        </article>
+        <article class="card case-card">
+          <h3>资料来源</h3>
+          <p>OpenClaw 官方 Dashboard / Gateway troubleshooting / devices、Clawdbot 中文文档</p>
+        </article>
+        <article class="card case-card">
+          <h3>适合谁看</h3>
+          <p>正在排查 Dashboard unauthorized、1008、token drift、设备授权失败的人</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Quick Judgment</div>
+          <h2 class="section-title">先说结论：<code>unauthorized</code> 不是一个问题，而是至少 4 层不同故障</h2>
+          <p class="section-desc">OpenClaw 官方 Gateway troubleshooting 已经把 Dashboard / Control UI 的 auth 细节码拆得很清楚。真正高效的做法不是盯着“为什么报 unauthorized”，而是先认清返回的细节码到底是哪一个。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <div class="feature-icon">01</div>
+            <h3><code>AUTH_TOKEN_MISSING</code></h3>
+            <p>客户端根本没带共享 token。最常见是本地页面开对了，但 Control UI 设置里没填 token，或者显式指定 URL 后没有同步带凭据。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">02</div>
+            <h3><code>AUTH_TOKEN_MISMATCH</code></h3>
+            <p>客户端带了 token，但跟网关当前共享 token 不一致。高频场景是 token 改过、连错网关、或旧浏览器会话还缓存着老 token。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">03</div>
+            <h3><code>AUTH_DEVICE_TOKEN_MISMATCH</code></h3>
+            <p>共享 token 可能没错，但某台设备之前缓存的 per-device token 已经过期、被轮换或被撤销，导致设备身份链路失配。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">04</div>
+            <h3><code>PAIRING_REQUIRED</code></h3>
+            <p>设备身份已经被识别到，但当前角色还没有通过审批。也就是说，它不是“密码错了”，而是“这台设备还没被允许做这个角色”。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">05</div>
+            <h3><code>device identity required</code></h3>
+            <p>更偏安全上下文或设备握手问题，常见于非安全上下文、缺少设备身份信息、或连接方式不满足设备认证前提。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <div class="feature-icon">06</div>
+            <h3>重复 <code>1008</code> / reconnect loop</h3>
+            <p>它通常只是握手被策略拒绝的表面表现。真正根因仍要回到 token、device token、pairing 或连接目标上拆。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>为什么同样是 Dashboard 连不上，官方会让你先看 auth detail code？</h2>
+          <p>因为 <code>unauthorized</code> 只是大类结果，不足以指导动作。OpenClaw 官方 Gateway troubleshooting 里专门给了 <code>error.details.code</code> 的 quick map，就是为了避免你把不同层级的问题混在一起处理。比如 <code>AUTH_TOKEN_MISSING</code> 代表客户端没送共享 token；<code>AUTH_TOKEN_MISMATCH</code> 代表共享 token 与网关当前值不一致；<code>AUTH_DEVICE_TOKEN_MISMATCH</code> 代表设备级 token 漂移；<code>PAIRING_REQUIRED</code> 代表设备身份被识别到，但当前角色还没批准。如果你没先分层，最容易做的错误动作就是一直重开页面、重启网关，最后还是回到原点。</p>
+          <p>Dashboard 官方文档还补了一个很关键的背景：Control UI 的认证是在 WebSocket 握手阶段通过 <code>connect.params.auth</code> 强制执行的。也就是说，页面能打开，不代表认证已经通过；浏览器能看到 UI，也不代表你的握手参数、共享 token、设备 token 一定是对的。很多用户会把“页面能渲染出来”误当成“服务一定正常”，但真正失败的往往发生在连接握手这一步。</p>
+          <p>对中文用户来说，这篇最重要的价值是把“看起来都像 unauthorized”的问题拆成可执行路径。只要细节码看对了，下一步该查什么，其实会非常明确。</p>
+        </article>
+        <article class="card case-card">
+          <h2>Dashboard unauthorized 的第一轮排查，官方顺序应该怎么走？</h2>
+          <p><strong>第一步：</strong><code>openclaw gateway status</code>。先确认网关服务是不是在跑，别在服务没起来的前提下排 auth。</p>
+          <p><strong>第二步：</strong><code>openclaw status</code>。补看总览，确认你当前 CLI 指向的网关目标、配置主线和基本状态没有明显偏差。</p>
+          <p><strong>第三步：</strong><code>openclaw logs --follow</code>。把握手阶段的报错抓出来，重点看是 <code>AUTH_TOKEN_MISSING</code>、<code>AUTH_TOKEN_MISMATCH</code>、<code>AUTH_DEVICE_TOKEN_MISMATCH</code> 还是 <code>PAIRING_REQUIRED</code>。</p>
+          <p><strong>第四步：</strong><code>openclaw doctor</code>。它不是只查模型和环境，也会帮助你发现配置与服务层的阻塞，避免你对着前端现象乱猜。</p>
+          <p><strong>第五步：</strong><code>openclaw gateway status --json</code>。官方 troubleshooting 专门把它放进 Dashboard 场景里，用于更精确地核对 probe URL、dashboard URL 与连接目标。</p>
+          <p>如果是远程网关，Dashboard 官方页还明确建议：先保证 URL 可达，必要时用 SSH 隧道把远程 <code>127.0.0.1:18789</code> 映射回来，再去看 token。因为连错目标时，你看到的 token mismatch 很可能只是“你连的根本不是你以为的那个网关”。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Detail Codes</div>
+          <h2 class="section-title">4 个最关键的 auth 细节码，分别该怎么处理</h2>
+          <p class="section-desc">先认码，再决定动作。别把设备审批问题当 token 错误，也别把 token 漂移当成网关宕机。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card case-card">
+            <h2><code>AUTH_TOKEN_MISSING</code>：没带共享 token</h2>
+            <p>这类问题最直接，意思就是客户端没有把必须的共享 token 带到握手里。官方 Dashboard 页给出的处理是：先从网关主机确认 <code>gateway.auth.token</code>，如果没有配置就用 <code>openclaw doctor --generate-gateway-token</code> 生成；如果是 SecretRef 管理的 token，就先确保当前 shell 能解析到它，再重新执行 <code>openclaw dashboard</code>。对使用 Control UI 的人来说，更实际的动作是把 token 粘进设置页的 auth 字段，然后重新 connect。</p>
+            <p>这类问题最怕的是“以为自己已经填过”。如果你切换了浏览器标签页、切了不同网关 URL、或者从本地改成了远程 URL，当前会话里保存的 token 可能并不会自动跟着切过去，所以仍然要按当前连接目标重新确认一遍。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>AUTH_TOKEN_MISMATCH</code>：共享 token 漂移</h2>
+            <p>官方 Troubleshooting 的说法很直接：如果网关返回 <code>canRetryWithDeviceToken=true</code>，客户端可以做一次可信重试；如果重试后仍然失败，就要按 token drift 的方向人工修。也就是说，这不是单纯“输错了一次”的概念，而更像是客户端和服务端对当前 token 版本已经失去同步。</p>
+            <p>高频场景包括：网关 token 刚被改过、你连到了另一台网关、某个浏览器会话里还保留着旧 token、团队里有人把共享 token 更新了但当前设备没同步到。此时继续只刷新 Dashboard 基本没用，更稳的动作是先确认网关主机上的当前 token，再重新输入或更新当前客户端。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>AUTH_DEVICE_TOKEN_MISMATCH</code>：设备级 token 失效</h2>
+            <p>这类问题更容易被忽略，因为很多人只盯共享 token。官方 <code>openclaw devices</code> 文档明确给了 token drift recovery checklist：先确认当前共享 token 来源，再用 <code>openclaw devices list</code> 找到受影响设备，然后执行 <code>openclaw devices rotate --device &lt;deviceId&gt; --role operator</code>；如果轮换还不够，再移除旧设备记录、重新批准 pairing。换句话说，这一类更像“设备身份缓存坏了”，不是“网关密码错了”。</p>
+            <p>如果你换过浏览器环境、迁移过机器，或者管理员做过设备 token 轮换，这一类就尤其常见。它的修法也不在前端，而在设备记录管理层。</p>
+          </article>
+          <article class="card case-card">
+            <h2><code>PAIRING_REQUIRED</code>：设备还没拿到当前角色权限</h2>
+            <p>官方 quick map 的解释是：设备身份已知，但还没被批准用于当前角色。也就是说，网关知道你是谁，但还没允许你以这个角色连接。下一步动作不是换 token，而是去看 <code>openclaw devices list</code>，然后执行 <code>openclaw devices approve &lt;requestId&gt;</code> 或 <code>--latest</code>。如果你跳过这一步，只会陷入“token 明明没错，为什么还是 unauthorized”的循环。</p>
+            <p>这类问题在多设备协作、远程控制台、节点或新浏览器首次接入时更常见。它不是错误输入，而是安全审批流程的一部分。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>OpenClaw token drift 官方恢复清单，最该怎么用？</h2>
+          <p>如果你遇到的是反复 <code>AUTH_TOKEN_MISMATCH</code> 或 <code>AUTH_DEVICE_TOKEN_MISMATCH</code>，最值得照抄的不是论坛经验，而是官方 devices 文档里的 token drift recovery checklist。顺序是这样的：先用 <code>openclaw config get gateway.auth.token</code> 确认当前网关共享 token；再用 <code>openclaw devices list</code> 找到受影响设备；然后对该设备执行 <code>openclaw devices rotate --device &lt;deviceId&gt; --role operator</code>；如果轮换还不够，再移除旧设备，再重新 approve pairing；最后再让客户端带着当前共享 token 重新连接。</p>
+          <p>这个顺序很关键，因为它说明 OpenClaw 的 auth 漂移并不只有一层。共享 token、设备 token、pairing 审批，这三条链任何一条漂移，都可能在前端表现成类似的 unauthorized。很多用户只修共享 token，不碰设备记录，所以会出现“我明明已经填了最新 token，为什么还是不行”的错觉。</p>
+          <p>如果你是团队环境，建议把这套恢复顺序写进内部 SOP。因为一旦有多人共用远程 Gateway，token 轮换、设备更换、浏览器切换会比单机环境频繁得多，auth drift 也更容易发生。</p>
+        </article>
+        <article class="card case-card">
+          <h2>本地与远程 Dashboard，为什么排法不完全一样？</h2>
+          <p>本地 Gateway 的快路径相对简单：直接打开 <code>http://127.0.0.1:18789/</code>，再用 <code>openclaw dashboard</code> 辅助打开或复制干净链接即可。官方还特别提醒：Control UI 是 admin surface，不应该公开暴露；更推荐 localhost、Tailscale Serve 或 SSH 隧道，而不是把它直接暴露在公网。</p>
+          <p>远程场景复杂在两个地方。第一，你得先确认自己连的是哪台网关；第二，远程 URL 与 auth 凭据必须成对正确。官方 devices 文档甚至强调：当你显式传入 <code>--url</code> 时，CLI 不会回退使用配置或环境里的凭据，必须显式传 <code>--token</code> 或 <code>--password</code>。这意味着很多“我明明配过 token”的案例，其实是因为你在新 URL 上没有同步带上对应凭据。</p>
+          <p>所以远程 Dashboard 出问题时，正确顺序通常是：先确认目标 URL，再确认 token 来源，再看设备审批，而不是直接把锅甩给浏览器或页面缓存。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid-2">
+        <article class="card case-card">
+          <h2>一句话判断框架</h2>
+          <p>OpenClaw Dashboard 出现 unauthorized、1008、AUTH_TOKEN_MISMATCH 时，先判断是<strong>没带共享 token</strong>、<strong>共享 token 漂移</strong>、<strong>设备 token 漂移</strong>，还是<strong>设备角色还没批准</strong>；这四类问题表面很像，修法完全不同。</p>
+        </article>
+        <article class="card case-card">
+          <h2>最适合什么时候看这篇？</h2>
+          <p>适合你已经确认 Dashboard 地址没错，但 Control UI 仍然 unauthorized、重连循环、1008、或换设备后突然全部失配时。先把鉴权层拆清，再去查网关服务或渠道问题，效率会高很多。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-header left">
+          <div class="eyebrow">Related Reading</div>
+          <h2 class="section-title">相关推荐</h2>
+          <p class="section-desc">如果你现在卡的是控制台、服务启动、日志或设备批准，可以顺着这几篇继续看。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-0920-openclaw-dashboard-gateway-status.html">OpenClaw Dashboard 打不开怎么办</a></h3>
+            <p>适合继续查 Dashboard 地址、gateway status、1008 和整体连接链路。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1330-openclaw-gateway-service-not-running.html">OpenClaw gateway 起不来怎么办</a></h3>
+            <p>适合继续排查服务没起来、mode=local、非 loopback 鉴权与端口冲突。</p>
+          </article>
+          <article class="card feature-card home-card">
+            <h3><a href="seo-20260314-1236-openclaw-logs-follow-troubleshooting.html">OpenClaw logs 怎么看</a></h3>
+            <p>适合继续把 auth 报错放回完整排障顺序里，不再只盯一条日志。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-home">
+      <div class="container cta-wrap-home">
+        <div>
+          <div class="eyebrow">Need Help</div>
+          <h2 class="section-title">想把 OpenClaw Dashboard 的 unauthorized 一次拆清？</h2>
+          <p class="section-desc">如果你正在排查 token drift、设备授权、远程 Dashboard 连接或 1008 重连循环，我可以继续帮你把问题拆成共享 token、设备 token、pairing 和连接目标 4 层。</p>
+        </div>
+        <div class="button-row hero-actions">
+          <a class="btn-primary" href="contact.html">预约咨询</a>
+          <a class="btn-secondary" href="openclaw-faq.html">查看 FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-line"><span>buma</span><span>OpenClaw / dashboard / auth</span></div></footer>
+</body>
+</html>

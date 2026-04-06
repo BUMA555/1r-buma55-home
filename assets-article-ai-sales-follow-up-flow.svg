@@ -1,0 +1,37 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="36" fill="#0B1020"/>
+  <rect x="36" y="36" width="1128" height="688" rx="28" fill="#111936" stroke="#293566"/>
+  <text x="80" y="110" fill="#F4F7FF" font-size="38" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">AI 销售线索跟进流程</text>
+  <text x="80" y="152" fill="#A9B6E5" font-size="20" font-family="Arial, Microsoft YaHei, sans-serif">从内容入口到咨询推进，先把“谁值得继续跟”讲清楚</text>
+
+  <rect x="78" y="220" width="220" height="180" rx="24" fill="#1B2750" stroke="#4560B8"/>
+  <text x="110" y="278" fill="#FFFFFF" font-size="28" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">01 内容入口</text>
+  <text x="110" y="322" fill="#C6D4FF" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">文章 / FAQ / 搜索页</text>
+  <text x="110" y="352" fill="#C6D4FF" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">先回答用户第一句</text>
+
+  <rect x="340" y="220" width="220" height="180" rx="24" fill="#1D3A50" stroke="#3C9AD6"/>
+  <text x="372" y="278" fill="#FFFFFF" font-size="28" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">02 初步分流</text>
+  <text x="372" y="322" fill="#CFF6FF" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">先了解 / 想比较 / 准备咨询</text>
+  <text x="372" y="352" fill="#CFF6FF" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">别把所有人都当同阶段</text>
+
+  <rect x="602" y="220" width="220" height="180" rx="24" fill="#233F3A" stroke="#46C39B"/>
+  <text x="634" y="278" fill="#FFFFFF" font-size="28" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">03 收集信息</text>
+  <text x="634" y="322" fill="#D8FFF1" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">业务类型 / 当前卡点</text>
+  <text x="634" y="352" fill="#D8FFF1" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">目标与时间窗口</text>
+
+  <rect x="864" y="220" width="220" height="180" rx="24" fill="#4A2F20" stroke="#FF9A57"/>
+  <text x="896" y="278" fill="#FFFFFF" font-size="28" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">04 下一步</text>
+  <text x="896" y="322" fill="#FFE4D2" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">继续阅读 / 加微信</text>
+  <text x="896" y="352" fill="#FFE4D2" font-size="18" font-family="Arial, Microsoft YaHei, sans-serif">预约沟通 / 电话跟进</text>
+
+  <path d="M298 310H340" stroke="#84A1FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M560 310H602" stroke="#65D4F2" stroke-width="8" stroke-linecap="round"/>
+  <path d="M822 310H864" stroke="#6BE3BC" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="319" cy="310" r="8" fill="#84A1FF"/>
+  <circle cx="581" cy="310" r="8" fill="#65D4F2"/>
+  <circle cx="843" cy="310" r="8" fill="#6BE3BC"/>
+
+  <rect x="92" y="488" width="1016" height="158" rx="26" fill="#10182F" stroke="#2B3763"/>
+  <text x="126" y="540" fill="#FFFFFF" font-size="28" font-family="Arial, Microsoft YaHei, sans-serif" font-weight="700">这条链路的重点不是“自动回复更多”，而是“让有效线索更快进入下一步”。</text>
+  <text x="126" y="588" fill="#B5C2EE" font-size="22" font-family="Arial, Microsoft YaHei, sans-serif">对一人公司来说，先把谁值得跟、跟什么、什么时候转人工讲清楚，比先堆复杂工具更值钱。</text>
+</svg>
