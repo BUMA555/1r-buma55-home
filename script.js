@@ -51,8 +51,8 @@
 
     cards.forEach(function initCard(card, index) {
       if (!reducedMotion) {
-        const tiltSeed = ((index % 7) - 3) * 0.35;
-        const shiftSeed = ((index % 5) - 2) * 1.5;
+        const tiltSeed = ((index % 7) - 3) * 0.9;
+        const shiftSeed = ((index % 6) - 2.5) * 3.2;
         card.style.setProperty('--card-tilt', tiltSeed.toFixed(2) + 'deg');
         card.style.setProperty('--card-shift', shiftSeed.toFixed(1) + 'px');
       }
@@ -63,7 +63,22 @@
 
       card.addEventListener('mouseleave', function onLeave() {
         card.classList.remove('is-hovered');
+        card.style.setProperty('--card-hover-rotate', '0deg');
+        card.style.setProperty('--card-hover-lift', '0px');
       });
+
+      if (!reducedMotion) {
+        card.addEventListener('mousemove', function onMove(event) {
+          const rect = card.getBoundingClientRect();
+          const px = (event.clientX - rect.left) / rect.width - 0.5;
+          const py = (event.clientY - rect.top) / rect.height - 0.5;
+          const rotate = px * 6;
+          const lift = -Math.abs(py * 7);
+
+          card.style.setProperty('--card-hover-rotate', rotate.toFixed(2) + 'deg');
+          card.style.setProperty('--card-hover-lift', lift.toFixed(1) + 'px');
+        });
+      }
     });
   }
 
