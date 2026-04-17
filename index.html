@@ -1,549 +1,183 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BUMA｜一个人的公司，也能拥有一支 AI 团队</title>
-  <meta name="description" content="BUMA 面向个人创业者与小团队，提供一人公司 AI 团队搭建、OpenClaw 部署、飞书接入与官网咨询转化方案，帮助内容、客户和流程真正跑起来。" />
-  <meta name="robots" content="index,follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="BUMA｜一个人的公司，也能拥有一支 AI 团队" />
-  <meta property="og:description" content="面向个人创业者与小团队的 AI 团队、OpenClaw、飞书接入与官网转化方案。" />
-  <meta property="og:url" content="https://buma55.com/" />
-  <link rel="canonical" href="https://buma55.com/" />
-  <link rel="stylesheet" href="styles.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "BUMA",
-    "url": "https://buma55.com/",
-    "logo": "https://buma55.com/assets-buma-logo.svg"
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUMA | 一人公司也有 AI 团队</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fullpage.css">
 </head>
-<body id="top" class="anti-index-minimal">
+<body class="min-h-screen flex flex-col relative">
 
-  <header class="topbar topbar-clean">
-    <div class="container nav nav-clean">
-      <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
-      <nav class="nav-links nav-links-clean">
-        <a class="active" href="index.html">首页</a>
-        <a href="solutions.html">解决方案</a>
-        <a href="seo.html">文章</a>
-        <a href="about.html">关于</a>
-        <a href="contact.html">联系</a>
-      </nav>
-      <div class="nav-endcaps">
-        <span class="nav-signal">山东临沂 · 远程可协作</span>
-        <a class="nav-cta" href="contact.html">预约咨询</a>
-      </div>
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-4 pointer-events-none">
+        <div class="flex justify-between items-start pointer-events-auto">
+            <div class="bg-black text-white p-4 transform rotate-3 brutal-box border-4 border-white hover:rotate-0 transition-transform">
+                <h1 class="font-display text-2xl leading-none">BUMA<br>AI</h1>
+            </div>
+
+            <div class="flex flex-col gap-4 items-end">
+                <a href="solutions.html" class="brutal-btn transform -rotate-2 text-sm">方案</a>
+                <a href="seo.html" class="brutal-btn transform rotate-3 text-sm bg-yellow-300">文章</a>
+                <a href="contact.html" class="brutal-btn transform -rotate-1 text-sm bg-white">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative pt-32 pb-20 px-6 md:px-12 overflow-hidden min-h-[90vh] flex flex-col justify-center">
+        <!-- Background Decor -->
+        <div class="absolute top-20 right-10 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-pulse"></div>
+        <div class="absolute bottom-20 left-10 w-80 h-80 bg-red-600 rotate-45 mix-blend-multiply opacity-50"></div>
+
+        <!-- Main Headline -->
+        <div class="relative z-10 max-w-7xl mx-auto chaos-target">
+            <div class="bg-yellow-300 inline-block px-2 mb-4 border-2 border-black transform -rotate-2">
+                <span class="font-bold tracking-widest">EST. 2026 // BUMA55</span>
+            </div>
+
+            <h2 class="font-display text-[14vw] md:text-[10vw] text-black leading-[0.85] tracking-tighter mix-blend-hard-light relative">
+                <span class="block transform -rotate-1 hover:translate-x-4 transition-transform duration-100">一人公司</span>
+                <span class="block text-white outline-text transform rotate-2 ml-4 md:ml-20 hover:-translate-x-4 transition-transform duration-100">也要有</span>
+                <span class="block transform -rotate-1 text-red-600 hover:scale-105 transition-transform duration-100">AI 团队</span>
+            </h2>
+
+            <!-- Floating Sticker -->
+            <div class="sticker bg-green-400 w-32 h-32 md:w-48 md:h-48 top-[40%] right-[5%] md:right-[15%] rotate-12 flex flex-col justify-center items-center shadow-[8px_8px_0_black]" style="--rot: 12deg;">
+                <span class="font-display text-xl md:text-2xl transform -rotate-12">先做<br>承接<br>再放大</span>
+            </div>
+        </div>
+
+        <div class="mt-12 md:ml-32 max-w-xl bg-white border-4 border-black p-6 shadow-hard rotate-1 chaos-target">
+            <p class="text-lg md:text-xl font-bold leading-tight">
+                别再做“看起来很专业、但没人咨询”的官网。我们把你的首页、内容和咨询链路连成一套能跑的增长系统。
+                <span class="bg-black text-white px-1">先收口，再放大。</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="py-12 relative z-20">
+        <div class="marquee-container shadow-hard">
+            <div class="marquee-content">
+                /// 一人公司也能跑 AI 团队 /// 内容要承接咨询 /// 先修首页再放大 /// OpenClaw + 飞书接入 /// 一人公司也能跑 AI 团队 /// 内容要承接咨询 /// 先修首页再放大 /// OpenClaw + 飞书接入
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                /// 一人公司也能跑 AI 团队 /// 内容要承接咨询 /// 先修首页再放大 /// OpenClaw + 飞书接入 /// 一人公司也能跑 AI 团队 /// 内容要承接咨询 /// 先修首页再放大 /// OpenClaw + 飞书接入
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main>
+    <!-- WORK / GRID SECTION -->
+    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
+        <div class="absolute -left-12 top-0 font-display text-9xl opacity-5 text-gray-400 rotate-90 hidden md:block">
+            CASES
+        </div>
 
-    <!-- HERO -->
-    <section class="hero hero-home hero-home-v2">
-      <div class="container hero-v2-grid">
-        <div class="hero-v2-copy">
-          <div class="hero-status-badge">
-            <span class="hero-status-dot" aria-hidden="true"></span>
-            现在在线 · 24h 内回应
-          </div>
-          <div class="eyebrow eyebrow-clean">BUMA · AI Team for One-Person Company</div>
-          <h1 class="hero-v2-title">一个人的公司，<br/>也可以有一支 AI 团队。</h1>
-          <p class="section-desc hero-v2-desc">把内容增长、咨询承接、AI 执行链路，接成一条能跑起来的业务路径。</p>
-          <div class="button-row hero-actions hero-v2-actions">
-            <a class="btn-primary" href="contact.html">先约一次 15 分钟适配判断</a>
-            <a class="btn-secondary" href="seo.html">看文章中心</a>
-          </div>
-          <div class="hero-intake-proof" aria-label="联系前说明">
-            <span class="hero-intake-pill">先发：站点链接 / 截图 / 最卡的 1 步</span>
-            <span class="hero-intake-pill">工作日 24h 内告诉你下一步怎么走</span>
-          </div>
-          <div class="hero-v2-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-num">93+</span>
-              <span class="hero-stat-label">高意图文章沉淀</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-4 items-center">
+
+            <!-- Card 1 -->
+            <article class="brutal-box card-1 p-0 group overflow-hidden chaos-target">
+                <div class="h-48 bg-black overflow-hidden border-b-4 border-black relative">
+                    <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/FF00FF/000000?text=LEADS')] bg-cover bg-center group-hover:scale-110 transition-transform duration-75"></div>
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-display text-2xl mb-2">线索承接</h3>
+                    <p class="text-sm font-bold mb-4">首页 / FAQ / 联系页收口</p>
+                    <p class="text-xs leading-relaxed border-t-2 border-black pt-2">
+                        先做单一 CTA，先说清联系前要发什么，再把无效咨询过滤在前面。
+                    </p>
+                    <a href="solutions.html" class="mt-4 inline-block text-xs font-bold underline decoration-4 decoration-black hover:decoration-white hover:bg-black hover:text-white px-1 transition-colors">查看方案</a>
+                </div>
+            </article>
+
+            <!-- Card 2 (Dominant) -->
+            <article class="brutal-box card-2 p-8 md:col-span-1 md:row-span-2 min-h-[500px] flex flex-col justify-between relative chaos-target">
+                <div class="absolute top-4 right-4 text-6xl opacity-50">★</div>
+                <div>
+                    <h3 class="font-display text-4xl mb-4 bg-black inline-block px-2 transform -skew-x-12">先看<br>首页</h3>
+                    <p class="mt-4 font-mono text-sm">
+                        你不缺“更好看”，你缺“更能转化”。先把首屏承诺、路径分流、联系动作做清楚，再投流量才有意义。
+                    </p>
+                </div>
+                <div class="border-4 border-white p-4 mt-8 bg-black transform rotate-2">
+                    <span class="text-xs text-gray-400 block mb-1">模块：</span>
+                    <span class="font-bold text-xl text-green-400">首页改造</span>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="brutal-box card-3 p-6 bg-yellow-300 border-red-600 chaos-target">
+                <div class="flex justify-between items-start border-b-4 border-black pb-4 mb-4">
+                    <h3 class="font-display text-xl">内容中枢</h3>
+                    <span class="bg-black text-white text-xs px-2 py-1 rounded-full">SEO</span>
+                </div>
+                <p class="text-sm font-bold">
+                    不是堆文章，是围绕高意图问题做内容路径，把“先看再聊”的人引导成“愿意咨询”的人。
+                </p>
+                <div class="mt-6 flex justify-end">
+                    <a href="seo.html" class="w-12 h-12 block bg-black rounded-full border-4 border-white hover:bg-red-600 transition-colors"></a>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- MANIFESTO / TEXT WALL -->
+    <section class="bg-black text-white py-20 px-6 relative overflow-hidden jagged-edge pb-32">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="font-display text-5xl md:text-7xl leading-none text-transparent stroke-white" style="-webkit-text-stroke: 2px white;">
+                先跑通<br>再扩张<br>先收口<br>再增长
             </div>
-            <div class="hero-stat">
-              <span class="hero-stat-num">5 家</span>
-              <span class="hero-stat-label">一人公司服务经验</span>
+            <div class="font-mono text-sm md:text-base space-y-6">
+                <p class="bg-blue-700 p-4 border-2 border-white transform rotate-1 shadow-[6px_6px_0_white]">
+                    > 我们不先谈“大而全”改版。<br>
+                    > 我们先找一个最卡的动作。<br>
+                    > 我们先把承接链路跑通。<br>
+                    > 再决定值不值得继续放大。
+                </p>
+                <p class="p-4 border-l-8 border-neon-green bg-gray-900">
+                    BUMA 面向一人公司与小团队：OpenClaw 部署、飞书接入、官网承接与内容增长，组合成可执行的 AI 业务流程。
+                </p>
             </div>
-            <div class="hero-stat">
-              <span class="hero-stat-num">24h</span>
-              <span class="hero-stat-label">内必有回应</span>
+        </div>
+
+        <!-- Decorative geometric shapes -->
+        <div class="absolute bottom-10 left-10 w-0 h-0 border-l-[50px] border-l-transparent border-t-[75px] border-t-yellow-400 border-r-[50px] border-r-transparent rotate-12"></div>
+        <div class="absolute top-20 right-20 w-24 h-24 bg-red-600 rotate-45 border-4 border-white"></div>
+    </section>
+
+    <!-- INTERACTIVE FOOTER -->
+    <footer class="bg-white border-t-8 border-black pt-16 pb-8 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-display text-4xl mb-8 transform -rotate-2">开始改造</h2>
+
+            <div class="bg-gray-100 p-8 border-4 border-black shadow-hard inline-block w-full max-w-md relative">
+                <label for="chaosLevel" class="block font-bold mb-4 text-left">激进程度：<span id="chaosValue">50%</span></label>
+                <input type="range" id="chaosLevel" min="0" max="100" value="50">
+                <p class="text-xs text-left mt-2 font-mono text-gray-500">提示：拉高后会增强旋转和错位，仅影响展示效果。</p>
+
+                <!-- Absolute Deco on Control Panel -->
+                <div class="absolute -top-4 -right-4 w-8 h-8 bg-black"></div>
+                <div class="absolute -bottom-4 -left-4 w-8 h-8 bg-black"></div>
             </div>
-          </div>
-        </div>
-        <div class="hero-v2-visual-wrap">
-          <img class="hero-v2-visual" src="assets-hero-main.jpg" alt="AI team workspace" />
-        </div>
-      </div>
-    </section>
 
-    <!-- HERO DECISION ROUTES -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">Choose Your Next Step</div>
-          <h2 class="section-title">先到对的入口，再决定要不要马上联系</h2>
-          <p class="section-desc">快速参考了 Linear Contact 的“按帮助类型先分流”与 Stripe Contact Sales 的“先降低第一次动作阻力”写法，把首页 Hero 下方补成 3 条更像商业站的下一步路径：先自查、先看承接、或直接进入适配判断。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Path 01 · 先补页面与收录</div>
-            <h3>我先想补首页、文章中心、内链或收录</h3>
-            <p>适合已经开始写内容，但首页承接、文章分流、内链结构还没接顺的人。先看高意图文章中心，不急着直接咨询。</p>
-            <ul class="list">
-              <li>先判断是首页话术问题，还是内容路径问题</li>
-              <li>先补文章中心与内链结构，再谈放大</li>
-              <li>减少“还没看清就跳联系页”的犹豫</li>
-            </ul>
-            <a class="text-link" href="seo.html">先去文章中心补判断 →</a>
-          </article>
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Path 02 · 先补承接与取舍</div>
-            <h3>我已经有流量或内容，但不知道下一步先改哪</h3>
-            <p>适合已经发过内容、也有页面，但咨询承接不稳、优先级很乱的人。先看解决方案与联系页承接逻辑，再决定是否进入沟通。</p>
-            <ul class="list">
-              <li>先看 1 页 1 动作怎么收口</li>
-              <li>先确认 FAQ、解决方案、联系页谁该先改</li>
-              <li>减少一次想同时改全站的冲动</li>
-            </ul>
-            <a class="text-link" href="solutions.html">先看解决方案路径 →</a>
-          </article>
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Path 03 · 直接进入判断</div>
-            <h3>我已经有真实卡点，想先做 15 分钟适配判断</h3>
-            <p>适合已经有页面、截图、报错或最卡流程的人。直接把最卡的 1 步发来，先判断值不值得聊，不先做销售推进。</p>
-            <ul class="list">
-              <li>先发页面链接 / 截图 / 最卡的 1 步</li>
-              <li>工作日 24h 内告诉你该先动哪里</li>
-              <li>先判断优先级，再决定怎么合作</li>
-            </ul>
-            <a class="text-link" href="contact.html">直接进入适配判断 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST BAR SECTION -->
-    <section class="trust-bar-section">
-      <div class="container">
-        <div class="trust-bar">
-          <div class="trust-bar-item">
-            <span class="trust-bar-num">93</span>
-            <span class="trust-bar-label">篇高意图文章沉淀</span>
-          </div>
-          <div class="trust-bar-sep" aria-hidden="true">|</div>
-          <div class="trust-bar-item">
-            <span class="trust-bar-num">5</span>
-            <span class="trust-bar-label">家一人公司服务经验</span>
-          </div>
-          <div class="trust-bar-sep" aria-hidden="true">|</div>
-          <div class="trust-bar-item">
-            <span class="trust-bar-num">24h</span>
-            <span class="trust-bar-label">内必有回应</span>
-          </div>
-          <div class="trust-bar-sep" aria-hidden="true">|</div>
-          <div class="trust-bar-item">
-            <span class="trust-bar-icon" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 4v4c0 2.8 2.1 5.4 5 6 2.9-.6 5-3.2 5-6V4L7 1z" stroke="#4ade80" stroke-width="1.2" stroke-linejoin="round"/><path d="M4.5 7l2 2 3.5-3.5" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="trust-bar-label trust-bar-label-plain">OpenClaw 部署与飞书接入，找 BUMA</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST REASONS -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">Why You Can Trust The First Call</div>
-          <h2 class="section-title">为什么这里先做判断，不先急着卖你</h2>
-          <p class="section-desc">快速参考了 Basecamp 首页把“为什么能信这家公司”提前讲清楚的写法，以及 37signals 把经营原则直接摆到台前的做法。可复用点不是照抄文案，而是把访客最担心的 3 个问题提前回答：你们是不是只会空聊、是不是一上来就想卖整包、是不是没有真实积累。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Reason 01 · 不是空聊</div>
-            <h3>先看真实页面、真实流程、真实卡点，再给判断</h3>
-            <p>第一次沟通默认先看你现有页面链接、截图或最卡的 1 步，不靠抽象需求会来回聊半天。</p>
-            <ul class="list">
-              <li>先判断：首页、FAQ、Solutions、Contact 谁该先改</li>
-              <li>先判断是承接问题、内容问题，还是接入问题</li>
-              <li>不把第一次沟通变成泛泛介绍会</li>
-            </ul>
-          </article>
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Reason 02 · 不先卖整包</div>
-            <h3>默认只先收口到 1 页、1 条链路、1 个动作</h3>
-            <p>不承诺一轮把全站、获客、成交、交付全部改完，而是先找出最值得先动的那个点。</p>
-            <ul class="list">
-              <li>优先收口单一主 CTA，避免页面同时推多个动作</li>
-              <li>优先修最影响转化的一处，而不是平均用力</li>
-              <li>如果暂时不适合做，会直接建议先看文章</li>
-            </ul>
-          </article>
-          <article class="card home-card">
-            <div class="proof-snapshot-kicker">Reason 03 · 有持续积累</div>
-            <h3>不是今天才搭的壳站，而是在持续补内容和承接链路</h3>
-            <p>站内已经有 93+ 篇高意图文章、FAQ、Solutions、Contact 等承接层，目的就是让你能先判断，再决定要不要联系。</p>
-            <ul class="list">
-              <li>文章中心负责预教育，不把所有人都硬推去联系</li>
-              <li>FAQ 和解决方案负责回答典型疑问与边界</li>
-              <li>联系页只保留 1 个明确入口，减少选择成本</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- DELIVERY SNAPSHOT -->
-    <section class="section section-proof-snapshot">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">What You Get First</div>
-          <h2 class="section-title">先看联系后会先收到什么，不再重复讲“下一步去哪”</h2>
-          <p class="section-desc">参考了 Stripe Contact Sales 里“先到对的地方，再告诉你后面会发生什么”的节奏。既然 Hero 下方已经先做了 3 条入口分流，这里就不再重复“选路径”，而是改成更具体的首次交付预期：你会先收到什么、先看到哪里变清楚、先怎么判断值不值得继续。</p>
-        </div>
-        <div class="proof-snapshot-grid">
-          <article class="card proof-snapshot-card">
-            <div class="proof-snapshot-kicker">01 · 页面先变清楚</div>
-            <h3>先把 1 个关键页面改成会承接的页面</h3>
-            <p>优先改首页、解决方案页、FAQ 或联系页，不做一上来就“全站推倒重做”的空承诺。</p>
-            <ul class="proof-snapshot-list">
-              <li>Hero 主话术和单一 CTA 收敛清楚</li>
-              <li>适合 / 不适合先聊的分流判断更明确</li>
-              <li>表单前先说清第一次该发什么</li>
-            </ul>
-          </article>
-          <article class="card proof-snapshot-card proof-snapshot-card-accent">
-            <div class="proof-snapshot-kicker">02 · 承接先变顺</div>
-            <h3>把咨询后的动作节奏直接写出来</h3>
-            <p>不是只说“收到后联系你”，而是让你知道首触达、案例跟进和诊断推进会怎么发生。</p>
-            <ul class="proof-snapshot-list">
-              <li>5 分钟首触达，先确认最卡的 1 步</li>
-              <li>24 小时内给你最接近的案例或参考</li>
-              <li>48 小时给出 2–3 个可选推进方向</li>
-            </ul>
-          </article>
-          <article class="card proof-snapshot-card">
-            <div class="proof-snapshot-kicker">03 · 内容资产先变厚</div>
-            <h3>把文章、FAQ、案例页串成一个教育层</h3>
-            <p>先让访客有地方自我判断，再把真正有意向的人引导到联系页，减少无效咨询。</p>
-            <ul class="proof-snapshot-list">
-              <li>文章中心承接“先看再聊”的用户</li>
-              <li>FAQ 和案例页负责解释与建立信任</li>
-              <li>最后只保留 1 个明确咨询入口</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT WE DO -->
-    <section class="section section-deep">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">What We Do</div>
-          <h2 class="section-title">把 AI 真正接进业务里</h2>
-        </div>
-        <div class="grid-3">
-          <article class="card feature-card home-card">
-            <img class="feature-img" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&q=75&auto=format" alt="Content creation" loading="lazy" />
-            <h3>内容增长</h3>
-            <p>选题、脚本、长文、改写，按线索意图展开，不是堆量。</p>
-          </article>
-          <article class="card feature-card home-card">
-            <img class="feature-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=75&auto=format" alt="Team collaboration" loading="lazy" />
-            <h3>咨询承接</h3>
-            <p>FAQ、分流、咨询入口、跟进节奏，接顺而不是接住。</p>
-          </article>
-          <article class="card feature-card home-card">
-            <img class="feature-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=75&auto=format" alt="AI automation" loading="lazy" />
-            <h3>AI 执行流程</h3>
-            <p>把重复动作做成可复用流程，一个人也能跑通闭环。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- OUTCOME -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">What We Prioritize First</div>
-          <h2 class="section-title">先定最该先动的 3 个优先级，不再重复讲一遍抽象结果</h2>
-          <p class="section-desc">参考了 Linear 把页面职责拆清楚、Stripe 先给“接下来怎么推进”的节奏。这里不再泛讲“最终会变多好”，而是直接告诉访客：一旦开始判断，通常先定哪 3 件事，避免和后面的真实场景证明重复。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card feature-card home-card">
-            <h3>先定：首页到底承接哪个动作</h3>
-            <p>不是先把首页塞满，而是先确定这页要负责分流、教育，还是直接把人送去咨询。</p>
-          </article>
-          <article class="card feature-card home-card">
-            <h3>先定：哪一页最值得先改</h3>
-            <p>通常先从首页、解决方案页、FAQ、联系页里选 1 页，不把时间摊薄到全站一起动。</p>
-          </article>
-          <article class="card feature-card home-card">
-            <h3>先定：第一次咨询该拿什么来判断</h3>
-            <p>先收页面链接、截图和最卡的 1 步，用真实材料判断优先级，而不是空聊一轮需求。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIT CHECK -->
-    <section class="section section-fit-check">
-      <div class="container">
-        <div class="section-header center fit-check-header">
-          <div class="eyebrow">Quick Fit Check</div>
-          <h2 class="section-title">先判断值不值得聊，避免一上来就浪费时间</h2>
-          <p>参考 Basecamp 的直白筛选表达与 Linear 的三点价值聚焦，把“适合谁 / 暂时不适合谁”直接放到首页，让访客先自我判断，再决定要不要点咨询。</p>
-        </div>
-        <div class="fit-grid">
-          <article class="card fit-card fit-card-positive">
-            <div class="fit-card-badge">值得先聊</div>
-            <h3>如果你现在符合这 3 种情况，建议直接约咨询</h3>
-            <ul class="fit-list">
-              <li>已经在做内容或接咨询，但线索进来后承接不稳。</li>
-              <li>想把 OpenClaw、飞书、官网表单接成一条能跑的链路。</li>
-              <li>愿意先聚焦 1 个页面、1 条流程、1 个成交动作，不追求一次全改完。</li>
-            </ul>
-            <a class="text-link" href="contact.html">进入 15 分钟适配判断 →</a>
-          </article>
-          <article class="card fit-card fit-card-muted">
-            <div class="fit-card-badge fit-card-badge-muted">可以先看文章</div>
-            <h3>如果你还在这几个阶段，先别急着约</h3>
-            <ul class="fit-list">
-              <li>还没有明确业务方向，只是想先了解 AI 能做什么。</li>
-              <li>希望一套方案同时解决获客、成交、交付、招聘全部问题。</li>
-              <li>手上没有任何现成素材、站点、页面或真实业务场景可对接。</li>
-            </ul>
-            <a class="text-link" href="seo.html">先去文章中心补判断 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">How It Works</div>
-          <h2 class="section-title">联系后，72 小时内会发生什么</h2>
-        </div>
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="step-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#4f8ef7" stroke-width="2"/><path d="M16 10v6l4 2" stroke="#4f8ef7" stroke-width="2" stroke-linecap="round"/></svg>
+            <div class="mt-16 flex flex-wrap justify-center gap-6 font-bold text-sm uppercase">
+                <a href="about.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">About</a>
+                <a href="seo.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">Articles</a>
+                <a href="contact.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">Contact</a>
             </div>
-            <div class="step-body">
-              <h3>5 分钟首触达</h3>
-              <p>先确认你最卡的 1 步，判断是否适合现在聊。</p>
+
+            <div class="mt-12 font-mono text-xs opacity-50">
+                © 2026 BUMA55. ONE-PERSON COMPANY, REAL AI WORKFLOW.
             </div>
-            <span class="step-tag">首触达</span>
-          </div>
-          <div class="step-arrow" aria-hidden="true">→</div>
-          <div class="process-step">
-            <div class="step-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="3" stroke="#4f8ef7" stroke-width="2"/><path d="M4 12h24" stroke="#4f8ef7" stroke-width="2"/><path d="M10 18h4M10 22h8" stroke="#4f8ef7" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
-            <div class="step-body">
-              <h3>24 小时案例跟进</h3>
-              <p>发一个最接近你情况的参考案例，先建立信任。</p>
-            </div>
-            <span class="step-tag">案例跟进</span>
-          </div>
-          <div class="step-arrow" aria-hidden="true">→</div>
-          <div class="process-step">
-            <div class="step-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#4f8ef7" stroke-width="2"/><path d="M16 10v6" stroke="#4f8ef7" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="20" r="1.5" fill="#4f8ef7"/></svg>
-            </div>
-            <div class="step-body">
-              <h3>48 小时诊断结论</h3>
-              <p>给出 2–3 个具体选项，不适合的也直接告知。</p>
-            </div>
-            <span class="step-tag">诊断推进</span>
-          </div>
-          <div class="step-arrow" aria-hidden="true">→</div>
-          <div class="process-step">
-            <div class="step-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 20l6-6 4 4 8-10" stroke="#4f8ef7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <div class="step-body">
-              <h3>72 小时落地第一个动作</h3>
-              <p>确定最该先做的 1 页、1 条链路或 1 个判断。</p>
-            </div>
-            <span class="step-tag">转保温</span>
-          </div>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- MICRO PROOF -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">Shipped This Week</div>
-          <h2 class="section-title">不是先说“以后会更好”，而是先把这周已经补上的 3 个承接变化摆出来</h2>
-          <p class="section-desc">这轮继续吸收 Linear Contact 的“入口清楚”和 Stripe Contact Sales 的“后续动作清楚”两个点，把这一层彻底收口成已上线的小改动证明：不再重复教你联系前该看什么，而是直接给你看这站最近已经补了哪些会影响转化的具体变化。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card home-card">
-            <h3>变化 01：首页现在先把人送到对的入口，不再只剩一个硬按钮</h3>
-            <p>过去首页更像一张名片；现在已经先补上“先看文章 / 先看方案 / 直接联系”三路入口，让不同状态的人先去对的位置。</p>
-            <ul class="list">
-              <li>已补：Hero 下方 3 路分流，降低第一次动作阻力</li>
-              <li>已补：Quick Fit Check，让不适合立刻咨询的人先自筛</li>
-              <li>意义：减少“看完首页却不知道先点哪里”的流失</li>
-            </ul>
-            <a class="text-link" href="index.html#top">回到首页顶部再看一遍路径 →</a>
-          </article>
-          <article class="card home-card">
-            <h3>变化 02：联系后会发生什么，已经提前写清楚了</h3>
-            <p>很多商业站不是没有咨询入口，而是没有把“发完消息之后会怎样”说明白。现在这一段已经写成明确节奏，而不是一句笼统的“稍后联系你”。</p>
-            <ul class="list">
-              <li>已补：5 分钟首触达、24 小时案例跟进、48 小时诊断推进</li>
-              <li>已补：首次联系前该准备什么的 intake 提示</li>
-              <li>意义：减少“联系了也只是空聊一轮”的不确定感</li>
-            </ul>
-            <a class="text-link" href="contact.html">去看联系入口怎么承接 →</a>
-          </article>
-          <article class="card home-card">
-            <h3>变化 03：文章中心不再只是堆更新，而是在替咨询做预教育</h3>
-            <p>文章不是为了显得内容很多，而是为了让“暂时还不想联系”的人先完成判断，再把真正高意向的人送回联系页。</p>
-            <ul class="list">
-              <li>已补：93+ 篇高意图文章持续沉淀</li>
-              <li>已补：首页按卡点分阅读路径，而不是只按最新排序</li>
-              <li>意义：把“先看再聊”的用户留在站内，而不是直接流失</li>
-            </ul>
-            <a class="text-link" href="seo.html">去看文章中心的承接层 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- START HERE -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header center">
-          <div class="eyebrow">Proof Path Before Contact</div>
-          <h2 class="section-title">如果你还不想立刻联系，先顺着这条证据链走一遍</h2>
-          <p class="section-desc">快速参考了 Linear Contact 里“先把人送到对的问题入口”与 Stripe Contact Sales 里“先说明后续会怎么继续”的节奏，把这一层收口成联系前证据链，而不再重复做一轮内容分流。这里不回答“你该看哪组文章”，只回答“联系前先看哪 3 个证据点，更容易判断值不值得聊”。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card home-entry-link entry-img-card">
-            <a href="solutions.html">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=75&auto=format" alt="官网承接优化：首页和解决方案页的咨询路径" loading="lazy" />
-              <div class="entry-card-body">
-                <small>Proof 01</small>
-                <strong>先看：这站现在到底想把人送去哪个动作</strong>
-                <span>先看 Solutions 的单一 CTA 和页面收口，判断首页、方案页、联系页有没有在推同一个动作。</span>
-              </div>
-            </a>
-          </article>
-          <article class="card home-entry-link entry-img-card">
-            <a href="openclaw-faq.html">
-              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=75&auto=format" alt="OpenClaw部署和飞书接入：最小链路落地" loading="lazy" />
-              <div class="entry-card-body">
-                <small>Proof 02</small>
-                <strong>先看：你最卡的那 1 步有没有被提前解释清楚</strong>
-                <span>先看 FAQ / OpenClaw 常见卡点页，确认真正阻碍开口的是权限、接入、流程，还是单纯不知道下一步。</span>
-              </div>
-            </a>
-          </article>
-          <article class="card home-entry-link entry-img-card">
-            <a href="seo-20260403-0203-one-person-company-contact-proof-chain-seo.html">
-              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=75&auto=format" alt="联系前证据链：About、Solutions、Contact 的最短路径" loading="lazy" />
-              <div class="entry-card-body">
-                <small>Proof 03</small>
-                <strong>最后再看：第一条消息到底该怎么发</strong>
-                <span>顺着 About → Solutions → Contact 的联系前证据链看一遍，确认自己该发链接、截图，还是最卡的 1 步。</span>
-              </div>
-            </a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ARTICLE ROUTES -->
-    <section class="section section-soft">
-      <div class="container">
-        <div class="section-header">
-          <div class="eyebrow">Pick Your Stuck Stage</div>
-          <h2 class="section-title">如果还不急着联系，就先按你现在卡住的阶段选第 1 篇</h2>
-          <p class="section-desc">继续参考了 Linear Contact 先按帮助类型做第一次分流、Stripe Contact Sales 先把人送去“更对的下一步”而不是堆更多说明的做法。这一层不再泛讲“按需阅读”，而是只回答 1 个问题：你现在最卡的是不敢开口、首页不承接，还是文章写多后结构变散？先选 1 个阶段，看第 1 篇最相关的文章就够了。</p>
-        </div>
-        <div class="grid-3">
-          <article class="card home-card latest-card">
-            <img class="latest-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=75&auto=format" alt="contact proof chain path" loading="lazy" />
-            <div class="proof-snapshot-kicker">Stage 01 · 不敢发第一条</div>
-            <h3><a href="seo-20260403-0203-one-person-company-contact-proof-chain-seo.html">如果你卡在：不敢发第一条，怕联系了也只是空聊</a></h3>
-            <p>先看联系前证据链、首条消息清单和 Contact 承接逻辑，先判断自己该不该开口，以及第一条到底该发什么。</p>
-            <a class="text-link" href="seo-20260403-0203-one-person-company-contact-proof-chain-seo.html">先看联系前证据链 →</a>
-          </article>
-          <article class="card home-card latest-card">
-            <img class="latest-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=75&auto=format" alt="homepage trust signals" loading="lazy" />
-            <div class="proof-snapshot-kicker">Stage 02 · 首页不承接</div>
-            <h3><a href="seo-20260403-0102-one-person-company-homepage-trust-signals-seo.html">如果你卡在：首页有流量，但看完的人不知道下一步去哪</a></h3>
-            <p>先看首页信任信号、Solutions 单一 CTA 和 FAQ 边界，优先补“先看什么 / 先点哪里 / 什么情况下该联系”。</p>
-            <a class="text-link" href="seo-20260403-0102-one-person-company-homepage-trust-signals-seo.html">先看首页承接路径 →</a>
-          </article>
-          <article class="card home-card latest-card">
-            <img class="latest-img" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=600&q=75&auto=format" alt="content hub navigation" loading="lazy" />
-            <div class="proof-snapshot-kicker">Stage 03 · 内容越写越散</div>
-            <h3><a href="seo-20260404-0808-one-person-company-content-hub-internal-linking-seo.html">如果你卡在：文章越写越多，但孤岛越来越多</a></h3>
-            <p>先看内链策略、Topic Clustering 和 Anchor Text 布局，把文章从散点写成可被 Google 完整收录的网状结构。</p>
-            <a class="text-link" href="seo-20260404-0808-one-person-company-content-hub-internal-linking-seo.html">先看内链策略 →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section cta-home">
-      <div class="container cta-wrap-home">
-        <div class="cta-copy">
-          <div class="eyebrow">Ready</div>
-          <h2 class="section-title">先发这 3 样，再开始 15 分钟适配判断</h2>
-          <p>现在只要先发：页面或链接 / 相关截图 / 最卡的 1 步。我先帮你判断该先做什么，不浪费你的时间。</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn-primary" href="contact.html">先发这 3 样，开始 15 分钟适配判断</a>
-          <div class="cta-reassurance" aria-label="联系前说明">
-            <div class="cta-reassurance-title">先说明清楚，再决定要不要继续</div>
-            <ul class="cta-reassurance-list">
-              <li>不会一上来就推整站重做，先判断最该动的 1 个页面或 1 条链路</li>
-              <li>如果现在还不适合聊，会直接建议你先看对应文章或 FAQ</li>
-              <li>材料足够时，工作日 24 小时内先告诉你下一步从哪里开始</li>
-            </ul>
-          </div>
-          <div class="cta-meta cta-meta-unified">
-            <span>工作日 24 小时内先告诉你下一步该先动哪里</span>
-            <span>单一主 CTA，不让你在首页再做第二次选择</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <div class="mobile-quick-bar">
-    <a href="tel:15550927555">电话咨询</a>
-    <a href="contact.html">联系页</a>
-    <a href="seo.html">看文章</a>
-  </div>
-
-  <footer class="footer">
-    <div class="container footer-line">
-      <span>buma</span>
-      <span>一个人的公司，也能拥有一支 AI 团队</span>
-    </div>
-  </footer>
-
+    <script src="fullpage.js"></script>
 </body>
 </html>
