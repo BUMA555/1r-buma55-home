@@ -7,6 +7,7 @@
     setupSmoothScroll(prefersReducedMotion);
     setupTopbarScrollState();
     setupCardDynamics(prefersReducedMotion);
+    setupAntiIndexOffsets(prefersReducedMotion);
     setupButtonPressFeedback();
     setupRevealAnimations(prefersReducedMotion);
   });
@@ -138,5 +139,80 @@
     targets.forEach(function observe(el) {
       observer.observe(el);
     });
+  }
+
+  function setupAntiIndexOffsets(reducedMotion) {
+    if (!document.body.classList.contains('anti-index-minimal')) return;
+
+    const offsetGroups = [
+      {
+        selector: '.hero-stat',
+        offsets: [
+          { x: -4, y: 2, rotate: -1.9 },
+          { x: 3, y: -1, rotate: 1.4 },
+          { x: -2, y: 3, rotate: -0.8 }
+        ]
+      },
+      {
+        selector: 'main > section:nth-of-type(2) .home-card',
+        offsets: [
+          { x: -8, y: 3, rotate: -2.3 },
+          { x: 6, y: -5, rotate: 1.8 },
+          { x: -3, y: 5, rotate: -1.2 }
+        ]
+      },
+      {
+        selector: '.trust-bar-item',
+        offsets: [
+          { x: -3, y: 1, rotate: -1.1 },
+          { x: 2, y: -2, rotate: 0.9 },
+          { x: -1, y: 3, rotate: -0.6 },
+          { x: 4, y: -1, rotate: 1.2 }
+        ]
+      }
+    ];
+
+    offsetGroups.forEach(function applyGroup(group) {
+      const nodes = Array.from(document.querySelectorAll(group.selector));
+      if (!nodes.length) return;
+
+      nodes.forEach(function applyNode(node, index) {
+        const offset = group.offsets[index % group.offsets.length];
+        node.setAttribute('data-anti-offset', 'true');
+        node.style.setProperty('--anti-shift-x', offset.x + 'px');
+        node.style.setProperty('--anti-shift-y', offset.y + 'px');
+        node.style.setProperty('--anti-rotate', offset.rotate + 'deg');
+      });
+    });
+
+    const heroCard = document.querySelector('.hero-v2-copy');
+    if (!heroCard) return;
+
+    const resetHero = function resetHero() {
+      heroCard.style.setProperty('--hero-rotate', '0deg');
+      heroCard.style.setProperty('--hero-shift-x', '0px');
+      heroCard.style.setProperty('--hero-shift-y', '0px');
+    };
+
+    if (reducedMotion) {
+      resetHero();
+      return;
+    }
+
+    heroCard.addEventListener('mousemove', function onHeroMove(event) {
+      const rect = heroCard.getBoundingClientRect();
+      const px = (event.clientX - rect.left) / rect.width - 0.5;
+      const py = (event.clientY - rect.top) / rect.height - 0.5;
+      const rotate = px * 2.4;
+      const shiftX = px * 7;
+      const shiftY = py * 5;
+
+      heroCard.style.setProperty('--hero-rotate', rotate.toFixed(2) + 'deg');
+      heroCard.style.setProperty('--hero-shift-x', shiftX.toFixed(2) + 'px');
+      heroCard.style.setProperty('--hero-shift-y', shiftY.toFixed(2) + 'px');
+    });
+
+    heroCard.addEventListener('mouseleave', resetHero);
+    resetHero();
   }
 })();
