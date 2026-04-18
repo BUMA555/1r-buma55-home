@@ -1,170 +1,182 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUMA | &#19968;&#20154;&#20844;&#21496;&#20063;&#26377; AI &#22242;&#38431;</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fullpage.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUMA | 一人公司，也能跑通 AI 增长系统</title>
+  <meta
+    name="description"
+    content="BUMA 面向一人公司与小团队，帮你把官网承接、内容增长、OpenClaw 与飞书执行链路接成一套真正能跑起来的 AI 增长系统。"
+  >
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#ececec">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BUMA | 一人公司，也能跑通 AI 增长系统">
+  <meta
+    property="og:description"
+    content="先把官网承接、内容入口和 OpenClaw + 飞书执行链路接顺，再决定下一步该放大哪里。"
+  >
+  <meta property="og:url" content="https://buma55.com/">
+  <link rel="canonical" href="https://buma55.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Rubik+Mono+One&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="scheme-b.css">
 </head>
-<body class="min-h-screen flex flex-col relative">
+<body>
+  <div class="sb-cursor" aria-hidden="true"></div>
 
-    <nav class="fixed top-0 left-0 w-full z-50 p-4 pointer-events-none">
-        <div class="flex justify-between items-start pointer-events-auto">
-            <div class="bg-black text-white p-4 transform rotate-3 brutal-box border-4 border-white hover:rotate-0 transition-transform">
-                <h1 class="font-display text-2xl leading-none">BUMA<br>AI</h1>
-            </div>
-
-            <div class="flex flex-col gap-4 items-end">
-                <a href="solutions.html" class="brutal-btn transform -rotate-2 text-sm">&#26041;&#26696;</a>
-                <a href="seo.html" class="brutal-btn transform rotate-3 text-sm bg-yellow-300">&#25991;&#31456;</a>
-                <a href="contact.html" class="brutal-btn transform -rotate-1 text-sm bg-white">&#32852;&#31995;</a>
-            </div>
-        </div>
+  <header class="sb-nav-wrap">
+    <nav class="sb-nav">
+      <a href="#home" class="sb-logo brutal-box" aria-label="BUMA 首页">
+        <span>BUMA</span>
+        <span>AI</span>
+      </a>
+      <div class="sb-nav-actions">
+        <a href="#works" class="sb-btn sb-btn-primary">方案</a>
+        <a href="seo.html" class="sb-btn sb-btn-yellow">文章</a>
+        <a href="#contact" class="sb-btn sb-btn-white">联系</a>
+      </div>
     </nav>
+  </header>
 
-    <header class="relative pt-32 pb-20 px-6 md:px-12 overflow-hidden min-h-[90vh] flex flex-col justify-center">
-        <div class="absolute top-20 right-10 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-pulse"></div>
-        <div class="absolute bottom-20 left-10 w-80 h-80 bg-red-600 rotate-45 mix-blend-multiply opacity-50"></div>
+  <main id="home">
+    <section class="sb-hero sb-reveal" data-reveal>
+      <div class="sb-orb sb-orb-a" aria-hidden="true"></div>
+      <div class="sb-orb sb-orb-b" aria-hidden="true"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto chaos-target">
-            <div class="bg-yellow-300 inline-block px-2 mb-4 border-2 border-black transform -rotate-2">
-                <span class="font-bold tracking-widest">EST. 2026 // BUMA55</span>
-            </div>
-
-            <h2 class="font-display hero-cn-title text-black mix-blend-hard-light relative">
-                <span class="hero-cn-line hero-cn-line-a">&#19968;&#20154;&#20844;&#21496;</span>
-                <span class="hero-cn-line hero-cn-line-b">&#20063;&#35201;&#26377;</span>
-                <span class="hero-cn-line hero-cn-line-c">AI &#22242;&#38431;</span>
-            </h2>
-
-            <div class="sticker hero-cn-sticker bg-green-400 w-32 h-32 md:w-40 md:h-40 top-[52%] right-[3%] md:right-[9%] rotate-12 flex flex-col justify-center items-center shadow-[8px_8px_0_black]" style="--rot: 12deg;">
-                <span class="font-display hero-cn-sticker-text text-xl md:text-2xl transform -rotate-12">&#20808;&#20570;<br>&#25215;&#25509;<br>&#20877;&#25918;&#22823;</span>
-            </div>
+      <div class="sb-hero-inner">
+        <p class="sb-kicker">BUMA55 // FIRST FIX THE BLOCKER</p>
+        <h1 class="sb-hero-title">
+          <span>一个人的公司</span>
+          <span>也能带着</span>
+          <span>AI 团队往前跑</span>
+        </h1>
+        <p class="sb-hero-copy">
+          先把官网承接、内容入口、OpenClaw 与飞书执行链路接顺，再决定下一步该放大流量、咨询，还是自动化。
+        </p>
+        <div class="sb-hero-cta">
+          <a href="contact.html" class="sb-btn sb-btn-primary">先做适配判断</a>
+          <a href="solutions.html" class="sb-btn sb-btn-outline">查看解决方案</a>
         </div>
+      </div>
 
-        <div class="mt-12 md:ml-32 max-w-xl bg-white border-4 border-black p-6 shadow-hard rotate-1 chaos-target">
-            <p class="text-lg md:text-xl font-bold leading-tight">
-                &#21035;&#20877;&#20570;&#8220;&#30475;&#36215;&#26469;&#24456;&#19987;&#19994;&#65292;&#20294;&#27809;&#20154;&#21672;&#35810;&#8221;&#30340;&#23448;&#32593;&#12290;
-                &#25105;&#20204;&#25226;&#39318;&#39029;&#12289;&#20869;&#23481;&#21644;&#21672;&#35810;&#38142;&#36335;&#25509;&#25104;&#19968;&#22871;&#33021;&#36305;&#30340;&#22686;&#38271;&#31995;&#32479;&#12290;
-                <span class="bg-black text-white px-1">&#20808;&#25910;&#21475;&#65292;&#20877;&#25918;&#22823;&#12290;</span>
-            </p>
-        </div>
-    </header>
-
-    <div class="py-12 relative z-20">
-        <div class="marquee-container shadow-hard">
-            <div class="marquee-content">
-                /// &#19968;&#20154;&#20844;&#21496;&#20063;&#33021;&#36305; AI &#22242;&#38431; /// &#20869;&#23481;&#35201;&#25215;&#25509;&#21672;&#35810; /// &#20808;&#20462;&#39318;&#39029;&#20877;&#25918;&#22823; /// OpenClaw + &#39134;&#20070;&#25509;&#20837;
-            </div>
-            <div class="marquee-content" aria-hidden="true">
-                /// &#19968;&#20154;&#20844;&#21496;&#20063;&#33021;&#36305; AI &#22242;&#38431; /// &#20869;&#23481;&#35201;&#25215;&#25509;&#21672;&#35810; /// &#20808;&#20462;&#39318;&#39029;&#20877;&#25918;&#22823; /// OpenClaw + &#39134;&#20070;&#25509;&#20837;
-            </div>
-        </div>
-    </div>
-
-    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto relative">
-        <div class="absolute -left-12 top-0 font-display text-9xl opacity-5 text-gray-400 rotate-90 hidden md:block">
-            CASES
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-4 items-center">
-            <article class="brutal-box card-1 p-0 group overflow-hidden chaos-target">
-                <div class="h-48 bg-black overflow-hidden border-b-4 border-black relative">
-                    <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/FF00FF/000000?text=LEADS')] bg-cover bg-center group-hover:scale-110 transition-transform duration-75"></div>
-                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-display text-2xl mb-2">&#32447;&#32034;&#25215;&#25509;</h3>
-                    <p class="text-sm font-bold mb-4">&#39318;&#39029; / FAQ / &#32852;&#31995;&#39029;&#25910;&#21475;</p>
-                    <p class="text-xs leading-relaxed border-t-2 border-black pt-2">
-                        &#20808;&#20570;&#21333;&#19968; CTA&#65292;&#20808;&#35828;&#28165;&#32852;&#31995;&#21069;&#35201;&#21457;&#20160;&#20040;&#65292;&#20877;&#25226;&#26080;&#25928;&#21672;&#35810;&#36807;&#28388;&#22312;&#21069;&#38754;&#12290;
-                    </p>
-                    <a href="solutions.html" class="mt-4 inline-block text-xs font-bold underline decoration-4 decoration-black hover:decoration-white hover:bg-black hover:text-white px-1 transition-colors">&#26597;&#30475;&#26041;&#26696;</a>
-                </div>
-            </article>
-
-            <article class="brutal-box card-2 p-8 md:col-span-1 md:row-span-2 min-h-[500px] flex flex-col justify-between relative chaos-target">
-                <div class="absolute top-4 right-4 text-6xl opacity-50">&#9733;</div>
-                <div>
-                    <h3 class="font-display text-4xl mb-4 bg-black inline-block px-2 transform -skew-x-12">&#20808;&#30475;<br>&#39318;&#39029;</h3>
-                    <p class="mt-4 font-mono text-sm">
-                        &#20320;&#19981;&#32570;&#8220;&#26356;&#22909;&#30475;&#8221;&#65292;&#20320;&#32570;&#8220;&#26356;&#33021;&#36716;&#21270;&#8221;&#12290;
-                        &#20808;&#25226;&#39318;&#23631;&#25215;&#35834;&#12289;&#36335;&#24452;&#20998;&#27969;&#12289;&#32852;&#31995;&#21160;&#20316;&#20570;&#28165;&#26970;&#65292;&#20877;&#25237;&#27969;&#37327;&#25165;&#26377;&#24847;&#20041;&#12290;
-                    </p>
-                </div>
-                <div class="border-4 border-white p-4 mt-8 bg-black transform rotate-2">
-                    <span class="text-xs text-gray-400 block mb-1">&#27169;&#22359;&#65306;</span>
-                    <span class="font-bold text-xl text-green-400">&#39318;&#39029;&#25913;&#36896;</span>
-                </div>
-            </article>
-
-            <article class="brutal-box card-3 p-6 bg-yellow-300 border-red-600 chaos-target">
-                <div class="flex justify-between items-start border-b-4 border-black pb-4 mb-4">
-                    <h3 class="font-display text-xl">&#20869;&#23481;&#20013;&#26530;</h3>
-                    <span class="bg-black text-white text-xs px-2 py-1 rounded-full">SEO</span>
-                </div>
-                <p class="text-sm font-bold">
-                    &#19981;&#26159;&#22534;&#25991;&#31456;&#65292;&#26159;&#22260;&#32469;&#39640;&#24847;&#22270;&#38382;&#39064;&#20570;&#20869;&#23481;&#36335;&#24452;&#65292;
-                    &#25226;&#8220;&#20808;&#30475;&#20877;&#32842;&#8221;&#30340;&#20154;&#24341;&#23548;&#25104;&#8220;&#24895;&#24847;&#21672;&#35810;&#8221;&#30340;&#20154;&#12290;
-                </p>
-                <div class="mt-6 flex justify-end">
-                    <a href="seo.html" class="w-12 h-12 block bg-black rounded-full border-4 border-white hover:bg-red-600 transition-colors"></a>
-                </div>
-            </article>
-        </div>
+      <div class="sb-scroll-tip" aria-hidden="true">
+        <span>SCROLL</span>
+      </div>
     </section>
 
-    <section class="bg-black text-white py-20 px-6 relative overflow-hidden jagged-edge pb-32">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="font-display text-5xl md:text-7xl leading-none text-transparent stroke-white" style="-webkit-text-stroke: 2px white;">
-                &#20808;&#36305;&#36890;<br>&#20877;&#25193;&#24352;<br>&#20808;&#25910;&#21475;<br>&#20877;&#22686;&#38271;
-            </div>
-            <div class="font-mono text-sm md:text-base space-y-6">
-                <p class="bg-blue-700 p-4 border-2 border-white transform rotate-1 shadow-[6px_6px_0_white]">
-                    &gt; &#25105;&#20204;&#19981;&#20808;&#35848;&#8220;&#22823;&#32780;&#20840;&#8221;&#25913;&#29256;&#12290;<br>
-                    &gt; &#25105;&#20204;&#20808;&#25214;&#19968;&#20010;&#26368;&#21345;&#30340;&#21160;&#20316;&#12290;<br>
-                    &gt; &#25105;&#20204;&#20808;&#25226;&#25215;&#25509;&#38142;&#36335;&#36305;&#36890;&#12290;<br>
-                    &gt; &#20877;&#20915;&#23450;&#20540;&#19981;&#20540;&#24471;&#32487;&#32493;&#25918;&#22823;&#12290;
-                </p>
-                <p class="p-4 border-l-8 border-neon-green bg-gray-900">
-                    BUMA &#38754;&#21521;&#19968;&#20154;&#20844;&#21496;&#19982;&#23567;&#22242;&#38431;&#65306;OpenClaw &#37096;&#32626;&#12289;&#39134;&#20070;&#25509;&#20837;&#12289;&#23448;&#32593;&#25215;&#25509;&#19982;&#20869;&#23481;&#22686;&#38271;&#65292;&#32452;&#21512;&#25104;&#21487;&#25191;&#34892;&#30340; AI &#19994;&#21153;&#27969;&#31243;&#12290;
-                </p>
-            </div>
+    <section id="about" class="sb-about sb-reveal" data-reveal>
+      <div class="sb-about-grid">
+        <div>
+          <h2 class="sb-title-en">ABOUT</h2>
+          <p class="sb-title-cn">不是先推全案，而是先把最堵的一步接顺</p>
         </div>
-
-        <div class="absolute bottom-10 left-10 w-0 h-0 border-l-[50px] border-l-transparent border-t-[75px] border-t-yellow-400 border-r-[50px] border-r-transparent rotate-12"></div>
-        <div class="absolute top-20 right-20 w-24 h-24 bg-red-600 rotate-45 border-4 border-white"></div>
+        <div class="sb-about-text brutal-box">
+          <p>BUMA 主要服务一人公司和 1-5 人的小团队。</p>
+          <p>我们不先卖大改版，也不把官网、内容、OpenClaw、飞书这些动作拆开各说各的。</p>
+          <p>先找到最影响转化或执行效率的那一个卡点，把它接顺，再扩页面、内容和自动化。</p>
+        </div>
+      </div>
+      <div class="sb-about-line" aria-hidden="true"></div>
     </section>
 
-    <footer class="bg-white border-t-8 border-black pt-16 pb-8 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-display text-4xl mb-8 transform -rotate-2">&#24320;&#22987;&#25913;&#36896;</h2>
+    <section id="skills" class="sb-skills sb-reveal" data-reveal>
+      <h2 class="sb-title-en">SKILLS</h2>
+      <div class="sb-skill-grid">
+        <article class="sb-skill-card brutal-box" data-tilt>
+          <p class="sb-skill-num">01</p>
+          <h3>官网承接重排</h3>
+          <p>把首页、方案页、FAQ、联系页收成一条主路径，让访客看完知道下一步该去哪。</p>
+        </article>
+        <article class="sb-skill-card brutal-box" data-tilt>
+          <p class="sb-skill-num">02</p>
+          <h3>高意图内容引擎</h3>
+          <p>把文章中心做成咨询前教育层，不靠堆量，而靠关键词、内链与入口分发。</p>
+        </article>
+        <article class="sb-skill-card brutal-box" data-tilt>
+          <p class="sb-skill-num">03</p>
+          <h3>OpenClaw 执行链路</h3>
+          <p>把飞书接入、权限边界、提醒跟进和执行回路接进真实业务，不停在演示。</p>
+        </article>
+      </div>
+    </section>
 
-            <div class="bg-gray-100 p-8 border-4 border-black shadow-hard inline-block w-full max-w-md relative">
-                <label for="chaosLevel" class="block font-bold mb-4 text-left">&#28608;&#36827;&#31243;&#24230;&#65306;<span id="chaosValue">20%</span></label>
-                <input type="range" id="chaosLevel" min="0" max="100" value="20">
-                <p class="text-xs text-left mt-2 font-mono text-gray-500">&#25552;&#31034;&#65306;&#25289;&#39640;&#21518;&#20250;&#22686;&#24378;&#26059;&#36716;&#21644;&#38169;&#20301;&#65292;&#20165;&#24433;&#21709;&#23637;&#31034;&#25928;&#26524;&#12290;</p>
-
-                <div class="absolute -top-4 -right-4 w-8 h-8 bg-black"></div>
-                <div class="absolute -bottom-4 -left-4 w-8 h-8 bg-black"></div>
-            </div>
-
-            <div class="mt-16 flex flex-wrap justify-center gap-6 font-bold text-sm uppercase">
-                <a href="about.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">About</a>
-                <a href="seo.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">Articles</a>
-                <a href="contact.html" class="bg-black text-white px-4 py-2 hover:bg-neon-green hover:text-black transform hover:-translate-y-1 transition-all">Contact</a>
-            </div>
-
-            <div class="mt-12 font-mono text-xs opacity-50">
-                &copy; 2026 BUMA55. ONE-PERSON COMPANY, REAL AI WORKFLOW.
-            </div>
+    <section class="sb-vision sb-reveal" data-reveal>
+      <div class="sb-marquee">
+        <div class="sb-marquee-track">
+          <span>ONE PERSON COMPANY</span>
+          <span>AI TEAM</span>
+          <span>CONTENT LOOP</span>
+          <span>OPENCLAW FLOW</span>
+          <span>CONTACT READY</span>
+          <span>ONE PERSON COMPANY</span>
+          <span>AI TEAM</span>
+          <span>CONTENT LOOP</span>
+          <span>OPENCLAW FLOW</span>
+          <span>CONTACT READY</span>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script src="fullpage.js"></script>
+    <section id="works" class="sb-works sb-reveal" data-reveal>
+      <div class="sb-works-head">
+        <h2 class="sb-title-en">PORTFOLIO</h2>
+        <p class="sb-title-cn">案例换成我们自己的，不做空展示</p>
+      </div>
+
+      <div class="sb-case-grid">
+        <article class="sb-case brutal-box" data-tilt>
+          <img src="assets-page-solutions-flow.svg" alt="官网承接重排案例">
+          <div class="sb-case-body">
+            <h3>官网承接重排</h3>
+            <p>把首页话术、分流入口和联系动作收成单一主 CTA，减少访客看完不知道去哪。</p>
+            <a href="solutions.html">看方案案例</a>
+          </div>
+        </article>
+
+        <article class="sb-case brutal-box sb-case-highlight" data-tilt>
+          <img src="assets-hero-main.jpg" alt="OpenClaw 与飞书接入案例">
+          <div class="sb-case-body">
+            <h3>OpenClaw + 飞书接入</h3>
+            <p>把部署、接入、群聊边界、回消息和执行跟进接成最小可运行链路。</p>
+            <a href="openclaw-faq.html">看接入案例</a>
+          </div>
+        </article>
+
+        <article class="sb-case brutal-box" data-tilt>
+          <img src="assets-page-seo-curation.svg" alt="SEO 内容中心案例">
+          <div class="sb-case-body">
+            <h3>SEO 内容中心</h3>
+            <p>把高意图文章、FAQ 和联系页串起来，让内容先教育，再把真正高意向的人送来。</p>
+            <a href="seo.html">看内容案例</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="sb-contact sb-reveal" data-reveal>
+      <div class="sb-contact-card brutal-box">
+        <h2 class="sb-title-en">CONTACT</h2>
+        <p class="sb-title-cn">先发链接、截图和最卡的一步</p>
+        <p class="sb-contact-copy">
+          不用先写长文。把你的页面链接、相关截图和现在最卡的一步发来，我先帮你判断该先改首页、流程，还是接入动作。工作日 24 小时内给你下一步建议。
+        </p>
+        <div class="sb-contact-actions">
+          <a href="contact.html" class="sb-btn sb-btn-primary">发送材料</a>
+          <a href="about.html" class="sb-btn sb-btn-outline">关于 BUMA</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sb-footer">
+    <p>&copy; 2026 BUMA55 - Scheme B - Homepage rebuilt with BUMA copy and cases.</p>
+  </footer>
+
+  <script src="scheme-b.js"></script>
 </body>
 </html>
