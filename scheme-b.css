@@ -559,8 +559,53 @@ section {
 }
 
 @media (max-width: 700px) {
+  main {
+    padding-top: 106px;
+  }
+
+  section {
+    margin-top: 52px;
+  }
+
   .sb-nav-actions {
     gap: 8px;
+  }
+
+  .sb-nav-actions .sb-btn {
+    min-width: 96px;
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .sb-logo {
+    width: 96px;
+    height: 84px;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .sb-kicker {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  .sb-hero-inner {
+    padding-inline: 4px;
+  }
+
+  .sb-hero-title {
+    font-size: clamp(42px, 14vw, 58px);
+    line-height: 0.98;
+    letter-spacing: -0.06em;
+  }
+
+  .sb-hero-title span {
+    width: 100%;
+  }
+
+  .sb-hero-title span:nth-child(2) {
+    -webkit-text-stroke: 2px var(--sb-black);
   }
 
   .sb-hero-copy,
@@ -571,8 +616,113 @@ section {
     line-height: 1.7;
   }
 
+  .sb-hero-copy {
+    margin-top: 14px;
+    font-size: 15px;
+    border-left-width: 4px;
+    padding-left: 10px;
+  }
+
+  .sb-hero-cta,
+  .sb-contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sb-hero-cta .sb-btn,
+  .sb-contact-actions .sb-btn {
+    width: 100%;
+  }
+
+  .sb-title-en {
+    font-size: clamp(28px, 12vw, 44px);
+  }
+
   .sb-title-cn {
     max-width: none;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .sb-about-text,
+  .sb-contact-card {
+    padding: 18px 16px;
+    transform: none;
+  }
+
+  .sb-skill-card,
+  .sb-case {
+    min-height: auto;
+    transform: none;
+  }
+
+  .sb-case img {
+    height: 180px;
+  }
+
+  .sb-case-body {
+    padding: 12px;
+  }
+
+  .sb-case-body h3,
+  .sb-skill-card h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .sb-marquee-track {
+    gap: 20px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  main,
+  .sb-footer {
+    width: calc(100vw - 16px);
+  }
+
+  .sb-nav {
+    margin: 8px;
+  }
+
+  .sb-nav-actions .sb-btn {
+    min-width: 88px;
+    min-height: 40px;
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .sb-logo {
+    width: 88px;
+    height: 78px;
+    font-size: 13px;
+  }
+
+  .sb-hero {
+    min-height: auto;
+    padding-top: 26px;
+  }
+
+  .sb-hero-title {
+    font-size: clamp(36px, 13vw, 46px);
+    line-height: 1.02;
+  }
+
+  .sb-hero-copy {
+    font-size: 14px;
+  }
+
+  .sb-skill-num {
+    font-size: 22px;
+  }
+
+  .sb-case img {
+    height: 160px;
+  }
+
+  .sb-footer {
+    margin-top: 56px;
   }
 }
 
