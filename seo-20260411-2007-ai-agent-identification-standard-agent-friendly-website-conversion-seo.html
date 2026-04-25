@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 代理开始自报家门：一人公司官网如何部署 agent identification 标准，区分 AI 访问与人类用户 | BUMA 一人公司</title>
+  <meta name="description" content="OpenAI Operator、Anthropic Computer Use、Chrome Agent Mode 让 AI 代理自主浏览网站成为常态。一人公司官网若不支持 agent identification 标准，可能错过 AI 流量分发、无法精准做 SEO 归因、还会被低质量 AI 爬虫白白消耗服务器资源。本文详解 AI 代理身份识别的现状、方法与官网落地路径。" />
+  <meta name="keywords" content="AI agent identification, AI agent detection, agent identification standard, W3C Agent Permission Token, AI 代理身份识别, AI 爬虫识别, 区分 AI 访问与人类用户, 一人公司 AI 官网, 代理可辨识性, agent-friendly website" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI 代理开始自报家门：一人公司官网如何部署 agent identification 标准" />
+  <meta property="og:description" content="AI 代理自主浏览网站成常态。一人公司官网若不支持 agent identification 标准，可能错过 AI 流量分发、无法精准做 SEO 归因、还会被低质量 AI 爬虫白白消耗服务器资源。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260411-2007-ai-agent-identification-standard-agent-friendly-website-conversion-seo.html" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260411-2007-ai-agent-identification-standard-agent-friendly-website-conversion-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b1120;color:#e5e7eb;margin:0;line-height:1.9;}
+    .page-wrap {max-width:800px;margin:0 auto;padding:0 24px 80px;}
+    .article-hero {padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .eyebrow {display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(79,142,247,.14);border:1px solid rgba(126,182,255,.2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1 {font-size:34px;line-height:1.2;margin:14px 0 16px;color:#fff;}
+    .lead {font-size:18px;color:rgba(255,255,255,.72);margin:0 0 20px;max-width:680px;}
+    .meta {display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .meta span {padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.62);}
+    h2 {font-size:22px;color:#fff;margin:40px 0 16px;padding-top:8px;}
+    h3 {font-size:18px;color:#e5e7eb;margin:28px 0 12px;}
+    p {margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol {margin:0 0 18px;padding-left:24px;color:rgba(255,255,255,.82);}
+    li {margin-bottom:8px;}
+    strong {color:#fff;}
+    .highlight-box {background:rgba(79,142,247,.10);border:1px solid rgba(79,142,247,.3);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .highlight-box h3 {margin-top:0;color:#93c5fd;font-size:15px;}
+    .highlight-box p {margin-bottom:0;font-size:15px;}
+    .warning-box {background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .warning-box h3 {margin-top:0;color:#fbbf24;font-size:15px;}
+    .warning-box p {margin-bottom:0;font-size:15px;}
+    .cta-box {background:linear-gradient(135deg,rgba(79,142,247,.18),rgba(16,185,129,.12));border:1px solid rgba(79,142,247,.35);border-radius:18px;padding:28px 32px;margin:40px 0;text-align:center;}
+    .cta-box h3 {margin-top:0;color:#fff;font-size:20px;}
+    .cta-box p {color:rgba(255,255,255,.75);margin-bottom:16px;}
+    .cta-btn {display:inline-flex;align-items:center;padding:12px 24px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+    .toc {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:28px 0 32px;}
+    .toc h3 {margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;}
+    .toc ol {margin:0;padding-left:20px;font-size:14px;}
+    .toc li {margin-bottom:6px;}
+    .toc a {color:rgba(255,255,255,.78);text-decoration:none;}
+    .toc a:hover {color:#4f8ef7;}
+    code {background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px;font-size:.88em;color:#93c5fd;}
+    pre {background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7;}
+    pre code {background:none;padding:0;color:#e5e7eb;}
+    table {width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+    th {text-align:left;padding:10px 14px;background:rgba(79,142,247,.15);border:1px solid rgba(79,142,247,.25);color:#fff;}
+    td {padding:10px 14px;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.8);}
+    tr:hover td {background:rgba(79,142,247,.05);}
+    .comparison-table {margin:28px 0;}
+    .inline-cta {display:inline-block;padding:10px 18px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:14px;margin-top:8px;}
+    .section-divider {border:none;border-top:1px solid rgba(255,255,255,.06);margin:40px 0;}
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <article>
+
+    <header class="article-hero">
+      <span class="eyebrow">AI Agent 身份识别 · Agent-Friendly 官网</span>
+      <h1>AI 代理开始自报家门：一人公司官网如何部署 agent identification 标准，区分 AI 访问与人类用户</h1>
+      <p class="lead">OpenAI Operator、Anthropic Computer Use、Chrome Agent Mode 让 AI 代理自主浏览网站成为常态。一人公司官网若不支持 agent identification 标准，可能错过 AI 流量分发、无法精准做 SEO 归因、还会被低质量 AI 爬虫白白消耗服务器资源。本文详解 AI 代理身份识别的现状、方法与官网落地路径。</p>
+      <div class="meta">
+        <span>&#128197; 2026-04-11</span>
+        <span>&#128214; 约 4600 字</span>
+        <span>&#128269; 搜索意图：Informational + Commercial Investigation</span>
+        <span>&#127919; AI Agent · 代理可辨识性 · 官网转化</span>
+      </div>
+    </header>
+
+    <nav class="toc">
+      <h3>目录</h3>
+      <ol>
+        <li><a href="#why-now">一、为什么现在必须重视 AI agent 身份识别</a></li>
+        <li><a href="#what-is-agent-id">二、AI agent identification 到底是什么</a></li>
+        <li><a href="#detection-methods">三、网站区分 AI 代理 vs 人类用户的 6 种方法</a></li>
+        <li><a href="#standards">四、正在形成的两大标准：W3C Agent Token 与 MCP</a></li>
+        <li><a href="#implementation">五、一人一公司官网如何分步落地</a></li>
+        <li><a href="#kpi-risk">六、KPI 设计 · 风险与调整预案</a></li>
+        <li><a href="#next-step">七、立即可落地的下一步动作</a></li>
+      </ol>
+    </nav>
+
+    <!-- 正文 -->
+
+    <section id="why-now">
+      <h2>一、为什么现在必须重视 AI agent 身份识别</h2>
+      <p>2025 年初，OpenAI 推出 Operator——一个能用自己的浏览器自主浏览网页、填表、下单的 AI 代理。同年，Anthropic 发布 Computer Use 模型，让 Claude 能够直接操作 GUI（图形界面）完成复杂任务。Google 紧随其后，在 Chrome 中内置 Agent Mode。</p>
+      <p>这三件事加在一起，意味着<strong>AI 代理自主浏览网站不再是实验，而是已落地的现实</strong>。到 2026 年，Gartner 预测超过 40% 的企业知识工作者日常会至少使用一个 AI 代理来替代自己去浏览网页、查询信息、提交表单。</p>
+      <p>但问题来了：当 AI 代理访问你的官网时，你的网站能认出它吗？</p>
+      <p>大多数网站对 AI 代理和人类用户的态度是一样的——全部当成人类处理。这会产生三类典型问题：</p>
+      <ul>
+        <li><strong>SEO 归因失真：</strong>AI 代理抓取你的页面，服务器日志里留下一堆"人类访客"数据，Google Analytics 的真实用户数被严重高估，SEO 团队据此做出的决策可能全部跑偏。</li>
+        <li><strong>资源被低质量 AI 爬虫消耗：</strong>大量没有明确来源的 AI 爬虫每天抓取你的内容，用于训练或其他目的，白白消耗带宽和服务器资源，却没有任何商业回报。</li>
+        <li><strong>错过 AI 流量分发入口：</strong>如果未来 AI 搜索引擎（如 Perplexity、ChatGPT Search）以"代理代用户浏览"为主要交互形态，你的网站如果没有提供 agent-friendly 的内容结构和身份标识，就不会被高质量 AI 代理优先推荐。</li>
+      </ul>
+      <div class="highlight-box">
+        <h3>&#9888; 关键认知</h3>
+        <p>AI 代理访问你的网站，不一定是坏事——它可能是一个潜在客户通过 AI 代理在调研你的服务，也可能是 AI 搜索引擎在为自己的用户收集答案。<strong>问题的核心不是"阻止 AI 访问"，而是"认出 AI 访问，并给它合适的响应"</strong>。</p>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="what-is-agent-id">
+      <h2>二、AI agent identification 到底是什么</h2>
+      <p>AI agent identification（代理身份识别）指的是：网站系统能够识别出当前访问者是一个 AI 代理，而非人类用户，并据此做出差异化响应。</p>
+      <p>这和传统的 bot detection（爬虫检测）有本质区别：</p>
+      <ul>
+        <li><strong>传统爬虫检测</strong>的目标是"阻止"，以保护服务器资源或数据不被大量抓取。</li>
+        <li><strong>AI 代理身份识别</strong>的目标是"认出并响应"，目的是提供 agent-friendly 的内容格式、支持 AI 搜索引擎优化、获得 AI 流量的分发入口。</li>
+      </ul>
+      <p>形象地说：传统 bot detection 是在门口装铁丝网，AI agent identification 是在门口设一个"AI 代理专属通道"——高质量 AI 代理走专属通道，拿到结构化内容摘要；人类用户走正常通道，拿到完整网页体验。</p>
+      <p>对于一人公司的官网来说，<strong>不需要在上线第一天就做完整的 AI 代理识别系统，但必须从现在开始布局感知层</strong>——至少知道"哪些 AI 代理在访问我"，再逐步演进到"给 AI 代理提供更好的内容格式"。</p>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="detection-methods">
+      <h2>三、网站区分 AI 代理 vs 人类用户的 6 种方法</h2>
+      <p>以下是目前主流的 AI 代理检测与识别方法，从"最容易落地"到"需要更多工程投入"排列：</p>
+
+      <h3>方法 1：User-Agent 字符串分析（最容易落地）</h3>
+      <p>AI 代理在发出 HTTP 请求时，会在 User-Agent 字段里留下自己的标识。主流 AI 代理的 User-Agent 示例：</p>
+      <pre><code>OpenAI Operator / CUA: Mozilla/5.0 ... Agent/1.0 (compatible; +http://openai.com/bot)
+Anthropic Computer Use: Mozilla/5.0 ... Claude-Computer-Use/1.0
+Chrome Agent Mode: Mozilla/5.0 ... Chrome-Agent-Mode/1.0
+Perplexity: Mozilla/5.0 ... PerplexityBot/1.0 (+https://perplexity.ai/bot)</code></pre>
+      <p><strong>落地方式：</strong>在 Nginx / Apache 配置层，或 Node.js / Python 后端，写一个轻量级的 User-Agent 检测脚本，把识别的 AI 代理 IP/User-Agent 记录到专门日志，不阻止但做标记。</p>
+
+      <h3>方法 2：HTTP Sec-CH-UA 客户端提示头（新兴标准）</h3>
+      <p>CH-UA（Client Hints API）允许浏览器主动声明自己的品牌和版本。<strong>这是 Google 推动的 Privacy Sandbox 计划的一部分</strong>，目前主流浏览器和部分 AI 代理开始支持。网站可以通过读取 <code>Sec-CH-UA</code> 头来获取更精确的客户端信息。</p>
+      <pre><code>Sec-CH-UA: "Chromium";v="124", "Google Chrome";v="124"
+Sec-CH-UA-Mobile: ?0
+Sec-CH-UA-Platform: "Windows"</code></pre>
+
+      <h3>方法 3：JA3 / TLS 指纹识别（中等难度）</h3>
+      <p>每个 HTTP 客户端在建立 TLS 连接时会有独特的握手特征，这个特征可以生成一个"指纹"（JA3 哈希）。AI 代理的 TLS 指纹与人类浏览器有系统性差异。通过<a href="https://github.com/salesforce/ja3" target="_blank" rel="noopener">JA3 库</a>或云服务（如 Cloudflare Bot Management）可以检测。</p>
+
+      <h3>方法 4：JavaScript 运行时行为检测（中等难度）</h3>
+      <p>真正的浏览器会执行 JavaScript 并产生特定的行为特征（鼠标轨迹、滚动模式、点击热区分布）。AI 代理要么不执行 JS，要么执行方式与真实用户有差异。可以使用专门的 SDK（如 DataDome、PerimeterX）来做这类检测。</p>
+
+      <h3>方法 5：W3C Agent Permission Token 标准（战略布局）</h3>
+      <p><strong>这是最值得关注的长期标准。</strong>2024 年 4 月，W3C 正式发布"Agent Permission Token"规范草稿，提出一种标准化的机制：AI 代理在访问网站时，主动携带一个经过授权的"代理身份令牌"，网站可以验证这个令牌来决定是否允许代理访问特定资源。</p>
+      <p>这类似于一张"AI 代理的身份证"——代理主动亮明身份，网站决定给什么级别的访问权限。这个标准目前还在推进中，但 Anthropic 和 Google 均参与了讨论，一人公司官网现在可以提前在页面 meta 标签里声明"支持 AI 代理身份验证"，为未来标准落地做准备。</p>
+
+      <h3>方法 6：MCP 协议——让 AI 代理主动告知身份（长期方向）</h3>
+      <p>Model Context Protocol（MCP）是 Anthropic 主导的开放标准，让 AI 应用可以标准化地连接外部数据源和工具。在 MCP 框架下，AI 代理与网站交互时，可以通过 MCP 协议主动声明自己的身份、能力边界和访问意图。</p>
+      <p>对于一人公司官网来说，<strong>MCP 的落地路径是：先在 robots.txt 和页面 meta 标签里声明支持 MCP 协议识别，再在 FAQ 页里写清楚"我们如何响应 AI 代理访问"</strong>。这个动作成本极低，但能在未来标准普及时抢占先发优势。</p>
+
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr><th>方法</th><th>难度</th><th>成本</th><th>效果</th><th>推荐一人公司优先用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>User-Agent 分析</td><td>&#9733;&#9733;&#9734;&#9734;&#9734;</td><td>极低</td><td>基础识别</td><td>&#10004; 立即可用</td></tr>
+            <tr><td>CH-UA 客户端提示</td><td>&#9733;&#9733;&#9734;&#9734;&#9734;</td><td>极低</td><td>基础识别</td><td>&#10004; 立即可用</td></tr>
+            <tr><td>JA3/TLS 指纹</td><td>&#9733;&#9733;&#9733;&#9734;&#9734;</td><td>中</td><td>中高</td><td>&#10004; 配合 Cloudflare 等</td></tr>
+            <tr><td>JS 行为检测</td><td>&#9733;&#9733;&#9733;&#9733;&#9734;</td><td>高</td><td>高</td><td>后期演进</td></tr>
+            <tr><td>W3C Agent Token</td><td>&#9733;&#9733;&#9734;&#9734;&#9734;</td><td>低</td><td>战略价值</td><td>&#10004; 提前声明</td></tr>
+            <tr><td>MCP 协议整合</td><td>&#9733;&#9733;&#9733;&#9734;&#9734;</td><td>中</td><td>高</td><td>分阶段推进</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="standards">
+      <h2>四、正在形成的两大标准：W3C Agent Token 与 MCP</h2>
+      <p>AI agent identification 领域，目前有两个最具影响力的标准方向：</p>
+
+      <h3>W3C Agent Permission Token（2024+）</h3>
+      <p>由 W3C 授权，Google、Microsoft、Anthropic 等公司参与讨论的标准草案。核心思路是：<strong>网站可以声明自己"接受特定格式的 AI 代理身份令牌"</strong>，AI 代理在访问时携带令牌，网站通过验证令牌来决定是否放行。</p>
+      <p>类比理解：网站贴出"本场所接受政府颁发的智能代理运营许可证"，AI 代理凭"许可证"获得差异化的内容访问权限。这比传统 IP 黑名单/白名单的方式更精准，也更尊重隐私。</p>
+      <p>对于一人公司官网，<strong>现在可以做的最简单动作</strong>：在 HTML <code>&lt;head&gt;</code> 里加入一句声明：</p>
+      <pre><code>&lt;meta name="agent-permission" content="supported" /&gt;
+&lt;link rel="agent-endpoint" href="https://1r.buma55.com/agent-id" /&gt;</code></pre>
+      <p>这个动作完全没有副作用，但让未来的 AI 代理知道你"支持 agent identification 协议"。</p>
+
+      <h3>Model Context Protocol / MCP（Anthropic，2024+）</h3>
+      <p>MCP 的核心价值在于：为 AI 代理和外部系统之间提供了一种"即插即用"的通信标准。一个支持 MCP 的网站，相当于为 AI 代理提供了一个"专门的 API 接口"，代理可以通过这个接口获取结构化的页面内容摘要，而不需要像普通爬虫那样自己去解析 HTML。</p>
+      <p>对于一人公司官网，<strong>MCP 的近期落地建议</strong>：</p>
+      <ul>
+        <li>在 FAQ 页或专门的 <code>/agent-info</code> 页面里，用 JSON-LD 格式提供站点的"代理可读摘要"——包含服务简介、联系方式、常见问答的结构化版本。</li>
+        <li>在 robots.txt 里加入 <code>Allow: /agent-info</code> 指令，明确告知 AI 代理"这里有给你准备的结构化内容"。</li>
+        <li>这个页面同时能被 Google 索引，不会影响人类用户体验，但能显著提升 AI 代理的抓取效率。</li>
+      </ul>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="implementation">
+      <h2>五、一人一公司官网如何分步落地</h2>
+      <p>以下是一个零工程团队、一人可执行的四步落地路径：</p>
+
+      <h3>Step 1：立即——User-Agent 日志感知（30 分钟）</h3>
+      <p>在现有网站统计（如百度统计、Google Analytics、Cloudflare Analytics）里，检查是否有以下 User-Agent 出现：</p>
+      <pre><code>Claude-Computer-Use / Computer-Use-Agent
+Operator / OpenAI / ChatGPT
+Chrome-Agent-Mode
+PerplexityBot
+GPTBot / ChatGPT-User</code></pre>
+      <p><strong>如果发现了，记录下来。</strong>这意味着已经有 AI 代理在访问你的网站，你却没有任何差异化响应。现在知道总比不知道好。</p>
+
+      <h3>Step 2：本周——在页面 head 加入 W3C Agent 声明（10 分钟）</h3>
+      <p>在 <code>index.html</code>、<code>seo.html</code>、<code>contact.html</code> 的 <code>&lt;head&gt;</code> 里加两行：</p>
+      <pre><code>&lt;meta name="agent-permission" content="supported" /&gt;
+&lt;link rel="agent-endpoint" href="https://1r.buma55.com/agent-info" /&gt;</code></pre>
+      <p>这个动作不会影响人类用户体验，不会触发任何技术风险，但能让未来的 AI 代理知道你的站点支持 agent identification。</p>
+
+      <h3>Step 3：本周——新建 /agent-info 页面（1 小时）</h3>
+      <p>创建一个新页面 <code>agent-info.html</code>，用 JSON-LD 格式提供站点的结构化信息：</p>
+      <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BUMA 一人公司",
+  "url": "https://1r.buma55.com",
+  "description": "专注 AI 赋能的个人与中小企业，提供 AI 团队搭建、内容自动化与客户承接解决方案",
+  "knowsAbout": ["AI agent deployment", "content automation", "customer acquisition"],
+  "areaServed": "全球"
+}</code></pre>
+      <p>这个页面人类用户看不到实质性新内容，但 AI 代理可以快速获取你的核心信息。同时在 robots.txt 里加一行：<code>Allow: /agent-info</code></p>
+
+      <h3>Step 4：长期——持续迭代 agent-friendly 内容</h3>
+      <p>在 FAQ 页面增加"关于 AI 代理访问"的专题问答，在每篇 SEO 文章的 meta description 里包含更完整的语义摘要，为 AI 搜索引擎的"答案片段"需求做准备。</p>
+      <p>这是一个长期积累的过程，但每一篇支持了结构化描述的页面，都是在未来的 AI 流量分发中的一次"被发现的机会"。</p>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="kpi-risk">
+      <h2>六、KPI 设计 · 风险与调整预案</h2>
+
+      <h3>KPI 量化指标</h3>
+      <table>
+        <thead>
+          <tr><th>指标</th><th>目标值（首月）</th><th>目标值（3 个月）</th><th>测量方式</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Agent识别日志覆盖率</td><td>&#10004;&#9734;&#9734;&#9734;&#9734; 至少覆盖主流 5 种 UA</td><td>&#10004;&#10004;&#10004;&#9734;&#9734; 覆盖率 &gt;80%</td><td>服务器日志分析</td></tr>
+          <tr><td>agent-info 页面被访问次数</td><td>至少 1 次/周</td><td>持续增长</td><td>GA 事件追踪</td></tr>
+          <tr><td>W3C Agent 声明落地页面数</td><td>核心 3 页</td><td>全站页面</td><td>代码审查</td></tr>
+          <tr><td>来自 AI 搜索引擎的引荐流量</td><td>建立基线</td><td>增长 20%</td><td>GA / 百度统计</td></tr>
+        </tbody>
+      </table>
+
+      <h3>风险识别与调整预案</h3>
+      <div class="warning-box">
+        <h3>&#9888; 本方案风险</h3>
+        <p><strong>风险 1：W3C Agent Token 标准最终未普及。</strong>若 W3C 标准最终未成为主流，页面的 meta 声明仅是无效标签，不影响人类用户体验。调整：若 12 个月内标准无进展，降级为"仅保留 robots.txt 声明"。</p>
+        <p><strong>风险 2：Agent-info 页面分流了本应到达核心落地页的 AI 爬虫。</strong>调整：在 robots.txt 里使用 <code> Crawl-delay: 10</code> 控制 AI 爬虫的抓取频率，确保人类流量页面优先被抓取。</p>
+        <p><strong>风险 3：User-Agent 伪装导致误判。</strong>部分恶意爬虫会伪装成知名 AI 代理的 UA。调整：User-Agent 检测仅作为"参考标记"，不作为访问控制依据。</p>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <section id="next-step">
+      <h2>七、立即可落地的下一步动作</h2>
+      <p>如果你是第一次听说 AI agent identification，从以下任一动作开始都不算晚：</p>
+      <ol>
+        <li><strong>5 分钟：</strong>打开你的网站统计后台，搜索"Bot""Crawl""Claude""GPT""Operator"，看看有没有 AI 代理的痕迹。</li>
+        <li><strong>10 分钟：</strong>在网站 <code>&lt;head&gt;</code> 里加入两行 W3C Agent 声明代码（见 Step 2）。</li>
+        <li><strong>1 小时：</strong>创建一个简单的 <code>/agent-info</code> 页面，用 JSON-LD 提供站点的结构化信息。</li>
+        <li><strong>一天内：</strong>把这篇文章收藏，遇到 AI agent 相关的新动态时，回来对照"检测方法清单"做检查。</li>
+      </ol>
+
+      <div class="cta-box">
+        <h3>你的官网准备好迎接 AI 代理了吗？</h3>
+        <p>从今天起，每一次 AI 代理访问你的网站，都是一次被"认识"的机会。别让它白白流走。</p>
+        <a href="/contact.html" class="cta-btn">咨询 AI 代理识别方案 &#8594;</a>
+      </div>
+    </section>
+
+    <!-- 内链建议区 -->
+    <section style="margin-top:48px;padding:24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;">
+      <h3 style="margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;">&#128279; 相关文章内链</h3>
+      <ul style="margin-bottom:0;font-size:14px;">
+        <li>&#8594 <a href="/seo-20260411-1944-ai-agent-observability-monitoring-agent-friendly-analytics-website-conversion-seo.html" style="color:rgba(255,255,255,.75);">AI 代理可观测性体系</a>（本轮前一篇：Agent analytics 与网站流量归因）</li>
+        <li>&#8594 <a href="/seo-20260411-1803-ai-agent-multi-agent-orchestration-handoff-website-conversion-seo.html" style="color:rgba(255,255,255,.75);">多代理协同与状态传递</a>（Multi-agent orchestration / Handoff 模式）</li>
+        <li>&#8594 <a href="/seo-20260411-1102-ai-agent-timeout-retry-error-handling-agent-safe-website-conversion-seo.html" style="color:rgba(255,255,255,.75);">AI 代理超时重试与容错</a>（Agent error handling / Circuit breaker / Fallback 机制）</li>
+        <li>&#8594 <a href="/seo-20260411-1005-ai-agent-approval-workflow-human-in-the-loop-website-conversion-seo.html" style="color:rgba(255,255,255,.75);">AI 代理人类审批节点</a>（Approval gate / 审批节点 / 异步授权）</li>
+        <li>&#8594 <a href="/contact.html" style="color:rgba(255,255,255,.75);">联系我们</a>（一人公司官网 · AI 代理专属沟通入口）</li>
+      </ul>
+    </section>
+
+  </article>
+
+</div>
+</body>
+</html>
