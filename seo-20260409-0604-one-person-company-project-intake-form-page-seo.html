@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来</title>
+  <meta name="description" content="一人公司官网咨询表单怎么写？结合 Asana project intake、Linear Intake、Notion Forms、Zendesk AI agents 的近期页面结构，拆解适合一人公司官网的 intake form / 需求收集页写法：先判断适不适合，再收关键信息，再把下一步接起来。" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来" />
+  <meta property="og:description" content="好的 intake form，不是把问题越列越多，而是让真正适合继续的人，更快把页面、截图、目标和当前卡点交出来，再顺着这份信息进入下一步。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260409-0604-one-person-company-project-intake-form-page-seo.html" />
+  <meta property="article:published_time" content="2026-04-09T06:04:00+08:00" />
+  <meta property="article:modified_time" content="2026-04-09T06:04:00+08:00" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260409-0604-one-person-company-project-intake-form-page-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{background:#0b1120;color:#e5e7eb;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;margin:0;line-height:1.85;}
+    .article-shell{max-width:820px;margin:0 auto;padding:48px 20px 72px;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(79,142,247,.12);border:1px solid rgba(126,182,255,.18);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1{font-size:38px;line-height:1.18;color:#fff;margin:18px 0 14px;letter-spacing:-.02em;}
+    .subtitle{font-size:18px;color:rgba(255,255,255,.7);margin:0 0 18px;max-width:760px;}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 30px;}
+    .meta span{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:13px;color:rgba(255,255,255,.72);}
+    h2{font-size:27px;line-height:1.35;color:#fff;margin:42px 0 14px;}
+    h3{font-size:20px;line-height:1.45;color:#f3f4f6;margin:28px 0 10px;}
+    p{font-size:16px;color:rgba(255,255,255,.78);margin:0 0 16px;}
+    ul,ol{margin:12px 0 18px 22px;color:rgba(255,255,255,.78);}
+    li{margin:8px 0;}
+    strong{color:#fff;}
+    .lead-card,.note-card,.cta-card,.faq-card,.links-card,.kpi-card,.compare-card{background:linear-gradient(180deg,rgba(17,24,39,.92),rgba(10,14,23,.96));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px 24px;}
+    .lead-card{margin:28px 0;}
+    .note-card,.kpi-card,.links-card,.faq-card,.compare-card{margin-top:24px;}
+    .quote-line{border-left:3px solid #60a5fa;padding:6px 0 6px 16px;color:#dbeafe;margin:18px 0;}
+    .mini-title{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;}
+    .sample-box{margin:20px 0;padding:18px;border-radius:18px;background:rgba(79,142,247,.08);border:1px solid rgba(126,182,255,.18);}
+    .sample-box p{margin-bottom:10px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px;}
+    .grid-3 > div{padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+    .kpi-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
+    .kpi-item{padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+    .kpi-item strong{display:block;margin-bottom:8px;}
+    .cta-card{margin:40px 0 24px;padding:28px;background:linear-gradient(135deg,rgba(79,142,247,.16),rgba(124,58,237,.14));border:1px solid rgba(126,182,255,.24);}
+    .cta-card h2{margin-top:0;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;margin-top:10px;}
+    .links-card ul{margin:0;padding-left:18px;}
+    .links-card a,.article-shell a{color:#93c5fd;text-decoration:none;}
+    .links-card a:hover,.article-shell a:hover{text-decoration:underline;}
+    .faq-item + .faq-item{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);}
+    .faq-item h3{font-size:17px;margin:0 0 8px;}
+    figure{margin:26px 0;}
+    figure img{width:100%;border-radius:20px;border:1px solid rgba(255,255,255,.08);display:block;background:#111827;}
+    figcaption{margin-top:10px;font-size:13px;color:rgba(255,255,255,.5);}
+    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+    th,td{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top;text-align:left;color:rgba(255,255,255,.78);}
+    th{color:#fff;font-weight:600;background:rgba(255,255,255,.03);}
+    .seo-hidden{display:none;}
+    @media (max-width:720px){
+      h1{font-size:30px;}
+      .grid-3,.kpi-row{grid-template-columns:1fr;}
+      table,thead,tbody,tr,th,td{display:block;}
+      th{border-bottom:none;border-radius:12px 12px 0 0;}
+      td{padding-top:8px;}
+      tr{margin-bottom:14px;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来",
+    "description":"一人公司官网咨询表单怎么写？结合 Asana project intake、Linear Intake、Notion Forms、Zendesk AI agents 的近期页面结构，拆解适合一人公司官网的 intake form / 需求收集页写法：先判断适不适合，再收关键信息，再把下一步接起来。",
+    "datePublished":"2026-04-09T06:04:00+08:00",
+    "dateModified":"2026-04-09T06:04:00+08:00",
+    "author":{"@type":"Organization","name":"BUMA"},
+    "publisher":{"@type":"Organization","name":"BUMA","url":"https://1r.buma55.com/"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://1r.buma55.com/seo-20260409-0604-one-person-company-project-intake-form-page-seo.html"}
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar topbar-clean">
+    <div class="container nav nav-clean">
+      <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <nav class="nav-links nav-links-clean">
+        <a href="index.html">首页</a>
+        <a href="solutions.html">解决方案</a>
+        <a href="seo.html" class="active">文章</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </nav>
+      <div class="nav-endcaps">
+        <span class="nav-signal">山东临沂 · 远程可协作</span>
+        <a class="nav-cta" href="contact.html">预约咨询</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-shell">
+    <div class="eyebrow">Project Intake Page</div>
+    <h1>一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来</h1>
+    <p class="subtitle">很多一人公司网站明明已经把首页、解决方案页、联系页都做出来了，最后却卡在咨询表单这一步：问题列了十几条，用户还没开始填就想关掉；或者表单短得像摆设，最后收到的只有一句“想了解一下”。真正的问题，不是字段多或少，而是这张表单有没有帮双方更快进入有效判断。</p>
+    <div class="meta">
+      <span>2026-04-09</span>
+      <span>咨询表单</span>
+      <span>project intake</span>
+      <span>约 10 分钟阅读</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="mini-title">先说结论</div>
+      <p>这轮重看 Asana 的 <em>Project Intake</em>、Linear 的 <em>Intake</em>、Notion Forms 页面，再对照 Zendesk AI agents 的承接写法，会发现一件事：<strong>高质量 intake page 从来不是“先收更多信息”，而是“先让正确的信息在正确阶段出现”</strong>。</p>
+      <p>Asana 先讲 standardize requests、automate each step、improve your processes；Linear 的开头不是“来填表”，而是“让产品运营 self-driving”，把表单与分流、指派、Triage 接成一条链；Notion Forms 强调 forms right where you work，让提交结果直接进入工作区，而不是躺在邮箱里；Zendesk 则一直强调 resolution，而不是单纯自动回复。这些页面都在做同一件事：<strong>表单只是入口，不是终点</strong>。</p>
+      <p class="quote-line">对一人公司官网来说，咨询表单最值钱的作用，不是把人拦住做问卷，而是让真正适合继续的人，能在 3 分钟内交出页面、截图、目标和当前卡点，然后顺着这份信息进入下一步。</p>
+    </div>
+
+    <p>所以，真正值得改的不是“问题再多一点还是少一点”，而是顺序：先判断适不适合，再收关键上下文，再告诉对方提交后会发生什么。否则，表单很容易变成一种误伤——把原本想继续的人，也一起挡在外面。</p>
+
+    <figure>
+      <img src="assets-article-website-consultation-form-flow.svg" alt="一人公司官网咨询表单与需求收集页结构示意图" loading="lazy" />
+      <figcaption>咨询表单真正该承接的是“判断 → 收集关键信息 → 进入下一步”，而不是一上来就变成长问卷。</figcaption>
+    </figure>
+
+    <h2>这轮搜索里，最值得直接吸收的 4 个页面写法</h2>
+
+    <div class="compare-card">
+      <div class="mini-title">搜索提炼</div>
+      <table>
+        <thead>
+          <tr>
+            <th>参考来源</th>
+            <th>标题角度 / 开头写法</th>
+            <th>模块结构</th>
+            <th>CTA 与关键词覆盖</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Asana Project Intake</td>
+            <td>开头先讲 streamline your intake process，不从表单细节切入，而是先讲标准化、自动化、流程改善。</td>
+            <td>价值主张 → 3 个收益模块 → 模板 / 案例 → FAQ → Start / Demo / Sales。</td>
+            <td>高频词是 project intake、standardize requests、automate、templates、questions；CTA 分层明显。</td>
+          </tr>
+          <tr>
+            <td>Linear Intake</td>
+            <td>标题直接写 self-driving product operations，第一屏就把 intake 和自动分流、Triage、Customer Requests 连起来。</td>
+            <td>自动 issue intake → triage → customer requests → forms / templates → customer proof。</td>
+            <td>高频词是 intake、triage、requests、route、assign、workflow；CTA 指向开始、销售与产品模块。</td>
+          </tr>
+          <tr>
+            <td>Notion Forms</td>
+            <td>开头先写 forms, right where you work，不强调“提问多强大”，而是强调结果直接回到工作流。</td>
+            <td>创建与分享 → 自定义字段 → workflow automation → 场景用途 → 模板。</td>
+            <td>高频词是 forms、workspace、customize、trigger workflows、responses；CTA 比较轻量。</td>
+          </tr>
+          <tr>
+            <td>Zendesk AI Agents</td>
+            <td>先讲 automate 80%+ interactions，开头聚焦 resolution，而不是只讲机器人会自动回复。</td>
+            <td>结果 → 信任 → 成本 / ROI → 常见问题 → 下一步。</td>
+            <td>高频词是 automate、resolve、quality、ROI、save；CTA 围绕演示与进一步了解。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>把这些页面拆开看，你会发现它们虽然服务不同产品，但对 intake form 有同一个判断：<strong>用户不想先填一张“证明自己认真”的表，他想先知道这一步值不值得填、填完会不会有人认真处理、自己需要准备什么才够。</strong></p>
+
+    <h2>为什么很多一人公司官网的咨询表单，最后会把人挡在门外</h2>
+
+    <h3>1）一上来就让用户做完整需求书</h3>
+    <p>“项目背景、目标、预算、周期、目标用户、竞品、预期交付、团队情况、历史过程……”这些信息当然有用，但第一次接触就全收，用户很容易产生一个感受：还没开始，已经很重。</p>
+
+    <h3>2）问题很多，但没有说明“为什么要填”</h3>
+    <p>Asana 和 Notion 的强点不只是字段，而是让人知道信息会被拿去干什么。如果你的表单只是列问题，没有告诉对方这些信息会帮你更快判断什么，用户会更像在交卷，不像在获取帮助。</p>
+
+    <h3>3）提交之后会发生什么，页面完全没写</h3>
+    <p>很多表单页最容易漏掉这一段。用户会担心：提交后是自动回复？会不会石沉大海？多久能看到下一步？Zendesk 一直强调 resolution，就是因为“有人处理、怎么处理、多久处理”本身就是转化信号。</p>
+
+    <h3>4）没有先做适配判断，导致收了一堆无效线索</h3>
+    <p>Linear 把 intake 接到 triage，本质是在说：不是所有请求都应该直接进同一个池子。对一人公司网站来说，更应该先告诉访客：什么情况适合现在提交，什么情况更适合先去看 FAQ、解决方案或文章入口。否则表单会变成一个模糊的大口袋。</p>
+
+    <h3>5）表单与后续流程是断的</h3>
+    <p>Notion Forms 最值得学的一点，就是 responses live in Notion。信息提交后直接进入工作流，而不是孤零零躺在邮箱里。你如果表单和后续动作是断的，就算收到了信息，也很难持续变成有效跟进。</p>
+
+    <h2>更适合一人公司官网的 intake form，建议按这 6 个模块写</h2>
+
+    <h3>模块 1：第一屏先说明“这张表是用来帮你更快判断的”</h3>
+    <p>别把标题写成冷冰冰的“提交需求”或“填写表单”。更好的写法，是先把页面任务说清楚：这不是完整立项，而是先做适配判断。这样用户会更容易接受只需要给出关键上下文，而不是一次性把所有东西讲完。</p>
+    <div class="sample-box">
+      <p><strong>更适合搜索与转化的标题：</strong>一人公司官网咨询表单怎么写，访客才不会看到一半就退出</p>
+      <p><strong>更适合承接的标题：</strong>先把你最卡的那一步发来，我先判断值不值得继续聊</p>
+    </div>
+
+    <h3>模块 2：先做“适不适合现在提交”的轻判断</h3>
+    <p>这一步可以不是测试题，而是 2–3 句说明：适合谁、什么情况建议提交、什么情况先去看别的入口。这样会帮你减少无效提交，也会让真正适合的人更安心。用户不是怕填表，而是怕白填。</p>
+
+    <h3>模块 3：字段只收 4 类关键信息，不要变成长问卷</h3>
+    <p>对大多数官网咨询表单来说，第一次提交通常只需要这 4 类：</p>
+    <ul>
+      <li><strong>页面或流程对象：</strong>你到底在说哪个页面、哪个链接、哪段流程；</li>
+      <li><strong>当前卡点：</strong>最卡的那一步是什么，不要让用户一次写十个问题；</li>
+      <li><strong>目标：</strong>你希望先判断转化、收录、承接，还是接入；</li>
+      <li><strong>联系方式：</strong>一个能继续沟通的最小联系渠道。</li>
+    </ul>
+    <p>如果再往上加问题，优先问“会不会帮助第一次判断更快”，而不是问“以后也许会不会用得上”。</p>
+
+    <h3>模块 4：字段下方补 1 句用途解释，降低填写压力</h3>
+    <p>这是很多表单页最容易忽略，但最容易提升完成率的细节。比如“页面链接用于快速定位你的问题场景”“截图用于判断是不是结构或承接问题”。用户一旦知道每个字段为什么存在，抗拒感会明显下降。</p>
+
+    <h3>模块 5：提交按钮旁边必须写清“提交后会发生什么”</h3>
+    <p>这一步几乎是转化核心。你至少要告诉对方：工作日多久回应、先给什么、是否会先做 15 分钟判断、什么时候再进入更深沟通。这样，提交按钮才像“进入下一步”，而不是把信息扔进黑箱。</p>
+
+    <h3>模块 6：底部只保留 1 个主继续动作，其他都做辅助出口</h3>
+    <p>如果用户现在还没准备好直接提交，底部也不要并排塞满“打电话 / 微信 / 邮件 / 加群 / 看案例 / 看博客 / 下载报价”。最好的方式通常是：<strong>1 个主动作 + 少量辅助自查入口</strong>。这样既不会逼迫，也不会让用户在最后一步再次散掉。</p>
+
+    <h2>如果你只想先改一处，优先把表单字段砍到“第一次判断够用”为止</h2>
+    <p>这是对一人公司站点最直接有效的改法。因为很多页面的问题并不在 UI，而在用户一看到表单就觉得：这不是开始合作前的轻判断，而是一场完整提案。你只要把字段收回到“页面 / 截图 / 卡点 / 联系方式”这一层，完成率通常就会比继续加问题更有希望改善。</p>
+
+    <div class="grid-3">
+      <div>
+        <strong>先判断适配</strong>
+        <p>让用户先知道自己适不适合现在提交，而不是填到最后才发现不匹配。</p>
+      </div>
+      <div>
+        <strong>再收关键上下文</strong>
+        <p>只收第一次判断必须的信息，不把表单做成需求书。</p>
+      </div>
+      <div>
+        <strong>最后接下一步</strong>
+        <p>写清工作日多久回应、会先给什么、下一步怎么走，让按钮更像开始而不是投递。</p>
+      </div>
+    </div>
+
+    <h2>一人公司官网咨询表单，可以直接照这个骨架改</h2>
+    <ol>
+      <li><strong>Hero：</strong>说明这是“适配判断页”，不是完整立项问卷；</li>
+      <li><strong>轻判断说明：</strong>什么情况适合现在提交，什么情况先去看 FAQ / 解决方案；</li>
+      <li><strong>核心字段：</strong>页面链接、截图、当前卡点、目标、联系方式；</li>
+      <li><strong>字段解释：</strong>每一项为什么要填；</li>
+      <li><strong>提交后预期：</strong>回应时间、先给什么、下一步怎么走；</li>
+      <li><strong>底部兜底：</strong>1 个主动作 + 少量辅助自查入口。</li>
+    </ol>
+
+    <p>如果你做的是一人公司官网、内容承接、AI 团队协作、OpenClaw / 飞书接入这类服务站，这个结构尤其重要。因为用户来这里不是为了先交一份完整项目文档，而是想知道：<strong>我这个问题值不值得现在提交、要先给什么、交出去之后会不会真的有人处理。</strong></p>
+
+    <div class="kpi-card">
+      <div class="mini-title">改完后先盯这 3 组数字</div>
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <strong>曝光量级</strong>
+          <p>如果你的站还在早期，先看咨询表单页能否从首页、解决方案页、文章页稳定拿到每月 100–300 次有效访问；有稳定内链后，再向 300–800 次访问推进。</p>
+        </div>
+        <div class="kpi-item">
+          <strong>预期点击率</strong>
+          <p>先看从联系页或解决方案页进入表单区域的点击率，早期目标可先观察是否稳定到 18%–30%；如果页面说明更清楚，通常会比“只放一个冷按钮”更高。</p>
+        </div>
+        <div class="kpi-item">
+          <strong>转化率</strong>
+          <p>更关键的是表单开始到提交完成的比例。第一次可先盯 35%–55% 的完成区间；如果现在字段很长、几乎没人交，先把字段减到第一次判断够用，再看是否提升。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>本方案风险：</strong>如果你只是把表单视觉做得更好看，却没有先减字段、补用途解释、写清提交后预期，页面可能更像设计稿，但不会明显更会收有效需求；<strong>若出现这种情况，则调整为：</strong>先收口到“轻判断 + 4 类关键信息 + 提交后会发生什么”，再回头补样式与高级字段。</p>
+    </div>
+
+    <h2>最后一句：咨询表单不是证明用户认真，而是帮双方更快进入有效判断</h2>
+    <p>真正有效的 intake page，不会先要求对方把一切都讲清，而是先把最关键的上下文拉出来：你在看哪个页面、卡在哪一步、想先判断什么、接下来怎么联系你。</p>
+    <p>这才是一人公司官网最该追求的表单体验：不重、不散、不假装专业，而是让真正想继续的人，顺利迈出下一步。</p>
+
+    <div class="cta-card">
+      <h2>如果你怀疑自己的网站不是没有咨询，而是表单把人挡在了门外</h2>
+      <p>先别急着重做整页。先看三件事：第一屏有没有说明这是适配判断；字段是不是已经超过第一次判断所需；提交按钮旁边有没有写清楚提交后会发生什么。把这三处收好，通常比继续加问题更值。</p>
+      <a class="btn" href="contact.html">先看联系页当前承接方式 →</a>
+    </div>
+
+    <div class="links-card">
+      <div class="mini-title">相关阅读</div>
+      <ul>
+        <li><a href="contact.html">联系页当前版本</a>：看看“先发页面 / 截图 / 卡点”是怎么在前台承接的。</li>
+        <li><a href="solutions.html">解决方案页当前版本</a>：在进入表单之前，用户通常需要先判断自己属于哪类问题。</li>
+        <li><a href="seo-20260409-0007-one-person-company-contact-page-first-message-conversion-seo.html">联系页首条消息优化</a>：如果表单之外你也想把第一条消息承接做好，可以一起看。</li>
+        <li><a href="seo-20260409-0504-one-person-company-pricing-table-comparison-page-seo.html">定价页对比表写法</a>：如果你的网站需要先用套餐页做筛选，再进入咨询表单，这篇可以一起接。</li>
+        <li><a href="openclaw-faq.html">OpenClaw FAQ</a>：如果你现在更像常见问题排查，而不是正式提交需求，可以先自查一轮。</li>
+      </ul>
+    </div>
+
+    <div class="faq-card">
+      <div class="mini-title">FAQ</div>
+      <div class="faq-item">
+        <h3>咨询表单一定要做成多步表单吗？</h3>
+        <p>不一定。多步表单适合字段确实较多、且每一步都有明确心理分段的场景。对一人公司官网来说，如果第一次只收 4 类关键信息，单屏反而更直接。关键不在形式，而在字段是否合理。</p>
+      </div>
+      <div class="faq-item">
+        <h3>第一次提交要不要问预算？</h3>
+        <p>看你的业务。如果预算会直接影响是否适配，可以问区间，但不要把它做成第一次最重的问题。很多时候，“当前问题 + 目标 + 页面对象”比精确预算更能帮助第一次判断。</p>
+      </div>
+      <div class="faq-item">
+        <h3>如果我没有做表单，只有微信或邮箱，也能优化吗？</h3>
+        <p>也能。你可以先把 intake 的逻辑写进联系页：先讲适不适合、再给 1 条通用首发模板、再写清回应预期。很多时候，先把逻辑理顺，比先上复杂工具更重要。</p>
+      </div>
+    </div>
+
+    <section class="seo-hidden" aria-hidden="true">
+      <h2>SEO Metadata</h2>
+      <p><strong>Title:</strong> 一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来</p>
+      <p><strong>Target Keywords:</strong> 咨询表单, project intake, intake form, 官网需求收集页, request intake page, 一人公司官网表单, 服务咨询表单, 项目 intake 页</p>
+      <p><strong>Search Intent:</strong> Informational + Commercial Investigation</p>
+      <p><strong>Meta Title:</strong> 一人公司官网咨询表单怎么写：别把项目 intake 页做成长问卷，先让对的人顺利把关键信息交出来</p>
+      <p><strong>Meta Description:</strong> 一人公司官网咨询表单怎么写？结合 Asana project intake、Linear Intake、Notion Forms、Zendesk AI agents 的近期页面结构，拆解适合一人公司官网的 intake form / 需求收集页写法：先判断适不适合，再收关键信息，再把下一步接起来。</p>
+      <p><strong>Suggested Slug:</strong> seo-20260409-0604-one-person-company-project-intake-form-page-seo.html</p>
+      <ul>
+        <li>Internal Link Suggestion 1: contact.html</li>
+        <li>Internal Link Suggestion 2: solutions.html</li>
+        <li>Internal Link Suggestion 3: seo-20260409-0007-one-person-company-contact-page-first-message-conversion-seo.html</li>
+        <li>Internal Link Suggestion 4: seo-20260409-0504-one-person-company-pricing-table-comparison-page-seo.html</li>
+        <li>Internal Link Suggestion 5: openclaw-faq.html</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
