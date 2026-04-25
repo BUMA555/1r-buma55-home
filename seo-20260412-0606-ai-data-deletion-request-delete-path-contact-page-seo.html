@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI data deletion request 怎么写：一人公司官网要把 delete request / 删除入口 / 保留例外讲清楚 | BUMA</title>
+  <meta name="description" content="用户现在不只会问‘会不会被用于 AI 训练’，还会继续问：如果我发完链接、截图、报价和客户资料后想删，你这里有没有 data deletion request 入口？本文结合 OpenAI、Notion、Anthropic 的真实写法，拆解一人公司官网该如何把 delete request、删除路径与 retention exception 写进 Contact 页、FAQ 与确认页。" />
+  <meta name="keywords" content="AI data deletion request, delete request page, delete my data, contact page privacy request, data deletion policy, AI delete request, 删除请求页面, 数据删除申请, 一人公司官网, 官网转化" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI data deletion request 怎么写：一人公司官网要把 delete request / 删除入口 / 保留例外讲清楚" />
+  <meta property="og:description" content="真正让用户敢发第一条高意图消息的，不只是‘不会用于 AI 训练’，还包括：如果之后想删，怎么删、删到什么程度、哪些情况会有保留例外。本文给出可直接复用的官网写法。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo.html" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b1120;color:#e5e7eb;margin:0;line-height:1.9;}
+    .page-wrap {max-width:800px;margin:0 auto;padding:0 24px 80px;}
+    .article-hero {padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .eyebrow {display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(79,142,247,.14);border:1px solid rgba(126,182,255,.2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1 {font-size:30px;line-height:1.2;margin:14px 0 16px;color:#fff;}
+    .lead {font-size:17px;color:rgba(255,255,255,.74);margin:0 0 20px;max-width:700px;}
+    .meta {display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .meta span {padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.62);}
+    h2 {font-size:21px;color:#fff;margin:40px 0 16px;padding-top:8px;}
+    h3 {font-size:17px;color:#e5e7eb;margin:28px 0 12px;}
+    p {margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol {margin:0 0 18px;padding-left:24px;color:rgba(255,255,255,.82);}
+    li {margin-bottom:8px;}
+    strong {color:#fff;}
+    .highlight-box {background:rgba(79,142,247,.10);border:1px solid rgba(79,142,247,.3);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .highlight-box h3 {margin-top:0;color:#93c5fd;font-size:15px;}
+    .highlight-box p {margin-bottom:0;font-size:15px;}
+    .warning-box {background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .warning-box h3 {margin-top:0;color:#fbbf24;font-size:15px;}
+    .warning-box p {margin-bottom:10px;font-size:15px;}
+    .cta-box {background:linear-gradient(135deg,rgba(79,142,247,.18),rgba(16,185,129,.12));border:1px solid rgba(79,142,247,.35);border-radius:18px;padding:28px 32px;margin:40px 0;text-align:center;}
+    .cta-box h3 {margin-top:0;color:#fff;font-size:20px;}
+    .cta-box p {color:rgba(255,255,255,.75);margin-bottom:16px;}
+    .cta-btn {display:inline-flex;align-items:center;padding:12px 24px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+    .toc {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:28px 0 32px;}
+    .toc h3 {margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;}
+    .toc ol {margin:0;padding-left:20px;font-size:14px;}
+    .toc li {margin-bottom:6px;}
+    .toc a {color:rgba(255,255,255,.78);text-decoration:none;}
+    .toc a:hover {color:#4f8ef7;}
+    pre {background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7;white-space:pre-wrap;}
+    pre code {background:none;padding:0;color:#e5e7eb;}
+    table {width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+    table th,table td {padding:10px 14px;border:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top;}
+    table th {background:rgba(79,142,247,.15);color:#93c5fd;font-weight:600;}
+    table tr:nth-child(even) {background:rgba(255,255,255,.02);}
+    blockquote {border-left:3px solid #4f8ef7;margin:24px 0;padding:14px 20px;background:rgba(79,142,247,.06);border-radius:0 10px 10px 0;}
+    blockquote p {margin:0;font-size:15px;color:rgba(255,255,255,.8);}
+    .article-footer {margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);}
+    .article-footer h3 {margin-top:0;font-size:16px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;}
+    .related-links {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+    .related-link {display:block;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);text-decoration:none;color:inherit;transition:.2s;}
+    .related-link:hover {border-color:rgba(79,142,247,.5);background:rgba(79,142,247,.08);}
+    .related-link-title {font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+    .related-link-desc {font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;}
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <article>
+      <header class="article-hero">
+        <span class="eyebrow">AI Delete Request · 官网转化</span>
+        <h1>AI data deletion request 怎么写：一人公司官网要把 delete request / 删除入口 / 保留例外讲清楚</h1>
+        <p class="lead">用户现在已经不只会问“会不会被用于 AI 训练”。他们还会继续问：如果我今天把报价、客户截图、后台页面、业务流程、聊天记录发给你，明天后悔了怎么办？有没有 data deletion request 入口？删的是前台记录、后台记录，还是连第三方 AI 处理痕迹也会一起清？如果你的官网只写一句“我们重视隐私”，却没有 delete request 路径，那么高意图访客在最后一步依然会犹豫。真正让人敢发第一条消息的，是把删除入口、默认处理方式和保留例外写成用户看得懂的话。</p>
+        <div class="meta">
+          <span>📅 2026-04-12</span>
+          <span>✍️ BUMA 内容团队</span>
+          <span>🏷️ AI 删除请求 · Contact 页 · FAQ · 确认页</span>
+          <span>⏱️ 约 4400 字</span>
+        </div>
+      </header>
+
+      <nav class="toc">
+        <h3>目录</h3>
+        <ol>
+          <li><a href="#why">为什么 delete request 正在变成 Contact 页的新信任节点</a></li>
+          <li><a href="#research">最近高质量写法里，大家都在怎么讲“删除、保留、例外”</a></li>
+          <li><a href="#angles">这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</a></li>
+          <li><a href="#mistakes">一人公司官网最常见的 4 个错误</a></li>
+          <li><a href="#where">删除路径到底该放在哪：Contact、FAQ、确认页、隐私页</a></li>
+          <li><a href="#copy">可直接复用的 6 段官网文案模板</a></li>
+          <li><a href="#kpi">上线后怎么看：曝光、点击率、转化率</a></li>
+          <li><a href="#risk">本方案风险</a></li>
+          <li><a href="#action">最小落地顺序</a></li>
+          <li><a href="#related">相关阅读</a></li>
+        </ol>
+      </nav>
+
+      <section id="why">
+        <h2>1. 为什么 delete request 正在变成 Contact 页的新信任节点</h2>
+        <p>过去网站转化里，用户最关心的是“会不会有人回复”“这次咨询值不值得”“会不会被骚扰”。但当越来越多官网开始接 AI 摘要、自动分类、客服增强、线索归档、邮件助手和流程编排后，用户会自然多问一步：<strong>如果我发出去之后想删，这套系统有没有删的路径？</strong></p>
+        <p>这一步对一人公司官网尤其关键。因为你的网站经常承接的是更高信息密度的内容：一张真实后台图、一段业务数据、一份报价范围、一个客户名单、一组 SEO 报表，或者一整条工作流截图。访客不是不愿意沟通，而是担心一旦发出去就再也收不回来。只要这一层不确定，CTA 再强、案例再多，也可能在最后 10 秒掉单。</p>
+        <p>所以，真正能降低阻力的，不只是“不会被用于公开 AI 模型训练”，还包括至少三件事：</p>
+        <ul>
+          <li><strong>默认会如何处理这次提交</strong>：仅用于本次沟通、判断与交付准备。</li>
+          <li><strong>如果用户想删，怎么提删除请求</strong>：通过回复、邮件、客服还是表单。</li>
+          <li><strong>哪些内容可能仍存在保留例外</strong>：例如安全审计、法定义务、已提交反馈、正在进行中的系统备份。</li>
+        </ul>
+        <div class="highlight-box">
+          <h3>核心判断</h3>
+          <p>“no AI training” 解决的是第一层顾虑；“delete request path + retention exception” 才解决用户敢不敢发高敏感资料的最后一道门槛。尤其在 Contact 页、FAQ、thank-you 页和隐私页，这一层一旦缺失，转化会在最靠近提交的地方掉下来。</p>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>2. 最近高质量写法里，大家都在怎么讲“删除、保留、例外”</h2>
+        <p>这一轮没有闭门硬写，而是先看了几类近期高质量官方说明，再提炼结构。它们的产品不完全一样，但回答的是同一个问题：<strong>如果用户想控制自己的内容，删除和保留要怎么说，才既真实又能快速让人做判断。</strong></p>
+
+        <h3>OpenAI：把“控制项”写成用户能操作的动作</h3>
+        <p>OpenAI 的 Data Controls FAQ 很值得学的一点，是它没有先讲抽象原则，而是直接告诉用户：怎么关闭“Improve the model for everyone”、Temporary Chats 会在 30 天后删除、关闭训练后聊天仍会在历史里但不会用于训练。这种写法最有效的地方，在于<strong>先给动作，再解释机制</strong>。</p>
+        <p>对官网来说，这意味着删除请求不该只写成“如有需要可联系我们”。更好的写法是：<strong>如果你希望删除已提交资料，可直接回复当前线程或通过联系渠道提出删除请求；我们会按当前流程尽快处理，并在必要时说明保留例外。</strong> 用户看到的是路径，不只是态度。</p>
+
+        <h3>Notion：先给 data governance 结论，再补供应商与政策边界</h3>
+        <p>Notion 的安全与隐私页，没有把“删除”单独包装成营销词，而是放在 data governance 语境下：从创建、处理、分发、存储到 deletion 都有规则；供应商也要遵循同样的数据管理和安全标准。它启发我们的不是句子，而是结构：<strong>删除不是一条孤立承诺，而是整个数据生命周期的一部分。</strong></p>
+        <p>换到一人公司官网上，最应该吸收的点是：不要只写“可以删除”，而要一起写清“默认怎么处理、谁会接触、第三方怎么约束、删除请求走什么路径”。这样访客判断的是完整链路，而不是一句空话。</p>
+
+        <h3>Anthropic：把默认规则、反馈例外、保留时间拆开讲</h3>
+        <p>Anthropic 的商业产品隐私帮助里，默认规则非常清楚：商业产品输入输出默认不用于模型训练；但如果用户明确提交反馈，相关对话可能会被保留更久；消费者产品的保留页还会继续说明删除、保留时长、违规内容和反馈数据等例外。这个写法最值得学的地方，是它没有把“删除”“训练”“保留”揉成一团，而是拆成用户能逐项判断的块。</p>
+        <p>对官网转化来说，这种写法非常重要。因为用户真正想听到的通常是：<strong>默认能删；如果删不干净，是为什么；如果有例外，是哪类例外。</strong> 说得越具体，越不像在躲。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>参考来源</th>
+              <th>高质量写法</th>
+              <th>适合迁移到官网的点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OpenAI Data Controls FAQ</td>
+              <td>关闭训练、Temporary Chats、删除控制都写成用户动作</td>
+              <td>把 delete request 写成明确入口，不写空泛态度</td>
+            </tr>
+            <tr>
+              <td>Notion Security</td>
+              <td>用 data governance 讲完整生命周期与供应商约束</td>
+              <td>删除路径要和处理范围、第三方说明一起出现</td>
+            </tr>
+            <tr>
+              <td>Anthropic Privacy Help</td>
+              <td>默认规则、反馈例外、保留时间分块说明</td>
+              <td>官网要写清默认可删、何时例外、为何例外</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="angles">
+        <h2>3. 这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</h2>
+        <p>这轮参考后，能提炼出几个明显可复用的写法，不只是信息内容，而是高质量页面为什么读起来更可信。</p>
+
+        <h3>标题角度：不要写成政策更新，要写成用户真正会卡住的问题</h3>
+        <p>高质量标题不会写成“隐私政策修订说明”这种内部口吻，而会贴近用户会搜的话：delete my data、data deletion request、how long do you store my data、can I delete my conversation。迁移到官网，就是把标题从“法务动作”切到“真实犹豫点”。</p>
+
+        <h3>开头写法：先写用户已经发完资料之后的后悔场景</h3>
+        <p>比起定义 deletion，更有效的开头是一个真实动作：用户刚发完报价、截图、流程图、客户背景，下一秒开始担心“如果不继续合作，这些内容怎么办”。这种写法比先解释术语更能把读者拉进来。</p>
+
+        <h3>模块结构：默认规则 → 删除路径 → 保留例外 → CTA</h3>
+        <p>参考页普遍不会用“定义—分类—总结”模板，而是先给默认结论，再给操作入口，再把例外讲清，再收成一个轻量 CTA。因为用户此时不是来上课的，而是来判断自己能不能放心继续。</p>
+
+        <h3>转化 CTA：降低继续联系阻力，而不是趁机继续销售</h3>
+        <p>这类主题下最好的 CTA，不是“立即购买”，而是“如果你担心这条删除路径写得不够清楚，先把当前 Contact 页或 FAQ 发来，我们先判断缺口在哪”。也就是说，CTA 仍然服务一个动作：让用户把第一条高质量消息发出来。</p>
+
+        <h3>关键词覆盖：删除词要和转化场景词一起出现</h3>
+        <p>如果只写 data deletion policy，很容易变成一篇和官网主线脱节的说明文。更好的覆盖方式，是把删除词和转化场景词一起放进去：<strong>AI data deletion request、delete request page、delete my data、contact page privacy request、确认页、FAQ、官网转化。</strong></p>
+      </section>
+
+      <section id="mistakes">
+        <h2>4. 一人公司官网最常见的 4 个错误</h2>
+        <h3>错误一：只写“可联系删除”，不写联系后会发生什么</h3>
+        <p>用户不知道是删前台展示、删后台记录，还是只是停止后续联系。没有处理范围，这句话几乎没有降低不安。</p>
+
+        <h3>错误二：只写“可以删除”，不写保留例外</h3>
+        <p>如果真实链路里存在安全审计、法定义务、反馈记录或备份窗口，就应该如实说明。真实边界比空口绝对更能建立信任。</p>
+
+        <h3>错误三：把删除入口藏进页脚政策</h3>
+        <p>用户是在 Contact 页点发送前卡住的，不是在翻页脚时卡住的。最关键的一句应该靠近 CTA、FAQ 或确认页，而不是只放在一篇长政策里。</p>
+
+        <h3>错误四：把删除请求写得像投诉通道</h3>
+        <p>删除请求本身就是正常的控制权，不应该写成“如有争议请申诉”。越把它写得像麻烦事，用户越不敢发高敏感内容。</p>
+
+        <div class="warning-box">
+          <h3>⚠️ 最容易掉单的位置</h3>
+          <p>真正的流失点，往往是用户已经准备好发送，只是临门一脚担心“之后删不掉”。特别是涉及截图、报价、后台和客户信息时，缺少 delete request path 会直接把高质量线索拖成“我再想想”。</p>
+        </div>
+      </section>
+
+      <section id="where">
+        <h2>5. 删除路径到底该放在哪：Contact、FAQ、确认页、隐私页</h2>
+        <p>如果只把 delete request 写成一篇单独文章，教育价值有，但转化价值不够。真正有效的是分层落位。</p>
+        <ul>
+          <li><strong>Contact 页：</strong>用 1 句短承诺回答“想删时怎么做”。</li>
+          <li><strong>FAQ：</strong>展开说明删除范围、默认保留、保留例外和处理时效。</li>
+          <li><strong>表单按钮附近：</strong>解决点击前最后一层不安。</li>
+          <li><strong>确认页 / Thank-you 页：</strong>告诉用户资料已收到，也说明如需删除可走什么路径。</li>
+          <li><strong>隐私页：</strong>放完整说明，承接认真核对的用户。</li>
+        </ul>
+        <p>这也是为什么 delete request 主题天然适合一人公司官网：它不是法务页的孤岛，而是 Contact → FAQ → Confirmation → Privacy 整条信任链的一环。</p>
+      </section>
+
+      <section id="copy">
+        <h2>6. 可直接复用的 6 段官网文案模板</h2>
+        <h3>模板一：Contact 页短句</h3>
+        <pre><code>你提交的页面链接、截图和业务说明，仅用于本次沟通判断与后续服务推进。
+如需删除已提交内容，可直接通过当前联系渠道提出删除请求，我们会按当前流程尽快处理。</code></pre>
+
+        <h3>模板二：CTA 附近增强版</h3>
+        <pre><code>默认情况下，你提交的资料不会被用于公开 AI 模型训练。
+如果之后希望删除已发送内容，也可以直接提出 delete request，我们会说明处理范围与必要例外。</code></pre>
+
+        <h3>模板三：FAQ 删除范围版</h3>
+        <pre><code>Q：我提交后可以要求删除资料吗？
+A：可以。若你希望删除通过网站、表单或当前沟通提交的资料，可直接提出删除请求。我们会按当前流程处理，并在存在法定义务、安全审计或必要备份窗口等例外时如实说明。</code></pre>
+
+        <h3>模板四：FAQ 保留例外版</h3>
+        <pre><code>Q：提出删除请求后，是不是所有记录都会立刻消失？
+A：默认会尽快删除与你本次提交直接相关的可删除内容；但若涉及安全排查、合规要求、已主动提交的反馈记录或系统备份周期，可能存在必要保留例外，我们会在处理时同步说明。</code></pre>
+
+        <h3>模板五：确认页安心版</h3>
+        <pre><code>我们已收到你的资料，接下来会在 24 小时内完成初步判断。
+如需删除已提交内容，也可以直接回复当前消息说明，我们会按流程处理并同步后续状态。</code></pre>
+
+        <h3>模板六：隐私页完整说明版</h3>
+        <pre><code>我们可能使用自动化与 AI 工具协助完成信息整理、摘要、分类与流程判断，但用户主动提交的内容默认仅用于本次沟通、项目评估、服务交付与必要运营记录，不会被用于训练公开 AI 模型。若用户提出删除请求，我们将按当前流程尽快处理相关可删除内容；如遇法定义务、安全审计、已主动提交反馈或必要备份窗口等情况，可能存在合理保留例外。</code></pre>
+      </section>
+
+      <section id="kpi">
+        <h2>7. 上线后怎么看：曝光、点击率、转化率</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>指标层</th>
+              <th>建议预期</th>
+              <th>看什么</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>曝光量级</td>
+              <td>删除说明模块每周 150~800 次可见曝光</td>
+              <td>看 FAQ 展开率、表单区可见率、确认页到达率</td>
+            </tr>
+            <tr>
+              <td>预期点击率</td>
+              <td>主 CTA 提升 4%~9%</td>
+              <td>对比补 delete request 文案前后的按钮点击率、表单开始率</td>
+            </tr>
+            <tr>
+              <td>转化率</td>
+              <td>有效咨询提升 8%~16%</td>
+              <td>重点看带截图、带链接、带具体问题的高质量提交占比</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>这类改动最先提升的，往往不是“提交量暴增”，而是提交质量更完整、敏感信息遮掩更少、访客更敢一次性把关键资料发出来。对一人公司来说，这种质量提升往往比表面数量更值钱。</p>
+      </section>
+
+      <section id="risk">
+        <h2>8. 本方案风险</h2>
+        <p><strong>本方案风险：</strong>如果页面把“可删除”写成绝对立即、绝对彻底，而真实流程里存在备份窗口、安全审计、法定义务或反馈保留，就会形成承诺与事实不一致；<strong>若出现这种情况，则调整为</strong>“默认可删除 + 明确删除入口 + 同步必要保留例外”的真实表达，不硬写无法兑现的绝对句。</p>
+      </section>
+
+      <section id="action">
+        <h2>9. 最小落地顺序</h2>
+        <ol>
+          <li>先在 Contact 页 CTA 附近补 1 句 delete request 短承诺。</li>
+          <li>再在 FAQ 补“能不能删 / 删哪些 / 有无例外”3 个问题。</li>
+          <li>把确认页从“提交成功”升级为“资料如何处理 + 如需删除怎么做”。</li>
+          <li>最后再补一页完整隐私说明，承接认真核对的人。</li>
+        </ol>
+        <p>对一人公司官网来说，这四步里前两步最直接影响转化，后三步负责把信任补完整。比起空喊“我们很安全”，这是一条更容易接住高质量咨询的路径。</p>
+      </section>
+
+      <section hidden aria-hidden="true">
+        <h2>SEO Publishing Brief</h2>
+        <ul>
+          <li><strong>标题：</strong>AI data deletion request 怎么写：一人公司官网要把 delete request / 删除入口 / 保留例外讲清楚</li>
+          <li><strong>目标关键词：</strong>AI data deletion request, delete request page, delete my data, contact page privacy request, data deletion policy, AI delete request, 删除请求页面, 数据删除申请</li>
+          <li><strong>搜索意图：</strong>Informational + Commercial Investigation</li>
+          <li><strong>Meta title：</strong>AI data deletion request 怎么写：delete request / 删除入口指南 | BUMA</li>
+          <li><strong>Meta description：</strong>用户现在不只会问‘会不会被用于 AI 训练’，还会继续问：如果我发完链接、截图、报价和客户资料后想删，你这里有没有 data deletion request 入口？本文结合 OpenAI、Notion、Anthropic 的真实写法，拆解一人公司官网该如何把 delete request、删除路径与 retention exception 写进 Contact 页、FAQ 与确认页。</li>
+          <li><strong>建议 slug：</strong>seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo</li>
+          <li><strong>内链建议：</strong>
+            <ul>
+              <li><a href="contact.html">contact.html</a>：承接 Contact 页删除请求与提交动作。</li>
+              <li><a href="seo-20260412-0509-ai-data-retention-policy-no-ai-training-contact-page-seo.html">AI data retention policy 文章</a>：承接默认保留周期与 retention 写法。</li>
+              <li><a href="seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html">AI privacy notice 文章</a>：承接“不会被用于 AI 训练”的前一层信任。</li>
+              <li><a href="seo-20260411-0902-ai-agent-thank-you-confirmation-response-time-seo.html">thank-you / confirmation 文章</a>：承接提交后处理与删除路径说明。</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <div class="cta-box">
+        <h3>如果你的网站已经接了 AI，但还没把“想删时怎么办”讲清楚</h3>
+        <p>先别急着再加一个按钮。更值钱的，是先把 Contact 页、FAQ 和确认页里的 delete request path 补完整，再让用户放心发第一条高质量消息。</p>
+        <a class="cta-btn" href="contact.html">先做 15 分钟的网站诊断</a>
+      </div>
+
+      <footer class="article-footer" id="related">
+        <h3>相关阅读</h3>
+        <div class="related-links">
+          <a class="related-link" href="seo-20260412-0509-ai-data-retention-policy-no-ai-training-contact-page-seo.html">
+            <div class="related-link-title">AI data retention policy 怎么写？</div>
+            <div class="related-link-desc">继续看默认保留周期、第三方处理与删除周期该怎么写。</div>
+          </a>
+          <a class="related-link" href="seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html">
+            <div class="related-link-title">AI privacy notice 怎么写？</div>
+            <div class="related-link-desc">先补“不会被用于 AI 训练”这层基础信任说明。</div>
+          </a>
+          <a class="related-link" href="seo-20260411-0902-ai-agent-thank-you-confirmation-response-time-seo.html">
+            <div class="related-link-title">Thank-you / confirmation 页别只写提交成功</div>
+            <div class="related-link-desc">把提交后处理、响应时效与删除路径讲清楚。</div>
+          </a>
+          <a class="related-link" href="contact.html">
+            <div class="related-link-title">联系页</div>
+            <div class="related-link-desc">如果你已经有页面和截图，直接进入 15 分钟判断。</div>
+          </a>
+        </div>
+      </footer>
+    </article>
+  </div>
+</body>
+</html>
