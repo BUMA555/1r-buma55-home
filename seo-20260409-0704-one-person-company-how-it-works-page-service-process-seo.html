@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么</title>
+  <meta name="description" content="一人公司官网 How It Works 页面怎么写？结合 Stripe Contact Sales、Linear Contact、Zendesk AI、Intercom Fin、Notion Forms 的近期页面结构，拆解适合一人公司官网的服务流程页 / 合作流程页写法：先讲结果，再讲步骤，再讲提交后会发生什么。" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么" />
+  <meta property="og:description" content="好的 how it works 页面，不是把步骤写得更多，而是让人先看懂自己会经历什么、会拿到什么、什么时候该继续。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260409-0704-one-person-company-how-it-works-page-service-process-seo.html" />
+  <meta property="article:published_time" content="2026-04-09T07:04:00+08:00" />
+  <meta property="article:modified_time" content="2026-04-09T07:04:00+08:00" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260409-0704-one-person-company-how-it-works-page-service-process-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{background:#0b1120;color:#e5e7eb;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;margin:0;line-height:1.85;}
+    .article-shell{max-width:820px;margin:0 auto;padding:48px 20px 72px;}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(79,142,247,.12);border:1px solid rgba(126,182,255,.18);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1{font-size:38px;line-height:1.18;color:#fff;margin:18px 0 14px;letter-spacing:-.02em;}
+    .subtitle{font-size:18px;color:rgba(255,255,255,.7);margin:0 0 18px;max-width:760px;}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 30px;}
+    .meta span{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:13px;color:rgba(255,255,255,.72);}
+    h2{font-size:27px;line-height:1.35;color:#fff;margin:42px 0 14px;}
+    h3{font-size:20px;line-height:1.45;color:#f3f4f6;margin:28px 0 10px;}
+    p{font-size:16px;color:rgba(255,255,255,.78);margin:0 0 16px;}
+    ul,ol{margin:12px 0 18px 22px;color:rgba(255,255,255,.78);}
+    li{margin:8px 0;}
+    strong{color:#fff;}
+    .lead-card,.note-card,.cta-card,.faq-card,.links-card,.kpi-card,.compare-card{background:linear-gradient(180deg,rgba(17,24,39,.92),rgba(10,14,23,.96));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px 24px;}
+    .lead-card{margin:28px 0;}
+    .note-card,.kpi-card,.links-card,.faq-card,.compare-card{margin-top:24px;}
+    .quote-line{border-left:3px solid #60a5fa;padding:6px 0 6px 16px;color:#dbeafe;margin:18px 0;}
+    .mini-title{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;}
+    .sample-box{margin:20px 0;padding:18px;border-radius:18px;background:rgba(79,142,247,.08);border:1px solid rgba(126,182,255,.18);}
+    .sample-box p{margin-bottom:10px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px;}
+    .grid-3 > div{padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+    .timeline-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px;}
+    .timeline-grid > div{padding:18px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+    .kpi-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
+    .kpi-item{padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+    .kpi-item strong{display:block;margin-bottom:8px;}
+    .cta-card{margin:40px 0 24px;padding:28px;background:linear-gradient(135deg,rgba(79,142,247,.16),rgba(124,58,237,.14));border:1px solid rgba(126,182,255,.24);}
+    .cta-card h2{margin-top:0;}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;margin-top:10px;}
+    .links-card ul{margin:0;padding-left:18px;}
+    .links-card a,.article-shell a{color:#93c5fd;text-decoration:none;}
+    .links-card a:hover,.article-shell a:hover{text-decoration:underline;}
+    .faq-item + .faq-item{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);}
+    .faq-item h3{font-size:17px;margin:0 0 8px;}
+    figure{margin:26px 0;}
+    figure img{width:100%;border-radius:20px;border:1px solid rgba(255,255,255,.08);display:block;background:#111827;}
+    figcaption{margin-top:10px;font-size:13px;color:rgba(255,255,255,.5);}
+    table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px;}
+    th,td{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top;text-align:left;color:rgba(255,255,255,.78);}
+    th{color:#fff;font-weight:600;background:rgba(255,255,255,.03);}
+    .seo-hidden{display:none;}
+    @media (max-width:720px){
+      h1{font-size:30px;}
+      .grid-3,.kpi-row,.timeline-grid{grid-template-columns:1fr;}
+      table,thead,tbody,tr,th,td{display:block;}
+      th{border-bottom:none;border-radius:12px 12px 0 0;}
+      td{padding-top:8px;}
+      tr{margin-bottom:14px;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么",
+    "description":"一人公司官网 How It Works 页面怎么写？结合 Stripe Contact Sales、Linear Contact、Zendesk AI、Intercom Fin、Notion Forms 的近期页面结构，拆解适合一人公司官网的服务流程页 / 合作流程页写法：先讲结果，再讲步骤，再讲提交后会发生什么。",
+    "datePublished":"2026-04-09T07:04:00+08:00",
+    "dateModified":"2026-04-09T07:04:00+08:00",
+    "author":{"@type":"Organization","name":"BUMA"},
+    "publisher":{"@type":"Organization","name":"BUMA","url":"https://1r.buma55.com/"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://1r.buma55.com/seo-20260409-0704-one-person-company-how-it-works-page-service-process-seo.html"}
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar topbar-clean">
+    <div class="container nav nav-clean">
+      <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <nav class="nav-links nav-links-clean">
+        <a href="index.html">首页</a>
+        <a href="solutions.html">解决方案</a>
+        <a href="seo.html" class="active">文章</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </nav>
+      <div class="nav-endcaps">
+        <span class="nav-signal">山东临沂 · 远程可协作</span>
+        <a class="nav-cta" href="contact.html">预约咨询</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="article-shell">
+    <div class="eyebrow">How It Works Page</div>
+    <h1>一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么</h1>
+    <p class="subtitle">很多一人公司网站并不是没有服务流程，而是把流程写成了“我们会先沟通、再执行、再复盘”的空列表。用户看完以后，还是不知道自己会经历什么、什么时候该继续、值不值得现在就点咨询。真正有效的 how it works 页面，不是把步骤写更多，而是把开始后的体验讲清楚。</p>
+    <div class="meta">
+      <span>2026-04-09</span>
+      <span>How It Works 页面</span>
+      <span>服务流程页</span>
+      <span>约 9 分钟阅读</span>
+    </div>
+
+    <div class="lead-card">
+      <div class="mini-title">先说结论</div>
+      <p>这轮重看 Stripe 的 Contact Sales、Linear 的 Contact、Zendesk AI、Intercom Fin，以及 Notion Forms，会发现高质量服务页都在做同一件事：<strong>先把人送到正确下一步，再告诉他这个下一步会发生什么</strong>。</p>
+      <p>Stripe 第一屏不是先堆字段，而是先说 <em>Let's get you to the right place</em>；Linear 不是先讲产品有多复杂，而是先问 <em>How can we help?</em>；Zendesk 和 Intercom 都没有把重点放在功能名词上，而是一直围绕 <em>resolution</em>、<em>outcome</em>、<em>continuous improvement</em> 来写；Notion Forms 甚至直接把重点写成 <em>right where you work</em>，意思是提交之后不是掉进黑箱，而是继续进入工作流。</p>
+      <p class="quote-line">对一人公司官网来说，How It Works 页面最重要的任务，不是证明你流程很完整，而是让访客在 30 秒内看懂：我从这里开始之后，会得到什么、要做什么、什么时候会有人接住我。</p>
+    </div>
+
+    <p>这也是为什么很多服务流程页明明排了 5 步、6 步、7 步，结果还是不转化。问题不在步数，而在它们没有把“结果、判断、下一步”写进流程里。看起来像流程，读起来却像说明书。</p>
+
+    <figure>
+      <img src="assets-page-solutions-flow.svg" alt="一人公司官网 how it works 页面与服务流程页结构示意图" loading="lazy" />
+      <figcaption>真正有效的 how it works 页面，不只是列步骤，而是把“开始 → 判断 → 交付 → 下一步”接成一条低阻力路径。</figcaption>
+    </figure>
+
+    <h2>这轮搜索里，最值得直接吸收的 5 个页面写法</h2>
+
+    <div class="compare-card">
+      <div class="mini-title">搜索提炼</div>
+      <table>
+        <thead>
+          <tr>
+            <th>参考来源</th>
+            <th>标题角度 / 开头写法</th>
+            <th>模块结构</th>
+            <th>CTA 与关键词覆盖</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stripe Contact Sales</td>
+            <td>开头先讲“把你送到正确的地方”，不是先让用户研究一堆选项。</td>
+            <td>轻字段表单 → 提交后回应预期 → 更快连接动作（聊天 / 预约）→ 兜底联系。</td>
+            <td>高频词是 contact、sales、quick details、within one business day、schedule a call；CTA 极少且主次很清。</td>
+          </tr>
+          <tr>
+            <td>Linear Contact</td>
+            <td>第一句直接问“我们怎么帮你”，先做分流，不先讲品牌故事。</td>
+            <td>Sales / Support 两个入口 → 社区 / Docs / Email 辅助路径 → 状态信号。</td>
+            <td>高频词是 help、sales、support、demo、docs、community；CTA 是明显分流型。</td>
+          </tr>
+          <tr>
+            <td>Zendesk AI</td>
+            <td>不先讲 AI 功能清单，而是先讲 service resolutions，强调结果。</td>
+            <td>结果承诺 → How it works → agent / copilot / admin 模块 → 数据证明 → FAQ。</td>
+            <td>高频词是 resolve、automation、productivity、scale、trust；CTA 服务于“开始 / 定价 / 更多信息”。</td>
+          </tr>
+          <tr>
+            <td>Intercom Fin</td>
+            <td>直接强调 resolves the most complex queries，并用 flywheel 讲持续优化。</td>
+            <td>能力结果 → 连续改进闭环 → 集成方式 → 技术信任 → 定价与启动路径。</td>
+            <td>高频词是 resolve、continuous improvement、integration、outcome、performance；CTA 强调 setup 快、兼容现有系统。</td>
+          </tr>
+          <tr>
+            <td>Notion Forms</td>
+            <td>“Forms, right where you work” 先把流程接续感说清，而不是先说字段类型。</td>
+            <td>集成工作区 → 自定义 → workflow automation → responses live in Notion → template。</td>
+            <td>高频词是 workflow、responses、share、embed、customize；CTA 轻，但路径特别顺。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>把这些页面放在一起看，会更容易发现一个共识：<strong>高质量的流程页，不把“步骤”写成孤立节点，而是把“进入、处理、结果、分流、下一步”写成同一条路</strong>。这对一人公司尤为重要，因为你没有大团队可以替你兜信任，就更需要让用户先看懂节奏。</p>
+
+    <h2>为什么很多一人公司的 How It Works 页面，看完还是没人继续走</h2>
+
+    <h3>1）只写动作，不写结果</h3>
+    <p>“沟通需求、制定方案、开始执行、交付复盘”这些词本身没有错，但它们只是在说你会做什么，没有告诉用户他会拿到什么。Zendesk 和 Fin 的写法都在提醒一件事：用户先看的是结果，不是内部步骤名。</p>
+
+    <h3>2）第一屏没有做分流判断</h3>
+    <p>Stripe 和 Linear 都先把人送到正确入口。很多一人公司流程页则默认所有人都应该从同一条路径开始，结果就是高意图用户觉得慢，低意图用户又不知道自己是不是该继续。</p>
+
+    <h3>3）流程里没有“提交后会发生什么”</h3>
+    <p>这是最常见的断点。用户能看到你有 3 步、5 步、6 步，但不知道提交咨询后多久会有人回、先收到什么、是先判断还是直接推进。流程页如果没有这层回应预期，就会像停在门口的指示牌。</p>
+
+    <h3>4）把后台过程暴露得太像内部 SOP</h3>
+    <p>流程页不是工作台。用户不需要先知道你后台分了几个文件夹、跑了几轮检查、怎么排优先级，他需要知道的是：现在自己该做什么、你会怎么接、什么时候进入下一步。Notion 的强点就在这里——讲 workflow，但不把内部流程写成噪音。</p>
+
+    <h3>5）CTA 太多，读完最后反而散掉</h3>
+    <p>很多页面前面讲流程，后面突然并排放微信、邮箱、表单、电话、加群、下载文档。这样看起来很热闹，但会把前面的流程承接全部打散。Stripe 的做法更值得学：主动作永远清楚，辅助动作只在需要时出现。</p>
+
+    <h2>更适合一人公司官网的 How It Works 页面，建议按这 6 个模块写</h2>
+
+    <h3>模块 1：第一屏先讲“你会被带到哪里”，不是先讲我们有多专业</h3>
+    <p>第一页最值钱的不是介绍自己，而是降低对方开始的心理成本。可以像 Stripe 一样，先把它写成“先把你送到正确的下一步”；也可以像 Linear 一样，先把它写成“你现在更需要哪种帮助”。对一人公司网站来说，第一屏最好同时出现 3 个信息：适合谁、先发什么、多久能得到方向。</p>
+
+    <h3>模块 2：把流程写成“用户视角的 3 步或 4 步”，不要写成内部流水账</h3>
+    <p>用户更容易理解的是“先判断 → 再给参考 → 再推进 → 再保温”，而不是“访谈、拆解、规划、执行、复盘”这种站在你这边的词。流程页真正该做的，是帮用户看懂自己会经历什么，而不是展示你后台的任务列表。</p>
+
+    <h3>模块 3：每一步都补一句“你会拿到什么”</h3>
+    <p>这是把流程页从空模板拉回转化页的关键。比如第一步不是只写“沟通”，而是写“先帮你判断现在最该先动首页、联系页，还是 intake 流程”；第二步不是只写“给方案”，而是写“给你 2–3 个更值先动的选项”。这样，用户每读一步都能感觉到收益在前进。</p>
+
+    <h3>模块 4：把“提交后会发生什么”单独写出来</h3>
+    <p>这部分特别值得向 Stripe 学。不是默认用户自己懂，而是直接写出来：工作日多久回应、是否会先做 15 分钟判断、如果暂时不继续会怎么收口。很多咨询页和流程页最后差的，就是这段回应预期。</p>
+
+    <h3>模块 5：保留 1 个主 CTA，其他都做辅助路径</h3>
+    <p>How It Works 页面不是下载中心，也不是导航页。看完流程以后，用户最该看到的是一个最明确的下一步：预约判断、提交表单、发第一条消息，三者通常只留一个主动作最稳。其他入口保留为辅助阅读，不抢主线。</p>
+
+    <h3>模块 6：底部加 1 组信任与边界说明</h3>
+    <p>Fin 和 Zendesk 都在告诉用户：为什么这套流程可信、适合什么场景、不适合什么场景。对一人公司来说，这一步尤其重要。不是为了显得门槛高，而是为了减少错误期待，让真正适配的人更容易继续。</p>
+
+    <h2>如果你的页面同时承担“咨询前承接”，最适合直接套这 4 段节奏</h2>
+    <p>这一段特别适合服务站、联系页、How It Works 页面共用。因为它既符合用户阅读顺序，也符合真实承接顺序：先接住，再给证据，再推进，再留轻量下一步。</p>
+
+    <div class="timeline-grid">
+      <div>
+        <strong>5 分钟首触达</strong>
+        <p>先围绕用户发来的页面、截图或卡点，确认这次最该先看什么。不在第一轮就做销售，而是先让对方感觉“被正确接住了”。</p>
+      </div>
+      <div>
+        <strong>24 小时案例跟进</strong>
+        <p>回给他最接近场景的页面、案例、FAQ 或结构参考，让抽象问题快速变成可对照的判断。</p>
+      </div>
+      <div>
+        <strong>48 小时诊断推进</strong>
+        <p>把下一步收口成 2–3 个选项，例如先改联系页、先补 intake、先接 FAQ 或先理服务流程，不让用户继续散着想。</p>
+      </div>
+      <div>
+        <strong>72 小时转保温</strong>
+        <p>如果对方暂时没准备继续，就留一个更轻的继续动作，例如先看案例、先自查一篇文章、先带着截图回来，而不是继续追着推销。</p>
+      </div>
+    </div>
+
+    <h2>How It Works 页面可以直接照这个骨架改</h2>
+    <ol>
+      <li><strong>Hero：</strong>先写清这页的目的，是帮助用户看懂开始后的路径，而不是品牌介绍；</li>
+      <li><strong>适配判断：</strong>什么情况建议现在开始，什么情况建议先看 FAQ / 文章 / 方案页；</li>
+      <li><strong>3–4 步流程：</strong>按用户视角写每一步会发生什么；</li>
+      <li><strong>每步结果：</strong>补上这一步用户会拿到什么、知道什么；</li>
+      <li><strong>提交后预期：</strong>回应时间、先给什么、有没有轻量下一步；</li>
+      <li><strong>单一 CTA：</strong>只保留 1 个主继续动作，其余作为辅助自查入口。</li>
+    </ol>
+
+    <div class="sample-box">
+      <p><strong>更像会转化的标题：</strong>先看你从这里开始后会发生什么</p>
+      <p><strong>更像会转化的副标题：</strong>不是先聊一堆大词，而是先判断你现在最该先改哪一页、哪一步、哪条承接链路。</p>
+      <p><strong>更像会转化的主 CTA：</strong>预约 15 分钟适配判断</p>
+    </div>
+
+    <p>如果你做的是一人公司官网、AI 团队、内容生产、客户承接、OpenClaw / 飞书接入这类服务型网站，这个骨架尤其适合。因为用户来这里，通常不是为了研究概念，而是为了判断：<strong>这件事能不能开始、从哪开始、值不值得现在开始。</strong></p>
+
+    <div class="kpi-card">
+      <div class="mini-title">改完后先盯这 3 组数字</div>
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <strong>曝光量级</strong>
+          <p>如果这页承接的是高意图搜索词，早期可先看每月 80–250 次精准访问是否稳定；配合首页、方案页、文章页内链后，再看能否逐步提升到 250–600 次。</p>
+        </div>
+        <div class="kpi-item">
+          <strong>预期点击率</strong>
+          <p>How It Works 页面最关键的是从首页、解决方案页、文章页被点进来的比例。早期先观察 12%–22% 的内部点击是否稳定，再看 CTA 点击是否明显高于旧版流程页。</p>
+        </div>
+        <div class="kpi-item">
+          <strong>转化率</strong>
+          <p>更核心的是看页面到底有没有把人送进主动作。若承接的是预约或联系页，早期可以先盯 3%–8% 的主 CTA 转化；如果旧页几乎没人继续走，先看是不是“结果没讲清 + CTA 太多”。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <p><strong>本方案风险：</strong>如果你只是把流程步骤排得更整齐，却没有补“每一步的结果、提交后的预期、唯一主 CTA”，页面会更像一份好看的说明书，但不一定更能让人继续；<strong>若出现这种情况，则调整为：</strong>先把 Hero、3–4 步结果、提交后预期和主 CTA 收口，再回头补视觉和次级说明。</p>
+    </div>
+
+    <h2>最后一句：流程页不是展示你怎么工作，而是让用户敢开始</h2>
+    <p>真正有效的 How It Works 页面，不会让人看完以后只记住“你有 5 个步骤”，而会让人感觉“我知道现在该不该继续，也知道继续以后会发生什么”。</p>
+    <p>这才是一人公司官网最该追求的流程页体验：不假装复杂，不空谈专业，而是把开始后的路径讲清楚，把第一次动作做轻，把下一步收得足够明确。</p>
+
+    <div class="cta-card">
+      <h2>如果你怀疑自己的网站不是没有流程，而是流程页没把人送进下一步</h2>
+      <p>先别急着重写全站。先检查三件事：第一屏有没有先讲结果；流程每一步有没有写“你会拿到什么”；底部是不是只剩 1 个主继续动作。把这三处收好，通常比继续加步骤更值。</p>
+      <a class="btn" href="contact.html">先看联系页当前承接方式 →</a>
+    </div>
+
+    <div class="links-card">
+      <div class="mini-title">相关阅读</div>
+      <ul>
+        <li><a href="solutions.html">解决方案页当前版本</a>：看看“先按真实卡点分流，再讲 3 步怎么开始”是怎么落到前台的。</li>
+        <li><a href="contact.html">联系页当前版本</a>：如果你更关心提交后会发生什么，这页的承接更直接。</li>
+        <li><a href="seo-20260321-2205-one-person-company-service-process-blueprint.html">服务流程蓝图旧文</a>：适合对照看“内部流程写法”和“前台转化写法”的区别。</li>
+        <li><a href="seo-20260409-0604-one-person-company-project-intake-form-page-seo.html">咨询表单 intake 页写法</a>：如果你的流程页同时接咨询表单，这篇可以一起看。</li>
+        <li><a href="seo-20260409-0007-one-person-company-contact-page-first-message-conversion-seo.html">联系页首条消息优化</a>：如果你想把“点进来以后第一句怎么发”一起接住，这篇更适合配套看。</li>
+      </ul>
+    </div>
+
+    <div class="faq-card">
+      <div class="mini-title">FAQ</div>
+      <div class="faq-item">
+        <h3>How It Works 页面一定要单独做一页吗？</h3>
+        <p>不一定。如果你的服务很聚焦，完全可以把它放在解决方案页中段或联系页前半段。关键不在页数，而在它有没有把“开始后的路径”讲清楚。</p>
+      </div>
+      <div class="faq-item">
+        <h3>流程写 3 步还是 5 步更好？</h3>
+        <p>通常 3–4 步更容易读完。除非你的服务天然需要更细分的阶段，否则步数太多会让用户先感到复杂。先把最关键的判断点和交付点写清楚，比多写 2 步更重要。</p>
+      </div>
+      <div class="faq-item">
+        <h3>服务流程页和价格页、联系页会不会重复？</h3>
+        <p>会有交叉，但职责不同。价格页回答“怎么选”，联系页回答“怎么开始联系”，How It Works 页面回答“开始后会发生什么”。只要这三页职责分清，就不是重复，而是接力。</p>
+      </div>
+    </div>
+
+    <section class="seo-hidden" aria-hidden="true">
+      <h2>SEO Metadata</h2>
+      <p><strong>Title:</strong> 一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么</p>
+      <p><strong>Target Keywords:</strong> how it works 页面, 服务流程页, service process page, 合作流程页, 官网流程页怎么写, 一人公司服务流程, how it works page examples</p>
+      <p><strong>Search Intent:</strong> Informational + Commercial Investigation</p>
+      <p><strong>Meta Title:</strong> 一人公司官网 How It Works 页面怎么写：别把服务流程写成流水账，先让人知道开始后会发生什么</p>
+      <p><strong>Meta Description:</strong> 一人公司官网 How It Works 页面怎么写？结合 Stripe Contact Sales、Linear Contact、Zendesk AI、Intercom Fin、Notion Forms 的近期页面结构，拆解适合一人公司官网的服务流程页 / 合作流程页写法：先讲结果，再讲步骤，再讲提交后会发生什么。</p>
+      <p><strong>Suggested Slug:</strong> seo-20260409-0704-one-person-company-how-it-works-page-service-process-seo.html</p>
+      <ul>
+        <li>Internal Link Suggestion 1: solutions.html</li>
+        <li>Internal Link Suggestion 2: contact.html</li>
+        <li>Internal Link Suggestion 3: seo-20260321-2205-one-person-company-service-process-blueprint.html</li>
+        <li>Internal Link Suggestion 4: seo-20260409-0604-one-person-company-project-intake-form-page-seo.html</li>
+        <li>Internal Link Suggestion 5: seo-20260409-0007-one-person-company-contact-page-first-message-conversion-seo.html</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
