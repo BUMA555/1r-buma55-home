@@ -1,218 +1,140 @@
-// BUMA website interaction script (UI-only refresh)
-(function initBumaUi() {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.documentElement.classList.toggle('reduced-motion', prefersReducedMotion);
+// BUMA 官网脚本
 
-  window.addEventListener('DOMContentLoaded', function onReady() {
-    setupSmoothScroll(prefersReducedMotion);
-    setupTopbarScrollState();
-    setupCardDynamics(prefersReducedMotion);
-    setupAntiIndexOffsets(prefersReducedMotion);
-    setupButtonPressFeedback();
-    setupRevealAnimations(prefersReducedMotion);
-  });
+// 页面加载完成后执行
+window.addEventListener('DOMContentLoaded', function() {
+  // 平滑滚动
+  smoothScroll();
+  
+  // 导航栏滚动效果
+  navbarScroll();
+  
+  // 卡片悬停效果
+  cardHoverEffects();
+  
+  // 按钮交互效果
+  buttonEffects();
+});
 
-  function setupSmoothScroll(reducedMotion) {
-    const links = document.querySelectorAll('a[href^="#"]');
-    if (!links.length) return;
-
-    links.forEach(function bindLink(link) {
-      link.addEventListener('click', function onAnchorClick(event) {
-        const href = link.getAttribute('href') || '';
-        if (href.length < 2 || href === '#') return;
-
-        const target = document.querySelector(href);
-        if (!target) return;
-
-        event.preventDefault();
-        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - 88;
+// 平滑滚动
+function smoothScroll() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
         window.scrollTo({
-          top: Math.max(0, targetTop),
-          behavior: reducedMotion ? 'auto' : 'smooth'
-        });
-      });
-    });
-  }
-
-  function setupTopbarScrollState() {
-    const topbar = document.querySelector('.topbar');
-    if (!topbar) return;
-
-    const updateTopbar = function updateTopbar() {
-      topbar.classList.toggle('is-compact', window.scrollY > 18);
-    };
-
-    updateTopbar();
-    window.addEventListener('scroll', updateTopbar, { passive: true });
-  }
-
-  function setupCardDynamics(reducedMotion) {
-    const cards = Array.from(document.querySelectorAll('.card'));
-    if (!cards.length) return;
-
-    cards.forEach(function initCard(card, index) {
-      if (!reducedMotion) {
-        const tiltSeed = ((index % 7) - 3) * 0.9;
-        const shiftSeed = ((index % 6) - 2.5) * 3.2;
-        card.style.setProperty('--card-tilt', tiltSeed.toFixed(2) + 'deg');
-        card.style.setProperty('--card-shift', shiftSeed.toFixed(1) + 'px');
-      }
-
-      card.addEventListener('mouseenter', function onEnter() {
-        card.classList.add('is-hovered');
-      });
-
-      card.addEventListener('mouseleave', function onLeave() {
-        card.classList.remove('is-hovered');
-        card.style.setProperty('--card-hover-rotate', '0deg');
-        card.style.setProperty('--card-hover-lift', '0px');
-      });
-
-      if (!reducedMotion) {
-        card.addEventListener('mousemove', function onMove(event) {
-          const rect = card.getBoundingClientRect();
-          const px = (event.clientX - rect.left) / rect.width - 0.5;
-          const py = (event.clientY - rect.top) / rect.height - 0.5;
-          const rotate = px * 6;
-          const lift = -Math.abs(py * 7);
-
-          card.style.setProperty('--card-hover-rotate', rotate.toFixed(2) + 'deg');
-          card.style.setProperty('--card-hover-lift', lift.toFixed(1) + 'px');
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
         });
       }
     });
-  }
+  });
+}
 
-  function setupButtonPressFeedback() {
-    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta');
-    if (!buttons.length) return;
-
-    buttons.forEach(function bindPress(button) {
-      const addPressed = function addPressed() {
-        button.classList.add('is-pressed');
-      };
-
-      const removePressed = function removePressed() {
-        button.classList.remove('is-pressed');
-      };
-
-      button.addEventListener('pointerdown', addPressed);
-      button.addEventListener('pointerup', removePressed);
-      button.addEventListener('pointercancel', removePressed);
-      button.addEventListener('blur', removePressed);
-      button.addEventListener('mouseleave', removePressed);
-    });
-  }
-
-  function setupRevealAnimations(reducedMotion) {
-    const targets = document.querySelectorAll(
-      '.section-header, .card, .hero-v2-copy, .hero-v2-visual-wrap, .trust-bar, .cta-wrap-home'
-    );
-    if (!targets.length) return;
-
-    targets.forEach(function mark(el) {
-      el.setAttribute('data-reveal', 'true');
-    });
-
-    if (reducedMotion || !('IntersectionObserver' in window)) {
-      targets.forEach(function reveal(el) {
-        el.classList.add('is-revealed');
-      });
-      return;
+// 导航栏滚动效果
+function navbarScroll() {
+  const header = document.querySelector('.header');
+  let lastScrollTop = 0;
+  
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 100) {
+      header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+      header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+    } else {
+      header.style.backgroundColor = 'var(--background-color)';
+      header.style.boxShadow = 'var(--shadow-sm)';
     }
+    
+    lastScrollTop = scrollTop;
+  });
+}
 
-    const observer = new IntersectionObserver(
-      function onIntersect(entries, obs) {
-        entries.forEach(function eachEntry(entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-revealed');
-          obs.unobserve(entry.target);
-        });
-      },
-      {
-        root: null,
-        threshold: 0.12,
-        rootMargin: '0px 0px -8% 0px'
+// 卡片悬停效果
+function cardHoverEffects() {
+  const cards = document.querySelectorAll('.feature-card, .solution-card, .story-card, .price-card, .resource-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-4px)';
+      this.style.boxShadow = 'var(--shadow-md)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'var(--shadow-sm)';
+    });
+  });
+}
+
+// 按钮交互效果
+function buttonEffects() {
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+  
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+    
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // 模拟按钮点击效果
+      this.style.transform = 'translateY(0)';
+      
+      // 如果是外部链接，延迟后跳转
+      const href = this.getAttribute('href');
+      if (href && href !== '#') {
+        setTimeout(() => {
+          window.location.href = href;
+        }, 150);
       }
-    );
+    });
+  });
+}
 
-    targets.forEach(function observe(el) {
-      observer.observe(el);
+// 响应式导航菜单
+function responsiveNav() {
+  const nav = document.querySelector('.nav');
+  const menuButton = document.querySelector('.menu-button');
+  
+  if (menuButton) {
+    menuButton.addEventListener('click', function() {
+      nav.classList.toggle('active');
     });
   }
+}
 
-  function setupAntiIndexOffsets(reducedMotion) {
-    if (!document.body.classList.contains('anti-index-minimal')) return;
-
-    const offsetGroups = [
-      {
-        selector: '.hero-stat',
-        offsets: [
-          { x: -4, y: 2, rotate: -1.9 },
-          { x: 3, y: -1, rotate: 1.4 },
-          { x: -2, y: 3, rotate: -0.8 }
-        ]
-      },
-      {
-        selector: 'main > section:nth-of-type(2) .home-card',
-        offsets: [
-          { x: -8, y: 3, rotate: -2.3 },
-          { x: 6, y: -5, rotate: 1.8 },
-          { x: -3, y: 5, rotate: -1.2 }
-        ]
-      },
-      {
-        selector: '.trust-bar-item',
-        offsets: [
-          { x: -3, y: 1, rotate: -1.1 },
-          { x: 2, y: -2, rotate: 0.9 },
-          { x: -1, y: 3, rotate: -0.6 },
-          { x: 4, y: -1, rotate: 1.2 }
-        ]
+// 滚动动画
+function scrollAnimations() {
+  const elements = document.querySelectorAll('.section-header, .feature-card, .solution-card, .story-card, .price-card, .resource-card');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
       }
-    ];
-
-    offsetGroups.forEach(function applyGroup(group) {
-      const nodes = Array.from(document.querySelectorAll(group.selector));
-      if (!nodes.length) return;
-
-      nodes.forEach(function applyNode(node, index) {
-        const offset = group.offsets[index % group.offsets.length];
-        node.setAttribute('data-anti-offset', 'true');
-        node.style.setProperty('--anti-shift-x', offset.x + 'px');
-        node.style.setProperty('--anti-shift-y', offset.y + 'px');
-        node.style.setProperty('--anti-rotate', offset.rotate + 'deg');
-      });
     });
-
-    const heroCard = document.querySelector('.hero-v2-copy');
-    if (!heroCard) return;
-
-    const resetHero = function resetHero() {
-      heroCard.style.setProperty('--hero-rotate', '0deg');
-      heroCard.style.setProperty('--hero-shift-x', '0px');
-      heroCard.style.setProperty('--hero-shift-y', '0px');
-    };
-
-    if (reducedMotion) {
-      resetHero();
-      return;
-    }
-
-    heroCard.addEventListener('mousemove', function onHeroMove(event) {
-      const rect = heroCard.getBoundingClientRect();
-      const px = (event.clientX - rect.left) / rect.width - 0.5;
-      const py = (event.clientY - rect.top) / rect.height - 0.5;
-      const rotate = px * 2.4;
-      const shiftX = px * 7;
-      const shiftY = py * 5;
-
-      heroCard.style.setProperty('--hero-rotate', rotate.toFixed(2) + 'deg');
-      heroCard.style.setProperty('--hero-shift-x', shiftX.toFixed(2) + 'px');
-      heroCard.style.setProperty('--hero-shift-y', shiftY.toFixed(2) + 'px');
-    });
-
-    heroCard.addEventListener('mouseleave', resetHero);
-    resetHero();
-  }
-})();
+  }, {
+    threshold: 0.1
+  });
+  
+  elements.forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(element);
+  });
+}
