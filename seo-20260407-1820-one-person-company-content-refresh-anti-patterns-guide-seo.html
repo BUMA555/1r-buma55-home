@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网内容刷新避坑指南:把旧文更新从越改越掉收口成有序重建流量的Content Refresh Anti-Patterns Guide(2026版)</title>
+  <meta name="description" content="一人公司官网内容刷新避坑实战文。梳理 5 类最高频的旧文更新反模式：把「越改越掉」变成「越改越稳」。匹配 Content Refresh 系列完整链路，帮你绕开最贵的 5 个坑，先做对，再做多。" />
+  <meta name="keywords" content="content refresh anti-patterns, 旧文更新避坑, content refresh mistakes, 内容刷新反模式, old post update errors, 旧文SEO常见错误, content refresh pitfalls, 内容刷新陷阱, 旧文更新常见问题, 旧文SEO避坑" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网内容刷新避坑指南:把旧文更新从越改越掉收口成有序重建流量的Content Refresh Anti-Patterns Guide(2026版)" />
+  <meta property="og:description" content="把旧文更新从越改越掉变成越改越稳。梳理 5 类最高频反模式，帮你绕开 Content Refresh 过程中最贵的 5 个坑。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260407-1820-one-person-company-content-refresh-anti-patterns-guide-seo.html" />
+  <meta property="article:published_time" content="2026-04-07T10:20:00Z" />
+  <meta property="article:modified_time" content="2026-04-07T10:20:00Z" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260407-1820-one-person-company-content-refresh-anti-patterns-guide-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b0f1a;color:#e8eaf0;margin:0;line-height:1.72;}
+    .page-wrap{max-width:760px;margin:0 auto;padding:0 24px 80px;}
+    .article-header{padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .article-header h1{font-size:28px;line-height:1.3;color:#fff;margin:0 0 16px;font-weight:600;}
+    .article-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:rgba(255,255,255,.5);}
+    .article-meta span{padding:4px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);}
+    .article-body{font-size:17px;}
+    .article-body h2{font-size:22px;color:#fff;margin:48px 0 16px;font-weight:600;padding-top:16px;}
+    .article-body h3{font-size:18px;color:#dbeafe;margin:32px 0 12px;font-weight:600;}
+    .article-body p{margin:0 0 20px;color:rgba(255,255,255,.82);}
+    .article-body ul,.article-body ol{margin:0 0 20px;padding-left:24px;}
+    .article-body li{margin-bottom:10px;color:rgba(255,255,255,.82);}
+    .article-body strong{color:#fbbf24;font-weight:600;}
+    .article-body a{color:#60a5fa;text-decoration:none;border-bottom:1px solid rgba(96,165,250,.3);}
+    .article-body a:hover{border-color:#60a5fa;}
+    .toc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px;margin:32px 0;}
+    .toc h3{margin:0 0 16px;font-size:16px;color:#fff;}
+    .toc ol{margin:0;padding-left:20px;}
+    .toc li{margin-bottom:8px;font-size:14px;}
+    .toc a{color:#60a5fa;text-decoration:none;}
+    .toc a:hover{text-decoration:underline;}
+    .mistake-box,.diagnosis-box,.summary-box,.risk-box,.cta-final,.pattern-grid,.do-box{border-radius:12px;padding:24px;margin:32px 0;}
+    .mistake-box{background:rgba(239,68,68,.07);border-left:3px solid #ef4444;padding:20px 24px;border-radius:0 12px 12px 0;}
+    .mistake-box h3{margin:0 0 8px;color:#fca5a5;font-size:18px;}
+    .mistake-box p{margin:0 0 12px;font-size:15px;color:rgba(255,255,255,.78);}
+    .mistake-box ul{margin:0;padding-left:20px;}
+    .mistake-box li{margin-bottom:6px;font-size:14px;}
+    .diagnosis-box{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);}
+    .pattern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0;}
+    .pattern-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px;border-top:3px solid #ef4444;}
+    .pattern-card h4{margin:0 0 8px;color:#fca5a5;font-size:15px;}
+    .pattern-card p{margin:0;font-size:14px;color:rgba(255,255,255,.68);}
+    .pattern-card .pattern-signal{margin-top:10px;font-size:13px;color:#93c5fd;background:rgba(59,130,246,.1);padding:6px 10px;border-radius:6px;}
+    .do-box{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.2);}
+    .do-box h3{color:#6ee7b7;margin:0 0 12px;font-size:18px;}
+    .do-box p{color:rgba(255,255,255,.82);}
+    .do-box ul{margin:0;padding-left:20px;}
+    .do-box li{margin-bottom:8px;font-size:15px;}
+    .risk-box{background:rgba(234,179,8,.07);border:1px solid rgba(234,179,8,.2);}
+    .risk-box h3{color:#fcd34d;margin:0 0 8px;font-size:16px;}
+    .risk-box p{margin:0 0 10px;color:rgba(255,255,255,.75);}
+    .risk-box ul{margin:0;padding-left:20px;}
+    .risk-box li{margin-bottom:6px;font-size:14px;}
+    .summary-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);}
+    .summary-box h3{margin:0 0 16px;color:#fff;font-size:18px;}
+    .summary-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px;}
+    .summary-table th{text-align:left;padding:10px 12px;background:rgba(255,255,255,.06);color:#dbeafe;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600;font-size:13px;}
+    .summary-table td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.8);vertical-align:top;}
+    .summary-table tr:last-child td{border-bottom:none;}
+    .cta-final{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(168,85,247,.1));border:1px solid rgba(59,130,246,.28);border-radius:16px;padding:32px;text-align:center;margin:48px 0 0;}
+    .cta-final h3{color:#fff;font-size:20px;margin:0 0 12px;}
+    .cta-final p{color:rgba(255,255,255,.7);margin:0 0 20px;font-size:15px;}
+    .cta-final a{display:inline-block;padding:12px 28px;background:#4f8ef7;color:#fff;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;transition:.2s;}
+    .cta-final a:hover{background:#3b7ee0;color:#fff;transform:translateY(-1px);}
+    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;font-size:14px;}
+    .article-body h2:first-child,.article-body h2:first-of-type{margin-top:0;padding-top:0;}
+    @media(max-width:600px){.article-header h1{font-size:22px;}.pattern-grid{grid-template-columns:1fr;}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"一人公司官网内容刷新避坑指南:把旧文更新从越改越掉收口成有序重建流量的Content Refresh Anti-Patterns Guide(2026版)",
+    "description":"梳理 5 类最高频的旧文更新反模式，把越改越掉变成越改越稳。匹配 Content Refresh 系列完整链路。",
+    "datePublished":"2026-04-07T10:20:00Z",
+    "dateModified":"2026-04-07T10:20:00Z",
+    "author":{"@type":"Person","name":"BUMA"},
+    "publisher":{"@type":"Organization","name":"BUMA","url":"https://1r.buma55.com"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://1r.buma55.com/seo-20260407-1820-one-person-company-content-refresh-anti-patterns-guide-seo.html"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"首页","item":"https://1r.buma55.com/"},
+      {"@type":"ListItem","position":2,"name":"文章中心","item":"https://1r.buma55.com/seo.html"},
+      {"@type":"ListItem","position":3,"name":"内容刷新避坑指南","item":"https://1r.buma55.com/seo-20260407-1820-one-person-company-content-refresh-anti-patterns-guide-seo.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<div class="page-wrap">
+  <header class="article-header">
+    <h1>一人公司官网内容刷新避坑指南:把旧文更新从越改越掉收口成有序重建流量的Content Refresh Anti-Patterns Guide(2026版)</h1>
+    <div class="article-meta">
+      <span>📌 内容运营 · Content Refresh</span>
+      <span>2026-04-07</span>
+      <span>阅读约 18 分钟</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <h3>目录</h3>
+    <ol>
+      <li><a href="#why">为什么一人公司最容易在旧文刷新上踩坑</a></li>
+      <li><a href="#mistake-1">反模式一：把「换个标题」当「更新文章」</a></li>
+      <li><a href="#mistake-2">反模式二：不知道搜 intent 变了，只顾着换日期</a></li>
+      <li><a href="#mistake-3">反模式三：更新完不等观察期，直接改下一片</a></li>
+      <li><a href="#mistake-4">反模式四：合并前没算清 URL 资产，权重全掉</a></li>
+      <li><a href="#mistake-5">反模式五：内链结构在更新时断裂，不知道已经死了</a></li>
+      <li><a href="#diagnosis">快速诊断：你正在经历哪种「越改越掉」</a></li>
+      <li><a href="#framework">正确的 Content Refresh 框架长什么样</a></li>
+      <li><a href="#next">下一步：从避坑到有序执行</a></li>
+    </ol>
+  </nav>
+
+  <article class="article-body">
+
+    <h2 id="why">为什么一人公司最容易在旧文刷新上踩坑</h2>
+
+    <p>内容衰减是所有网站的宿命，一人公司尤其逃不掉。</p>
+    <p>你没有团队轮转、没有专职 SEO、没有外链预算。每篇旧文都在流量下滑，但每次想起来要更新，要么随便改两句话就发，要么根本不知道从哪篇开始。于是「想起来再做，想不起来就放着」变成了常态。</p>
+    <p>更难受的是：有时候你花了时间改了，以为在救文章，结果改完流量反而掉了一截。</p>
+    <p>这不是你的内容质量差——而是你踩进了旧文刷新的高频反模式里。</p>
+
+    <div class="diagnosis-box">
+      <h3>本文适合谁</h3>
+      <ul>
+        <li>已经有一定数量旧文（20 篇以上）的一人公司官网</li>
+        <li>更新过旧文但效果反而下滑的运营者</li>
+        <li>想系统化做内容刷新但不知道从哪步开始防错的执行者</li>
+      </ul>
+      <p style="margin:12px 0 0;font-size:14px;color:#93c5fd;">本文是 Content Refresh 系列第 14 篇，覆盖避坑路径。</p>
+    </div>
+
+    <h2 id="mistake-1">反模式一：把「换个标题」当「更新文章」</h2>
+
+    <div class="mistake-box">
+      <h3>典型症状</h3>
+      <p>只改了 H1 标题、更换了发布日期，就以为完成了旧文更新。Google 没有重新收录，新标题没有触达目标搜索词，老内容还在原地。</p>
+    </div>
+
+    <p>这是最常见、最便宜、也最危险的一种「假更新」。</p>
+    <p>你花了 15 分钟改了个标题，文章状态从「已发布」变成了「已更新」，但 Google 看到的是同一篇内容躺在那里——还是旧的。</p>
+    <p>真正有意义的更新，必须在以下至少一个维度产生变化：</p>
+    <ul>
+      <li><strong>内容深度</strong>：补充新的数据、案例或视角，不是改改措辞</li>
+      <li><strong>搜索意图匹配</strong>：标题和正文是否还在对应用户真正的搜索词</li>
+      <li><strong>可索引信号</strong>：Google 能否检测到这次更新（主动提交 reindex 或等待自然抓取）</li>
+    </ul>
+
+    <div class="do-box">
+      <h3>✅ 正确做法</h3>
+      <p>更新前先查：这篇文章当前排名的关键词是什么？搜索意图有没有转移？如果标题已经和当前用户需求错位，换标题只是表面，必须连同 H2/H3 结构、摘要和正文一起调整。</p>
+      <p>更新后主动去 Google Search Console 提交「检查」触发重新抓取，不要只靠等待。</p>
+    </div>
+
+    <h2 id="mistake-2">反模式二：不知道搜索意图变了，只顾着换日期</h2>
+
+    <div class="mistake-box">
+      <h3>典型症状</h3>
+      <p>文章顶部加了「更新时间：2026 年」，正文结构一字未动。但这篇文章的核心关键词已经不再对应原来的用户意图了——竞争格局变了，搜索者的期待也变了。</p>
+    </div>
+
+    <p>Content Decay 不是时间问题，是竞争格局变化的问题。</p>
+    <p>你的文章可能 3 年没更新，流量没有明显下滑，因为竞争对手也没动。但如果市场上陆续出现了更好、更新、更完整的文章，Google 就开始把你的往后排——不是因为你错了，而是因为别人比你对了。</p>
+    <p>判断搜索意图有没有变，需要定期核查：</p>
+    <ul>
+      <li>目标关键词的 Top 10 结果里，有没有你发布时还不存在的新玩家</li>
+      <li>搜索结果页的格式有没有变化（如出现了 People Also Ask、视频框、精选摘要）</li>
+      <li>用户的点击行为有没有迁移（GA4 的 Engagement Rate 是否有明显下降）</li>
+    </ul>
+
+    <div class="do-box">
+      <h3>✅ 正确做法</h3>
+      <p>以 90 天为周期做一次「搜索意图校准」。对照现有排名关键词，重新审视 Top 10 SERP 的内容结构。不是每篇都要改，但要找出意图已经迁移的那几篇重点文章。</p>
+      <p>参考工具：Google Search Console 排名数据 + Bing Webmaster Keyword Research + 手动 SERP 分析。</p>
+    </div>
+
+    <h2 id="mistake-3">反模式三：更新完不等观察期，直接改下一片</h2>
+
+    <div class="mistake-box">
+      <h3>典型症状</h3>
+      <p>周一更新了 5 篇文章，周五全部改完，周六开始看 GA4——发现流量没有变化。于是判定「旧文刷新没有用」，永久放弃这条路。</p>
+    </div>
+
+    <p>Google 的索引更新需要时间，通常是 1-4 周。如果你在 Google 还没来得及重新抓取和评估之前就已经下结论，你会永久错过好文章。</p>
+    <p>Content Refresh 效果有延迟效应：</p>
+    <ul>
+      <li><strong>第 1-2 周</strong>：Google 重新抓取，但排名可能暂时波动</li>
+      <li><strong>第 3-6 周</strong>：排名开始重建，部分关键词开始回升</li>
+      <li><strong>第 6-12 周</strong>：稳定流量恢复，需要持续监测</li>
+    </ul>
+
+    <div class="risk-box">
+      <h3>⚠️ 风险提示</h3>
+      <p>如果更新了 3 篇，但只观察了 1 周就开始评判效果，说明你的 KPI 框架设置错误。Content Refresh ROI Analysis（Content Refresh ROI 分析）是先建基准，再做更新，再等周期，然后才有对比。</p>
+      <p>没有基准值等于没有衡量标准，等于永远不知道效果是好是坏。</p>
+    </div>
+
+    <div class="do-box">
+      <h3>✅ 正确做法</h3>
+      <p>每次更新前，先记录该页面的关键指标（排名、organic session、avg position），建立基准。更新后按 30 天周期记录变化，用 Content Refresh Scorecard Template 记录每次的评分变化。</p>
+      <p>一人公司时间有限，每篇更新完用 5 分钟建基准，不难，但要记得做。</p>
+    </div>
+
+    <h2 id="mistake-4">反模式四：合并前没算清 URL 资产，权重全掉</h2>
+
+    <div class="mistake-box">
+      <h3>典型症状</h3>
+      <p>把 3 篇主题相近的文章合并成 1 篇，设置了 301 重定向，但没检查每篇旧文的预估外链数量和预估权重。结果合并后总流量比原来 3 篇加起来还低。</p>
+    </div>
+
+    <p>合并是 Content Refresh 里最激进的策略，不应该冲动执行。</p>
+    <p>每篇 URL 都有两类资产：</p>
+    <ul>
+      <li><strong>内链资产</strong>：站内其他页面指向这篇的链接</li>
+      <li><strong>外链资产</strong>：其他网站指向这篇的链接</li>
+    </ul>
+    <p>合并前必须用工具查清两篇 URL 的外链数量和分布。如果外链集中在其中一篇，被合并掉的那篇外链就面临 404 或 301 丢失的风险。</p>
+
+    <div class="do-box">
+      <h3>✅ 正确做法</h3>
+      <p>合并前先做 Consolidation ROI Benchmark：用工具查清两篇 URL 的外链总数、referring domain 数量、各自排名的关键词量。如果外链差的倍数超过 2 倍，通常应该保留外链多的那篇、让它吸收另一篇的内容，而不是直接合并。</p>
+      <p>合并后必须做 Merge Redirect QA Checklist 全检，不能只设 301 就完事。</p>
+    </div>
+
+    <h2 id="mistake-5">反模式五：内链结构在更新时断裂，不知道已经死了</h2>
+
+    <div class="mistake-box">
+      <h3>典型症状</h3>
+      <p>更新了某篇旧文的 slug（URL 别名），但没有去检查站内有多少其他文章在链接到这篇旧 URL。更新发布后，这些内链全部变成了死链，内链权重传递完全中断。</p>
+    </div>
+
+    <p>一人公司内容多了以后，最大的技术债就是内链断裂。</p>
+    <p>你可能在 2 年前写了 A 文章链接到 B 文章，现在 B 文章改了 URL，但 A 文章里的内链没有人记得更新。Google 爬虫遇到死链就跳过了，那篇 B 文章的排名信号就慢慢弱化。</p>
+    <p>Content Refresh 过程中，最容易被忽略的一步就是内链审计。</p>
+
+    <div class="do-box">
+      <h3>✅ 正确做法</h3>
+      <p>每次改变任何 URL（包括 slug、发布时间、分类路径），立刻跑一次全站内链检查。重点检查：</p>
+      <ul>
+        <li>哪些页面内链到旧的 URL</li>
+        <li>这些内链分布在哪些分类下</li>
+        <li>更新内链后，锚文本是否仍然自然</li>
+      </ul>
+      <p>工具层面可以用 Screaming Frog 爬全站，也可以用 Ahrefs Site Audit。每季度做一次内链健康度检查，是最低成本的排名维护动作。</p>
+    </div>
+
+    <h2 id="diagnosis">快速诊断：你正在经历哪种「越改越掉」</h2>
+
+    <p>用这张表快速定位你当前的状态，对号入座，不踩坑。</p>
+
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <h4>❌ 只改标题/日期</h4>
+        <p>更新信号没有被 Google 识别，内容深度没有变化</p>
+        <div class="pattern-signal">信号：排名无变化，index 状态未更新</div>
+      </div>
+      <div class="pattern-card">
+        <h4>❌ 意图变了还在用旧框架</h4>
+        <p>SERP 上别人的内容已经进化，你的还在原地</p>
+        <div class="pattern-signal">信号：排名持续下滑，竞争对手变多</div>
+      </div>
+      <div class="pattern-card">
+        <h4>❌ 更新完立刻下结论</h4>
+        <p>1 周内看不出效果就放弃，周期设置错误</p>
+        <div class="pattern-signal">信号：流量基线未建立，无法评估效果</div>
+      </div>
+      <div class="pattern-card">
+        <h4>❌ 合并没算外链资产</h4>
+        <p>合并后总流量比原来还低，权重没传过去</p>
+        <div class="pattern-signal">信号：合并后 30 天内 GA4 session 明显下滑</div>
+      </div>
+      <div class="pattern-card">
+        <h4>❌ 改 URL 没更新内链</h4>
+        <p>站内死链累积，内链权重断掉，爬虫效率下降</p>
+        <div class="pattern-signal">信号：Screaming Frog 报告大量 404</div>
+      </div>
+    </div>
+
+    <h2 id="framework">正确的 Content Refresh 框架长什么样</h2>
+
+    <p>避坑的终点不是「不更新」，而是「用正确的顺序更新」。</p>
+    <p>一人公司内容刷新完整链路已经在本系列里完整覆盖，以下是各步骤的快速定位：</p>
+
+    <div class="summary-box">
+      <h3>Content Refresh 正确顺序（避坑速查）</h3>
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>步骤</th>
+            <th>工具 / 产出</th>
+            <th>防哪个坑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 确认是否值得更新</td>
+            <td>Content Refresh Candidate Selection Matrix</td>
+            <td>避免更新不值得救的页面</td>
+          </tr>
+          <tr>
+            <td>2. 诊断衰减原因</td>
+            <td>Content Decay Checklist</td>
+            <td>反模式二：不知道 intent 变了</td>
+          </tr>
+          <tr>
+            <td>3. 选择刷新策略</td>
+            <td>Content Refresh Strategy Selection</td>
+            <td>避免选错策略浪费力气</td>
+          </tr>
+          <tr>
+            <td>4. 建立效果基准</td>
+            <td>Content Refresh Scorecard Template</td>
+            <td>反模式三：更新完不等观察期</td>
+          </tr>
+          <tr>
+            <td>5. 执行更新</td>
+            <td>Content Refresh Master Template</td>
+            <td>反模式一：只换标题不算更新</td>
+          </tr>
+          <tr>
+            <td>6. 监测效果</td>
+            <td>Content Refresh Monitoring Dashboard</td>
+            <td>有基准才能评估效果</td>
+          </tr>
+          <tr>
+            <td>7. 决定是否合并</td>
+            <td>Consolidation ROI Benchmark</td>
+            <td>反模式四：合并前没算清资产</td>
+          </tr>
+          <tr>
+            <td>8. 合并执行检查</td>
+            <td>Merge Redirect QA Checklist</td>
+            <td>合并后权重丢失</td>
+          </tr>
+          <tr>
+            <td>9. 排期化执行</td>
+            <td>Content Refresh Mini-Calendar</td>
+            <td>想起来再做，想不起来就放</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="risk-box">
+      <h3>⚠️ 本方案风险</h3>
+      <p>避坑指南的核心前提是「知道自己在坑里」。如果你的 GA4 和 Search Console 基础数据没有持续记录，很多坑等意识到的时候已经晚了。</p>
+      <p>若你的网站内容少于 10 篇，优先把内容基数建起来再系统做刷新——旧文少的时候人工逐篇检查比用系统更高效。</p>
+    </div>
+
+    <h2 id="next">下一步：从避坑到有序执行</h2>
+
+    <p>避坑是起点，不是终点。</p>
+    <p>你已经知道了 5 个最贵的反模式，下一步是把这个认知嵌入到每一次内容维护的工作流里，而不是每年想起来做一次。</p>
+    <p>推荐从今天开始做一个最小动作：</p>
+    <ul>
+      <li>打开 Google Search Console，找到流量下滑最多的 3 篇旧文</li>
+      <li>对照本文的 5 个反模式，逐一判断：这 3 篇在哪个坑里？</li>
+      <li>有结论了，再进入 Content Refresh Candidate Selection Matrix 做优先级判断</li>
+    </ul>
+
+    <div class="cta-final">
+      <h3>不知道你的旧文当前卡在哪一步？</h3>
+      <p>约一次 15 分钟适配判断，先发：站点链接 / 最卡的那 1 篇 / 你现在的做法。我会告诉你下一步该先动哪里。</p>
+      <a href="https://1r.buma55.com/contact.html">先约一次 15 分钟适配判断 →</a>
+    </div>
+
+  </article>
+</div>
+</body>
+</html>
