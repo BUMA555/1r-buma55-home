@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)</title>
+  <meta name="description" content="一人公司官网合并重定向QA清单实战文。吸收 Semrush 对"301 redirect 转移权重但不转移速度惩罚"的核心逻辑、Moz 对"redirect chain 与 canonical 检查顺序"的技术边界、Google Search Central 对"url 检查工具与提交后的预期"，重写成适合一人公司官网的 Merge Redirect QA Checklist，帮你把合并时的 redirect 检查从随意抽查改成系统 QA。 " />
+  <meta name="keywords" content="merge redirect QA checklist,redirect QA checklist,301 redirect checklist,redirect audit checklist,content merge redirect,合并重定向清单,合并重定向检查清单,301重定向检查清单,redirect chain checklist,SEO redirect checklist,重定向质量检查,合并重定向SEO清单,内容合并Redirect检查" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)" />
+  <meta property="og:description" content="把合并时的 redirect 检查从随意抽查改成系统 QA：哪些该 301、哪些该 404、chain 检查、canonical 验证、提交后预期，全部收口成一份可照着执行的 checklist。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260407-0505-one-person-company-merge-redirect-qa-checklist-seo.html" />
+  <meta property="article:published_time" content="2026-04-07T05:05:00Z" />
+  <meta property="article:modified_time" content="2026-04-07T05:05:00Z" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260407-0505-one-person-company-merge-redirect-qa-checklist-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b0f1a;color:#e8eaf0;margin:0;line-height:1.72;}
+    .page-wrap{max-width:760px;margin:0 auto;padding:0 24px 80px;}
+    .article-header{padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .article-header h1{font-size:28px;line-height:1.3;color:#fff;margin:0 0 16px;font-weight:600;}
+    .article-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:rgba(255,255,255,.5);}
+    .article-meta span{padding:4px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);}
+    .article-body{font-size:17px;}
+    .article-body h2{font-size:22px;color:#fff;margin:48px 0 16px;font-weight:600;padding-top:16px;}
+    .article-body h3{font-size:18px;color:#dbeafe;margin:32px 0 12px;font-weight:600;}
+    .article-body p{margin:0 0 20px;color:rgba(255,255,255,.82);}
+    .article-body ul,.article-body ol{margin:0 0 20px;padding-left:24px;}
+    .article-body li{margin-bottom:10px;color:rgba(255,255,255,.82);}
+    .article-body strong{color:#93c5fd;font-weight:600;}
+    .article-body a{color:#93c5fd;text-decoration:underline;text-underline-offset:3px;}
+    .article-body a:hover{color:#bfdbfe;}
+    .info-box,.checklist-box,.proof-box,.risk-box,.kpi-box,.sample-box{border-radius:12px;padding:24px;margin:32px 0;}
+    .info-box,.sample-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);}
+    .checklist-box{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.26);}
+    .proof-box{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);}
+    .risk-box{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.22);}
+    .kpi-box{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.22);}
+    .info-box h3,.checklist-box h3,.proof-box h3,.risk-box h3,.kpi-box h3,.sample-box h3{margin-top:0;color:#fff;font-size:18px;}
+    .toc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px;margin:32px 0;}
+    .toc h3{margin:0 0 16px;font-size:16px;color:#fff;}
+    .toc ol{margin:0;padding-left:20px;}
+    .toc li{margin-bottom:8px;font-size:14px;}
+    .toc a{color:#93c5fd;text-decoration:none;}
+    .toc a:hover{text-decoration:underline;}
+    .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:24px 0;}
+    .pillar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px;}
+    .pillar h4{margin:0 0 8px;color:#93c5fd;font-size:15px;}
+    .pillar p{margin:0;font-size:14px;color:rgba(255,255,255,.68);}
+    .footer-cta{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px;margin:48px 0 0;text-align:center;}
+    .footer-cta h3{font-size:20px;color:#fff;margin:0 0 12px;font-weight:600;}
+    .footer-cta p{color:rgba(255,255,255,.68);margin:0 0 20px;font-size:15px;}
+    .footer-cta a{display:inline-block;padding:12px 28px;background:#3b82f6;color:#fff;border-radius:999px;text-decoration:none;font-size:15px;font-weight:600;transition:.2s;}
+    .footer-cta a:hover{background:#2563eb;}
+    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:6px;}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)",
+    "description": "吸收 Semrush 的 301 redirect 权重转移逻辑与 Google Search Central 的 url 检查工具用法，重写成适合一人公司官网的 Merge Redirect QA Checklist。",
+    "datePublished": "2026-04-07T05:05:00Z",
+    "dateModified": "2026-04-07T05:05:00Z",
+    "author": {"@type": "Organization", "name": "BUMA"},
+    "publisher": {"@type": "Organization", "name": "BUMA", "url": "https://1r.buma55.com"},
+    "url": "https://1r.buma55.com/seo-20260407-0505-one-person-company-merge-redirect-qa-checklist-seo.html",
+    "isPartOf": {"@type": "CollectionPage", "name": "一人公司官网 SEO 文章中心"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://1r.buma55.com/"},
+      {"@type": "ListItem", "position": 2, "name": "文章中心", "item": "https://1r.buma55.com/seo.html"},
+      {"@type": "ListItem", "position": 3, "name": "合并重定向QA清单", "item": "https://1r.buma55.com/seo-20260407-0505-one-person-company-merge-redirect-qa-checklist-seo.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="topbar-clean">
+  <nav class="nav nav-clean">
+    <a class="brand-lockup" href="index.html">BUMA</a>
+    <div class="nav-endcaps">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="seo.html">文章中心</a>
+      <a href="about.html">关于</a>
+      <a href="contact.html">联系</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page-wrap">
+  <article>
+    <header class="article-header">
+      <h1>一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)</h1>
+      <div class="article-meta">
+        <span>✅ Merge Redirect QA Checklist</span>
+        <span>⏱ 约 3500+ 中文字</span>
+        <span>📅 2026-04-07</span>
+        <span>🔗 内链建议 9 条</span>
+      </div>
+    </header>
+
+    <section class="info-box">
+      <h3>SEO 摘要</h3>
+      <ul>
+        <li><strong>标题：</strong>一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)</li>
+        <li><strong>目标关键词：</strong>merge redirect QA checklist / redirect QA checklist / 301 redirect checklist / redirect audit checklist / content merge redirect / 合并重定向清单 / 合并重定向检查清单 / 301重定向检查清单 / redirect chain checklist / SEO redirect checklist / 重定向质量检查 / 内容合并Redirect检查</li>
+        <li><strong>搜索意图：</strong>Informational + Commercial Investigation</li>
+        <li><strong>Meta Title：</strong>一人公司官网合并重定向QA清单SEO:把旧文合并时不知道redirect怎么检查,改成能守住排名与权重传递的Merge Redirect QA Checklist(2026版)</li>
+        <li><strong>Meta Description：</strong>一人公司官网合并重定向QA清单实战文。先吸收 Semrush 对"301 redirect 转移权重但不转移速度惩罚"的核心逻辑、Moz 对"redirect chain 与 canonical 检查顺序"的技术边界，重写成适合一人公司官网的 Merge Redirect QA Checklist，帮你把合并时的 redirect 检查从随意抽查改成系统 QA。</li>
+        <li><strong>建议 Slug：</strong><code>seo-20260407-0505-one-person-company-merge-redirect-qa-checklist-seo.html</code></li>
+        <li><strong>内链建议：</strong><a href="seo.html">文章中心</a>、<a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a>、<a href="seo-20260406-2319-one-person-company-content-pruning-checklist-seo.html">内容修剪清单</a>、<a href="seo-20260407-0403-one-person-company-update-old-posts-sop-seo.html">旧文更新SOP</a>、<a href="seo-20260406-1812-one-person-company-content-relaunch-checklist-seo.html">内容重启清单</a>、<a href="seo-20260406-1903-one-person-company-updated-article-distribution-checklist-seo.html">旧文更新后分发清单</a>、<a href="seo-20260406-1626-one-person-company-reindex-request-checklist-seo.html">重新索引请求清单</a>、<a href="seo-20260404-1804-one-person-company-content-analytics-seo.html">内容分析体系</a>、<a href="contact.html">联系页</a></li>
+      </ul>
+    </section>
+
+    <nav class="toc">
+      <h3>📋 本篇目录</h3>
+      <ol>
+        <li><a href="#s1">为什么一人公司合并旧文时，redirect 检查不能靠感觉</a></li>
+        <li><a href="#s2">本轮搜索提炼了哪些高质量写法：标题角度、开头、结构、CTA、关键词覆盖</a></li>
+        <li><a href="#s3">Merge Redirect QA Checklist 真正负责什么，和 consolidation / relaunch 的边界</a></li>
+        <li><a href="#s4">可直接执行的 Merge Redirect QA Checklist：六步系统检查</a></li>
+        <li><a href="#s5">Redirect 合并后最容易做错的 4 件事</a></li>
+        <li><a href="#s6">KPI、风险与最小执行建议</a></li>
+      </ol>
+    </nav>
+
+    <div class="article-body">
+      <h2 id="s1">1. 为什么一人公司合并旧文时，redirect 检查不能靠感觉</h2>
+      <p>在 <a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a> 里，你已经决定了这篇是 keeper page、那篇要并进来、第三篇直接 301 跳走。但"决定做 301"和"做完的 301 真的有效"之间，隔着一整套 QA 检查。</p>
+      <p>一人公司最容易出现的错误是：合并完了就直接等效果，不知道 redirect chain 可能断了、canonical 可能打错了、Google 可能还在抓旧 URL。这个阶段的损失往往比合并本身更大——你损失的不只是排名，还有本来可以通过合并保住的权重。</p>
+      <p><strong>Merge Redirect QA Checklist</strong> 就是为了解决这个问题：在你按下 redirect 上线之后，有一张清单可以快速扫一遍，确保"跳了"这件事真的发生了、跳对了地方、Google 也知道跳了。</p>
+      <div class="proof-box">
+        <h3>一句话结论</h3>
+        <p><strong>301 跳转不保证 SEO 价值真的传过去——只有被正确执行的 301 才能转移排名信号。</strong>合并后不 QA，等于把权重传递交给运气。</p>
+      </div>
+
+      <h2 id="s2">2. 本轮搜索提炼了哪些高质量写法：标题角度、开头、结构、CTA、关键词覆盖</h2>
+      <p>本轮实际搜索了以下词：<code>merge redirect checklist SEO</code>、<code>301 redirect checklist</code>、<code>redirect audit checklist</code>、<code>redirect chain SEO checklist</code>。Semrush 的《301 Redirects: How to Use Them & How They Affect SEO》给出了最干净的核心逻辑。</p>
+      <p>最终提炼的写作框架来自 Semrush 的几个关键知识点：</p>
+      <ol>
+        <li><strong>Semrush《301 Redirects: How to Use Them & How They Affect SEO》</strong>：最有价值的是它区分了"301 转移什么"和"301 不转移什么"——301 会转移排名信号和外链权重，但不会转移页面速度惩罚（如果旧页有 penalty，301 跳转会带着 penalty 一起过去）；以及"Google 需要 weeks 到 months 来识别 redirect，提交后不要立刻预期排名变化"。这两个边界对一人公司做合并决策非常重要。</li>
+        <li><strong>内部已有文章参考</strong>：<a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a> 负责"合并前决定哪篇留、哪篇跳"，本篇负责"合并后检查跳对了没有"；<a href="seo-20260406-2319-one-person-company-content-pruning-checklist-seo.html">内容修剪清单</a> 负责"哪些该删、哪些该合并"，本篇负责"合并时的 redirect 执行质量"。</li>
+      </ol>
+      <p>把这 2 类写法揉进本站主线后，本篇保留了 5 个最值得复用的点：</p>
+      <div class="pillars">
+        <div class="pillar">
+          <h4>标题角度：不是"什么是 301 redirect"，而是"合并之后如何确认 redirect 真的有效"</h4>
+          <p>用户已经决定要做合并了，他们需要的是"跳了之后怎么确认没问题"的检查清单，而不是科普。</p>
+        </div>
+        <div class="pillar">
+          <h4>开头写法：先写"决定跳转"到"确认跳转成功"之间的那段空白</h4>
+          <p>贴近一人公司实际：很多人在 consolidation checklist 里填完了 keeper page，上线了 redirect，然后就没了。</p>
+        </div>
+        <div class="pillar">
+          <h4>模块结构：redirect 前检查 → redirect 本身检查 → chain 检查 → canonical 验证 → 提交与观察 → 风险判断</h4>
+          <p>六步走，每步都有明确的"做什么"和"怎么确认"，可以照着执行。</p>
+        </div>
+        <div class="pillar">
+          <h4>CTA：只给一个升级动作</h4>
+          <p>文章结尾不分散出口，统一收口到 <a href="contact.html">联系页</a>，保持"一篇内容只推一个动作"的入口纪律。</p>
+        </div>
+        <div class="pillar">
+          <h4>关键词覆盖：主词 + 技术词 + 中文表达一起铺开</h4>
+          <p>除了 merge redirect QA checklist，还自然覆盖 301 redirect checklist、redirect chain、canonical 检查、重定向质量检查、内容合并 redirect 等相邻词。</p>
+        </div>
+      </div>
+
+      <h2 id="s3">3. Merge Redirect QA Checklist 真正负责什么，和 consolidation / relaunch 的边界</h2>
+      <p>在一人公司官网的内容体系中，已经有以下几层：</p>
+      <ul>
+        <li><a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a>：负责判断哪篇是 keeper page、哪些 secondary pages 要并入或跳转</li>
+        <li><a href="seo-20260406-2319-one-person-company-content-pruning-checklist-seo.html">内容修剪清单</a>：负责判断哪些页该删、哪些该降权</li>
+        <li><a href="seo-20260407-0403-one-person-company-update-old-posts-sop-seo.html">旧文更新 SOP</a>：负责动手改某篇旧文时的标准执行步骤</li>
+        <li><a href="seo-20260406-1812-one-person-company-content-relaunch-checklist-seo.html">内容重启清单</a>：负责改完后如何像新文一样重新上线</li>
+        <li><a href="seo-20260406-1903-one-person-company-updated-article-distribution-checklist-seo.html">旧文更新后分发清单</a>：负责改完后怎么重新送出去</li>
+        <li><a href="seo-20260406-1626-one-person-company-reindex-request-checklist-seo.html">重新索引请求清单</a>：负责判断改完后是否值得催 Google 来抓</li>
+      </ul>
+      <p><strong>Merge Redirect QA Checklist</strong> 负责的是：在 content consolidation 决定跳转、上线 redirect 之后，<strong>验证 redirect 是否真的执行正确、权重是否真的能传递、Google 是否知道这次跳转</strong>。它回答的是合并后 QA 层的 6 个问题：</p>
+      <ol>
+        <li><strong>第一步检查什么：</strong>redirect 上线前，源 URL 和目标 URL 各自状态是否清晰。</li>
+        <li><strong>第二步查什么：</strong>redirect 响应码是否真的是 301/308，而不是 302/307。</li>
+        <li><strong>第三步查什么：</strong>redirect chain 是否存在——即源 URL 是否经过多跳才到目标。</li>
+        <li><strong>第四步查什么：</strong>keeper page 的 canonical 是否指向自己，而不是意外指向被合并的旧页。</li>
+        <li><strong>第五步做什么：</strong>提交后观察什么指标，以及何时判断是否需要重新提交。</li>
+        <li><strong>第六步判断什么：</strong>哪些情况不应该 redirect，而是应该 404 直接删除。</li>
+      </ol>
+
+      <h2 id="s4">4. 可直接执行的 Merge Redirect QA Checklist：六步系统检查</h2>
+      <p>下面这份 checklist，适合一人公司在 consolidation checklist 确认了 keeper page、上线了 redirect 之后，直接照着执行。每一步都有明确的操作和确认方式。</p>
+      <div class="checklist-box">
+        <h3>Merge Redirect QA Checklist / 合并重定向质量检查清单</h3>
+        <p><strong>执行前提：已经通过 <a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a> 确认了 keeper page，并通过 <a href="seo-20260406-2319-one-person-company-content-pruning-checklist-seo.html">内容修剪清单</a> 判断了哪些该跳转、哪些该 404。</strong></p>
+
+        <h4>第一步｜Redirect 上线前：确认源 URL 与目标 URL（约 5 分钟）</h4>
+        <ul>
+          <li>列出所有需要跳转的源 URL（secondary pages），以及各自对应的目标 URL（keeper page）。</li>
+          <li>确认每个目标 URL 是"被保留的页"而不是"新建的页"。已有排名的 URL 作为目标是首选。</li>
+          <li>确认没有 circular redirect（目标页又 redirect 回源页）。</li>
+          <li>如果有多个源 URL 跳向同一个目标 URL，确认这种多对一跳转是预期行为。</li>
+        </ul>
+
+        <h4>第二步｜Redirect 响应码验证（约 5 分钟）</h4>
+        <p>使用浏览器开发者工具或 <code>curl -I [源URL]</code> 验证响应头：</p>
+        <ul>
+          <li>每个源 URL 必须返回 <code>301 Moved Permanently</code> 或 <code>308 Permanent Redirect</code>。</li>
+          <li><strong>禁止使用 302 Found 或 307 Temporary Redirect</strong>——这两种状态码告诉 Google"这是临时跳转"，不会转移权重，等于做了 redirect 但没拿到 SEO 价值。</li>
+          <li>确认响应头里有 <code>Location: [目标URL]</code>，且目标 URL 是完整的绝对地址。</li>
+          <li>如果服务器配置用的是 302 但业务逻辑是永久跳转，优先改为 301。临时 vs 永久的选择在 redirect QA 里是最容易出错的第一步。</li>
+        </ul>
+
+        <h4>第三步｜Redirect Chain 检查（约 5 分钟）</h4>
+        <p>Redirect chain（重定向链）指源 URL 跳到中间页，再跳到目标页。每多一跳，Google 传递的权重都会打折扣。</p>
+        <ul>
+          <li>对每个源 URL，验证"源 URL → 最终目标 URL"之间是否有中间跳转。</li>
+          <li>如果 chain 存在（1 hop 以上），优先把源 URL 直接跳到最终目标，减少中间跳转。</li>
+          <li>常见的 chain 原因：HTTPS → HTTP → HTTPS，或 www → non-www → 另一个域名。先识别是否有服务器层 redirect 再到自己写的 redirect。</li>
+          <li>如果一个 URL 已经有跳转，但你需要修改目标，不要在旧 redirect 基础上叠加新 redirect，而是直接替换目标。</li>
+        </ul>
+
+        <h4>第四步｜Canonical 验证（约 5 分钟）</h4>
+        <p>Canonical 标签告诉 Google"哪个 URL 是正版"。如果 keeper page 的 canonical 指向了被合并的旧页，Google 会认为旧页才是正版，导致跳转和 canonical 自相矛盾。</p>
+        <ul>
+          <li>打开 keeper page（目标 URL），检查 <code>&lt;head&gt;</code> 里是否有 <code>&lt;link rel="canonical" href=&quot;https://1r.buma55.com/keeper-page.html&quot; /&gt;</code>。</li>
+          <li>Canonical 必须指向 keeper page 自身。如果指向了旧 URL 或指向了其他版本（HTTP vs HTTPS），立即修正。</li>
+          <li>如果 keeper page 有多个版本（HTTP / HTTPS / www / non-www），确认 canonical 指向你最希望 Google 收录的那个版本。</li>
+          <li>如果 keeper page 有 UTM 参数页面，canonical 应指向无参数的版本，避免参数页面和正文页面竞争排名。</li>
+        </ul>
+
+        <h4>第五步｜提交后观察（约 10 分钟 + 等待）</h4>
+        <ul>
+          <li>在 Google Search Console 的"网址检查"工具里，逐个验证源 URL 是否已被 Google 识别为 301 跳转。</li>
+          <li>如果 Google 显示"未收录"或"已识别但未索引"，在 <a href="seo-20260406-1626-one-person-company-reindex-request-checklist-seo.html">重新索引请求清单</a> 里走一遍是否需要主动提交。</li>
+          <li>提交后预期：Semrush 指出 Google 通常需要 weeks 到 months 才能完全识别 redirect 并更新排名。不要在提交后 48 小时内预期排名变化。</li>
+          <li>在 GSC 里设置排名监控：4 周内持续观察 keeper page 的排名是否稳定、是否有下滑趋势。</li>
+          <li>如果出现排名下滑，检查是否 keeper page 的内容深度不如旧页（301 不会传递内容质量，只会传递权重数字）。</li>
+        </ul>
+
+        <h4>第六步｜判断：哪些情况不该 redirect，应该直接 404</h4>
+        <p>不是所有被合并的页都适合 redirect。直接 404 在某些情况下比 redirect 到一个不太相关的 keeper page 更有利于 SEO。</p>
+        <ul>
+          <li>源 URL 和 keeper page 主题完全不相关——跳转到一个用户不期待到达的页面，体验和 SEO 都会受损。</li>
+          <li>源 URL 本身已经被惩罚——301 会把这个惩罚一起带过去，先查源 URL 有没有 penalty 再决定是否跳转。</li>
+          <li>源 URL 有大量自然外链，但 keeper page 内容单薄——权重过去了但内容不够，Google 会发现页面质量下滑。</li>
+          <li>源 URL 已经 404 多时、外链也已失效——redirect 已经无法借力，直接 404 反而更干净。</li>
+          <li>源 URL 的关键词和 keeper page 的核心词不在同一语义簇——强行 redirect 会稀释 keeper page 的主题集中度。</li>
+        </ul>
+      </div>
+
+      <h2 id="s5">5. Redirect 合并后最容易做错的 4 件事</h2>
+      <h3>5.1 用 302 代替 301，以为"反正用户感觉一样"</h3>
+      <p>302 和 301 对用户确实感觉一样，但 Google 对它们的处理完全不同。302 是"临时移动"，Google 会保留旧页的索引，不把权重转移到新页。如果你的合并是永久性的，必须用 301 或 308。这个错误在"先临时跳一下，以后再改"的心态里特别常见。</p>
+
+      <h3>5.2 以为 redirect 上线了，权重就自动传过去了</h3>
+      <p>Semrush 特别指出：Google 需要 weeks 到 months 才能完全处理 redirect 并更新排名信号。如果你在 redirect 上线 3 天后看排名，发现 keeper page 排名掉了，这不代表 redirect 失败了——可能只是 Google 还在处理。多跳 chain 会显著延长这个过程。</p>
+
+      <h3>5.3 跳转了但 canonical 没有同步更新</h3>
+      <p>这是最容易在 keeper page 上发生的隐性错误。跳转本身是对的，但 keeper page 的 canonical 如果还指向旧 URL，Google 会认为旧 URL 才是正版，权重还是会留在旧 URL。跳转和 canonical 必须配合使用。</p>
+
+      <h3>5.4 把不相关的旧页 redirect 到 keeper page，以为"权重不浪费"</h3>
+      <p>如果源 URL 和 keeper page 主题不相关，跳转会稀释 keeper page 的主题集中度。Google 的天生的"主题权威性"会被分散到不相关的词上，反而拉低 keeper page 在核心词上的排名。</p>
+
+      <h2 id="s6">6. KPI、风险与最小执行建议</h2>
+      <p>Merge Redirect QA Checklist 的价值不在于"做完了检查"，而在于"确认跳转真的有效"。建议追的指标分为三层：</p>
+      <div class="kpi-box">
+        <h3>建议 KPI（按 4~8 周追）</h3>
+        <ul>
+          <li><strong>曝光量级：</strong>合并完成后，keeper page 的 impressions 争取在 4 周内恢复到合并前水平；如果 6 周仍未恢复，优先检查是否有 redirect chain 或 canonical 错误。</li>
+          <li><strong>预期点击率：</strong>keeper page 的 CTR 争取维持合并前水平；若下滑超过 10%，优先检查 meta title 和 description 是否仍然匹配目标关键词。</li>
+          <li><strong>转化率：</strong>从 keeper page 到 <a href="contact.html">联系页</a> 的点击，争取维持合并前 secondary pages 的综合转化水平；若下降明显，优先检查 keeper page 的内容深度和 CTA 是否足够。</li>
+        </ul>
+      </div>
+      <div class="risk-box">
+        <h3>本方案风险</h3>
+        <ul>
+          <li><strong>本方案风险：</strong>用 302 代替 301 导致权重永久无法转移。若发现使用了 302，改为 301 后 Google 需要重新处理，这个过程本身会有 2~4 周的权重损失窗口期。</li>
+          <li><strong>本方案风险：</strong>跳转完成但没有走 canonical 验证，导致 Google 仍然把旧 URL 当正版。这种情况最容易被忽略但代价最大——每次 Google 抓取都是在强化旧 URL 的索引。</li>
+          <li><strong>本方案风险：</strong>合并后没有持续观察，等到月度复盘才发现 keeper page 排名跌了，此时损失已经积累。Redirect QA 不是一次性动作，提交后至少 4 周每周看一次 GSC。</li>
+        </ul>
+      </div>
+      <p>如果你的时间有限，这个 checklist 可以压缩成最核心的 5 步：</p>
+      <div class="info-box">
+        <h3>最小 Merge Redirect QA 执行表</h3>
+        <ul>
+          <li><strong>① 确认用的是 301/308</strong>（不是 302/307）</li>
+          <li><strong>② 确认没有 redirect chain</strong>（源 → 目标，最多 1 跳）</li>
+          <li><strong>③ 确认 keeper page canonical 指向自己</strong></li>
+          <li><strong>④ Google Search Console 逐个验证</strong>（URL 检查工具）</li>
+          <li><strong>⑤ 4 周内每周看一次 GSC 排名</strong>（观察 keeper page 是否稳定）</li>
+        </ul>
+      </div>
+      <p>这 5 步不需要每次全部走完，但每一步都不应该被跳过。当你形成习惯之后，每次合并 redirect 都能在 20 分钟内完成 QA，而不是上线了就不管。</p>
+
+    </div>
+
+    <div class="footer-cta">
+      <h3>需要帮你检查当前合并 redirect 是否存在隐藏问题？</h3>
+      <p>如果你已经做过一些旧文合并，但不确定 redirect 是否真的有效，或者 keeper page 排名一直没有恢复，联系我们。先诊断问题，再决定下一步。</p>
+      <a href="contact.html">进入联系页 →</a>
+    </div>
+  </article>
+</main>
+</body>
+</html>
