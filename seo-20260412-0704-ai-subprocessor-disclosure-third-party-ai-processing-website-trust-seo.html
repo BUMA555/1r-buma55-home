@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI subprocessor disclosure 怎么写：一人公司官网要把 third-party AI processing / 子处理方 / 训练边界讲清楚 | BUMA</title>
+  <meta name="description" content="越来越多用户不只会问‘会不会被用于 AI 训练’，还会继续问：有哪些第三方 AI 会接触我提交的资料？会保留多久？有没有子处理方清单？本文结合 OpenAI、Notion、Anthropic、Intercom 的真实写法，拆解一人公司官网该如何把 AI subprocessor disclosure、third-party AI processing 与训练边界写进 Contact 页、FAQ 与隐私页。" />
+  <meta name="keywords" content="AI subprocessor disclosure, third-party AI processing, AI subprocessors, website privacy page, contact page privacy, AI data processing disclosure, 子处理方披露, 第三方AI处理, 一人公司官网, 官网转化" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI subprocessor disclosure 怎么写：一人公司官网要把 third-party AI processing / 子处理方 / 训练边界讲清楚" />
+  <meta property="og:description" content="真正让用户敢发报价、截图、流程图和客户资料的，不只是‘不会用于 AI 训练’，还包括：哪些第三方 AI 会处理、为什么处理、保留多久、有没有例外。本文给出一人公司官网可直接复用的披露结构。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260412-0704-ai-subprocessor-disclosure-third-party-ai-processing-website-trust-seo.html" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260412-0704-ai-subprocessor-disclosure-third-party-ai-processing-website-trust-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b1120;color:#e5e7eb;margin:0;line-height:1.9;}
+    .page-wrap {max-width:800px;margin:0 auto;padding:0 24px 80px;}
+    .article-hero {padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .eyebrow {display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(79,142,247,.14);border:1px solid rgba(126,182,255,.2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1 {font-size:30px;line-height:1.2;margin:14px 0 16px;color:#fff;}
+    .lead {font-size:17px;color:rgba(255,255,255,.74);margin:0 0 20px;max-width:700px;}
+    .meta {display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .meta span {padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.62);}
+    h2 {font-size:21px;color:#fff;margin:40px 0 16px;padding-top:8px;}
+    h3 {font-size:17px;color:#e5e7eb;margin:28px 0 12px;}
+    p {margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol {margin:0 0 18px;padding-left:24px;color:rgba(255,255,255,.82);}
+    li {margin-bottom:8px;}
+    strong {color:#fff;}
+    .highlight-box {background:rgba(79,142,247,.10);border:1px solid rgba(79,142,247,.3);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .highlight-box h3 {margin-top:0;color:#93c5fd;font-size:15px;}
+    .highlight-box p {margin-bottom:0;font-size:15px;}
+    .warning-box {background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .warning-box h3 {margin-top:0;color:#fbbf24;font-size:15px;}
+    .warning-box p {margin-bottom:10px;font-size:15px;}
+    .cta-box {background:linear-gradient(135deg,rgba(79,142,247,.18),rgba(16,185,129,.12));border:1px solid rgba(79,142,247,.35);border-radius:18px;padding:28px 32px;margin:40px 0;text-align:center;}
+    .cta-box h3 {margin-top:0;color:#fff;font-size:20px;}
+    .cta-box p {color:rgba(255,255,255,.75);margin-bottom:16px;}
+    .cta-btn {display:inline-flex;align-items:center;padding:12px 24px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+    .toc {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:28px 0 32px;}
+    .toc h3 {margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;}
+    .toc ol {margin:0;padding-left:20px;font-size:14px;}
+    .toc li {margin-bottom:6px;}
+    .toc a {color:rgba(255,255,255,.78);text-decoration:none;}
+    .toc a:hover {color:#4f8ef7;}
+    pre {background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7;white-space:pre-wrap;}
+    pre code {background:none;padding:0;color:#e5e7eb;}
+    table {width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+    table th,table td {padding:10px 14px;border:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top;}
+    table th {background:rgba(79,142,247,.15);color:#93c5fd;font-weight:600;}
+    table tr:nth-child(even) {background:rgba(255,255,255,.02);}
+    blockquote {border-left:3px solid #4f8ef7;margin:24px 0;padding:14px 20px;background:rgba(79,142,247,.06);border-radius:0 10px 10px 0;}
+    blockquote p {margin:0;font-size:15px;color:rgba(255,255,255,.8);}
+    .article-footer {margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);}
+    .article-footer h3 {margin-top:0;font-size:16px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;}
+    .related-links {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+    .related-link {display:block;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);text-decoration:none;color:inherit;transition:.2s;}
+    .related-link:hover {border-color:rgba(79,142,247,.5);background:rgba(79,142,247,.08);}
+    .related-link-title {font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+    .related-link-desc {font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;}
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <article>
+      <header class="article-hero">
+        <span class="eyebrow">AI Subprocessor Disclosure · 官网转化</span>
+        <h1>AI subprocessor disclosure 怎么写：一人公司官网要把 third-party AI processing / 子处理方 / 训练边界讲清楚</h1>
+        <p class="lead">现在用户在 Contact 页真正卡住的，已经不只是“会不会被用于 AI 训练”，而是更具体的一步：如果我把报价、客户资料、后台截图、流程图和聊天记录发给你，除了你自己，还有哪些第三方 AI 会碰到这些内容？它们是做摘要、向量检索、转写，还是回答生成？有没有子处理方清单？是否零保留？如果你的网站只会说“我们重视隐私”，却不敢把 third-party AI processing 讲清楚，高意图访客很可能在按下发送前那 10 秒停住。真正让人敢发第一条高质量消息的，是把默认规则、子处理方边界、训练边界、保留周期和例外情况写成用户能快速判断的话。</p>
+        <div class="meta">
+          <span>📅 2026-04-12</span>
+          <span>✍️ BUMA 内容团队</span>
+          <span>🏷️ AI 子处理方 · 第三方 AI 处理 · Contact 页</span>
+          <span>⏱️ 约 4600 字</span>
+        </div>
+      </header>
+
+      <nav class="toc">
+        <h3>目录</h3>
+        <ol>
+          <li><a href="#why">为什么 AI subprocessor disclosure 正在变成官网新的信任节点</a></li>
+          <li><a href="#research">最近高质量写法里，大家都在怎么讲 third-party AI processing</a></li>
+          <li><a href="#angles">这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</a></li>
+          <li><a href="#mistakes">一人公司官网最常见的 4 个错误</a></li>
+          <li><a href="#where">子处理方披露到底该放在哪里：Contact、FAQ、隐私页、确认页</a></li>
+          <li><a href="#copy">可直接复用的 6 段官网文案模板</a></li>
+          <li><a href="#table">一张最小可用的子处理方披露表怎么写</a></li>
+          <li><a href="#kpi">上线后怎么看：曝光、点击率、转化率</a></li>
+          <li><a href="#risk">本方案风险</a></li>
+          <li><a href="#action">最小落地顺序</a></li>
+          <li><a href="#related">相关阅读</a></li>
+        </ol>
+      </nav>
+
+      <section id="why">
+        <h2>1. 为什么 AI subprocessor disclosure 正在变成官网新的信任节点</h2>
+        <p>用户现在越来越清楚：一个网站说“我们用了 AI”并不等于一件事。有人用 AI 做客服草稿，有人用 AI 做知识库检索，有人用 AI 做会议纪要、向量搜索、分类路由、表单摘要、自动回复，还有人会把用户内容送进多个外部模型服务。对访客来说，真正重要的不是你用没用 AI，而是<strong>谁会接触、为什么接触、接触后会不会被训练、会不会保留、能不能删</strong>。</p>
+        <p>这对一人公司官网尤其敏感。因为你的 Contact 页、表单和即时沟通，经常承接的是比普通留言更“贵”的内容：客户名单、服务报价、搜索数据、后台截图、业务 SOP、提案草稿、站点报错、团队流程图。访客担心的不是技术概念，而是现实问题：<strong>我把这些发给你之后，除了你自己，还有没有第三方 AI 会碰到？</strong></p>
+        <p>如果这层没讲清，页面再漂亮、案例再多，也可能在最后一步掉单。因为对高意图访客来说，这已经不是“介绍页内容够不够丰富”的问题，而是“我能不能放心发真实资料”的问题。</p>
+        <ul>
+          <li><strong>第一层信任：</strong>默认不会把提交内容用于公开 AI 模型训练。</li>
+          <li><strong>第二层信任：</strong>如果有第三方 AI 参与处理，会说明是谁、为什么、边界在哪。</li>
+          <li><strong>第三层信任：</strong>会说明保留周期、删除路径、反馈例外和必要保留例外。</li>
+        </ul>
+        <div class="highlight-box">
+          <h3>核心判断</h3>
+          <p>“no AI training” 只解决第一层顾虑；“AI subprocessor disclosure + third-party AI processing boundary” 才解决用户敢不敢发高敏感资料的最后一道门槛。尤其在 Contact 页、FAQ、确认页和隐私页，这一层越清楚，越能减少高质量咨询在提交前流失。</p>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>2. 最近高质量写法里，大家都在怎么讲 third-party AI processing</h2>
+        <p>这一轮没有闭门硬写，而是先看几类高质量官方说明，再把结构抽出来。它们产品不完全相同，但回答的是同一个问题：<strong>如果第三方 AI 会处理客户数据，应该怎么说，才能既真实又不把人吓跑。</strong></p>
+
+        <h3>OpenAI：把个人产品和商业产品的数据规则拆开讲</h3>
+        <p>OpenAI 的两类页面一起看最有价值。一边是“个人服务的数据如何用于提升模型表现”，明确写了 ChatGPT、Sora、Operator 这类个人产品内容可能用于模型训练，但用户可以关闭训练、使用 Temporary Chat；另一边是 Enterprise Privacy 页面，强调商业数据的所有权和控制权。这个组合最值得学的点不是某一句文案，而是<strong>场景拆分</strong>：消费场景和商业场景的数据规则必须分开讲，不能混成一句空话。</p>
+        <p>对一人公司官网来说，这意味着你不能只说“我们用了 AI，但很安全”。更好的写法是：<strong>公开站点分析数据、用户主动提交资料、第三方 AI 临时处理、是否用于训练</strong>，这几件事要拆开说。因为访客关心的是他这次提交的东西，而不是你对“AI 很先进”的态度。</p>
+
+        <h3>Notion：直接点名 AI 子处理方，并把训练、保留、零保留讲清楚</h3>
+        <p>Notion AI Security & Privacy Practices 里最可学的一点，是它没有把第三方处理方藏起来。页面直接说 Notion AI 依赖多个 AI subprocessors，并给出 Subprocessor Page；同时说明当前会用到 OpenAI、Anthropic 等模型提供方；默认情况下，Notion 及其 AI Subprocessors 不会用 Customer Data 训练模型；并继续讲到 Enterprise 计划的 zero data retention、非 Enterprise 计划通常 30 天或更短保留、embedding 删除窗口等。这类写法的价值非常高：<strong>不是只讲“不会训练”，而是把谁处理、如何处理、保留多久一起讲完。</strong></p>
+        <p>这对官网内容是一个直接提醒：如果你的网站链路里确实会调用第三方 AI 服务，最差的做法是装作没有。更好的做法，是像成熟产品那样：<strong>点名会触达数据的类型、说明目的、说明训练边界、说明保留边界。</strong></p>
+
+        <h3>Anthropic：把默认规则和反馈例外拆出来单讲</h3>
+        <p>Anthropic 商业产品的数据说明很适合学习“例外怎么写”。它先给出默认规则：商业产品输入输出默认不用于训练模型；然后马上补一个重要例外：如果用户明确通过反馈或 bug 报告主动提交内容，这些对话和编码会话可能被用于模型训练；并提到反馈数据可在安全后端保留更长时间。这个结构的优点是：<strong>既让用户快速得到默认判断，又没有把真实例外藏起来。</strong></p>
+        <p>对一人公司官网来说，这一点很关键。因为很多站明明存在“主动授权案例整理”“手动反馈给第三方服务”“人工排查留档”“必要备份窗口”等例外，却喜欢一口咬死“绝不会保留任何内容”。这种绝对句最容易埋雷。高质量写法不是更绝对，而是更真实。</p>
+
+        <h3>Intercom：把会接触哪些数据类型写出来，而不是只讲原则</h3>
+        <p>Intercom 的隐私政策不一定是最短的，但它很擅长把数据类别拆细：联系信息、conversation data、audio/video transcripts、device data、service data、third-party source data 等。它告诉我们的不是一句漂亮的承诺，而是另一个重要事实：<strong>如果你不先把“哪些数据会被处理”写清楚，后面谈任何训练边界都很虚。</strong></p>
+        <p>迁移到一人公司官网，最应该吸收的是：不要只写“我们可能用第三方 AI 服务提升效率”，而要更具体——是用来摘要、搜索、转写、分类，还是草拟回复。用户需要判断的是风险面，不是品牌价值观。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>参考来源</th>
+              <th>高质量写法</th>
+              <th>适合迁移到官网的点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OpenAI Enterprise Privacy + Data Use</td>
+              <td>把个人产品与商业产品的数据规则拆开讲</td>
+              <td>把“公开浏览数据”和“用户主动提交资料”分开写</td>
+            </tr>
+            <tr>
+              <td>Notion AI Security & Privacy Practices</td>
+              <td>直接说明 AI subprocessors、训练边界、zero retention、删除窗口</td>
+              <td>官网要敢写 third-party AI processing 的真实边界</td>
+            </tr>
+            <tr>
+              <td>Anthropic Commercial Data Use</td>
+              <td>默认规则与反馈例外拆开讲</td>
+              <td>不要硬写绝对句，要把默认规则和例外分块说明</td>
+            </tr>
+            <tr>
+              <td>Intercom Privacy Policy</td>
+              <td>先把会处理的数据类别讲具体</td>
+              <td>披露页先讲数据类型，再讲是否训练、是否保留</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="angles">
+        <h2>3. 这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</h2>
+        <p>参考这些高质量页面后，可以明显提炼出几个适合官网 SEO 和转化双用的写法。</p>
+
+        <h3>标题角度：别写成法务更新，要写成用户真实会卡住的问题</h3>
+        <p>高质量标题不是“关于子处理方的说明”，而是更接近用户真实搜索和犹豫：subprocessor disclosure、third-party AI processing、who processes my data、is my data sent to third-party AI providers。换到一人公司官网，就是从“制度口径”切到“提交前最后一层信任”。</p>
+
+        <h3>开头写法：先立一个“准备发资料，但担心第三方看到”的场景</h3>
+        <p>比起先定义 subprocessor，效果更好的开头是一个动作：用户已经准备发报价、截图、客户信息，却突然担心这些内容会不会进入第三方 AI 系统。这个开头能直接把读者拉进来，因为它说的是已经发生在 Contact 页最后 10 秒的真实心理。</p>
+
+        <h3>模块结构：默认规则 → 会有哪些处理方 → 训练边界 → 保留边界 → CTA</h3>
+        <p>参考页普遍不爱用“定义—分类—总结”的教材体，而更偏向“先给结论，再解释边界，再告诉你怎么控制”。这种顺序非常适合官网，因为用户要的是判断，不是上课。</p>
+
+        <h3>转化 CTA：先做判断，而不是借机强卖</h3>
+        <p>这类主题下最好的 CTA，不是“立即合作”，而是“如果你现在 Contact 页、FAQ、隐私页还没把 third-party AI processing 讲清楚，先把页面发来，我们先判断缺口在哪里”。也就是说，CTA 仍然只推一个动作：把第一条高质量消息发出来。</p>
+
+        <h3>关键词覆盖：子处理方词要和转化场景词一起出现</h3>
+        <p>如果只写 AI subprocessors，文章会变成一篇孤立的政策说明。更有效的覆盖方式是：<strong>AI subprocessor disclosure、third-party AI processing、website privacy page、contact page privacy、子处理方披露、官网转化、删除路径、保留周期</strong> 一起自然出现。</p>
+      </section>
+
+      <section id="mistakes">
+        <h2>4. 一人公司官网最常见的 4 个错误</h2>
+        <h3>错误一：只写“不会用于 AI 训练”，不写是否有第三方 AI 处理</h3>
+        <p>这会让用户继续追问：那是不是虽然不训练，但还是会被发到外部模型、向量库、转写服务？没有第三方边界，第一句承诺是不完整的。</p>
+
+        <h3>错误二：只写“可能使用第三方服务”，不写具体用途</h3>
+        <p>这种写法像把责任一股脑甩给隐私政策，用户根本无法判断风险。至少要告诉人家：是用于摘要、搜索、转写、分类，还是回复生成。</p>
+
+        <h3>错误三：把披露藏进页脚，不放在 Contact 页或 FAQ 关键位置</h3>
+        <p>访客是在准备点击发送前卡住的，不是在浏览页脚时卡住的。最关键的一句应该出现在 CTA 附近、FAQ、确认页，而不是只躲在长隐私页里。</p>
+
+        <h3>错误四：把真实例外藏掉，硬写绝对句</h3>
+        <p>如果你的流程里存在备份窗口、人工反馈、供应商日志、安全审计或法定义务，就该明确写“默认如此，存在这些必要例外”。真实边界比绝对口号更有信任感。</p>
+
+        <div class="warning-box">
+          <h3>⚠️ 最容易掉单的位置</h3>
+          <p>真正的流失点往往不是首页，而是 Contact 页最后几秒：用户愿意发真实资料，却担心“除了你，还有谁会碰到这些内容”。没有 subprocessor disclosure 的站，看起来像在躲；说得清楚的站，才更像能承接真正合作的人。</p>
+        </div>
+      </section>
+
+      <section id="where">
+        <h2>5. 子处理方披露到底该放在哪里：Contact、FAQ、隐私页、确认页</h2>
+        <p>如果只写一篇单独文章，教育价值有，但转化价值不够。真正有效的是分层落位。</p>
+        <ul>
+          <li><strong>Contact 页：</strong>用 1 句短承诺解决“会不会被第三方 AI 处理、会不会训练”的第一层疑问。</li>
+          <li><strong>FAQ：</strong>展开说明可能有哪些第三方 AI 处理方、用途、保留边界、删除路径、必要例外。</li>
+          <li><strong>隐私页 / 数据处理页：</strong>放更完整的子处理方说明、通知机制、更新方式。</li>
+          <li><strong>确认页 / Thank-you 页：</strong>告诉用户资料已收到，也说明如需进一步了解处理边界或发起删除请求怎么做。</li>
+        </ul>
+        <p>也就是说，subprocessor disclosure 不是一篇孤零零的“政策页”，而是 Contact → FAQ → Confirmation → Privacy 整条信任链的一环。你写得越靠近提交动作，越能影响转化。</p>
+      </section>
+
+      <section id="copy">
+        <h2>6. 可直接复用的 6 段官网文案模板</h2>
+        <h3>模板一：Contact 页短句</h3>
+        <pre><code>你提交的页面链接、截图和业务说明，仅用于本次沟通判断与后续服务推进。
+如涉及第三方 AI 工具，也只会在当前任务范围内用于摘要、分类、检索或回复辅助，不会被用于训练公开 AI 模型。</code></pre>
+
+        <h3>模板二：CTA 附近增强版</h3>
+        <pre><code>默认情况下，你提交的资料不会被用于训练公开 AI 模型。
+若当前流程涉及第三方 AI 处理，我们会将其限制在本次服务范围内，并在隐私说明中列明相关边界。</code></pre>
+
+        <h3>模板三：FAQ 子处理方版</h3>
+        <pre><code>Q：你们会把我提交的资料发送给第三方 AI 吗？
+A：在部分场景下，可能会使用第三方 AI 工具协助完成摘要、分类、搜索或回复辅助，但这些处理仅限于当前任务所需范围。默认不会将你的资料用于训练公开 AI 模型；若涉及第三方处理，我们会在说明页中披露处理边界与必要例外。</code></pre>
+
+        <h3>模板四：FAQ 训练边界版</h3>
+        <pre><code>Q：第三方 AI 处理和“用于训练模型”是一回事吗？
+A：不是。第三方 AI 处理指在当前任务中使用外部 AI 服务协助完成特定处理；是否用于训练模型取决于服务规则与合同边界。我们的默认原则是：你提交的资料不会被用于训练公开 AI 模型。</code></pre>
+
+        <h3>模板五：隐私页完整说明版</h3>
+        <pre><code>我们可能使用第三方 AI 工具协助完成信息整理、摘要、分类、搜索、转写或回复草拟，但相关处理仅限于当前沟通、项目评估、服务交付与必要运营记录。默认情况下，用户主动提交的内容不会被用于训练公开 AI 模型。若用户提出删除请求，我们会按当前流程处理可删除内容；如遇法定义务、安全审计、必要备份窗口或用户主动反馈等情况，可能存在合理保留例外。</code></pre>
+
+        <h3>模板六：确认页安心版</h3>
+        <pre><code>我们已收到你的资料，接下来会在 24 小时内完成初步判断。
+若本次处理涉及第三方 AI 工具，也仅限于本次沟通与服务范围；如需进一步了解处理边界或发起删除请求，可直接回复当前消息说明。</code></pre>
+      </section>
+
+      <section id="table">
+        <h2>7. 一张最小可用的子处理方披露表怎么写</h2>
+        <p>很多网站把“子处理方清单”想得太重，结果一直不写。其实对一人公司官网来说，先做一张最小可用表就够了。不是把内部系统全抖出来，而是先让用户知道<strong>谁可能会接触、用途是什么、训练边界是什么、保留边界是什么</strong>。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>处理类别</th>
+              <th>可能用途</th>
+              <th>默认训练边界</th>
+              <th>保留 / 删除说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>摘要 / 提炼</td>
+              <td>把长消息、截图说明、会议内容整理成可读摘要</td>
+              <td>默认不用于训练公开 AI 模型</td>
+              <td>按当前服务流程保留，用户可发起删除请求</td>
+            </tr>
+            <tr>
+              <td>搜索 / 检索</td>
+              <td>在当前资料中做向量检索、问答定位、知识匹配</td>
+              <td>默认不用于训练公开 AI 模型</td>
+              <td>若存在向量化缓存或索引，会按删除流程一并处理</td>
+            </tr>
+            <tr>
+              <td>转写 / 转录</td>
+              <td>将语音、会议、电话内容转成文本</td>
+              <td>默认不用于训练公开 AI 模型</td>
+              <td>若用于问题排查或服务记录，可能存在必要保留窗口</td>
+            </tr>
+            <tr>
+              <td>回复辅助</td>
+              <td>草拟初版回复、整理问题优先级</td>
+              <td>默认不用于训练公开 AI 模型</td>
+              <td>如用户主动反馈或授权案例整理，需单独说明</td>
+            </tr>
+          </tbody>
+        </table>
+        <blockquote>
+          <p>关键不是表做得多大，而是它让用户看懂：第三方 AI 的角色是什么、默认不做什么、遇到例外时会怎么说。</p>
+        </blockquote>
+      </section>
+
+      <section id="kpi">
+        <h2>8. 上线后怎么看：曝光、点击率、转化率</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>指标层</th>
+              <th>建议预期</th>
+              <th>看什么</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>曝光量级</td>
+              <td>子处理方说明模块每周 120~700 次可见曝光</td>
+              <td>看 Contact 页可见率、FAQ 展开率、隐私页点击率</td>
+            </tr>
+            <tr>
+              <td>预期点击率</td>
+              <td>主 CTA 提升 3%~8%</td>
+              <td>对比补 disclosure 前后的按钮点击率、表单开始率</td>
+            </tr>
+            <tr>
+              <td>转化率</td>
+              <td>高质量咨询提升 8%~15%</td>
+              <td>重点看带截图、带报价范围、带业务上下文的提交占比</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>这类改动通常最先提升的不是“咨询数量暴涨”，而是用户更愿意一次性把真实资料发出来。对一人公司来说，这种提交质量提升往往比表面数量更值钱。</p>
+      </section>
+
+      <section id="risk">
+        <h2>9. 本方案风险</h2>
+        <p><strong>本方案风险：</strong>如果页面把“第三方 AI 处理”写得过度绝对、过度模糊，或承诺了真实流程中做不到的零保留、零日志、零例外，就会形成承诺与事实不一致；<strong>若出现这种情况，则调整为</strong>“默认规则 + 处理用途 + 训练边界 + 必要例外”的真实表达，不把例外藏在页脚，也不硬写无法兑现的绝对句。</p>
+      </section>
+
+      <section id="action">
+        <h2>10. 最小落地顺序</h2>
+        <ol>
+          <li>先在 Contact 页 CTA 附近补 1 句 third-party AI processing 短承诺。</li>
+          <li>再在 FAQ 补“会不会交给第三方 AI / 是否训练 / 如何删除”3 个问题。</li>
+          <li>补一张最小子处理方披露表，不求全，但求用户能快速判断。</li>
+          <li>最后再把确认页和隐私页写完整，承接认真核对的人。</li>
+        </ol>
+        <p>对一人公司官网来说，这四步里前两步最直接影响转化，第三步补信任，第四步补完整性。比起空喊“我们重视隐私”，这条路径更容易接住真正准备合作的人。</p>
+      </section>
+
+      <section hidden aria-hidden="true">
+        <h2>SEO Publishing Brief</h2>
+        <ul>
+          <li><strong>标题：</strong>AI subprocessor disclosure 怎么写：一人公司官网要把 third-party AI processing / 子处理方 / 训练边界讲清楚</li>
+          <li><strong>目标关键词：</strong>AI subprocessor disclosure, third-party AI processing, AI subprocessors, website privacy page, contact page privacy, AI data processing disclosure, 子处理方披露, 第三方AI处理</li>
+          <li><strong>搜索意图：</strong>Informational + Commercial Investigation</li>
+          <li><strong>Meta title：</strong>AI subprocessor disclosure 怎么写：third-party AI processing 指南 | BUMA</li>
+          <li><strong>Meta description：</strong>越来越多用户不只会问‘会不会被用于 AI 训练’，还会继续问：有哪些第三方 AI 会接触我提交的资料？会保留多久？有没有子处理方清单？本文结合 OpenAI、Notion、Anthropic、Intercom 的真实写法，拆解一人公司官网该如何把 AI subprocessor disclosure、third-party AI processing 与训练边界写进 Contact 页、FAQ 与隐私页。</li>
+          <li><strong>建议 slug：</strong>seo-20260412-0704-ai-subprocessor-disclosure-third-party-ai-processing-website-trust-seo</li>
+          <li><strong>内链建议：</strong>
+            <ul>
+              <li><a href="contact.html">contact.html</a>：承接 Contact 页披露与咨询动作。</li>
+              <li><a href="seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html">AI privacy notice 文章</a>：承接“不会被用于 AI 训练”的基础信任。</li>
+              <li><a href="seo-20260412-0509-ai-data-retention-policy-no-ai-training-contact-page-seo.html">AI data retention policy 文章</a>：承接保留周期与 retention 写法。</li>
+              <li><a href="seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo.html">AI data deletion request 文章</a>：承接删除路径与 delete request 写法。</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <div class="cta-box">
+        <h3>如果你的网站已经接了 AI，但还没把第三方处理边界讲清楚</h3>
+        <p>先别急着再加一个按钮。更值钱的，是先把 Contact 页、FAQ 和隐私页里的 subprocessor disclosure 补完整，再让用户放心发第一条高质量消息。</p>
+        <a class="cta-btn" href="contact.html">先做 15 分钟的网站诊断</a>
+      </div>
+
+      <footer class="article-footer" id="related">
+        <h3>相关阅读</h3>
+        <div class="related-links">
+          <a class="related-link" href="seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html">
+            <div class="related-link-title">AI privacy notice 怎么写？</div>
+            <div class="related-link-desc">先补“不会被用于 AI 训练”这层基础信任说明。</div>
+          </a>
+          <a class="related-link" href="seo-20260412-0509-ai-data-retention-policy-no-ai-training-contact-page-seo.html">
+            <div class="related-link-title">AI data retention policy 怎么写？</div>
+            <div class="related-link-desc">继续看保留周期、删除窗口与 retention 写法。</div>
+          </a>
+          <a class="related-link" href="seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo.html">
+            <div class="related-link-title">AI data deletion request 怎么写？</div>
+            <div class="related-link-desc">把 delete request、删除入口与保留例外讲清楚。</div>
+          </a>
+          <a class="related-link" href="contact.html">
+            <div class="related-link-title">联系页</div>
+            <div class="related-link-desc">如果你已经有页面和截图，直接进入 15 分钟判断。</div>
+          </a>
+        </div>
+      </footer>
+    </article>
+  </div>
+</body>
+</html>
