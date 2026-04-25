@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)</title>
+  <meta name="description" content="一人公司官网内容衰减清单实战文。吸收 Ahrefs 对 content decay 生命周期、原因与 update or consolidate 决策框架，Search Engine Land 对 detect-fix-keep fresh 的写法，Orbit Media 对 update old posts 的 historical optimization 结构，以及 ThatWare 对 GA4/Ahrefs 监测、refresh、merge 与 UX 修复的模块，重写成适合一人公司的 Content Decay Checklist，帮你把旧文流量下滑从感觉不对改成可诊断、可修复、可复盘的执行清单。" />
+  <meta name="keywords" content="content decay checklist,content decay seo,content decay audit,historical optimization seo,update old posts seo,content refresh checklist,detect content decay,fix content decay,内容衰减清单,旧文流量下滑处理,内容衰减SEO,历史优化SEO,旧文更新清单,内容衰减检测" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)" />
+  <meta property="og:description" content="把旧文流量下滑、CTR 走低、搜索意图变旧与内部竞争收口成一张可执行的 Content Decay Checklist，先检测，再判断更新、合并、重定向还是重启分发。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260407-0210-one-person-company-content-decay-checklist-seo.html" />
+  <meta property="article:published_time" content="2026-04-06T18:10:00Z" />
+  <meta property="article:modified_time" content="2026-04-06T18:10:00Z" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260407-0210-one-person-company-content-decay-checklist-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b0f1a;color:#e8eaf0;margin:0;line-height:1.72;}
+    .page-wrap{max-width:760px;margin:0 auto;padding:0 24px 80px;}
+    .article-header{padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .article-header h1{font-size:28px;line-height:1.3;color:#fff;margin:0 0 16px;font-weight:600;}
+    .article-meta{display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:rgba(255,255,255,.5);}
+    .article-meta span{padding:4px 10px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);}
+    .article-body{font-size:17px;}
+    .article-body h2{font-size:22px;color:#fff;margin:48px 0 16px;font-weight:600;padding-top:16px;}
+    .article-body h3{font-size:18px;color:#dbeafe;margin:32px 0 12px;font-weight:600;}
+    .article-body p{margin:0 0 20px;color:rgba(255,255,255,.82);}
+    .article-body ul,.article-body ol{margin:0 0 20px;padding-left:24px;}
+    .article-body li{margin-bottom:10px;color:rgba(255,255,255,.82);}
+    .article-body strong{color:#93c5fd;font-weight:600;}
+    .article-body a{color:#93c5fd;text-decoration:underline;text-underline-offset:3px;}
+    .article-body a:hover{color:#bfdbfe;}
+    .info-box,.checklist-box,.proof-box,.risk-box,.kpi-box,.sample-box{border-radius:12px;padding:24px;margin:32px 0;}
+    .info-box,.sample-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);}
+    .checklist-box{background:rgba(59,130,246,.10);border:1px solid rgba(59,130,246,.26);}
+    .proof-box{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);}
+    .risk-box{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.22);}
+    .kpi-box{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.22);}
+    .info-box h3,.checklist-box h3,.proof-box h3,.risk-box h3,.kpi-box h3,.sample-box h3{margin-top:0;color:#fff;font-size:18px;}
+    .toc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:24px;margin:32px 0;}
+    .toc h3{margin:0 0 16px;font-size:16px;color:#fff;}
+    .toc ol{margin:0;padding-left:20px;}
+    .toc li{margin-bottom:8px;font-size:14px;}
+    .toc a{color:#93c5fd;text-decoration:none;}
+    .toc a:hover{text-decoration:underline;}
+    .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:24px 0;}
+    .pillar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px;}
+    .pillar h4{margin:0 0 8px;color:#93c5fd;font-size:15px;}
+    .pillar p{margin:0;font-size:14px;color:rgba(255,255,255,.68);}
+    .footer-cta{background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px;margin:48px 0 0;text-align:center;}
+    .footer-cta h3{font-size:20px;color:#fff;margin:0 0 12px;font-weight:600;}
+    .footer-cta p{color:rgba(255,255,255,.68);margin:0 0 20px;font-size:15px;}
+    .footer-cta a{display:inline-block;padding:12px 28px;background:#3b82f6;color:#fff;border-radius:999px;text-decoration:none;font-size:15px;font-weight:600;transition:.2s;}
+    .footer-cta a:hover{background:#2563eb;}
+    code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:6px;}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)",
+    "description": "吸收 Ahrefs、Search Engine Land、Orbit Media 与 ThatWare 的高质量写法，把旧文流量下滑、历史优化与内容刷新决策重写成适合一人公司的 Content Decay Checklist。",
+    "datePublished": "2026-04-06T18:10:00Z",
+    "dateModified": "2026-04-06T18:10:00Z",
+    "author": {"@type": "Organization", "name": "BUMA"},
+    "publisher": {"@type": "Organization", "name": "BUMA", "url": "https://1r.buma55.com"},
+    "url": "https://1r.buma55.com/seo-20260407-0210-one-person-company-content-decay-checklist-seo.html",
+    "isPartOf": {"@type": "CollectionPage", "name": "一人公司官网 SEO 文章中心"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首页", "item": "https://1r.buma55.com/"},
+      {"@type": "ListItem", "position": 2, "name": "文章中心", "item": "https://1r.buma55.com/seo.html"},
+      {"@type": "ListItem", "position": 3, "name": "内容衰减清单", "item": "https://1r.buma55.com/seo-20260407-0210-one-person-company-content-decay-checklist-seo.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+<header class="topbar-clean">
+  <nav class="nav nav-clean">
+    <a class="brand-lockup" href="index.html">BUMA</a>
+    <div class="nav-endcaps">
+      <a href="index.html">首页</a>
+      <a href="solutions.html">解决方案</a>
+      <a href="seo.html">文章中心</a>
+      <a href="about.html">关于</a>
+      <a href="contact.html">联系</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page-wrap">
+  <article>
+    <header class="article-header">
+      <h1>一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)</h1>
+      <div class="article-meta">
+        <span>✅ Content Decay Checklist</span>
+        <span>⏱ 约 3600+ 中文字</span>
+        <span>📅 2026-04-07</span>
+        <span>🔗 内链建议 7 条</span>
+      </div>
+    </header>
+
+    <section class="info-box">
+      <h3>SEO 摘要</h3>
+      <ul>
+        <li><strong>标题：</strong>一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)</li>
+        <li><strong>目标关键词：</strong>content decay checklist / content decay seo / content decay audit / historical optimization seo / update old posts seo / content refresh checklist / detect content decay / fix content decay / 内容衰减清单 / 旧文流量下滑处理 / 内容衰减SEO / 历史优化SEO / 旧文更新清单 / 内容衰减检测</li>
+        <li><strong>搜索意图：</strong>Informational + Commercial Investigation</li>
+        <li><strong>Meta Title：</strong>一人公司官网内容衰减清单SEO:把旧文流量慢慢漏掉的问题收口成一张可执行的Content Decay Checklist(2026版)</li>
+        <li><strong>Meta Description：</strong>一人公司官网内容衰减清单实战文。吸收 Ahrefs 对 content decay 生命周期、原因与 update or consolidate 决策框架，Search Engine Land 对 detect-fix-keep fresh 的写法，Orbit Media 对 update old posts 的 historical optimization 结构，以及 ThatWare 对 GA4/Ahrefs 监测、refresh、merge 与 UX 修复的模块，重写成适合一人公司的 Content Decay Checklist，帮你把旧文流量下滑从感觉不对改成可诊断、可修复、可复盘的执行清单。</li>
+        <li><strong>建议 Slug：</strong><code>seo-20260407-0210-one-person-company-content-decay-checklist-seo.html</code></li>
+        <li><strong>内链建议：</strong><a href="seo.html">文章中心</a>、<a href="seo-20260406-2107-one-person-company-content-refresh-audit-checklist-seo.html">内容刷新审计清单</a>、<a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a>、<a href="seo-20260406-1812-one-person-company-content-relaunch-checklist-seo.html">内容重启清单</a>、<a href="seo-20260406-1903-one-person-company-updated-article-distribution-checklist-seo.html">旧文更新后分发清单</a>、<a href="seo-20260404-1804-one-person-company-content-analytics-seo.html">内容分析体系</a>、<a href="contact.html">联系页</a></li>
+      </ul>
+    </section>
+
+    <nav class="toc">
+      <h3>📋 本篇目录</h3>
+      <ol>
+        <li><a href="#s1">为什么一人公司的旧文会悄悄进入 content decay，而不是突然坏掉</a></li>
+        <li><a href="#s2">这轮搜索里最值得吸收的标题角度、开头写法、模块结构、CTA 与关键词覆盖</a></li>
+        <li><a href="#s3">Content Decay Checklist 真正负责什么，以及它和 refresh audit 的边界</a></li>
+        <li><a href="#s4">可直接执行的内容衰减清单 / Content Decay Checklist</a></li>
+        <li><a href="#s5">更新旧文时最容易漏掉的 4 个环节：首屏、内链、分发、承接</a></li>
+        <li><a href="#s6">KPI、风险与最小执行建议</a></li>
+      </ol>
+    </nav>
+
+    <div class="article-body">
+      <h2 id="s1">1. 为什么一人公司的旧文会悄悄进入 content decay，而不是突然坏掉</h2>
+      <p>很多一人公司看旧文表现时，只盯着“有没有突然掉流量”。但 <strong>content decay</strong> 真正难处理的地方，恰恰不是突然跌，而是<strong>慢慢漏</strong>：三个月前还稳定带来点击的页面，今天 impressions 少了一点、CTR 低了一点、平均排名退了一点，看起来都不至于报警，可六个月一叠加，整篇文章就从“能持续带来搜索访问”变成了“还在索引里，但已经不再是主力页面”。</p>
+      <p>Ahrefs 在 2026 年更新的《What Is Content Decay?》里，把这件事拆成一个很清晰的生命周期：<strong>early traction → growth → traffic peak → slow plateau → decline</strong>。这很适合一人公司理解，因为我们最容易把注意力放在前 3 个阶段：写出来、发出去、看到流量起来。但真正的价值回收，往往发生在后 2 个阶段：页面开始老化后，你有没有及时识别、及时修、及时重新承接。</p>
+      <p>ThatWare 的内容衰减指南也强调了一个常被忽略的事实：内容衰减不是只有博客文章才会遇到，<strong>服务页、分类页、专题页、FAQ 页、资源页</strong> 一样会老化。原因通常不只一个：内容新鲜度下降、竞争对手变强、搜索意图转移、站内相似页面开始互相抢词、页面体验和 CTR 变弱。也就是说，content decay 不是“这篇文章过时了”这么简单，而是<strong>一整条搜索—点击—阅读—承接链路同时在变旧</strong>。</p>
+      <p>对一人公司来说，最危险的不是掉一篇，而是掉一串。因为我们的文章数量本来就不如大站多，一篇旧文如果既失去搜索优势，又没有把读者顺利送进 <a href="contact.html">联系页</a> 或更深的内容路径，那就等于同时损失了流量和承接。</p>
+      <div class="proof-box">
+        <h3>一句话结论</h3>
+        <p><strong>content decay 不是“文章失效了”，而是“旧文还活着，但它在搜索、点击、阅读和转化上的表现一起慢慢变旧了”。所以它需要的不是一次性修文，而是一张能帮你检测、判断、更新、重启分发的 Content Decay Checklist。</strong></p>
+      </div>
+
+      <h2 id="s2">2. 这轮搜索里最值得吸收的标题角度、开头写法、模块结构、CTA 与关键词覆盖</h2>
+      <p>本轮先实际跑了 3 组搜索词：<code>content decay seo guide 2025</code>、<code>historical optimization seo content update guide 2025</code>、<code>content inventory seo audit template 2025</code>。从搜索结果与可打开正文里，提炼了 4 组高质量参考：</p>
+      <ol>
+        <li><strong>Ahrefs《What Is Content Decay? (And How to Fix It Before It Tanks Your Traffic)》</strong>：最值得吸收的是生命周期写法、内容衰减原因拆解，以及“update / consolidate / redirect / prune”的动作分流。</li>
+        <li><strong>Search Engine Land 搜索结果摘要《Content Decay: What It Is &amp; How to Reverse Traffic Drops》</strong>：标题和摘要收口非常清晰，核心结构就是 <strong>spot it → fix it → keep it fresh</strong>，很适合一人公司改写成 checklist。</li>
+        <li><strong>Orbit Media 搜索结果摘要《How to Update Old Posts for SEO》</strong>：摘要里直接写出 historical optimization 的主线——<strong>which posts to revisit, how to update them, how to promote updated content</strong>。这说明优秀写法不会只讲“改文”，而会把“选哪篇改”和“改完怎么再送出去”一起写进去。</li>
+        <li><strong>ThatWare《SEO Content Decay? A DIY Guide to Fix Content Decay》</strong>：可打开正文里最值得吸收的是监测工具分层（GA4 / Ahrefs）、五阶段生命周期、五类修复动作（refresh、add new content、merge、meta/backlink、UX）以及“regular content audits”这个先检测再动手的模块顺序。</li>
+      </ol>
+      <p>把这些参考揉到一人公司主站主线里，本轮最值得保留的 5 个写法是：</p>
+      <div class="pillars">
+        <div class="pillar">
+          <h4>标题角度：不是“什么是内容衰减”，而是“旧文流量在慢慢漏”</h4>
+          <p>真正打中搜索意图的，不是术语解释，而是用户已经感受到的问题：旧文没死，但它越来越不带量。</p>
+        </div>
+        <div class="pillar">
+          <h4>开头写法：先讲“慢慢漏”，再讲 decay 定义</h4>
+          <p>Ahrefs 和 Search Engine Land 都先写损失，再写概念。本站吸收后，开头不从定义起，而从一人公司最容易忽视的缓慢下滑切入。</p>
+        </div>
+        <div class="pillar">
+          <h4>模块结构：检测、判断、更新、分发四段式</h4>
+          <p>Orbit Media 的 update old posts 逻辑提醒我们：只讲“怎么改”不够，还要把“改哪篇”和“改完后怎么重新送出去”补齐。</p>
+        </div>
+        <div class="pillar">
+          <h4>CTA：只留一个升级动作</h4>
+          <p>优秀文章最后不是给 3 个出口，而是把复杂决策收口到 1 个动作。本站继续统一到联系页，保持单一主 CTA。</p>
+        </div>
+      </div>
+      <p>在关键词覆盖上，本轮除了主词 <strong>content decay checklist</strong>，还自然补入了 <strong>content decay seo、content decay audit、historical optimization seo、update old posts seo、detect content decay、fix content decay、内容衰减清单、旧文更新清单</strong> 这些相邻词，避免整篇只围绕单一英文术语打转。</p>
+
+      <h2 id="s3">3. Content Decay Checklist 真正负责什么，以及它和 refresh audit 的边界</h2>
+      <p>这层边界需要拆清楚。<a href="seo-20260406-2107-one-person-company-content-refresh-audit-checklist-seo.html">content refresh audit checklist</a> 更像“旧文刷新总盘点”：先找出哪些内容值得优先动。<a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">content consolidation checklist</a> 负责的是相似页面如何合并。<a href="seo-20260406-1812-one-person-company-content-relaunch-checklist-seo.html">content relaunch checklist</a> 负责的是更新后怎样像一次新上线那样重新承接与分发。</p>
+      <p>到了 <strong>Content Decay Checklist</strong> 这一层，它回答的是另一组问题：<strong>一篇旧文是不是已经开始衰减？它为什么衰减？现在最合适的动作是更新、扩写、合并、重定向，还是暂时观察？</strong></p>
+      <p>所以它真正负责的是 4 件事：</p>
+      <ol>
+        <li><strong>检测信号：</strong>这篇内容是不是在慢慢漏流量、漏 CTR、漏关键词覆盖。</li>
+        <li><strong>判断原因：</strong>是新鲜度、竞争、搜索意图变化、站内内耗，还是页面体验问题。</li>
+        <li><strong>分派动作：</strong>更新、扩写、合并、redirect、prune，到底该选哪一条。</li>
+        <li><strong>确定重启路径：</strong>改完之后怎么通过内链、文章中心入口和分发动作，把旧文重新送回“被看见”的状态。</li>
+      </ol>
+      <div class="sample-box">
+        <h3>一个典型场景</h3>
+        <p>你三个月前写的“内容复盘看板”文章，曾经稳定带来 impressions。最近它的点击在掉，但不是断崖式掉；同时出现了更多关于“experiment tracker”“monthly report”“content KPI”的新搜索需求。这个页面不一定该直接重写，有可能只是需要：补新的子主题、更新开头承诺、改内链、接回 <a href="seo-20260406-1903-one-person-company-updated-article-distribution-checklist-seo.html">旧文更新后分发清单</a>。Content Decay Checklist 的价值，就是先帮你判断这篇该怎么救，而不是上来就大修。</p>
+      </div>
+
+      <h2 id="s4">4. 可直接执行的内容衰减清单 / Content Decay Checklist</h2>
+      <p>下面这份 checklist 适合一人公司直接照着做。重点不是做复杂后台，而是尽快把“感觉旧文不行了”变成一套可执行动作。</p>
+      <div class="checklist-box">
+        <h3>Content Decay Checklist / 内容衰减清单</h3>
+        <ul>
+          <li><strong>Step 1｜先拉出 decay 候选页：</strong>在 GSC 对比最近 90 天 vs 去年同期，找出 impressions、clicks 或 CTR 同时走弱的页面；再用 <a href="seo-20260404-1804-one-person-company-content-analytics-seo.html">内容分析体系</a> 补看这些页是否还承担咨询前解释作用。</li>
+          <li><strong>Step 2｜给每篇页标生命周期阶段：</strong>参考 Ahrefs 的阶段写法，判断它现在是在 slow plateau 还是已经进入 decline。这样能避免把仍在增长的页面误判成衰减。</li>
+          <li><strong>Step 3｜先找原因，不要先动手：</strong>依次检查 4 类原因：① 内容和数据是否过时；② SERP 上是否出现更强竞争页；③ 搜索意图是否漂移；④ 站内是否有相似页面在分流。若出现多 URL 抢同一组词，先回看 <a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">content consolidation checklist</a>。</li>
+          <li><strong>Step 4｜决定动作路线：</strong>
+            <ul>
+              <li>如果关键词仍相关，页面结构也还成立 → <strong>refresh / update</strong></li>
+              <li>如果缺的是子主题和深度 → <strong>expand</strong></li>
+              <li>如果有相似页面互相分流 → <strong>consolidate + 301 redirect</strong></li>
+              <li>如果关键词已经不再符合策略，但页面有外链 → <strong>redirect 到更相关页面</strong></li>
+              <li>如果流量、外链、业务价值都低 → <strong>prune</strong></li>
+            </ul>
+          </li>
+          <li><strong>Step 5｜更新时先改最影响 CTR 和承接的部分：</strong>优先改标题、meta title、meta description、开头两段、目录与 H2 顺序、首个 CTA 前的承诺，不要只在文末加一段新内容就算刷新。</li>
+          <li><strong>Step 6｜补入新的 SEO 与转化信号：</strong>新增 FAQ、补内链、换更准确的锚文本、把文章中心入口文案也同步改掉。否则 Google 看到的是“正文改了”，用户看到的仍是“入口承诺没变”。</li>
+          <li><strong>Step 7｜把更新后的旧文重新送出去：</strong>参考 Orbit Media 的思路，改完不算结束，还要做 relaunch：回到文章中心置顶入口、加到相关 guide strip、必要时补一轮站内分发与关联文章引用。</li>
+          <li><strong>Step 8｜观察 4 到 8 周：</strong>重点看相关 query 的 impressions、CTR、平均排名和联系动作点击，而不是看更新后 48 小时的单日波动。</li>
+        </ul>
+      </div>
+      <p>如果你只想保留最小版本，可以直接做一张 6 列表：</p>
+      <div class="info-box">
+        <h3>最小 Content Decay 决策表</h3>
+        <ul>
+          <li><strong>URL：</strong>哪一篇旧文</li>
+          <li><strong>衰减信号：</strong>impressions / CTR / clicks / ranking 哪项在掉</li>
+          <li><strong>主要原因：</strong>过时 / 竞争 / 搜索意图变化 / 内部竞争 / UX</li>
+          <li><strong>建议动作：</strong>refresh / expand / consolidate / redirect / prune</li>
+          <li><strong>改动范围：</strong>标题、开头、H2、FAQ、内链、CTA、分发</li>
+          <li><strong>复盘日期：</strong>4 周 / 8 周</li>
+        </ul>
+      </div>
+      <p>这张表的核心价值，是防止你把所有旧文都一视同仁。因为 content decay 的本质不是“旧文都该改”，而是<strong>先确定哪种旧，配哪种修法</strong>。</p>
+
+      <h2 id="s5">5. 更新旧文时最容易漏掉的 4 个环节：首屏、内链、分发、承接</h2>
+      <h3>5.1 首屏没改，CTR 很难一起回来</h3>
+      <p>ThatWare 在正文里提到 refresh meta tags，Ahrefs 也强调先看 CTR 和 impressions 的组合变化。翻成执行动作就是：如果你已经决定更新旧文，<strong>第一优先不是加长篇幅，而是重写能影响点击和首屏理解的部分</strong>。包括 meta title、description、H1、开头两段、目录顺序、第一屏 promise。否则用户和搜索引擎看到的仍是旧壳，更新信号不够强。</p>
+
+      <h3>5.2 只改正文，不改内链，旧文还是会继续漏</h3>
+      <p>旧文刷新后，如果相关文章、guide strip、文章中心卡片、FAQ 仍然指向更旧的叙述方式，Google 和用户接收到的信号就是分裂的。所以每次处理 content decay，都建议至少同步做 3 件事：正文内链更新、文章中心入口文案更新、和本主题最相关的 2 到 3 篇旧文补回链。</p>
+
+      <h3>5.3 改完不分发，historical optimization 就只做了一半</h3>
+      <p>Orbit Media 的历史优化写法很重要的一点，是旧文更新后要重新推广。对一人公司主站来说，这不一定意味着上社媒，而更常见的是：<strong>重新放回文章中心前排、补进相关 topic group、接回升级路径</strong>。如果更新完成后没人再被送到这篇页，内容衰减即使被修，也不会很快恢复势能。</p>
+
+      <h3>5.4 只修排名，不修承接，流量回来也未必有价值</h3>
+      <p>Content decay 的修复不该只看排名。因为一人公司网站的目标不是只要曝光，而是让用户读完后知道下一步该做什么。因此每次刷新旧文，都建议检查 CTA 是否仍然清晰、是否只有一个主动作、是否和页面主题保持一致。本站当前统一收口到 <a href="contact.html">联系页</a>，避免一篇文章放两个升级入口。</p>
+
+      <h2 id="s6">6. KPI、风险与最小执行建议</h2>
+      <p>一轮内容衰减修复做完后，不建议只看“我更新了几篇”。更适合按 4 到 8 周看这 3 段指标。</p>
+      <div class="kpi-box">
+        <h3>建议 KPI（按 4-8 周追）</h3>
+        <ul>
+          <li><strong>曝光量级：</strong>每完成 1 篇 decay page 的刷新，相关 query impressions 争取提升 12%~25%；若 3 周后仍无变化，优先回查搜索意图是否已经变掉，别继续只做表层修文。</li>
+          <li><strong>预期点击率：</strong>更新后的旧文 CTR 争取提升 5%~10%；若 impressions 回来但 CTR 不动，优先回查 meta title、description 与开头承诺是否仍然像旧版本。</li>
+          <li><strong>转化率：</strong>旧文到 <a href="contact.html">联系页</a> 或下一个承接页的点击，争取提升 8%~15%；若搜索恢复但承接不升，优先补 CTA 与内链，而不是继续机械加字数。</li>
+        </ul>
+      </div>
+      <div class="risk-box">
+        <h3>本方案风险</h3>
+        <ul>
+          <li><strong>本方案风险：</strong>把所有旧文都当成 content decay。若其实是 cannibalization 或关键词策略错误，则调整为先做 <a href="seo-20260407-0038-one-person-company-content-consolidation-checklist-seo.html">内容合并清单</a> 或改关键词定向，不继续在错误页面上反复刷新。</li>
+          <li><strong>本方案风险：</strong>只更新正文，不同步更新文章中心入口与相关内链。若旧入口仍然是旧承诺，则调整为把文章中心卡片、guide strip 与站内相关页一并更新。</li>
+          <li><strong>本方案风险：</strong>更新后立刻用 24 小时数据判断失败。若页面属于慢恢复型主题，则调整为至少观察 4 周，再决定继续放大、二次改写或停止投入。</li>
+        </ul>
+      </div>
+      <p>如果你现在手里已经有几篇“还活着但越来越不带量”的旧文，最小可执行动作不是重写全部，而是先挑 <strong>1 篇历史上带过稳定搜索流量、主题仍有商业价值、且最容易接回咨询动作</strong> 的页面，按上面的 checklist 做一次完整刷新：检测 → 判断原因 → 改标题和开头 → 补内链和 FAQ → 重启文章中心入口 → 4 周复盘。这样你会比一口气改 10 篇更快看到真实反馈。</p>
+
+      <div class="footer-cta">
+        <h3>如果你已经有几篇旧文在慢慢漏流量，可以先带着页面链接来做一轮判断</h3>
+        <p>把正在下滑的页面发来，我会先帮你判断：这篇更适合 refresh、expand、consolidate 还是直接停止投入，再给你下一步。</p>
+        <a href="contact.html">带着旧文链接来判断下一步</a>
+      </div>
+    </div>
+  </article>
+</main>
+</body>
+</html>
