@@ -1,140 +1,197 @@
-// BUMA 官网脚本
+// BUMA site progressive interaction layer.
+(function () {
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// 页面加载完成后执行
-window.addEventListener('DOMContentLoaded', function() {
-  // 平滑滚动
-  smoothScroll();
-  
-  // 导航栏滚动效果
-  navbarScroll();
-  
-  // 卡片悬停效果
-  cardHoverEffects();
-  
-  // 按钮交互效果
-  buttonEffects();
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    root.classList.add('ui-enhanced');
 
-// 平滑滚动
-function smoothScroll() {
-  const links = document.querySelectorAll('a[href^="#"]');
-  
-  links.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-        });
+    enhanceTopbar();
+    markCurrentNavigation();
+    setupAnchorScroll(reducedMotion);
+    setupReveal(reducedMotion);
+    setupPressFeedback();
+    setupStaticIntakeForms(reducedMotion);
+  });
+
+  function enhanceTopbar() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+
+    const sync = function () {
+      topbar.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+  }
+
+  function markCurrentNavigation() {
+    const file = normalizePath(window.location.pathname) || 'index.html';
+
+    document.querySelectorAll('.nav-links a[href], .mobile-quick-bar a[href]').forEach(function (link) {
+      const href = normalizePath(link.getAttribute('href'));
+      if (!href || href.startsWith('#')) return;
+
+      if (href === file || (href === 'index.html' && file === '')) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else if (link.getAttribute('aria-current') === 'page') {
+        link.removeAttribute('aria-current');
       }
-    });
-  });
-}
-
-// 导航栏滚动效果
-function navbarScroll() {
-  const header = document.querySelector('.header');
-  let lastScrollTop = 0;
-  
-  window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 100) {
-      header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-      header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-      header.style.backgroundColor = 'var(--background-color)';
-      header.style.boxShadow = 'var(--shadow-sm)';
-    }
-    
-    lastScrollTop = scrollTop;
-  });
-}
-
-// 卡片悬停效果
-function cardHoverEffects() {
-  const cards = document.querySelectorAll('.feature-card, .solution-card, .story-card, .price-card, .resource-card');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-4px)';
-      this.style.boxShadow = 'var(--shadow-md)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-      this.style.boxShadow = 'var(--shadow-sm)';
-    });
-  });
-}
-
-// 按钮交互效果
-function buttonEffects() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
-  
-  buttons.forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-2px)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-    });
-    
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // 模拟按钮点击效果
-      this.style.transform = 'translateY(0)';
-      
-      // 如果是外部链接，延迟后跳转
-      const href = this.getAttribute('href');
-      if (href && href !== '#') {
-        setTimeout(() => {
-          window.location.href = href;
-        }, 150);
-      }
-    });
-  });
-}
-
-// 响应式导航菜单
-function responsiveNav() {
-  const nav = document.querySelector('.nav');
-  const menuButton = document.querySelector('.menu-button');
-  
-  if (menuButton) {
-    menuButton.addEventListener('click', function() {
-      nav.classList.toggle('active');
     });
   }
-}
 
-// 滚动动画
-function scrollAnimations() {
-  const elements = document.querySelectorAll('.section-header, .feature-card, .solution-card, .story-card, .price-card, .resource-card');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+  function normalizePath(value) {
+    if (!value) return '';
+    const clean = value.split('#')[0].split('?')[0].replace(/\\/g, '/');
+    return clean.substring(clean.lastIndexOf('/') + 1);
+  }
+
+  function setupAnchorScroll(reduced) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        const id = link.getAttribute('href');
+        if (!id || id === '#') return;
+
+        let targetId = id.slice(1).trim();
+        try {
+          targetId = decodeURIComponent(targetId).trim();
+        } catch (error) {
+          return;
+        }
+        if (!targetId) return;
+
+        const target = document.getElementById(targetId);
+        if (!target) return;
+
+        event.preventDefault();
+        target.scrollIntoView({
+          behavior: reduced ? 'auto' : 'smooth',
+          block: 'start'
+        });
+        history.pushState(null, '', id);
+      });
+    });
+  }
+
+  function setupStaticIntakeForms(reduced) {
+    document.querySelectorAll('form[data-static-intake]').forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const action = form.getAttribute('action') || '';
+        const targetId = action.includes('#') ? action.split('#').pop().trim() : '';
+        const target = targetId ? document.getElementById(targetId) : null;
+        if (!target) return;
+
+        target.classList.add('is-visible');
+        target.scrollIntoView({
+          behavior: reduced ? 'auto' : 'smooth',
+          block: 'start'
+        });
+        history.pushState(null, '', '#' + targetId);
+      });
+    });
+  }
+
+  function setupReveal(reduced) {
+    const selectors = [
+      '[data-reveal]',
+      'main > .section',
+      '.section-header',
+      '.card',
+      '.home-entry-link',
+      '.topic-nav-card',
+      '.path-card',
+      '.article-card',
+      '.contact-card',
+      '.contact-panel',
+      '.contact-route-card',
+      '.metrics-snapshot-shell',
+      '.outcomes-strip-shell',
+      '.trust-proof-card',
+      '.outcome-strip-card'
+    ].join(',');
+
+    const targets = Array.from(document.querySelectorAll(selectors))
+      .filter(function (element) {
+        return !element.closest('.topbar') && !element.closest('.mobile-quick-bar');
+      });
+
+    if (!targets.length) return;
+
+    targets.forEach(function (element, index) {
+      if (!element.hasAttribute('data-reveal')) {
+        element.setAttribute('data-reveal', '');
+      }
+      if (!element.hasAttribute('data-reveal-delay') && index % 4 !== 0) {
+        element.setAttribute('data-reveal-delay', String(Math.min(index % 4, 3)));
       }
     });
-  }, {
-    threshold: 0.1
-  });
-  
-  elements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(element);
-  });
-}
+
+    root.classList.add('js-ready');
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      targets.forEach(function (element) {
+        element.classList.add('is-visible');
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    targets.forEach(function (element) {
+      if (isInitiallyVisible(element)) {
+        element.classList.add('is-visible');
+      } else {
+        observer.observe(element);
+      }
+    });
+  }
+
+  function isInitiallyVisible(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+  }
+
+  function setupPressFeedback() {
+    const pressables = document.querySelectorAll(
+      '.btn-primary, .btn-secondary, .nav-cta, .mobile-quick-bar a, .contact-route-card, .article-card, .path-card, .topic-nav-card, .home-entry-link'
+    );
+
+    pressables.forEach(function (element) {
+      element.addEventListener('pointerdown', function (event) {
+        const rect = element.getBoundingClientRect();
+        element.style.setProperty('--press-x', (event.clientX - rect.left) + 'px');
+        element.style.setProperty('--press-y', (event.clientY - rect.top) + 'px');
+        pulse(element);
+      });
+
+      element.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          pulse(element);
+        }
+      });
+    });
+  }
+
+  function pulse(element) {
+    element.classList.remove('is-pressing');
+    window.requestAnimationFrame(function () {
+      element.classList.add('is-pressing');
+      window.setTimeout(function () {
+        element.classList.remove('is-pressing');
+      }, 360);
+    });
+  }
+})();

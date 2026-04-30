@@ -1,310 +1,232 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>联系 BUMA|先把你最卡的那一步发来</title>
-  <meta name="description" content="联系 BUMA。适合咨询一人公司官网转化、联系页优化、内容承接、OpenClaw 部署、飞书接入与执行流程梳理。默认工作日 24 小时内回应。" />
+  <title>联系 BUMA AI | 15 分钟判断最该自动化的一步</title>
+  <meta name="description" content="联系 BUMA AI：发来一个真实业务卡点，先判断最值得自动化的一步。适合一人公司、小团队、内容增长、飞书协同、OpenClaw 与 Agent 落地。" />
   <meta name="robots" content="index,follow" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="联系 BUMA|先把你最卡的那一步发来" />
-  <meta property="og:description" content="不是先聊一堆大词,而是先判断你现在最该先动哪 1 页、哪 1 条流程、哪 1 个接入动作。" />
+  <meta property="og:title" content="联系 BUMA AI | 15 分钟判断最该自动化的一步" />
+  <meta property="og:description" content="不用写长需求。发当前卡点、现有工具和想达到的结果，先判断是否值得接 AI、Agent、飞书或网站转化链路。" />
   <meta property="og:url" content="https://1r.buma55.com/contact.html" />
   <link rel="canonical" href="https://1r.buma55.com/contact.html" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .contact-wrap{max-width:1120px;margin:0 auto;padding:0 20px 64px;}
-    .contact-hero{padding:56px 0 20px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);gap:24px;align-items:start;}
-    .contact-hero h1{margin:8px 0 14px;font-size:42px;line-height:1.15;color:#fff;}
-    .contact-hero p{color:rgba(255,255,255,.68);line-height:1.8;margin:0;}
-    .contact-badge,.mini-kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7eb6ff;}
-    .contact-points{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;padding:0;list-style:none;}
-    .contact-points li{padding:8px 12px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.04);font-size:13px;color:rgba(255,255,255,.74);}
-    .contact-expectation{margin-top:18px;padding:14px 16px;border:1px solid rgba(126,182,255,.22);border-radius:16px;background:linear-gradient(180deg,rgba(126,182,255,.1),rgba(126,182,255,.04));color:rgba(255,255,255,.78);font-size:14px;line-height:1.7;}
-    .contact-expectation strong{color:#fff;}
-    .contact-friction-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
-    .contact-friction-strip span{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);font-size:12px;color:rgba(255,255,255,.62);}
-    .contact-friction-strip strong{color:#fff;font-weight:600;}
-    .contact-message-demo{margin-top:18px;padding:18px;border:1px solid rgba(126,182,255,.16);border-radius:20px;background:linear-gradient(180deg,rgba(14,21,36,.96),rgba(9,13,24,.96));box-shadow:0 16px 40px rgba(0,0,0,.22);}
-    .contact-message-demo-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:14px;}
-    .contact-message-demo-head strong{display:block;color:#fff;font-size:15px;line-height:1.5;}
-    .contact-message-demo-head span{display:block;color:rgba(255,255,255,.56);font-size:12px;line-height:1.7;max-width:360px;}
-    .contact-chat-flow{display:grid;gap:12px;}
-    .contact-chat-bubble{max-width:620px;padding:14px 16px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
-    .contact-chat-bubble.user{margin-left:auto;border-color:rgba(79,142,247,.34);background:linear-gradient(180deg,rgba(79,142,247,.22),rgba(79,142,247,.1));}
-    .contact-chat-bubble.ai{border-color:rgba(91,227,180,.26);background:linear-gradient(180deg,rgba(91,227,180,.12),rgba(91,227,180,.05));}
-    .contact-chat-role{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.52);}
-    .contact-chat-role b{color:#fff;font-size:12px;letter-spacing:.04em;}
-    .contact-chat-bubble p{margin:0;color:rgba(255,255,255,.8);font-size:14px;line-height:1.8;}
-    .contact-chat-bubble p+p{margin-top:8px;}
-    .contact-message-demo-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
-    .contact-message-demo-foot span{display:inline-flex;align-items:center;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.62);}
-    .contact-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px;align-items:stretch;}
-    .contact-fit-check{margin-top:18px;padding:18px;border:1px solid rgba(126,182,255,.14);border-radius:20px;background:linear-gradient(180deg,rgba(14,21,36,.92),rgba(10,14,24,.96));box-shadow:0 12px 32px rgba(0,0,0,.18);}
-    .contact-fit-check-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px;}
-    .contact-fit-check-head strong{display:block;color:#fff;font-size:17px;line-height:1.5;}
-    .contact-fit-check-head span{display:block;max-width:520px;color:rgba(255,255,255,.56);font-size:13px;line-height:1.75;}
-    .contact-fit-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
-    .contact-fit-card{padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);}
-    .contact-fit-card.is-fit{border-color:rgba(91,227,180,.24);background:linear-gradient(180deg,rgba(91,227,180,.12),rgba(91,227,180,.05));}
-    .contact-fit-card.is-not-fit{border-color:rgba(255,184,77,.2);background:linear-gradient(180deg,rgba(255,184,77,.1),rgba(255,184,77,.04));}
-    .contact-fit-card em{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;font-style:normal;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.08);color:rgba(255,255,255,.76);margin-bottom:10px;}
-    .contact-fit-card strong{display:block;color:#fff;font-size:15px;line-height:1.45;margin-bottom:8px;}
-    .contact-fit-card ul{margin:0;padding-left:18px;color:rgba(255,255,255,.74);font-size:13px;line-height:1.8;}
-    .contact-fit-card li+li{margin-top:4px;}
-    .contact-fit-note{margin-top:12px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.75;}
-    .contact-route-card{display:block;padding:16px 16px 17px;border:1px solid rgba(126,182,255,.14);border-radius:18px;background:rgba(255,255,255,.03);text-decoration:none;transition:.2s ease;position:relative;min-height:172px;}
-    .contact-route-card:hover{border-color:rgba(126,182,255,.38);background:rgba(126,182,255,.08);transform:translateY(-2px);}
-    .contact-route-card.contact-route-primary{border-color:rgba(79,142,247,.52);background:linear-gradient(180deg,rgba(79,142,247,.18),rgba(79,142,247,.08));box-shadow:0 10px 28px rgba(37,99,235,.16);}
-    .contact-route-card.contact-route-primary:hover{border-color:rgba(120,169,255,.82);background:linear-gradient(180deg,rgba(79,142,247,.24),rgba(79,142,247,.12));}
-    .contact-route-card.contact-route-primary::after{content:"建议优先走这条";position:absolute;top:12px;right:12px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:11px;letter-spacing:.04em;}
-    .contact-route-card.contact-route-urgent{border-color:rgba(255,120,120,.28);background:linear-gradient(180deg,rgba(255,120,120,.12),rgba(255,120,120,.04));}
-    .contact-route-card.contact-route-urgent:hover{border-color:rgba(255,144,144,.52);background:linear-gradient(180deg,rgba(255,120,120,.18),rgba(255,120,120,.07));}
-    .contact-route-card.contact-route-secondary{opacity:.96;}
-    .contact-route-card em{display:block;font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#7eb6ff;margin-bottom:8px;}
-    .contact-route-card strong{display:block;color:#fff;font-size:16px;margin-bottom:6px;padding-right:96px;line-height:1.45;}
-    .contact-route-card span{display:block;color:rgba(255,255,255,.64);font-size:13px;line-height:1.75;}
-    .contact-route-card b{display:inline-flex;margin-top:12px;font-size:13px;color:#dbeafe;font-weight:600;}
-    .contact-route-card small{display:block;margin-top:12px;color:rgba(255,255,255,.48);font-size:12px;line-height:1.6;}
-    .contact-panel,.contact-card{background:#111827;border:1px solid #1f2a44;border-radius:18px;padding:22px;}
-    .contact-next-step-card{margin-top:16px;padding:16px;border:1px solid rgba(91,227,180,.18);border-radius:16px;background:linear-gradient(180deg,rgba(91,227,180,.1),rgba(91,227,180,.04));}
-    .contact-next-step-card strong{display:block;color:#fff;font-size:14px;margin-bottom:8px;}
-    .contact-next-step-card ol{margin:0;padding-left:18px;color:rgba(255,255,255,.74);line-height:1.8;font-size:13px;}
-    .contact-next-step-card li+li{margin-top:4px;}
-    .contact-next-step-card p{margin-top:10px;font-size:12px;color:rgba(255,255,255,.52);line-height:1.75;}
-    .trust-proof-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:16px;margin-top:18px;}
-    .trust-proof-card{background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(11,15,26,.96));border:1px solid rgba(126,182,255,.14);border-radius:20px;padding:24px;}
-    .trust-proof-card h3{color:#fff;margin:0 0 12px;font-size:22px;}
-    .trust-proof-card p{color:rgba(255,255,255,.68);line-height:1.8;margin:0;}
-    .proof-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:12px;}
-    .proof-list li{padding:14px 16px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.72);line-height:1.7;}
-    .proof-list strong{display:block;color:#fff;margin-bottom:4px;}
-    .proof-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
-    .proof-links a{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;border:1px solid rgba(126,182,255,.24);background:rgba(126,182,255,.08);color:#dbeafe;text-decoration:none;font-size:14px;}
-    .proof-links a:hover{border-color:rgba(126,182,255,.42);background:rgba(126,182,255,.14);}
-    .contact-panel h3,.contact-card h3{color:#fff;margin:0 0 12px;font-size:20px;}
-    .contact-panel p,.contact-card p{color:rgba(255,255,255,.64);line-height:1.75;}
-    .contact-panel .cta{display:inline-block;margin-top:12px;color:#fff;background:#4f8ef7;border-radius:999px;padding:12px 18px;text-decoration:none;font-weight:600;}
-    .reply-timeline{margin-top:14px;padding:14px 16px;border:1px solid rgba(126,182,255,.18);border-radius:16px;background:rgba(126,182,255,.06);}
-    .reply-timeline strong{display:block;color:#fff;font-size:14px;margin-bottom:8px;}
-    .reply-timeline ul{margin:0;padding-left:18px;color:rgba(255,255,255,.68);line-height:1.75;font-size:13px;}
-    .reply-timeline li+li{margin-top:4px;}
-    .contact-triage-card{margin-top:14px;padding:16px;border:1px solid rgba(255,184,77,.18);border-radius:16px;background:linear-gradient(180deg,rgba(255,184,77,.1),rgba(255,184,77,.04));}
-    .contact-triage-card strong{display:block;color:#fff;font-size:14px;margin-bottom:10px;}
-    .contact-triage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
-    .contact-triage-item{padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03);}
-    .contact-triage-item b{display:block;color:#fff;font-size:13px;margin-bottom:6px;}
-    .contact-triage-item span{display:block;color:rgba(255,255,255,.66);font-size:12px;line-height:1.7;}
-    .contact-triage-note{margin-top:10px;font-size:12px;color:rgba(255,255,255,.54);line-height:1.75;}
-    .fallback-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);gap:16px;margin-top:18px;}
-    .fallback-card{background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(11,15,26,.96));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:24px;}
-    .fallback-card p{color:rgba(255,255,255,.68);line-height:1.8;margin:0;}
-    .fallback-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center;}
-    .fallback-actions a{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;border:1px solid rgba(126,182,255,.24);background:rgba(126,182,255,.08);color:#dbeafe;text-decoration:none;font-size:14px;}
-    .fallback-actions a:hover{border-color:rgba(126,182,255,.42);background:rgba(126,182,255,.14);}
-    .fallback-actions .fallback-primary{background:#4f8ef7;border-color:#4f8ef7;color:#fff;font-weight:600;}
-    .fallback-actions .fallback-primary:hover{background:#78a9ff;border-color:#78a9ff;}
-    .fallback-secondary-label{margin-top:14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(126,182,255,.74);}
-    .fallback-inline-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;}
-    .fallback-inline-links a{color:rgba(219,234,254,.72);text-decoration:none;font-size:13px;}
-    .fallback-inline-links a:hover{color:#fff;text-decoration:underline;}
-    .fallback-note{margin-top:14px;font-size:13px;color:rgba(255,255,255,.54);}
-    .section-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;}
-    .section-grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px;}
-    ul.clean{margin:0;padding-left:18px;color:rgba(255,255,255,.68);line-height:1.85;}
-    .section-title{margin:38px 0 10px;color:#fff;font-size:26px;}
-    .section-desc{color:rgba(255,255,255,.58);line-height:1.8;max-width:760px;}
-    @media (max-width:900px){.contact-hero,.section-grid,.section-grid-2,.trust-proof-grid{grid-template-columns:1fr;} .contact-hero h1{font-size:34px;} .contact-fit-check-grid{grid-template-columns:1fr;}}
-    @media (max-width:680px){.contact-route-grid{grid-template-columns:1fr;}}
-  </style>
 </head>
-<body>
-  <header class="topbar topbar-clean">
-    <div class="container nav nav-clean">
-      <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
-      <nav class="nav-links nav-links-clean">
+<body class="inner2026-page contact2026-page">
+  <header class="inner2026-topbar">
+    <div class="inner2026-nav">
+      <a class="inner2026-brand" href="index.html" aria-label="BUMA 首页">
+        <span>BUMA</span>
+      </a>
+      <nav class="inner2026-links" aria-label="主导航">
         <a href="index.html">首页</a>
-        <a href="solutions.html">解决方案</a>
+        <a href="solutions.html">方案</a>
         <a href="seo.html">文章</a>
-        <a href="about.html">关于</a>
-        <a href="contact.html" class="active">联系</a>
+        <a href="contact.html" aria-current="page">联系</a>
       </nav>
-      <div class="nav-endcaps">
-        <span class="nav-signal">山东临沂 · 远程可协作</span>
-        <a class="nav-cta" href="contact.html">预约咨询</a>
-      </div>
+      <a class="inner2026-nav-cta" href="tel:15550927555">电话直达</a>
     </div>
   </header>
 
-  <main class="contact-wrap">
-    <section class="contact-hero">
-      <div>
-        <div class="contact-badge">Contact BUMA</div>
-        <h1>先把你最卡的那一步发来,<br/>我先做 15 分钟适配判断。</h1>
-        <p>如果你现在卡在官网转化、联系页承接、内容生产、OpenClaw 部署、飞书接入,别一上来讲一大堆背景。直接把最卡的那一步发来:一个页面链接、一张报错截图、一段现在跑不顺的流程,都行。先判断问题,再决定怎么推进。</p>
-        <div class="contact-expectation"><strong>先发这 3 样就够了:</strong>页面或链接、相关截图、你现在最卡的 1 步。<strong>不用先写成长文,我会先用 15 分钟做适配判断,并在工作日 24 小时内告诉你下一步该先动哪里。</strong></div>
-        <p style="margin-top:12px;font-size:13px;color:rgba(255,255,255,.58);line-height:1.8;">默认情况下,你提交的页面链接、截图、报错说明和业务资料只用于本次沟通判断、问题排查与后续服务推进,不会被用于训练公开 AI 模型。若你主动点反馈、提交 bug report 或授权进一步排查,相关内容也只会限制在当前服务范围内处理。<a href="seo-20260412-0806-ai-feedback-policy-bug-report-training-exception-contact-page-seo.html" style="color:#dbeafe;">查看 AI feedback policy 说明</a></p>
-        <div class="contact-friction-strip" aria-label="低摩擦说明">
-          <span><strong>不用先准备:</strong>完整需求书</span>
-          <span><strong>不用先准备:</strong>预算方案</span>
-          <span><strong>现在能开始:</strong>1 个链接 + 1 张截图</span>
+  <main>
+    <section class="inner2026-hero contact2026-hero">
+      <div class="inner2026-wrap inner2026-hero-grid contact2026-hero-grid">
+        <div>
+          <p class="inner2026-kicker">Contact / Fit Check</p>
+          <h1>先判断你最值得自动化的 1 个环节。</h1>
+          <p class="inner2026-lede">不用先整理完整需求。发来一个真实卡点，我先帮你判断：该先改网站承接、补内容路径、接飞书流程，还是用 Agent 减少重复人工。</p>
+          <div class="inner2026-actions">
+            <button class="inner2026-btn primary" type="button" data-copy="BM8150" data-copy-label="复制微信 BM8150">复制微信 BM8150</button>
+            <a class="inner2026-btn ghost" href="tel:15550927555">电话 15550927555</a>
+          </div>
         </div>
-        <section class="contact-message-demo" aria-label="首条消息示例对话">
-          <div class="contact-message-demo-head">
-            <div>
-              <strong>如果你怕第一句发得像在打扰，直接照这个发。</strong>
-              <span>目标不是把背景一次讲完，而是先让我在 15 分钟内判断：你最该先动哪一页、哪一步。</span>
-            </div>
+        <aside class="inner2026-art-card contact2026-art" aria-label="AI 自动化适配判断面板">
+          <picture>
+            <source srcset="assets/generated/buma-home-hero-scheme-b.webp" type="image/webp" />
+            <img src="assets/generated/buma-home-hero-scheme-b.png" alt="BUMA 业务系统工作台概念图" />
+          </picture>
+          <div class="contact2026-hero-note">
+            <strong>只先判断一件事</strong>
+            <span>卡点 · 工具 · 下一步</span>
           </div>
-          <div class="contact-chat-flow">
-            <article class="contact-chat-bubble user">
-              <div class="contact-chat-role"><b>你发来的第一条</b><span>最低可用版本</span></div>
-              <p>你好，我想先做 15 分钟适配判断。</p>
-              <p>这是我的页面：https://你的链接</p>
-              <p>现在最卡的是：有人看了页面，但不知道为什么没人来联系。</p>
-            </article>
-            <article class="contact-chat-bubble ai">
-              <div class="contact-chat-role"><b>我会怎么回</b><span>先判断，不先销售</span></div>
-              <p>先看下来，你现在更像是<strong>首页信息太多，但首屏没把“适合谁、先聊什么、怎么开始”说清</strong>，所以线索没顺着走到联系动作。</p>
-              <p>如果只先动 1 个地方，我建议先改<strong>首页首屏 + 联系入口承接</strong>，把第一步说具体。你要是方便，再补 1 张咨询入口截图，我能更快判断。</p>
-            </article>
-          </div>
-          <div class="contact-message-demo-foot">
-            <span>看完就能照抄发</span>
-            <span>不用先写成长文</span>
-            <span>先给判断，再决定要不要继续聊</span>
-          </div>
-        </section>
-        <p style="margin-top:16px;font-size:13px;color:rgba(255,255,255,.44);">如果你已经有页面、截图或最卡的 1 步，先别纠结怎么开场，直接选一个最接近你当前状态的入口发来。</p>
-        <section class="contact-fit-check" aria-label="适合现在联系筛选">
-          <div class="contact-fit-check-head">
-            <div>
-              <strong>你不用先“准备得很完整”，但先看一下你现在更适不适合联系。</strong>
-              <span>这一步是为了减轻心理压力：适合就直接发，不适合也没关系，先去补最关键的材料再来，会更高效。</span>
-            </div>
-          </div>
-          <div class="contact-fit-check-grid">
-            <article class="contact-fit-card is-fit">
-              <em>适合现在联系</em>
-              <strong>你已经有一个真实卡点，可以马上开始判断</strong>
-              <ul>
-                <li>你手里已经有 <strong>1 个页面链接 / 1 张截图 / 1 段报错</strong> 其中任意一种</li>
-                <li>你能说清楚“现在最卡的 1 步”是什么，不需要先写完整需求书</li>
-                <li>你希望先知道 <strong>该先改哪里</strong>，而不是先听一堆泛建议</li>
-              </ul>
-            </article>
-            <article class="contact-fit-card is-not-fit">
-              <em>暂时不适合现在联系</em>
-              <strong>如果还停留在很泛的想法，先补 1 个最小判断材料</strong>
-              <ul>
-                <li>还没有任何页面、截图、流程或实际问题，只是想“先随便聊聊看”</li>
-                <li>你自己也还没想清楚到底是卡在首页、联系页、内容，还是接入流程</li>
-                <li>现在不急着推进，那就先去文章中心补判断，再决定要不要联系</li>
-              </ul>
-            </article>
-          </div>
-          <div class="contact-fit-note">这样写是为了把 Contact 页从“默认所有人都来咨询”改成“先帮你判断现在适不适合联系”，降低销售感，也更符合最近用户对反模板腔、反说明书感的纠偏方向。</div>
-        </section>
-        <div class="contact-route-grid" aria-label="联系分流">
-          <a class="contact-route-card contact-route-primary" href="contact.html#wechat">
-            <em>Direct consult</em>
-            <strong>我想先判断，现在到底该先改哪里</strong>
-            <span>适合大多数第一次联系。直接把页面 / 截图 / 最卡的 1 步发来，我会先判断最值得先动的是首页、联系页、内容承接，还是接入流程。</span>
-            <b>直接发当前卡点 →</b>
-            <small>适合：还没想清完整需求，但已经有真实问题。</small>
-          </a>
-          <a class="contact-route-card contact-route-secondary" href="contact.html#wechat">
-            <em>Quote & schedule</em>
-            <strong>我需求比较明确，想先核实报价和排期</strong>
-            <span>如果你已经知道想做什么，建议第一条就把目标页面、需求范围、期望开始时间一起发来，方便更快判断边界。</span>
-            <b>直接发需求范围 →</b>
-            <small>适合：已有明确交付目标，想先确认能不能做、什么时候做。</small>
-          </a>
-          <a class="contact-route-card contact-route-urgent" href="contact.html#wechat">
-            <em>Urgent issue</em>
-            <strong>这是紧急问题，正在掉线索或影响联系</strong>
-            <span>适合表单失效、联系方式错误、页面报错、自动化断点这类情况。第一句直接写清“这是紧急问题 + 现在影响什么”。</span>
-            <b>先标记紧急情况 →</b>
-            <small>适合：网站还能访问，但转化链路正在漏单或断掉。</small>
-          </a>
-          <a class="contact-route-card contact-route-secondary" href="contact.html#wechat">
-            <em>Complex case</em>
-            <strong>情况比较复杂，想先让负责人帮我归类</strong>
-            <span>如果问题跨首页、内容、咨询承接、AI 接入多条链路，先发背景、当前卡点和你最想确认的 1 件事，我会先帮你收口。</span>
-            <b>先做问题归类 →</b>
-            <small>适合：问题很多、很乱，不知道从哪里切。</small>
-          </a>
-        </div>
-        <ul class="contact-points">
-          <li>微信:bm8150</li>
-          <li>电话:15550927555</li>
-          <li>15 分钟先判断值不值得聊</li>
-          <li>工作日 24 小时内回应</li>
-          <li>支持远程协作</li>
-        </ul>
+        </aside>
       </div>
-      <aside class="contact-panel" id="wechat">
-        <div class="mini-kicker">First message template</div>
-        <h3>别想怎么开场了,先发这 1 条通用版</h3>
-        <p>左侧负责帮你选入口,右侧只负责帮你把第一条消息发出去:先用 <strong>1 条通用模板</strong>开口;如果你更偏结构排查或内容复盘,再补 <strong>1 句场景说明</strong> 就够了。</p>
-        <article class="contact-card" style="margin-top:16px;">
-          <div class="mini-kicker">Universal opener</div>
-          <h3 style="font-size:18px;">通用首发模板</h3>
-          <p>先直接发这一条就够:</p>
-          <div class="contact-expectation"><strong>你好,我想先做 15 分钟适配判断。</strong><br/>这是我的页面 / 流程 / 截图:____<br/>这是我现在最卡的 1 步:____<br/>如果只能先改 1 个地方,你建议我先动哪一页或哪一步?</div>
-          <p style="margin-top:12px;">如果你只想发最短版本,也可以只发:<strong>页面链接 + 1 张截图 + 最卡的 1 步</strong>。首触达阶段不做销售,先帮你判断优先级。</p>
-        </article>
-        <div class="reply-timeline">
-          <strong>发出去之后,会按这个节奏走</strong>
-          <ul>
-            <li><strong>先回你最卡的点:</strong>先判断你该先改页面、流程还是接入,不先拉长沟通。</li>
-            <li><strong>工作日 24 小时内给方向:</strong>会明确告诉你下一步优先动哪 1 页或哪 1 步。</li>
-            <li><strong>如果值得继续,再进 15 分钟判断:</strong>不是先销售,而是先看值不值得深聊。</li>
-          </ul>
-        </div>
-        <div class="contact-triage-card" aria-label="问题紧急度分流">
-          <strong>先选你现在更接近哪一种情况</strong>
-          <div class="contact-triage-grid">
-            <div class="contact-triage-item">
-              <b>普通问题 / 先判断适不适合</b>
-              <span>适合首页、联系页、内容承接、AI 接入这类结构优化问题。直接发页面链接 + 截图 + 当前卡点即可，AI 会先帮你归类并给出下一步。</span>
-            </div>
-            <div class="contact-triage-item">
-              <b>报价核实 / 排期确认</b>
-              <span>适合已经有明确需求，想确认价格区间、交付边界、什么时候能开始。建议直接把目标页面、需求范围和预期时间一起发来。</span>
-            </div>
-            <div class="contact-triage-item">
-              <b>紧急问题 / 正在掉线索</b>
-              <span>适合表单失效、联系方式错误、页面报错、流程断点这类情况。第一句直接写清“这是紧急问题 + 现在影响什么”，会优先标记处理。</span>
-            </div>
-            <div class="contact-triage-item">
-              <b>复杂情况 / 想直接让负责人判断</b>
-              <span>适合跨页面、跨流程、很难归类到单一问题的情况。直接说明背景、当前卡点和你最想先确认的 1 件事，我会先判断值不值得深聊。</span>
-            </div>
-          </div>
-          <div class="contact-triage-note">这一步参考了 Shopify / Help Scout / Hiver 近期高质量 Contact 与 support automation 写法：先把人送到正确路径，再说时效与下一步；不是所有人都先填同一套长信息。</div>
-        </div>
-        <div class="contact-next-step-card">
-          <strong>你发来之后,我会先给你这 3 个明确结果</strong>
-          <ol>
-            <li><strong>优先级判断:</strong>先告诉你该先动首页、联系页、文章承接,还是部署/接入链路。</li>
-            <li><strong>下一步动作:</strong>只给 1 个最值得先做的小动作,避免一上来同时改很多地方。</li>
-            <li><strong>是否值得继续聊:</strong>如果当前不适合继续投入,会直接说清,不拖你进长沟通。</li>
-          </ol>
-          <p>这个设计参考了 Stripe / HubSpot 联系页常见的“提交后结果预期”做法：先说清回复时效与下一步,减少用户提交前的不确定感。</p>
-        </div>
-        <div class="contact-next-step-card" style="margin-top:14px;border-color:rgba(79,142,247,.2);background:linear-gradient(180deg,rgba(79,142,247,.12),rgba(79,142,247,.05));">
-          <strong>如果你已经看到这里，别再继续跳文章了，直接做这 1 个动作</strong>
-          <ol>
-            <li><strong>复制左侧那条通用首发模板</strong></li>
-            <li><strong>加微信 bm8150</strong>，把页面链接 / 截图 / 最卡的 1 步一起发来</li>
-            <li><strong>等我先回优先级判断</strong>，再决定要不要继续展开</li>
-          </ol>
-          <p>这里故意只保留 1 个转化动作：先发微信首条消息。先把问题发出来，比继续在页内跳来跳去更容易真正开始。</p>
-        </div>
-      </aside>
     </section>
 
+    <section class="inner2026-section" id="contact-start">
+      <div class="inner2026-wrap contact2026-grid contact2026-action-board">
+        <article class="contact2026-panel contact2026-primary-panel">
+          <p class="inner2026-kicker">最省事的发法</p>
+          <h2>不用填表，直接发 3 样。</h2>
+          <div class="contact2026-send-grid" aria-label="首次沟通需要发送的信息">
+            <div>
+              <b>01</b>
+              <h3>当前最卡的一步</h3>
+              <p>比如：有咨询没人跟、文章不转化、飞书消息没人处理、客服问题重复问。</p>
+            </div>
+            <div>
+              <b>02</b>
+              <h3>现在用的工具</h3>
+              <p>微信、飞书、表单、Excel、网站、OpenClaw、Notion，列几个就够。</p>
+            </div>
+            <div>
+              <b>03</b>
+              <h3>你想要的结果</h3>
+              <p>比如：减少手动整理、自动提醒跟进、让内容带来咨询、先跑通一个闭环。</p>
+            </div>
+          </div>
+          <div class="contact2026-template" aria-label="首条消息模板">
+            <div>
+              <span>首条消息模板</span>
+              <button type="button" data-copy="我现在最卡的是：&#10;目前用到的工具：&#10;想达到的结果：&#10;可以看的链接/截图：" data-copy-label="复制模板">复制模板</button>
+            </div>
+            <pre>我现在最卡的是：
+目前用到的工具：
+想达到的结果：
+可以看的链接/截图：</pre>
+          </div>
+        </article>
+
+        <aside class="contact2026-panel contact2026-contact-stack">
+          <p class="inner2026-kicker">直接联系</p>
+          <h2>先走私域，最快。</h2>
+          <div class="contact2026-route-card route-main">
+            <span>推荐</span>
+            <strong>微信 BM8150</strong>
+            <p>发卡点、截图、链接最方便。截图和资料请走微信或邮件，不在网页里假上传。</p>
+            <button class="inner2026-btn primary" type="button" data-copy="BM8150" data-copy-label="复制微信号">复制微信号</button>
+          </div>
+          <a class="contact2026-route-card" href="tel:15550927555">
+            <span>急事</span>
+            <strong>15550927555</strong>
+            <p>适合直接把当下问题说清楚，先判断是否值得继续做。</p>
+          </a>
+          <a class="contact2026-route-card" href="mailto:464725915qq@Gmail.com?subject=BUMA%20AI%20自动化适配判断&body=我现在最卡的是：%0D%0A目前用到的工具：%0D%0A想达到的结果：%0D%0A可以看的链接/截图：">
+            <span>资料</span>
+            <strong>464725915qq@Gmail.com</strong>
+            <p>适合发项目说明、页面链接、流程截图和更完整的资料。</p>
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="inner2026-section inner2026-soft">
+      <div class="inner2026-wrap">
+        <div class="inner2026-section-head">
+          <p class="inner2026-kicker">适合这些卡点</p>
+          <h2>不是做“大系统”，是先跑通一条链路。</h2>
+        </div>
+        <div class="contact2026-scenario-grid">
+          <article>
+            <span>线索承接</span>
+            <h3>有人问，但没人及时跟。</h3>
+            <p>官网、微信、表单、飞书消息散在各处，容易漏跟、迟回、忘复盘。</p>
+          </article>
+          <article>
+            <span>内容转化</span>
+            <h3>文章在发，但不能稳定带咨询。</h3>
+            <p>内容、FAQ、方案页和联系动作没有接成路径，用户看完不知道下一步。</p>
+          </article>
+          <article>
+            <span>工具协同</span>
+            <h3>工具很多，但流程没闭环。</h3>
+            <p>飞书、Excel、表单、Notion、OpenClaw 都有，但还靠人工搬运。</p>
+          </article>
+          <article>
+            <span>交付复盘</span>
+            <h3>报价、交付、复盘都在重复做。</h3>
+            <p>适合先把固定问题、资料收集、任务提醒和进度复盘做成最小自动化。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inner2026-section">
+      <div class="inner2026-wrap contact2026-state-grid">
+        <article class="contact2026-success contact2026-fit-card">
+          <div class="contact2026-success-mark">15</div>
+          <h2>这次沟通只判断优先级。</h2>
+          <p>先确认你当前最该动哪一步：网站承接、内容路径、飞书协同、Agent 自动化，或者暂时不适合自动化。不会一上来推大方案。</p>
+          <div class="contact2026-response-note">
+            <span>通常工作日 24 小时内</span>
+            <strong>先给初步判断</strong>
+          </div>
+        </article>
+        <aside class="contact2026-next">
+          <h3>你会得到</h3>
+          <a href="solutions.html">一个优先级判断：先动哪一段</a>
+          <a href="seo.html">一条推荐阅读或页面补强路径</a>
+          <a href="solutions.html#fit-check">一个最小闭环建议：入口、判断、跟进</a>
+          <div>
+            <span>不适合自动化怎么办？</span>
+            <strong>会直接说，先不硬接工具。</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="inner2026-section contact2026-matrix-section">
+      <div class="inner2026-wrap">
+        <div class="contact2026-assurance">
+          <article>
+            <b></b>
+            <h3>从现有工具开始</h3>
+            <p>先看你已经在用的微信、飞书、表单、网站，不要求推倒重来。</p>
+          </article>
+          <article>
+            <b></b>
+            <h3>只做能验证的闭环</h3>
+            <p>先把一条业务链路跑通，再决定是否扩成 Agent 或完整系统。</p>
+          </article>
+          <article>
+            <b></b>
+            <h3>敏感信息不用发</h3>
+            <p>不要发送后台密码、API 密钥、客户隐私或未脱敏数据。</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="inner2026-footer">
+    <div class="inner2026-wrap">BUMA AI · 电话 15550927555 · 微信 BM8150 · 山东临沂</div>
+  </footer>
+
+  <nav class="inner2026-mobile-nav" aria-label="移动端快捷导航">
+    <a href="index.html">首页</a>
+    <a href="solutions.html">方案</a>
+    <a href="seo.html">文章</a>
+    <a href="contact.html" aria-current="page">联系</a>
+  </nav>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll("[data-copy]");
+      buttons.forEach(function (button) {
+        var defaultText = button.textContent;
+        button.addEventListener("click", function () {
+          var text = button.getAttribute("data-copy") || "";
+          var label = button.getAttribute("data-copy-label") || defaultText;
+
+          function markDone() {
+            button.textContent = "已复制";
+            window.setTimeout(function () {
+              button.textContent = label;
+            }, 1600);
+          }
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(markDone).catch(function () {
+              button.textContent = text;
+            });
+            return;
+          }
+
+          button.textContent = text;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
