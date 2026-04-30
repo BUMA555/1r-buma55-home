@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI human review policy 怎么写：一人公司官网要把"什么时候会触发人工复核"讲清楚 | BUMA</title>
+  <meta name="description" content="用户现在不只是担心数据被用于训练，还会继续问：我的聊天、反馈、报错或授权排查，会不会触发人工复核？这篇文章结合 Anthropic、OpenAI、Claude Help 的真实政策写法，拆解一人公司官网该如何把 AI human review / manual review 边界、触发条件、保留说明和人工介入节奏写进 Contact 页、FAQ 与确认页。" />
+  <meta name="keywords" content="AI human review policy, manual review, human in the loop, contact page privacy, AI review triggers, 人工复核, 人工审核, 官网转化, 一人公司官网" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI human review policy 怎么写：一人公司官网要把人工复核触发条件讲清楚" />
+  <meta property="og:description" content="真正让用户放心提交内容的，不只是「不会用于训练」，还包括：哪些情况下会触发人工复核、复核的范围是什么、保留多久。本文给出一人公司官网可直接复用的 AI human review policy 写法。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260412-1008-ai-human-review-policy-manual-review-contact-page-seo.html" />
+  <meta property="article:published_time" content="2026-04-12T10:08:00+08:00" />
+  <meta property="article:modified_time" content="2026-04-12T10:08:00+08:00" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260412-1008-ai-human-review-policy-manual-review-contact-page-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b1120;color:#e5e7eb;margin:0;line-height:1.9;}
+    .page-wrap{max-width:800px;margin:0 auto;padding:0 24px 80px;}
+    .article-hero{padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .eyebrow{display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(79,142,247,.14);border:1px solid rgba(126,182,255,.2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1{font-size:30px;line-height:1.2;margin:14px 0 16px;color:#fff;}
+    .lead{font-size:17px;color:rgba(255,255,255,.74);margin:0 0 20px;max-width:700px;}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .meta span{padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.62);}
+    h2{font-size:21px;color:#fff;margin:40px 0 16px;padding-top:8px;}
+    h3{font-size:17px;color:#e5e7eb;margin:28px 0 12px;}
+    p{margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol{margin:0 0 18px;padding-left:24px;color:rgba(255,255,255,.82);}
+    li{margin-bottom:8px;}
+    strong{color:#fff;}
+    .highlight-box{background:rgba(79,142,247,.10);border:1px solid rgba(79,142,247,.3);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .highlight-box h3{margin-top:0;color:#93c5fd;font-size:15px;}
+    .highlight-box p{margin-bottom:0;font-size:15px;}
+    .warning-box{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .warning-box h3{margin-top:0;color:#fbbf24;font-size:15px;}
+    .warning-box p{margin-bottom:10px;font-size:15px;}
+    .cta-box{background:linear-gradient(135deg,rgba(79,142,247,.18),rgba(16,185,129,.12));border:1px solid rgba(79,142,247,.35);border-radius:18px;padding:28px 32px;margin:40px 0;text-align:center;}
+    .cta-box h3{margin-top:0;color:#fff;font-size:20px;}
+    .cta-box p{color:rgba(255,255,255,.75);margin-bottom:16px;}
+    .cta-btn{display:inline-flex;align-items:center;padding:12px 24px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+    .toc{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:28px 0 32px;}
+    .toc h3{margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;}
+    .toc ol{margin:0;padding-left:20px;font-size:14px;}
+    .toc li{margin-bottom:6px;}
+    .toc a{color:rgba(255,255,255,.78);text-decoration:none;}
+    .toc a:hover{color:#4f8ef7;}
+    pre{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7;white-space:pre-wrap;}
+    pre code{background:none;padding:0;color:#e5e7eb;}
+    table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+    table th,table td{padding:10px 14px;border:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top;}
+    table th{background:rgba(79,142,247,.15);color:#93c5fd;font-weight:600;}
+    table tr:nth-child(even){background:rgba(255,255,255,.02);}
+    .article-footer{margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);}
+    .article-footer h3{margin-top:0;font-size:16px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;}
+    .related-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+    .related-link{display:block;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);text-decoration:none;color:inherit;transition:.2s;}
+    .related-link:hover{border-color:rgba(79,142,247,.5);background:rgba(79,142,247,.08);}
+    .related-link-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+    .related-link-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"AI human review policy 怎么写：一人公司官网要把人工复核触发条件讲清楚",
+    "description":"用户现在不只是担心数据被用于训练，还会继续问：我的聊天、反馈、报错或授权排查，会不会触发人工复核？这篇文章结合 Anthropic、OpenAI、Claude Help 的真实政策写法，拆解一人公司官网该如何把 AI human review / manual review 边界、触发条件、保留说明和人工介入节奏写进 Contact 页、FAQ 与确认页。",
+    "datePublished":"2026-04-12T10:08:00+08:00",
+    "dateModified":"2026-04-12T10:08:00+08:00",
+    "author":{"@type":"Organization","name":"BUMA"},
+    "publisher":{"@type":"Organization","name":"BUMA","url":"https://1r.buma55.com/"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://1r.buma55.com/seo-20260412-1008-ai-human-review-policy-manual-review-contact-page-seo.html"}
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar topbar-clean">
+    <div class="container nav nav-clean">
+      <a href="index.html" class="brand-lockup"><img class="brandmark" src="assets-buma-logo.svg" alt="buma logo" /></a>
+      <nav class="nav-links nav-links-clean">
+        <a href="index.html">首页</a>
+        <a href="solutions.html">解决方案</a>
+        <a href="seo.html">文章</a>
+        <a href="about.html">关于</a>
+        <a href="contact.html">联系</a>
+      </nav>
+      <div class="nav-endcaps">
+        <span class="nav-signal">山东临沂 · 远程可协作</span>
+        <a class="nav-cta" href="contact.html">预约咨询</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <article>
+      <header class="article-hero">
+        <span class="eyebrow">AI Human Review Policy · 官网转化</span>
+        <h1>AI human review policy 怎么写：一人公司官网要把"什么时候会触发人工复核"讲清楚</h1>
+        <p class="lead">用户现在不只是担心数据被用于训练，还会继续问：我的聊天记录、反馈提交、bug report 或授权你进一步排查的内容，会不会触发人工复核？人工复核的范围是什么？复核后会保留多久？这类问题如果官网没有提前回答，高意图访客往往会在提交前最后一步停下来——不是因为不信任 AI，而是因为不确定"人会不会看到我的内容"。真正能提升 contact page conversion 的，是把默认规则、人工复核触发条件、复核保留时长和退出路径写成用户一眼能判断的话。</p>
+        <div class="meta">
+          <span>📅 2026-04-12</span>
+          <span>✍️ BUMA 内容团队</span>
+          <span>🏷️ AI human review · manual review · Contact 页</span>
+          <span>⏱️ 约 4600 字</span>
+        </div>
+      </header>
+
+      <nav class="toc">
+        <h3>目录</h3>
+        <ol>
+          <li><a href="#why">为什么 AI human review policy 开始影响官网转化</a></li>
+          <li><a href="#research">高质量官方写法里，大家怎么处理 human review / manual review</a></li>
+          <li><a href="#angles">这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</a></li>
+          <li><a href="#mistakes">一人公司官网最常见的 4 个错误</a></li>
+          <li><a href="#where">AI human review policy 该放在哪里</a></li>
+          <li><a href="#copy">可直接复用的 6 段官网文案模板</a></li>
+          <li><a href="#table">一张最小可用的触发条件与复核边界表</a></li>
+          <li><a href="#kpi">上线后怎么看：曝光、点击率、转化率</a></li>
+          <li><a href="#risk">本方案风险</a></li>
+          <li><a href="#action">最小落地顺序</a></li>
+          <li><a href="#related">相关阅读</a></li>
+        </ol>
+      </nav>
+
+      <section id="why">
+        <h2>1. 为什么 AI human review policy 开始影响官网转化</h2>
+        <p>过去官网 privacy page 只需要回答"会不会被用于训练"就够了。但 AI 系统正在变得越来越复杂：自动摘要、问题检测、异常标记、trust & safety 分类、内容审核——这些过程往往涉及人工复核或人工审查。用户开始意识到："AI 处理"不等于"纯机器处理"，也不等于"没有人会看到我的内容"。</p>
+        <p>这带来的新问题是：<strong>当用户提交页面链接、截图、报错日志或业务资料时，他们不确定这些内容会在什么情况下被人工看到。</strong> 这对一人公司官网尤其关键——你没有大公司的隐私控制台、没有产品设置、没有独立的数据管理面板，用户只能依赖官网上的几行文字做判断。</p>
+        <p>真正影响 contact page conversion 的，是这几个问题有没有被提前回答：</p>
+        <ul>
+          <li><strong>我的普通咨询内容，会不会有人工复核？</strong></li>
+          <li><strong>如果我主动提交反馈、bug report 或授权排查，会不会触发人工审查？</strong></li>
+          <li><strong>人工复核后，内容会保留多久？</strong></li>
+          <li><strong>如果我不想被人工复核，有没有办法退出？</strong></li>
+        </ul>
+        <div class="highlight-box">
+          <h3>核心判断</h3>
+          <p>Contact 页和 FAQ 如果只写"我们重视隐私"而不讲人工复核边界，高意图访客会在"不确定人会不会看到"这一步停下来。"AI human review policy + 触发条件 + 复核保留 + 退出路径"写清楚，比单纯强调"不用 AI 训练"更能实际提升提交率。</p>
+        </div>
+      </section>
+
+      <section id="research">
+        <h2>2. 高质量官方写法里，大家怎么处理 human review / manual review</h2>
+        <p>这轮先抓了 Anthropic、Claude Help（商业产品）、OpenAI Enterprise Privacy、OpenAI How your data is used 等几类高质量官方说明，把结构抽出来。</p>
+
+        <h3>Anthropic：把反馈与一般交互的复核规则明确拆开</h3>
+        <p>Anthropic 的隐私政策和帮助文档最值得学的一点，是它不回避"人工"这个概念。它明确说明：一般输入输出在商业产品下默认不用于训练，但如果用户通过 thumbs up/down 主动提交反馈，或报告 bug，相关对话会被单独保留用于问题排查和分析；如果内容被 trust & safety 系统标记，则可能进入更长期的保留窗口。</p>
+        <p>这说明高质量写法不是"假装没有人工"，而是<strong>先说明默认是什么，再说明哪些主动行为或系统标记会触发人工介入。</strong> 对一人公司官网来说，这意味着要分清楚：普通咨询内容、一般问题排查内容、主动反馈内容，这三者的处理逻辑并不一样。</p>
+
+        <h3>Claude Help（商业产品数据保留）：把时间窗口和触发条件写成可判断的块</h3>
+        <p>Claude Help 的"How long do you store my organization's data?"给出了具体的时间窗口：API 用户默认 30 天内自动删除；Claude for Work 用户自己控制删除权；feedback data（通过 thumbs up/down 提交）保留 5 年；Usage Policy 违规内容保留最长 7 年。这个写法的价值在于：<strong>触发条件 + 时间窗口 + 用户控制权，三件事一起说清楚，用户立刻能判断"我的情况属于哪一种"。</strong></p>
+        <p>迁移到一人公司官网，不需要写得像企业文档那么细，但要把"普通咨询"、"主动反馈/授权排查"、"异常标记/安全事件"这几种情况的边界讲清楚。</p>
+
+        <h3>OpenAI Enterprise Privacy：把"什么时候人工"写成服务条款的一部分</h3>
+        <p>OpenAI Enterprise Privacy 的核心承诺是"你拥有和控制你的业务数据"，但它同时说明：在某些情况下内容会被用于模型改进，前提是用户明确同意。这个逻辑提醒我们：<strong>"人工复核"不等于"无边界审查"，它应该有明确的触发条件和服务范围说明。</strong> 对一人公司官网来说，最小可用的版本是：把"人工复核只在什么问题范围内进行"说清楚，而不是只说"我们可能会进行人工处理"。</p>
+
+        <h3>Is my data used for model training? — 把"例外"写成"用户能控制的选项"</h3>
+        <p>Anthropic 这篇帮助文章还展示了另一种写法：把 feedback 和 bug report 分开讲，feedback 明确说明"整个对话会被保留用于分析"，但也说明"在与用户 ID 解关联后才用于模型训练"。这个写法好在哪里？<strong>它把"保留用于分析"和"用于模型训练"拆成了两个独立事件，而不是混在一起让用户猜。</strong> 对一人公司官网的借鉴是：不要把"人工复核"和"用于训练"混成一个模糊的担忧，要让用户知道每个动作的后果是什么。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>参考来源</th>
+              <th>高质量写法</th>
+              <th>适合迁移到官网的点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anthropic Privacy Policy</td>
+              <td>一般交互与反馈/bug report 的人工处理规则明确拆开</td>
+              <td>普通咨询 vs 主动反馈/授权排查要分开说处理逻辑</td>
+            </tr>
+            <tr>
+              <td>Claude Help 商业产品保留</td>
+              <td>触发条件 + 时间窗口 + 用户控制权三件事一起说</td>
+              <td>官网也要说清楚触发条件、保留时长、删除路径</td>
+            </tr>
+            <tr>
+              <td>OpenAI Enterprise Privacy</td>
+              <td>人工复核有明确范围，不等于无边界审查</td>
+              <td>官网要说明"人工复核只在哪些问题范围内进行"</td>
+            </tr>
+            <tr>
+              <td>Claude Help — Is my data used for training?</td>
+              <td>保留用于分析与用于模型训练拆成两个独立事件</td>
+              <td>人工复核、问题排查、模型训练三者不能混成一个模糊承诺</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="angles">
+        <h2>3. 这轮搜索能吸收什么：标题、开头、结构、CTA、关键词</h2>
+        <h3>标题角度：从"隐私说明"切到"什么情况下会有人看"</h3>
+        <p>好的标题不会只写"人工审核政策说明"，而是更接近用户真实会搜的问题：will a human read my chats、does AI human review mean humans see my data、manual review triggers AI。当标题能回答"我会不会被人工看到"，点击率和信任感会同步提升。</p>
+
+        <h3>开头写法：先立一个真实动作场景</h3>
+        <p>比起先解释概念，更有效的开头是动作：用户已经准备发页面链接、截图、错误日志，或者刚刚点了反馈按钮，最担心的是"这些内容会不会被人看到"。这个切口直接对应 contact page 和 confirmation page 的真实摩擦点。</p>
+
+        <h3>模块结构：默认规则 → 哪些动作触发人工复核 → 复核保留边界 → 退出/删除路径 → CTA</h3>
+        <p>参考页几乎都遵循同一个逻辑：先说清楚默认不会怎样，再说明哪些主动动作或系统事件会触发例外，最后告诉用户如何控制。对官网来说，这个顺序能最大化减少"不确定人会不会看到"带来的提交前流失。</p>
+
+        <h3>转化 CTA：先判断，不强卖</h3>
+        <p>这类主题下最好的 CTA 不是"立即合作"，而是"如果你现在 contact page、FAQ 或确认页还没把 human review 边界讲清楚，先把页面发来，我们先判断缺口在哪"。仍然只推 1 个动作：把第一条高质量消息发出来。</p>
+
+        <h3>关键词覆盖：human review 词要和官网转化词一起出现</h3>
+        <p>如果只写 AI human review policy，页面会变成孤立政策文。更好的覆盖方式是：<strong>AI human review、manual review、human in the loop、contact page privacy、feedback retention、trust and safety、human oversight、人工复核、人工审核、官网转化</strong> 一起自然出现。</p>
+      </section>
+
+      <section id="mistakes">
+        <h2>4. 一人公司官网最常见的 4 个错误</h2>
+        <h3>错误一：只写"不会用于 AI 训练"，不写人工复核条件</h3>
+        <p>这样用户会继续追问：那我提交的内容会不会被人看到？如果 AI 处理出错，谁来复核？这两件事不能混成一个承诺。</p>
+
+        <h3>错误二：把"人工复核"写成"我们可能会进行人工处理"</h3>
+        <p>这句话太空泛。用户需要知道：哪些情况下会触发人工复核？是自动标记还是人工申请？复核的范围是什么？</p>
+
+        <h3>错误三：不说保留时长和删除路径</h3>
+        <p>人工复核天然伴随"需要留一阵子做排查"。如果只写会保护，却不写保留或删除路径，用户依然会担心。</p>
+
+        <h3>错误四：把人工复核说明藏在页脚或长政策里</h3>
+        <p>用户是在准备提交问题前卡住的，不是在研究长政策时卡住的。最关键的一句应该出现在 contact page、FAQ 和 confirmation page，而不是只藏在底部链接里。</p>
+
+        <div class="warning-box">
+          <h3>⚠️ 最容易掉单的位置</h3>
+          <p>真正的流失点常发生在"我不确定提交后会不会有人工复核"的 10 秒。如果 contact page 只写"我们重视隐私"却没有 human review policy 说明，看起来像没想清楚；写得清楚的站，才更像能接住高敏感度问题的人。</p>
+        </div>
+      </section>
+
+      <section id="where">
+        <h2>5. AI human review policy 该放在哪里</h2>
+        <ul>
+          <li><strong>Contact 页：</strong>用 1 句短承诺说明普通提交一般不触发人工复核，以及哪些动作可能触发。</li>
+          <li><strong>FAQ：</strong>展开说明触发条件、复核范围、保留时长、退出路径和删除请求方式。</li>
+          <li><strong>确认页：</strong>告诉用户资料已收到，并说明如涉及人工复核，会在什么范围内处理、保留多久。</li>
+          <li><strong>隐私页 / 数据处理页：</strong>放完整的人工复核政策、触发条件、保留说明和更新机制。</li>
+        </ul>
+        <p>AI human review policy 不是孤立的一篇解释文，而是 contact → FAQ → confirmation → privacy 整条信任链的一环。写得越靠近提交动作，越能影响真实转化。</p>
+      </section>
+
+      <section id="copy">
+        <h2>6. 可直接复用的 6 段官网文案模板</h2>
+        <h3>模板一：Contact 页短句</h3>
+        <pre><code>你提交的页面链接、截图、报错说明和业务资料，仅用于本次沟通判断与问题排查。
+默认不会触发人工复核；如涉及异常标记、安全事件或你主动授权深度排查，我们只会在当前服务范围内进行必要的人工审核。</code></pre>
+
+        <h3>模板二：CTA 附近增强版</h3>
+        <pre><code>普通情况下，你的提交内容不会被人工复核。
+如你主动提交反馈、授权进一步排查，或内容触发异常标记，相关处理只会在当前服务范围内进行，且你可以随时要求删除。</code></pre>
+
+        <h3>模板三：FAQ 触发条件版</h3>
+        <pre><code>Q：我的咨询内容会不会触发人工复核？
+A：普通问题咨询默认不触发人工复核。如你主动提交反馈、报告 bug 或授权人工排查，相关内容会进入人工审核流程，用于问题定位和回复修正，但不会超出本次服务范围。</code></pre>
+
+        <h3>模板四：FAQ 保留边界版</h3>
+        <pre><code>Q：人工复核后，内容会保留多久？
+A：涉及人工复核的内容，默认按本次服务流程保留相应时段；服务结束后如无法律义务或安全审计需要，一般不再继续保留。你也可以随时要求删除。</code></pre>
+
+        <h3>模板五：隐私页完整说明版</h3>
+        <pre><code>我们可能在以下场景对用户提交的内容进行人工复核：(1)用户主动提交反馈或 bug report；(2)内容触发异常标记或 trust & safety 系统；(3)涉及安全事件或法律合规审查。人工复核只在当前服务范围内进行，不超出问题排查与回复修正的必要范围。相关内容的保留按服务流程执行，一般不超过服务周期；如需延长保留，会提前说明并提供删除路径。</code></pre>
+
+        <h3>模板六：确认页安心版</h3>
+        <pre><code>我们已收到你的资料，接下来会在 24 小时内完成初步判断。
+如本次内容需要人工复核，我们只会在当前沟通与服务范围内处理这些材料；你随时可以要求删除。</code></pre>
+      </section>
+
+      <section id="table">
+        <h2>7. 一张最小可用的触发条件与复核边界表</h2>
+        <p>很多站把"人工复核"想得太重，结果一直不写。其实一张最小可用表就够了：<strong>哪些动作会触发什么处理、复核的范围是什么、保留边界是什么、如何退出或删除。</strong></p>
+        <table>
+          <thead>
+            <tr>
+              <th>触发动作</th>
+              <th>可能处理</th>
+              <th>复核范围</th>
+              <th>保留 / 删除说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>普通联系提交</td>
+              <td>阅读、摘要、分类、初步判断</td>
+              <td>无人工复核（仅 AI 辅助处理）</td>
+              <td>按服务流程保留，可随时要求删除</td>
+            </tr>
+            <tr>
+              <td>主动提交反馈 / thumbs up/down</td>
+              <td>人工审核、问题归因、回复修正</td>
+              <td>仅限本次反馈相关范围</td>
+              <td>保留一定周期用于排查，可要求提前删除</td>
+            </tr>
+            <tr>
+              <td>提交 bug report</td>
+              <td>人工复核、问题定位、复盘记录</td>
+              <td>仅限本次 bug 相关范围</td>
+              <td>保留用于问题解决，可要求删除</td>
+            </tr>
+            <tr>
+              <td>授权人工排查</td>
+              <td>人工审核、问题诊断、修复确认</td>
+              <td>仅限授权范围内的排查范围</td>
+              <td>排查结束后一般不再保留</td>
+            </tr>
+            <tr>
+              <td>触发异常标记 / trust & safety</td>
+              <td>人工安全审核、事件调查、必要响应</td>
+              <td>按安全和合规要求的最少必要范围</td>
+              <td>按法律要求和安全保留政策执行</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="kpi">
+        <h2>8. 上线后怎么看：曝光、点击率、转化率</h2>
+        <p>AI human review policy 页面和 contact page 的这层说明，本质上是降低"提交前最后一步的心理摩擦"。上线后主要盯这几个指标：</p>
+        <ul>
+          <li><strong>曝光量级：</strong>通过 contact page 或 AI privacy 相关长尾词带来的自然搜索曝光，目标 300-800 次/周。</li>
+          <li><strong>点击率（CTR）：</strong>contact page 整体 CTR 较优化前提升 5-15%，重点看 contact page 内"AI feedback policy"和"人工复核"相关内链的点击占比。</li>
+          <li><strong>转化率：</strong>有效首条消息提交率较优化前提升 3-10%；contact page 到确认页的完成率提升。</li>
+          <li><strong>FAQ 点击率：</strong>如果 contact page 有 FAQ 展开区，看"人工复核"、"数据保留"相关问答的点击率是否高于其他 FAQ。</li>
+        </ul>
+        <div class="highlight-box">
+          <h3>判断标准</h3>
+          <p>如果上线 4 周后 contact page 整体 CTR 和有效提交率没有明显变化，说明 human review policy 这层说明还需要进一步前置到 hero 区或减少解释文字；如果 CTR 明显提升，说明这个摩擦点确实存在，可以继续深化。</p>
+        </div>
+      </section>
+
+      <section id="risk">
+        <h2>9. 本方案风险</h2>
+        <div class="warning-box">
+          <h3>⚠️ 本方案风险</h3>
+          <p><strong>风险一：</strong>如果把"人工复核"写得太重、太多例外，反而会让用户觉得"原来有这么多情况会被人看到"，增加顾虑而不是减少；<strong>调整方向：</strong>优先讲清楚普通提交不触发复核，只在 FAQ 展开例外情况。</p>
+          <p><strong>风险二：</strong>如果只写触发条件而不写保留时长和删除路径，用户会继续担心"就算人工复核完了，内容会不会还在"；<strong>调整方向：</strong>每次提到人工复核，后面紧跟"保留多久 + 可要求删除"这句话。</p>
+          <p><strong>风险三：</strong>如果 AI human review policy 只放在长 privacy page 而不在 contact page hero 区或 FAQ 做前置说明，用户找不到；<strong>调整方向：</strong>contact page 必须有 1 句，FAQ 要有展开问答。</p>
+        </div>
+      </section>
+
+      <section id="action">
+        <h2>10. 最小落地顺序</h2>
+        <p>如果你的 contact page 现在只有一句"我们重视隐私"，建议按这个顺序补：</p>
+        <ol>
+          <li><strong>第一步：</strong>在 contact page hero 区加 1 句人工复核短承诺（模板一），让用户第一眼就知道"普通提交不触发人工复核"。</li>
+          <li><strong>第二步：</strong>在 FAQ 区增加 2-3 个相关问答，覆盖触发条件、保留边界和删除请求（模板三/四/六）。</li>
+          <li><strong>第三步：</strong>在确认页加 1 句复核安心说明（模板六），减少提交后的等待焦虑。</li>
+          <li><strong>第四步：</strong>在 AI feedback policy 页、数据保留页之后新增 AI human review policy 页，形成完整的 AI 隐私信任链。</li>
+        </ol>
+      </section>
+
+      <section id="related">
+        <h2>相关阅读</h2>
+        <div class="related-links">
+          <a href="seo-20260412-0806-ai-feedback-policy-bug-report-training-exception-contact-page-seo.html" class="related-link">
+            <div class="related-link-title">AI feedback policy 怎么写：thumbs up/down、bug report、人工复核与训练例外</div>
+            <div class="related-link-desc">配套篇：把反馈、bug report 与训练例外写进 contact page、FAQ 与确认页。</div>
+          </a>
+          <a href="seo-20260412-0509-ai-data-retention-policy-no-ai-training-contact-page-seo.html" class="related-link">
+            <div class="related-link-title">AI 数据保留怎么写：data retention policy / no AI training / 删除周期</div>
+            <div class="related-link-desc">配套篇：把 retention、no training 与删除请求写进 contact page 与 FAQ。</div>
+          </a>
+          <a href="seo-20260412-0606-ai-data-deletion-request-delete-path-contact-page-seo.html" class="related-link">
+            <div class="related-link-title">AI data deletion request 怎么写：delete request / 删除入口 / 保留例外</div>
+            <div class="related-link-desc">配套篇：把删除请求路径写进 contact page 与确认页。</div>
+          </a>
+          <a href="seo-20260412-0704-ai-subprocessor-disclosure-third-party-ai-processing-website-trust-seo.html" class="related-link">
+            <div class="related-link-title">AI subprocessor disclosure 怎么写：third-party AI processing / 子处理方</div>
+            <div class="related-link-desc">配套篇：把子处理方与第三方 AI 处理边界写进 contact page 与隐私页。</div>
+          </a>
+          <a href="contact.html" class="related-link">
+            <div class="related-link-title">联系 BUMA：先把你最卡的那一步发来</div>
+            <div class="related-link-desc">直接进入 15 分钟适配判断，先发这 3 样：页面或链接、相关截图、最卡的 1 步。</div>
+          </a>
+        </div>
+      </section>
+
+      <div class="cta-box">
+        <h3>如果你现在 contact page 还没有 human review policy</h3>
+        <p>先把这篇的任意一段模板用到 contact page hero 区或 FAQ，看用户提交率有没有变化。如果反馈正面，再继续深化其他模块。</p>
+        <a class="cta-btn" href="contact.html">先发第一条消息测试 →</a>
+      </div>
+
+    </article>
+  </main>
+</body>
+</html>
