@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网 | BUMA</title>
+  <meta name="description" content="越来越多访客会先问：我提交到你网站的内容，会不会被拿去训练 AI？本文结合 OpenAI、Notion、Anthropic、Grammarly 等官方写法，拆解一人公司官网该如何把“你的数据不会被用于 AI 训练”写进 Contact 页、FAQ 和表单承接链路。" />
+  <meta name="keywords" content="AI privacy notice, no AI training, contact form privacy, website data not used to train models, AI training policy, AI data usage notice, 官网隐私声明, Contact 页隐私说明, 一人公司官网, AI 官网转化" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网" />
+  <meta property="og:description" content="别再只写“我们重视隐私”。用户真正想知道的是：我发给你的资料，会不会被拿去训练 AI？本文给出一人公司官网可直接复用的写法。" />
+  <meta property="og:url" content="https://1r.buma55.com/seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html" />
+  <link rel="canonical" href="https://1r.buma55.com/seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0b1120;color:#e5e7eb;margin:0;line-height:1.9;}
+    .page-wrap {max-width:800px;margin:0 auto;padding:0 24px 80px;}
+    .article-hero {padding:48px 0 32px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px;}
+    .eyebrow {display:inline-flex;padding:5px 12px;border-radius:999px;background:rgba(79,142,247,.14);border:1px solid rgba(126,182,255,.2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#93c5fd;}
+    h1 {font-size:30px;line-height:1.2;margin:14px 0 16px;color:#fff;}
+    .lead {font-size:17px;color:rgba(255,255,255,.74);margin:0 0 20px;max-width:700px;}
+    .meta {display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .meta span {padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.62);}
+    h2 {font-size:21px;color:#fff;margin:40px 0 16px;padding-top:8px;}
+    h3 {font-size:17px;color:#e5e7eb;margin:28px 0 12px;}
+    p {margin:0 0 18px;color:rgba(255,255,255,.82);}
+    ul,ol {margin:0 0 18px;padding-left:24px;color:rgba(255,255,255,.82);}
+    li {margin-bottom:8px;}
+    strong {color:#fff;}
+    .highlight-box {background:rgba(79,142,247,.10);border:1px solid rgba(79,142,247,.3);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .highlight-box h3 {margin-top:0;color:#93c5fd;font-size:15px;}
+    .highlight-box p {margin-bottom:0;font-size:15px;}
+    .warning-box {background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:14px;padding:20px 24px;margin:28px 0;}
+    .warning-box h3 {margin-top:0;color:#fbbf24;font-size:15px;}
+    .warning-box p {margin-bottom:10px;font-size:15px;}
+    .cta-box {background:linear-gradient(135deg,rgba(79,142,247,.18),rgba(16,185,129,.12));border:1px solid rgba(79,142,247,.35);border-radius:18px;padding:28px 32px;margin:40px 0;text-align:center;}
+    .cta-box h3 {margin-top:0;color:#fff;font-size:20px;}
+    .cta-box p {color:rgba(255,255,255,.75);margin-bottom:16px;}
+    .cta-btn {display:inline-flex;align-items:center;padding:12px 24px;border-radius:999px;background:#4f8ef7;color:#fff;text-decoration:none;font-weight:600;font-size:15px;}
+    .toc {background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;margin:28px 0 32px;}
+    .toc h3 {margin-top:0;font-size:15px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;}
+    .toc ol {margin:0;padding-left:20px;font-size:14px;}
+    .toc li {margin-bottom:6px;}
+    .toc a {color:rgba(255,255,255,.78);text-decoration:none;}
+    .toc a:hover {color:#4f8ef7;}
+    code {background:rgba(255,255,255,.07);padding:2px 6px;border-radius:4px;font-size:.88em;color:#93c5fd;}
+    pre {background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;overflow-x:auto;margin:20px 0;font-size:13px;line-height:1.7;white-space:pre-wrap;}
+    pre code {background:none;padding:0;color:#e5e7eb;}
+    table {width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+    table th,table td {padding:10px 14px;border:1px solid rgba(255,255,255,.1);text-align:left;vertical-align:top;}
+    table th {background:rgba(79,142,247,.15);color:#93c5fd;font-weight:600;}
+    table tr:nth-child(even) {background:rgba(255,255,255,.02);}
+    blockquote {border-left:3px solid #4f8ef7;margin:24px 0;padding:14px 20px;background:rgba(79,142,247,.06);border-radius:0 10px 10px 0;}
+    blockquote p {margin:0;font-size:15px;color:rgba(255,255,255,.8);}
+    .article-footer {margin-top:56px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);}
+    .article-footer h3 {margin-top:0;font-size:16px;color:#93c5fd;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px;}
+    .related-links {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+    .related-link {display:block;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);text-decoration:none;color:inherit;transition:.2s;}
+    .related-link:hover {border-color:rgba(79,142,247,.5);background:rgba(79,142,247,.08);}
+    .related-link-title {font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;}
+    .related-link-desc {font-size:12px;color:rgba(255,255,255,.6);line-height:1.5;}
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网",
+  "description": "越来越多访客会先问：我提交到你网站的内容，会不会被拿去训练 AI？本文结合 OpenAI、Notion、Anthropic、Grammarly 等官方写法，拆解一人公司官网该如何把“你的数据不会被用于 AI 训练”写进 Contact 页、FAQ 和表单承接链路。",
+  "datePublished": "2026-04-12",
+  "dateModified": "2026-04-12",
+  "author": {
+    "@type": "Organization",
+    "name": "BUMA"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BUMA",
+    "url": "https://1r.buma55.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://1r.buma55.com/seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html"
+  },
+  "url": "https://1r.buma55.com/seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html",
+  "keywords": [
+    "AI privacy notice",
+    "no AI training",
+    "contact form privacy",
+    "website data not used to train models",
+    "AI training policy",
+    "AI data usage notice",
+    "官网隐私声明",
+    "Contact 页隐私说明",
+    "一人公司官网",
+    "AI 官网转化"
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="page-wrap">
+    <article>
+      <header class="article-hero">
+        <span class="eyebrow">AI Privacy Notice · 官网转化</span>
+        <h1>AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网</h1>
+        <p class="lead">过去用户担心的是“你会不会骚扰我”，现在越来越多人先担心“我发给你的页面、表单、聊天记录和资料，会不会被拿去训练 AI”。如果你的官网已经接入 AI 工具、自动回复、摘要整理、表单分流，却还没把数据用途讲清楚，那么你丢掉的不是一点点击，而是第一次高意图联系。真正能让人放心的，不是空泛地写“我们重视隐私”，而是把“是否用于模型训练、谁能看到、保留多久、用户能怎么控制”讲成一句可理解的话。</p>
+        <div class="meta">
+          <span>📅 2026-04-12</span>
+          <span>✍️ BUMA 内容团队</span>
+          <span>🏷️ AI Privacy Notice · Contact 页 · FAQ · 表单承接</span>
+          <span>⏱️ 约 4300 字</span>
+        </div>
+      </header>
+
+      <nav class="toc">
+        <h3>目录</h3>
+        <ol>
+          <li><a href="#why">为什么这句“不会被用于 AI 训练”正在变成转化信号</a></li>
+          <li><a href="#examples">头部产品都在怎么写：OpenAI、Notion、Anthropic、Grammarly</a></li>
+          <li><a href="#mistake">一人公司官网最常见的 4 个写法错误</a></li>
+          <li><a href="#where">这句话应该写到哪里：Contact 页、FAQ、表单、确认页、隐私页</a></li>
+          <li><a href="#copy">可直接复用的 5 段官网文案模板</a></li>
+          <li><a href="#kpi">上线后怎么量化：曝光、点击、转化怎么判断</a></li>
+          <li><a href="#risk">本方案风险与调整路径</a></li>
+          <li><a href="#action">一人公司官网的最小落地顺序</a></li>
+          <li><a href="#related">相关阅读</a></li>
+        </ol>
+      </nav>
+
+      <section id="why">
+        <h2>1. 为什么这句“不会被用于 AI 训练”正在变成转化信号</h2>
+        <p>现在的用户，尤其是第一次通过官网发消息、提交资料、上传截图、留下业务背景的用户，已经默认知道一件事：很多 AI 产品会处理他们输入的内容，但不同产品对“是否拿去训练模型”的做法差异极大。有人接受自动摘要、自动分类、自动路由，但不接受自己的商业资料被拿去训练别人的模型；也有人愿意让内容被产品用于改进，但前提是自己能选择、能关闭、能删除。</p>
+        <p>这意味着，<strong>“我们用了 AI”</strong> 不再天然加分；没有解释清楚时，它甚至会变成阻力。访客并不会先去翻你的隐私政策，他们更可能在 Contact 页、FAQ、表单提交区和确认页，快速扫一眼有没有一句人话：<strong>“你提交给我们的资料，只会用于这次沟通与交付，不会被用于训练公开 AI 模型。”</strong></p>
+        <p>这类表述的转化价值，不在于法律花样，而在于它直接回答了三个高频疑问：</p>
+        <ul>
+          <li><strong>我现在发给你的内容，会不会流到别处？</strong></li>
+          <li><strong>你接了 AI 以后，是帮我提高效率，还是把我变成训练素材？</strong></li>
+          <li><strong>如果我要发的是报价、客户名、流程截图、后台截图，这样安全吗？</strong></li>
+        </ul>
+        <div class="highlight-box">
+          <h3>核心判断</h3>
+          <p>对一人公司官网来说，AI privacy notice 不是“法务附件”，而是第一次信任建立层。它写得越具体，用户越敢迈出第一步；它写得越空，用户越容易把高意图提交拖成“再看看”。</p>
+        </div>
+      </section>
+
+      <section id="examples">
+        <h2>2. 头部产品都在怎么写：OpenAI、Notion、Anthropic、Grammarly</h2>
+        <p>这类文案该怎么写，不必闭门造车。看近两年头部 AI 与协作产品的官方说明，可以提炼出一个很明确的趋势：<strong>不再只讲“我们重视隐私”，而是把数据用途、训练边界、保留周期、控制选项写得更可操作。</strong></p>
+
+        <h3>OpenAI 的启发：把“消费场景”和“商业场景”分开讲</h3>
+        <p>OpenAI 的个人产品说明里会明确告诉用户：在 ChatGPT、Sora、Operator 这类个人服务中，内容可能被用于改进模型，但用户可以通过数据控制关闭训练；而企业与 API 场景则强调对业务数据的拥有权与控制权。这种写法最值得学的地方，不是措辞，而是<strong>边界清晰</strong>：不同产品、不同使用场景，数据规则不同，不混着讲。</p>
+        <p>对官网来说，这给了一个直接启发：如果你的站点既有公开内容，又有用户提交的咨询、文档、截图、表单信息，就不要只写一句“我们会保护你的数据”，而要明确区分：<strong>公开站点分析数据怎么用，用户主动提交的数据怎么用，哪些不会用于模型训练。</strong></p>
+
+        <h3>Notion 的启发：一句话说清默认规则，再补技术与合同边界</h3>
+        <p>Notion AI 的安全说明非常适合做参考。它不绕圈，直接写：默认情况下，Notion 与其 AI 子处理方不会使用客户数据训练模型，并且通过合同约束子处理方不得拿客户数据训练。然后再往下补 embeddings、权限继承、数据保留、第三方处理、合规等细节。这个结构非常高明：<strong>先给结论，再给机制。</strong></p>
+        <p>如果你是一人公司，不需要把官网写成白皮书，但应该学这个顺序：先把最重要的一句放在最容易看到的位置，再把详细说明放进 FAQ 或隐私页面。用户先得到“能不能放心发”的判断，再决定要不要继续看更细的条款。</p>
+
+        <h3>Anthropic 的启发：把“设置、模式、商业版本”说成可理解的控制项</h3>
+        <p>Anthropic 在消费者与商业产品的数据说明里，也把模型改进、隐身模式、保留时间、反馈数据等分别说明。尤其是“Incognito chats 不用于改进 Claude”这类表述，本质上是在告诉用户：<strong>这里有控制开关，而且开关会带来不同的数据处理结果。</strong></p>
+        <p>这对官网文案的意义是：当你不能绝对一句话涵盖所有情况时，要把<strong>“默认规则 + 例外场景 + 用户控制方式”</strong>写出来。比如：默认不用于训练；若用户明确授权用于案例整理或匿名优化，会单独说明；如需删除材料，可发起删除请求。</p>
+
+        <h3>Grammarly 的启发：不要假装绝对安全，而要给用户可退出选项</h3>
+        <p>Grammarly 的 Trust Center 一边强调不会出售用户内容，一边说明可以关闭 Product Improvement and Training。它不是用“绝对不会”覆盖一切，而是尽量把用户最关心的控制感交还给用户。这说明一个现实：很多产品的真实情况不是非黑即白，而是<strong>默认规则 + 用户设置 + 功能级个性化</strong>共同决定。</p>
+        <p>所以，如果你的网站链路里确实有部分 AI 服务会临时处理输入、但不会将其用于公开模型训练，就应该像成熟产品一样说明清楚，而不是因为怕麻烦就干脆不写。越不写，越像有鬼；越说明白，越容易被信任。</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>参考对象</th>
+              <th>值得学习的点</th>
+              <th>能迁移到官网的写法</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OpenAI</td>
+              <td>区分个人产品与企业/API 数据规则</td>
+              <td>把“浏览行为数据”和“用户主动提交资料”分开说明</td>
+            </tr>
+            <tr>
+              <td>Notion</td>
+              <td>先给默认结论，再给合同/技术边界</td>
+              <td>先写“不会用于 AI 训练”，再在 FAQ 补保留、权限、处理方</td>
+            </tr>
+            <tr>
+              <td>Anthropic</td>
+              <td>把模式、保留、训练、控制写成可选项</td>
+              <td>补充删除请求、例外说明、授权场景</td>
+            </tr>
+            <tr>
+              <td>Grammarly</td>
+              <td>强调不出售内容，并给用户退出训练的控制</td>
+              <td>少写抽象大词，多写用户能做什么、你不会做什么</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="mistake">
+        <h2>3. 一人公司官网最常见的 4 个写法错误</h2>
+        <p>很多网站不是没意识到这个问题，而是写法太差，结果把本来能加分的信号写成了噪音。</p>
+
+        <h3>错误一：只写“我们重视你的隐私”</h3>
+        <p>这类话没有信息量。用户真正想知道的是：你到底会不会拿我的资料训练 AI？会不会共享给第三方？多久删除？“重视隐私”不能回答任何一个具体问题。</p>
+
+        <h3>错误二：把关键答案藏进长篇隐私政策</h3>
+        <p>法律页当然要有，但 Contact 页、FAQ、表单提交按钮附近更需要一句直白答案。因为用户通常是在准备点击“发送”那一秒产生犹豫，而不是在搜索站点底部链接时犹豫。</p>
+
+        <h3>错误三：把“不会用于训练”写得过度绝对</h3>
+        <p>如果你的某些第三方工具、自动转写、客服摘要或邮件分类流程，并不能支持你写“任何数据绝不进入任何 AI 系统”，那就不要硬写成绝对句。你应该写的是：<strong>提交的数据仅用于本次沟通、服务判断和交付，不会被用于训练公开 AI 模型；若存在第三方处理，将在隐私说明中列明。</strong></p>
+
+        <h3>错误四：只解决法务，不解决转化</h3>
+        <p>有些站把隐私文案写得像合同，用户根本看不懂。转化型写法的重点是：先让用户敢发，再给用户继续了解的入口。不是用复杂条款提高门槛，而是用清晰边界降低顾虑。</p>
+
+        <div class="warning-box">
+          <h3>最容易掉单的位置</h3>
+          <p>真正导致提交流失的，往往不是首页 Hero，而是 Contact 页最后 20 秒：用户准备发报价、发后台截图、发客户列表、发流程报错时，突然觉得“算了，先不发”。这时一段 AI privacy notice 的价值，往往比再多一条夸自己能力的卖点更大。</p>
+        </div>
+      </section>
+
+      <section id="where">
+        <h2>4. 这句话应该写到哪里：Contact 页、FAQ、表单、确认页、隐私页</h2>
+        <p>如果你只把这句话写在一个角落，效果会打折。最稳的做法，是按用户真正经过的路径分层落位。</p>
+
+        <h3>Contact 页：解决第一次提交前的犹豫</h3>
+        <p>这里最适合放一句短承诺，靠近 CTA 或提交说明。长度控制在 1~2 句，重点回答“会不会被用于训练”和“这次提交只用来干什么”。</p>
+
+        <h3>FAQ：承接详细问题</h3>
+        <p>适合展开回答：是否接入第三方 AI、是否用于模型训练、保留多久、谁有权限看、能否删除。FAQ 的任务是吃掉犹豫，而不是讲品牌愿景。</p>
+
+        <h3>表单底部：解决点击按钮前的最后一层不安</h3>
+        <p>这类说明最好紧贴输入框或按钮，让用户知道自己正在提交的内容用途是什么。比如“你提交的页面链接、截图和业务说明，仅用于这次判断与后续沟通，不会用于公开 AI 模型训练。”</p>
+
+        <h3>确认页 / thank-you 页：强化信任而不是只写“提交成功”</h3>
+        <p>如果你的网站已经有 thank-you page，就顺手补一句：我们已收到资料，接下来会怎样处理、谁会看、多久回复、不会做什么。这样用户不会因为提交后反而开始后悔。</p>
+
+        <h3>隐私页：给认真核对的人完整答案</h3>
+        <p>这里再放详细版，包括第三方处理方、保留策略、删除路径、例外条款。隐私页不是转化主战场，但它是让前面的短承诺站得住的底座。</p>
+      </section>
+
+      <section id="copy">
+        <h2>5. 可直接复用的 5 段官网文案模板</h2>
+        <p>下面这几段不是法务模板，而是更适合一人公司官网的转化型写法。你可以按自己的真实处理方式微调，但不要把真实边界写没了。</p>
+
+        <h3>模板一：Contact 页短句版</h3>
+        <pre><code>你提交给我们的页面链接、截图和业务说明，仅用于这次沟通判断与后续服务推进，
+不会被用于训练公开 AI 模型。</code></pre>
+
+        <h3>模板二：表单按钮上方信任版</h3>
+        <pre><code>可以放心发当前卡点。你的资料只会用于本次分析、回复与交付，不会被拿去做公开模型训练。</code></pre>
+
+        <h3>模板三：FAQ 解释版</h3>
+        <pre><code>Q：你们会不会把我提交的内容拿去训练 AI？
+A：默认不会。你通过网站、表单、邮件或即时沟通提交给我们的资料，只用于这次沟通、服务判断与交付过程，不会被用于训练公开 AI 模型。若某些环节涉及第三方 AI 处理工具，我们会控制在当前任务范围内使用，并优先选择具备企业级数据保护或零训练承诺的服务。</code></pre>
+
+        <h3>模板四：确认页安心版</h3>
+        <pre><code>我们已收到你的资料。接下来会在 24 小时内完成初步判断。
+你提交的内容只用于这次沟通与后续处理，不会被用于公开 AI 模型训练。</code></pre>
+
+        <h3>模板五：隐私页完整版</h3>
+        <pre><code>我们可能使用自动化与 AI 工具协助完成信息整理、摘要、分类和流程判断，但用户主动提交的内容默认仅用于本次沟通、项目评估、服务交付与必要的运营记录，不会被用于训练公开 AI 模型。如涉及第三方处理方，我们将优先选择具备企业级数据保护承诺的服务，并在隐私说明中持续更新相关信息。</code></pre>
+
+        <p>注意，这五段的重点不是词藻，而是都回答了三件事：<strong>用于什么、不用于什么、若有第三方怎么办。</strong> 这就是用户真正要的确定性。</p>
+      </section>
+
+      <section id="kpi">
+        <h2>6. 上线后怎么量化：曝光、点击、转化怎么判断</h2>
+        <p>如果你把 AI privacy notice 只当作一句安心文案，就很容易忽略它对转化的真实影响。更实用的做法，是把它当作一个可观测的信任实验。</p>
+        <table>
+          <thead>
+            <tr>
+              <th>指标层</th>
+              <th>建议观察值</th>
+              <th>判断方式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>曝光量级</td>
+              <td>Contact 页 / FAQ 页相关模块每周 200~1000 次可见曝光</td>
+              <td>看该模块附近滚动到达率、FAQ 展开率、表单可见率</td>
+            </tr>
+            <tr>
+              <td>预期点击率</td>
+              <td>Contact 主 CTA 提升 5%~12%</td>
+              <td>对比加入 privacy notice 前后的按钮点击率、表单开始率</td>
+            </tr>
+            <tr>
+              <td>转化率</td>
+              <td>高意图提交提升 8%~20%</td>
+              <td>重点看带截图、带链接、带具体问题的有效咨询占比</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>如果你的网站流量不大，不必追求复杂实验。最小可行方式是：上线前记录 2 周基线，上线后再看 2~4 周的 Contact 点击率、表单提交率、有效咨询率和咨询文本质量。很多时候，最先变化的不是总提交量，而是<strong>提交内容更具体、附件更完整、沟通更快进入实质判断</strong>。</p>
+      </section>
+
+      <section id="risk">
+        <h2>7. 本方案风险与调整路径</h2>
+        <p><strong>本方案风险：</strong>如果你的真实数据处理链路并不支持“不会用于 AI 训练”这类明确表述，硬写会带来信任反噬；若站点后续接入了新的 AI 工具却未更新说明，也会让前台承诺与后台实际不一致；若文案写得太法律化，用户虽看到但不理解，转化收益也会打折。</p>
+        <p><strong>若出现上述情况，则调整：</strong>第一，先盘点真实处理链路，再决定能写到什么程度；第二，把绝对表述改成准确边界，例如“不会用于训练公开 AI 模型”；第三，把简版承诺写在 Contact 页，把详细版补进 FAQ / 隐私页；第四，每新增 1 个涉及用户输入的 AI 工具，就复核一次对应说明。</p>
+      </section>
+
+      <section id="action">
+        <h2>8. 一人公司官网的最小落地顺序</h2>
+        <p>如果你今天就想动手，不需要先重写整站，按下面的最小顺序做就够：</p>
+        <ol>
+          <li><strong>先改 Contact 页</strong>：在提交入口附近加 1 段短承诺，解决第一次发送前的顾虑。</li>
+          <li><strong>再补 FAQ</strong>：用 1 个问题把“会不会用于 AI 训练、谁会看、多久保留”讲清楚。</li>
+          <li><strong>顺手改确认页</strong>：让用户提交后继续安心，而不是开始后悔。</li>
+          <li><strong>最后补隐私页</strong>：把处理方、例外情况、删除方式补完整，作为长期底座。</li>
+        </ol>
+        <p>这不是为了显得专业，而是为了让用户更敢发真实资料。对一人公司来说，很多咨询不是流量不够，而是第一步不敢迈。把 AI privacy notice 写对，等于把“我先自己再想想”往“我现在就发给你看看”推进了一截。</p>
+
+        <div class="cta-box">
+          <h3>如果你的网站已经接了 AI，但还没把这层信任写清楚</h3>
+          <p>可以先从 Contact 页和 FAQ 两处开始收口。BUMA 可先帮你判断：你当前的提交入口、确认页和隐私说明，哪里最容易让用户在最后一步退掉。</p>
+          <a href="https://1r.buma55.com/contact.html" class="cta-btn">预约 15 分钟网站诊断 →</a>
+        </div>
+      </section>
+
+      <footer class="article-footer" id="related">
+        <h3>相关阅读</h3>
+        <div class="related-links">
+          <a href="https://1r.buma55.com/seo-20260412-0016-ai-agent-trust-safety-website-operator-computer-use-seo.html" class="related-link">
+            <div class="related-link-title">AI 代理开始认真对待安全：一人公司官网如何搭 trust &amp; safety 体系</div>
+            <div class="related-link-desc">如果你已经开始写 AI 隐私和训练边界，这篇可继续补安全与信任框架。</div>
+          </a>
+          <a href="https://1r.buma55.com/seo-20260411-0902-ai-agent-thank-you-confirmation-response-time-seo.html" class="related-link">
+            <div class="related-link-title">Thank-you / confirmation 页别再只写“提交成功”</div>
+            <div class="related-link-desc">把隐私承诺和后续响应说明，接到确认页而不是停在 Contact 页。</div>
+          </a>
+          <a href="https://1r.buma55.com/seo-20260411-0502-ai-browser-agent-ready-contact-faq-offer-page-seo.html" class="related-link">
+            <div class="related-link-title">AI 浏览器代理时代：Contact / FAQ / Offer 页面怎么做 agent-ready</div>
+            <div class="related-link-desc">理解为什么 Contact 和 FAQ 已经不是辅助页，而是 AI 转化链路的关键页。</div>
+          </a>
+          <a href="https://1r.buma55.com/contact.html" class="related-link">
+            <div class="related-link-title">联系页：先把你最卡的那一步发来</div>
+            <div class="related-link-desc">查看本站当前的 Contact 承接结构，判断你的提交入口还缺哪一层信任信号。</div>
+          </a>
+        </div>
+      </footer>
+    </article>
+  </div>
+
+  <!--
+  SEO Brief
+  标题: AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网
+  Target Keyword: AI privacy notice / no AI training / contact form privacy / website data not used to train models
+  Search Intent: Informational + Commercial Investigation
+  Meta Title: AI Privacy Notice 怎么写？“你的数据不会被用于 AI 训练”为什么该写进官网 | BUMA
+  Meta Description: 越来越多访客会先问：我提交到你网站的内容，会不会被拿去训练 AI？本文结合 OpenAI、Notion、Anthropic、Grammarly 等官方写法，拆解一人公司官网该如何把“你的数据不会被用于 AI 训练”写进 Contact 页、FAQ 和表单承接链路。
+  Suggested Slug: seo-20260412-0409-ai-privacy-notice-no-ai-training-contact-page-seo.html
+  Internal Link Suggestions:
+  1. /contact.html
+  2. /seo-20260412-0016-ai-agent-trust-safety-website-operator-computer-use-seo.html
+  3. /seo-20260411-0902-ai-agent-thank-you-confirmation-response-time-seo.html
+  4. /seo-20260411-0502-ai-browser-agent-ready-contact-faq-offer-page-seo.html
+  -->
+</body>
+</html>
